@@ -14,68 +14,7 @@ That's where the **Routing Layer** comes in picture. It sits on top of both clou
 
 ## High Level Design
 
-```
-                    ┌─────────────────┐
-                    │   USER MAKES    │
-                    │   API CALL      │
-                    └────────┬────────┘
-                             │
-                             ▼
-              ┌──────────────────────────────┐
-              │                              │
-              │     ☁️  ROUTING LAYER        │
-              │                              │
-              │   "Let me check where to     │
-              │    send this request"        │
-              │                              │
-              └──────────────┬───────────────┘
-                             │
-              ┌──────────────┼──────────────┐
-              │              │              │
-              ▼              ▼              ▼
-       ┌────────────┐ ┌────────────┐ ┌────────────┐
-       │  CHECKS:   │ │  CHECKS:   │ │  CHECKS:   │
-       │            │ │            │ │            │
-       │ • API?     │ │ • Headers? │ │ • User ID? │
-       │            │ │            │ │            │
-       │ • Location?│ │ • Token?   │ │ • Service? │
-       └────────────┘ └────────────┘ └────────────┘
-                             │
-              ┌──────────────┴──────────────┐
-              │                             │
-              ▼                             ▼
-    ┌───────────────────┐       ┌───────────────────┐
-    │                   │       │                   │
-    │    ☁️ CLOUD A     │       │    ☁️ CLOUD B      │
-    │     (AWS)         │       │     (GCP)         │
-    │                   │       │                   │
-    │  ┌─────────────┐  │       │  ┌─────────────┐  │
-    │  │  Services   │  │       │  │  Services   │  │
-    │  └──────┬──────┘  │       │  └──────┬──────┘  │
-    │         │         │       │         │         │
-    │  ┌──────┴──────┐  │       │  ┌──────┴──────┐  │
-    │  │ PostgreSQL  │  │<----->│  │ PostgreSQL  │  │
-    │  │   (Master)  │  │       │  │  (Replica)  │  │
-    │  └─────────────┘  │       │  └─────────────┘  │
-    │                   │       │                   │
-    └─────────┬─────────┘       └─────────┬─────────┘
-              │                           │
-              └───────────┬───────────────┘
-                          │
-                          ▼
-                ┌────────────────────┐
-                │                    │
-                │ Need data from     │
-                │ other cloud?       │
-                │                    │
-                │ Cloud A talks to   │
-                │ Cloud B DIRECTLY   │
-                │                    │
-                │                    │
-                │  ✅ Direct HTTP!   │
-                │                    │
-                └────────────────────┘
-```
+![Multi-Cloud High Level Design](images/hld-routing.png)
 
 ---
 
@@ -174,16 +113,16 @@ That's where the **Routing Layer** comes in picture. It sits on top of both clou
        └──────┬───────┘                      └──────┬───────┘
               │                                     │
               │                                     │
-              │   Service A needs data             │
-              │   from Service B                   │
+              │   Service A needs data              │
+              │   from Service B                    │
               │                                     │
-              │        ✅✅✅                      │
+              │        ✅✅✅                        │
               │    DIRECT CALL!                     │
-              │        ✅✅✅                      │
+              │        ✅✅✅                        │
               │                                     │
-              │   HTTP Request ───────────────────►│
+              │   HTTP Request ───────────────────► │
               │                                     │
-              │◄─────────────────── HTTP Response  │
+              │◄─────────────────── HTTP Response   │
               │                                     │
               ▼                                     ▼
        ┌──────────────┐                      ┌──────────────┐
@@ -315,21 +254,6 @@ Think of it like an office building with two wings (Cloud A and Cloud B):
 
 **Employees don't go through receptionist to talk to other employees - they just go directly!**
 
----
-
-## The Golden Rule
-
-```
-╔══════════════════════════════════════════════════════════════════╗
-║              ⚠️  REMEMBER THIS  ⚠️                               ║
-╚══════════════════════════════════════════════════════════════════╝
-
-✅ Client Requests → Go through Routing Layer
-   (Decides which cloud)
-
-✅ Service-to-Service → Direct between Clouds
-   (No routing layer involved!)
-```
 
 ---
 
