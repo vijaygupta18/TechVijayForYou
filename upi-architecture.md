@@ -11,7 +11,7 @@ This is the architecture behind it.
 Before 2016, inter-bank transfers in India were painful:
 
 - **NEFT** — batch processing every 30 minutes (now every hour). You'd wait hours. Needed account number + IFSC. One typo = money to a stranger.
-- **IMPS** — instant, but required the receiver's 10-digit MMID + mobile number. Nobody memorised that.
+- **IMPS** — instant, but originally required the receiver's **MMID (Mobile Money Identifier)** + mobile number — a 7-digit bank-generated code nobody memorised. (Account + IFSC was added later as an alternative, but MMID was the original friction point.)
 - **Net banking** — different UI per bank, session timeouts, no mobile-native experience.
 
 The core problem: **no common identity layer across banks.** Each bank was an island. Inter-bank transfer required you to know the bank's internal identifiers.
@@ -71,24 +71,24 @@ The VPA is mapped to a specific account number + IFSC internally. The payer neve
 **Scenario: PhonePe user (Axis Bank) sends ₹500 to Google Pay user (HDFC Bank)**
 
 ### One-time Setup (Device Binding)
-1. User installs PhonePe → app generates a **device fingerprint** (device ID + IMEI + SIM data)
-2. App sends an SMS from the registered number to NPCI's verification server — confirming SIM + device are the same physical entity
-3. User links bank account via debit card → bank calls NPCI's `setCredentials` API
-4. User sets a 4 or 6-digit UPI PIN → Axis Bank stores only the **PBKDF2 hash** (600,000 iterations). The PIN itself is never stored anywhere.
-5. App generates a **public-private key pair** → private key lives in **Android Keystore / iOS Secure Enclave** (hardware-backed, non-extractable). Public key registered with the PSP.
+1. User installs PhonePe → app captures a **device fingerprint** (device ID, IMEI, SIM details)
+2. App automatically sends an SMS from the registered mobile number — this proves the device physically has the registered SIM (possession proof)
+3. NPCI/PSP records this device + SIM combination as the bound entity for this user
+4. User links bank account via debit card → bank calls NPCI's `setCredentials` API
+5. User sets a 4 or 6-digit UPI PIN → the PIN is associated with the issuer bank's card authentication infrastructure and verified via the bank's HSM (Hardware Security Module). The UPI spec does not mandate a specific storage format; this is handled within the issuer bank's secure infrastructure.
 
 ### Live Transaction (every time you pay)
 
 | Step | What Happens | Who |
 |---|---|---|
 | 1 | User enters payee VPA + amount, confirms with UPI PIN | User on PhonePe |
-| 2 | PhonePe app encrypts PIN, signs request with device private key | PhonePe (TPAP) |
+| 2 | PhonePe app encrypts PIN using PSP's public key, packages request with device fingerprint | PhonePe (TPAP) |
 | 3 | Encrypted request → PhonePe's PSP (Axis Bank's UPI server) | PhonePe → PSP |
 | 4 | PSP forwards to NPCI Switch via ISO 8583 XML over HTTPS | PSP → NPCI |
 | 5 | NPCI resolves `friend@okhdfc` → HDFC Bank is payee PSP | NPCI |
 | 6 | NPCI sends VPA resolution request to HDFC; HDFC confirms account exists | NPCI → HDFC |
 | 7 | NPCI instructs Axis Bank: "Verify PIN and debit ₹500 from account XXXX" | NPCI → Axis |
-| 8 | Axis Bank CBS verifies PIN hash against stored hash, checks balance, debits account → sends SUCCESS | Axis Bank |
+| 8 | Axis Bank verifies the encrypted PIN via its HSM (card authentication infrastructure), checks balance, debits account → sends SUCCESS | Axis Bank |
 | 9 | NPCI instructs HDFC Bank: "Credit ₹500 to account YYYY" | NPCI → HDFC |
 | 10 | HDFC Bank CBS credits account → sends SUCCESS | HDFC Bank |
 | 11 | NPCI sends confirmation back to both PSPs | NPCI |
@@ -100,21 +100,21 @@ The VPA is mapped to a specific account number + IFSC internally. The payer neve
 
 ## Two-Factor Authentication: Why UPI Is Hard to Compromise
 
-UPI requires **both** factors simultaneously:
+UPI requires **both** factors simultaneously, per RBI's two-factor authentication mandate:
 
 ### Factor 1 — Possession (Device Binding)
-- Your registered SIM + specific device = bound pair
-- The app's private key lives in **ARM TrustZone** (Android) or **Secure Enclave** (iOS) — hardware-level isolation, the key cannot be extracted even by the OS
-- Every transaction request is cryptographically signed by this private key
-- NPCI verifies the signature against the public key on file
-- New phone = full re-registration required
+- Your **registered SIM + specific device** = bound pair. Registration sends an automatic SMS from your SIM, proving device and SIM are co-located.
+- Device fingerprint (device ID, IMEI, SIM details) is registered with the PSP during setup
+- If you change phones or SIMs, full re-registration is required — the old binding is invalidated
+- Note: UPI does not mandate a hardware secure element or private key chip architecture. Device binding works via SIM + device fingerprint validation, not hardware cryptography. Individual PSP implementations may add app-level signing, but this is not a universal UPI spec requirement.
 
 ### Factor 2 — Knowledge (UPI PIN)
-- PIN is entered in a **bank-provided SDK overlay** — the TPAP app never sees it
-- Bank stores only the PBKDF2 hash (600,000 iterations) — not the PIN, not an encrypted PIN
-- PIN verification happens inside the bank's **HSM (Hardware Security Module)** — not on NPCI's servers
+- PIN is entered in a **bank-provided SDK overlay** — the TPAP app never sees the PIN value
+- The PIN is **encrypted on-device** using the PSP's public key before transmission
+- PIN verification happens inside the **issuer bank's HSM** using card authentication infrastructure — similar to how debit card PINs are verified. It is not a simple hash comparison.
+- The encrypted PIN never reaches NPCI — verification is end-to-end between device and issuer bank.
 
-**What this means:** Stealing just your phone doesn't work (you need the PIN). Stealing just the PIN doesn't work (you need the bound device). A server-side compromise of the TPAP reveals nothing — they have no credentials. A server-side compromise of NPCI reveals nothing — PIN hashes never reach NPCI.
+**What this means:** Stealing just your phone doesn't work (you need the PIN, and re-binding on a new device requires re-registration). Stealing just the PIN doesn't work (you need the bound device + SIM). The TPAP never holds credentials — a TPAP server compromise reveals nothing useful.
 
 ---
 
@@ -128,18 +128,17 @@ Here's what happens in the background:
 
 ![UPI Settlement Cycles](images/upi-architecture/upi-settlement.png)
 
-NPCI runs **10 daily settlement cycles** (per NPCI OC-197, implemented FY2024-25), from 9 AM to 9 PM at approximately 2-hour intervals:
+NPCI runs **Deferred Net Settlement (DNS)** — multiple settlement batches throughout the day via RBI's infrastructure. The exact number of cycles is an operational parameter set by NPCI and RBI and can change over time (NPCI OC-197 documented a particular cycle schedule for FY2024-25, but treat this as an example, not a permanent fixed count).
 
+Each batch:
 1. NPCI aggregates all transactions across all bank pairs in that window
 2. Calculates net positions: "Axis owes HDFC ₹847 crore net, HDFC owes ICICI ₹312 crore net..."
 3. Net settlement instructions posted to **RBI's RTGS** (Real-Time Gross Settlement)
 4. Banks transfer only the net amount via their RBI reserve accounts
 
-**The math:** If in a 2-hour window, Axis→HDFC transactions total ₹100 crore and HDFC→Axis total ₹95 crore, only **₹5 crore moves via RTGS** — not 200 crore worth of individual transactions. This dramatically reduces inter-bank liquidity requirements and makes the system capital-efficient.
+**The math:** If in one window, Axis→HDFC transactions total ₹100 crore and HDFC→Axis total ₹95 crore, only **₹5 crore moves via RTGS** — not ₹195 crore of individual transactions. This dramatically reduces inter-bank liquidity requirements and makes the system capital-efficient.
 
-Banks carry the intraday credit risk (crediting payees before actual inter-bank settlement) based on NPCI's guarantee, which is backed by RBI's oversight and the DNS settlement rules.
-
-In November/December 2025, NPCI added 2 separate **dispute settlement cycles** (DC1, DC2) — segregated from the 10 auth cycles, so failed transaction reversals don't contaminate normal settlement windows.
+Banks carry the intraday credit risk (crediting payees before actual inter-bank settlement) based on NPCI's guarantee, backed by RBI oversight and DNS settlement rules.
 
 ---
 
@@ -150,9 +149,9 @@ In November/December 2025, NPCI added 2 separate **dispute settlement cycles** (
 | Dimension | UPI | IMPS | NEFT | SWIFT |
 |---|---|---|---|---|
 | User experience | Instant (< 2s) | Instant (seconds) | Near-instant (batch) | Hours to days |
-| Identifier | VPA (human-readable) | Account + IFSC | Account + IFSC | IBAN + SWIFT BIC |
+| Identifier | VPA / Account+IFSC / QR | Mobile+MMID / Account+IFSC | Account + IFSC | IBAN + SWIFT BIC |
 | Auth | 2FA (device + PIN) | Password + OTP | Net banking | Correspondent trust |
-| Settlement | Deferred Net (10 cycles/day) | Deferred Net | Batch | Correspondent chain |
+| Settlement | Deferred Net Settlement (DNS) | Deferred Net | Batch | Correspondent chain |
 | Cost to user | Zero | ₹1–25 | ₹1–25 | High (wire + FX) |
 | Daily limit | ₹1L (₹5L select categories) | ₹5L | No limit | No standard |
 | Availability | 24/7/365 | 24/7/365 | 24/7 (since Dec 2019) | Banking hours |
