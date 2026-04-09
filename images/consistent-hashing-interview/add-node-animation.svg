@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="420" viewBox="0 0 600 420">
+  <defs>
+    <linearGradient id="ringStroke2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF" />
+      <stop offset="50%" stop-color="#FFD55C" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+    <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="600" height="420" fill="#040818" rx="12" />
+
+  <text x="300" y="30" text-anchor="middle" fill="#9CA3AF" font-family="sans-serif" font-size="13" font-weight="700" letter-spacing="2">ADD ONE NODE — ONLY ONE SLICE MOVES</text>
+
+  <ellipse cx="300" cy="220" rx="180" ry="80" fill="none" stroke="url(#ringStroke2)" stroke-width="4" opacity="0.9" />
+
+  <g>
+    <circle cx="450" cy="195" r="10" fill="#00E5FF" filter="url(#glow2)" />
+    <text x="450" y="180" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="900">S-A</text>
+    <circle cx="395" cy="290" r="10" fill="#FFB300" filter="url(#glow2)" />
+    <text x="412" y="312" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="900">S-B</text>
+    <circle cx="165" cy="260" r="10" fill="#A855F7" filter="url(#glow2)" />
+    <text x="148" y="282" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="900">S-C</text>
+    <circle cx="155" cy="175" r="10" fill="#10E891" filter="url(#glow2)" />
+    <text x="155" y="160" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="12" font-weight="900">S-D</text>
+  </g>
+
+  <g>
+    <circle cx="475" cy="245" r="11" fill="#FF3D5C" filter="url(#glow2)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1;1;1;0" dur="8s" repeatCount="indefinite" />
+      <animate attributeName="r" values="11;11;14;11;11;11;11;11" dur="8s" repeatCount="indefinite" />
+    </circle>
+    <text x="500" y="245" fill="#FF6B85" font-family="sans-serif" font-size="12" font-weight="900" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1;1;1;0" dur="8s" repeatCount="indefinite" />
+      NEW
+    </text>
+  </g>
+
+  <g fill="#9CA3AF" opacity="0.7">
+    <circle cx="430" cy="153" r="5" />
+    <circle cx="370" cy="305" r="5" />
+    <circle cx="280" cy="305" r="5" />
+    <circle cx="195" cy="290" r="5" />
+    <circle cx="135" cy="220" r="5" />
+    <circle cx="225" cy="155" r="5" />
+    <circle cx="320" cy="143" r="5" />
+  </g>
+
+  <g>
+    <circle cx="465" cy="210" r="7" fill="#FFD55C" filter="url(#glow2)">
+      <animate attributeName="cx" values="465;465;465;475;475;475;465;465" dur="8s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="210;210;210;245;245;245;210;210" dur="8s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="#9CA3AF;#9CA3AF;#FFD55C;#FFD55C;#FFD55C;#FFD55C;#9CA3AF;#9CA3AF" dur="8s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <g transform="translate(60, 340)">
+    <rect width="220" height="60" rx="10" fill="#330A12" stroke="#FF3D5C" stroke-width="2" opacity="0.85" />
+    <text x="110" y="32" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="32" font-weight="900">9<tspan fill="#FF6B85" font-size="18">%</tspan></text>
+    <text x="110" y="50" text-anchor="middle" fill="#FF6B85" font-family="sans-serif" font-size="11" font-weight="700" letter-spacing="1">KEYS MOVE</text>
+  </g>
+  <g transform="translate(320, 340)">
+    <rect width="220" height="60" rx="10" fill="#0A3320" stroke="#10E891" stroke-width="2" opacity="0.85" />
+    <text x="110" y="32" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="32" font-weight="900">91<tspan fill="#5FFFA8" font-size="18">%</tspan></text>
+    <text x="110" y="50" text-anchor="middle" fill="#5FFFA8" font-family="sans-serif" font-size="11" font-weight="700" letter-spacing="1">CACHE SAFE</text>
+  </g>
+</svg>

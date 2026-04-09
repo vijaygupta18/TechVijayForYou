@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="300" viewBox="0 0 700 300">
+  <defs>
+    <linearGradient id="serverGradGood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A2A38" />
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0.4" />
+    </linearGradient>
+    <linearGradient id="serverGradBad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#330A12" />
+      <stop offset="100%" stop-color="#FF3D5C" stop-opacity="0.5" />
+    </linearGradient>
+    <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="700" height="300" fill="#040818" rx="12" />
+
+  <text x="350" y="28" text-anchor="middle" fill="#9CA3AF" font-family="sans-serif" font-size="14" font-weight="700" letter-spacing="2">NAIVE HASHING — hash(key) % N</text>
+
+  <g id="servers">
+    <g>
+      <rect x="60" y="100" width="50" height="50" rx="6" fill="url(#serverGradGood)" stroke="#00E5FF" stroke-width="1.5">
+        <animate attributeName="stroke" values="#00E5FF;#00E5FF;#FF3D5C;#FF3D5C;#00E5FF" dur="6s" repeatCount="indefinite" />
+      </rect>
+      <text x="85" y="132" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">S0</text>
+    </g>
+    <g>
+      <rect x="120" y="100" width="50" height="50" rx="6" fill="url(#serverGradGood)" stroke="#00E5FF" stroke-width="1.5">
+        <animate attributeName="stroke" values="#00E5FF;#00E5FF;#FF3D5C;#FF3D5C;#00E5FF" dur="6s" begin="0.1s" repeatCount="indefinite" />
+      </rect>
+      <text x="145" y="132" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">S1</text>
+    </g>
+    <g>
+      <rect x="180" y="100" width="50" height="50" rx="6" fill="url(#serverGradGood)" stroke="#00E5FF" stroke-width="1.5">
+        <animate attributeName="stroke" values="#00E5FF;#00E5FF;#FF3D5C;#FF3D5C;#00E5FF" dur="6s" begin="0.2s" repeatCount="indefinite" />
+      </rect>
+      <text x="205" y="132" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">S2</text>
+    </g>
+    <g>
+      <rect x="240" y="100" width="50" height="50" rx="6" fill="url(#serverGradGood)" stroke="#00E5FF" stroke-width="1.5">
+        <animate attributeName="stroke" values="#00E5FF;#00E5FF;#FF3D5C;#FF3D5C;#00E5FF" dur="6s" begin="0.3s" repeatCount="indefinite" />
+      </rect>
+      <text x="265" y="132" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">S3</text>
+    </g>
+    <g>
+      <rect x="300" y="100" width="50" height="50" rx="6" fill="url(#serverGradGood)" stroke="#00E5FF" stroke-width="1.5">
+        <animate attributeName="stroke" values="#00E5FF;#00E5FF;#FF3D5C;#FF3D5C;#00E5FF" dur="6s" begin="0.4s" repeatCount="indefinite" />
+      </rect>
+      <text x="325" y="132" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">S4</text>
+    </g>
+    <text x="380" y="135" fill="#64748B" font-family="sans-serif" font-size="20" font-weight="700">...</text>
+    <g>
+      <rect x="410" y="100" width="50" height="50" rx="6" fill="url(#serverGradGood)" stroke="#00E5FF" stroke-width="1.5">
+        <animate attributeName="stroke" values="#00E5FF;#00E5FF;#FF3D5C;#FF3D5C;#00E5FF" dur="6s" begin="0.5s" repeatCount="indefinite" />
+      </rect>
+      <text x="435" y="132" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">S9</text>
+    </g>
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;0;1;1;1;0" dur="6s" repeatCount="indefinite" />
+      <rect x="490" y="100" width="50" height="50" rx="6" fill="url(#serverGradBad)" stroke="#FFB300" stroke-width="2.5" />
+      <text x="515" y="125" text-anchor="middle" fill="#FFB300" font-family="sans-serif" font-size="11" font-weight="900">+ NEW</text>
+      <text x="515" y="142" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">S10</text>
+    </g>
+  </g>
+
+  <g>
+    <circle cx="100" cy="220" r="9" fill="#FFB300" filter="url(#glow1)" />
+    <text x="100" y="252" text-anchor="middle" fill="#FFB300" font-family="monospace" font-size="11" font-weight="700">user:42</text>
+    <line x1="100" y1="220" x2="205" y2="155" stroke="#FFB300" stroke-width="2" stroke-dasharray="4 3">
+      <animate attributeName="x2" values="205;205;305;305;205;205" dur="6s" repeatCount="indefinite" />
+      <animate attributeName="stroke" values="#FFB300;#FFB300;#FF3D5C;#FF3D5C;#FFB300;#FFB300" dur="6s" repeatCount="indefinite" />
+    </line>
+  </g>
+  <g>
+    <circle cx="220" cy="220" r="9" fill="#00E5FF" filter="url(#glow1)" />
+    <text x="220" y="252" text-anchor="middle" fill="#00E5FF" font-family="monospace" font-size="11" font-weight="700">user:99</text>
+    <line x1="220" y1="220" x2="265" y2="155" stroke="#00E5FF" stroke-width="2" stroke-dasharray="4 3">
+      <animate attributeName="x2" values="265;265;145;145;265;265" dur="6s" repeatCount="indefinite" />
+      <animate attributeName="stroke" values="#00E5FF;#00E5FF;#FF3D5C;#FF3D5C;#00E5FF;#00E5FF" dur="6s" repeatCount="indefinite" />
+    </line>
+  </g>
+  <g>
+    <circle cx="380" cy="220" r="9" fill="#A855F7" filter="url(#glow1)" />
+    <text x="380" y="252" text-anchor="middle" fill="#A855F7" font-family="monospace" font-size="11" font-weight="700">user:7</text>
+    <line x1="380" y1="220" x2="325" y2="155" stroke="#A855F7" stroke-width="2" stroke-dasharray="4 3">
+      <animate attributeName="x2" values="325;325;435;435;325;325" dur="6s" repeatCount="indefinite" />
+      <animate attributeName="stroke" values="#A855F7;#A855F7;#FF3D5C;#FF3D5C;#A855F7;#A855F7" dur="6s" repeatCount="indefinite" />
+    </line>
+  </g>
+
+  <text x="600" y="170" text-anchor="middle" fill="#FF3D5C" font-family="sans-serif" font-size="16" font-weight="900" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;1;1;1;0" dur="6s" repeatCount="indefinite" />
+    100% REMAP
+  </text>
+  <text x="600" y="190" text-anchor="middle" fill="#FF6B85" font-family="sans-serif" font-size="11" font-weight="700" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;1;1;1;0" dur="6s" repeatCount="indefinite" />
+    PRODUCTION CRASH
+  </text>
+
+  <text x="600" y="115" text-anchor="middle" fill="#9CA3AF" font-family="monospace" font-size="13" font-weight="700">
+    N = <tspan fill="#fff" font-size="18">10</tspan>
+  </text>
+  <text x="600" y="140" text-anchor="middle" fill="#FFB300" font-family="monospace" font-size="14" font-weight="900" opacity="0">
+    <animate attributeName="opacity" values="0;0;0;1;1;1;0" dur="6s" repeatCount="indefinite" />
+    N = 11
+  </text>
+</svg>

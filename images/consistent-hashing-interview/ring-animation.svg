@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="ringStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF" />
+      <stop offset="50%" stop-color="#FFD55C" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+    <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0" />
+    </radialGradient>
+    <filter id="ringFilter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="600" height="400" fill="#040818" rx="12" />
+
+  <text x="300" y="32" text-anchor="middle" fill="#9CA3AF" font-family="sans-serif" font-size="13" font-weight="700" letter-spacing="2">CONSISTENT HASHING — THE RING</text>
+
+  <ellipse cx="300" cy="220" rx="240" ry="120" fill="url(#ringGlow)" />
+
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 300 220" to="360 300 220" dur="40s" repeatCount="indefinite" />
+
+    <ellipse cx="300" cy="226" rx="183" ry="83" fill="none" stroke="#A855F7" stroke-width="2" opacity="0.3" />
+    <ellipse cx="300" cy="220" rx="180" ry="80" fill="none" stroke="url(#ringStroke)" stroke-width="5" filter="url(#ringFilter)" />
+    <ellipse cx="300" cy="216" rx="178" ry="78" fill="none" stroke="#5FF0FF" stroke-width="1.5" opacity="0.6" />
+
+    <g transform="translate(450, 195)">
+      <line x1="0" y1="0" x2="0" y2="-50" stroke="#00E5FF" stroke-width="6" stroke-linecap="round" />
+      <circle cx="0" cy="-52" r="6" fill="#00E5FF">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" />
+      </circle>
+      <text x="0" y="-62" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="900" stroke="#040818" stroke-width="3" paint-order="stroke">S-A</text>
+    </g>
+    <g transform="translate(395, 290)">
+      <line x1="0" y1="0" x2="0" y2="-50" stroke="#FFB300" stroke-width="6" stroke-linecap="round" />
+      <circle cx="0" cy="-52" r="6" fill="#FFB300">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="0.5s" repeatCount="indefinite" />
+      </circle>
+      <text x="0" y="14" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="900" stroke="#040818" stroke-width="3" paint-order="stroke">S-B</text>
+    </g>
+    <g transform="translate(165, 260)">
+      <line x1="0" y1="0" x2="0" y2="-50" stroke="#A855F7" stroke-width="6" stroke-linecap="round" />
+      <circle cx="0" cy="-52" r="6" fill="#A855F7">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1s" repeatCount="indefinite" />
+      </circle>
+      <text x="0" y="14" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="900" stroke="#040818" stroke-width="3" paint-order="stroke">S-C</text>
+    </g>
+    <g transform="translate(155, 175)">
+      <line x1="0" y1="0" x2="0" y2="-50" stroke="#10E891" stroke-width="6" stroke-linecap="round" />
+      <circle cx="0" cy="-52" r="6" fill="#10E891">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" begin="1.5s" repeatCount="indefinite" />
+      </circle>
+      <text x="0" y="-62" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="13" font-weight="900" stroke="#040818" stroke-width="3" paint-order="stroke">S-D</text>
+    </g>
+  </g>
+
+  <text x="300" y="125" text-anchor="middle" fill="#5FF0FF" font-family="monospace" font-size="14" font-weight="700">position 0 / 2³²</text>
+  <text x="525" y="225" text-anchor="middle" fill="#C384FA" font-family="monospace" font-size="12" font-weight="700">2³¹</text>
+  <text x="75" y="225" text-anchor="middle" fill="#C384FA" font-family="monospace" font-size="12" font-weight="700">3·2³⁰</text>
+
+  <g>
+    <circle r="7" fill="#FFD55C" filter="url(#ringFilter)">
+      <animateMotion dur="8s" repeatCount="indefinite">
+        <mpath href="#orbitPath" />
+      </animateMotion>
+    </circle>
+  </g>
+  <path id="orbitPath" d="M 300 140 A 180 80 0 1 1 299 140" fill="none" opacity="0" />
+
+  <text x="300" y="372" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14" font-weight="700">
+    each key → <tspan fill="#5FF0FF">next clockwise server</tspan>
+  </text>
+  <text x="300" y="390" text-anchor="middle" fill="#9CA3AF" font-family="sans-serif" font-size="11">
+    servers + keys live on the same hash ring
+  </text>
+</svg>
