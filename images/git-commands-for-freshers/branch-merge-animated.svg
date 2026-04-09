@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" width="1000" height="360">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0f1f"/>
+      <stop offset="100%" stop-color="#040818"/>
+    </linearGradient>
+    <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="360" fill="url(#bg2)"/>
+
+  <text x="500" y="50" text-anchor="middle" fill="#ffffff" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="800">Branching &amp; Merging</text>
+  <text x="500" y="78" text-anchor="middle" fill="#64748b" font-family="Arial" font-size="14">a branch is just a pointer — create one for every feature</text>
+
+  <!-- Main branch line -->
+  <line x1="80" y1="180" x2="920" y2="180" stroke="#00e5ff" stroke-width="3"/>
+  <text x="60" y="185" text-anchor="end" fill="#00e5ff" font-family="JetBrains Mono, Courier New, monospace" font-size="14" font-weight="700">main</text>
+
+  <!-- Feature branch curve -->
+  <path d="M 280 180 Q 330 180 340 130 L 680 130 Q 690 180 740 180" fill="none" stroke="#ffb300" stroke-width="3"/>
+  <text x="510" y="115" text-anchor="middle" fill="#ffb300" font-family="JetBrains Mono, Courier New, monospace" font-size="13" font-weight="700">feature/login</text>
+
+  <!-- Main commits -->
+  <g>
+    <circle cx="120" cy="180" r="12" fill="#00e5ff" filter="url(#glow2)">
+      <animate attributeName="r" values="12;14;12" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="120" y="215" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, Courier New, monospace" font-size="11">C1</text>
+  </g>
+  <g>
+    <circle cx="200" cy="180" r="12" fill="#00e5ff" filter="url(#glow2)">
+      <animate attributeName="r" values="12;14;12" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+    </circle>
+    <text x="200" y="215" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, Courier New, monospace" font-size="11">C2</text>
+  </g>
+  <g>
+    <circle cx="280" cy="180" r="12" fill="#00e5ff" filter="url(#glow2)">
+      <animate attributeName="r" values="12;14;12" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+    </circle>
+    <text x="280" y="215" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, Courier New, monospace" font-size="11">C3</text>
+    <text x="280" y="155" text-anchor="middle" fill="#ffb300" font-family="JetBrains Mono, Courier New, monospace" font-size="10">checkout -b</text>
+  </g>
+
+  <!-- Feature commits -->
+  <g>
+    <circle cx="420" cy="130" r="12" fill="#ffb300" filter="url(#glow2)">
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="0.8s" fill="freeze"/>
+      <animate attributeName="r" values="12;14;12" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+    <text x="420" y="105" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, Courier New, monospace" font-size="11" opacity="0">
+      F1
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="0.8s" fill="freeze"/>
+    </text>
+  </g>
+  <g>
+    <circle cx="540" cy="130" r="12" fill="#ffb300" filter="url(#glow2)">
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="1.3s" fill="freeze"/>
+      <animate attributeName="r" values="12;14;12" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <text x="540" y="105" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, Courier New, monospace" font-size="11" opacity="0">
+      F2
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="1.3s" fill="freeze"/>
+    </text>
+  </g>
+  <g>
+    <circle cx="660" cy="130" r="12" fill="#ffb300" filter="url(#glow2)">
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="1.8s" fill="freeze"/>
+      <animate attributeName="r" values="12;14;12" dur="2s" begin="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="660" y="105" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, Courier New, monospace" font-size="11" opacity="0">
+      F3
+      <animate attributeName="opacity" values="0;1" dur="0.8s" begin="1.8s" fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- Main after merge -->
+  <g>
+    <circle cx="380" cy="180" r="12" fill="#00e5ff" filter="url(#glow2)"/>
+    <text x="380" y="215" text-anchor="middle" fill="#64748b" font-family="JetBrains Mono, Courier New, monospace" font-size="11">C4</text>
+  </g>
+
+  <!-- Merge commit -->
+  <g>
+    <circle cx="780" cy="180" r="15" fill="#10e891" filter="url(#glow2)" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.4s" fill="freeze"/>
+      <animate attributeName="r" values="15;18;15" dur="1.5s" begin="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <text x="780" y="220" text-anchor="middle" fill="#10e891" font-family="JetBrains Mono, Courier New, monospace" font-size="11" opacity="0" font-weight="700">
+      MERGE
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.4s" fill="freeze"/>
+    </text>
+    <text x="780" y="155" text-anchor="middle" fill="#10e891" font-family="JetBrains Mono, Courier New, monospace" font-size="10" opacity="0">
+      git merge
+      <animate attributeName="opacity" values="0;1" dur="0.6s" begin="2.4s" fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- Traveling packet on feature branch (shows progression) -->
+  <circle r="6" fill="#ffffff" filter="url(#glow2)" opacity="0.9">
+    <animateMotion dur="4s" begin="0.5s" repeatCount="indefinite" path="M 280 180 Q 330 180 340 130 L 680 130 Q 690 180 780 180"/>
+  </circle>
+
+  <!-- Legend -->
+  <g transform="translate(80, 280)">
+    <circle cx="10" cy="10" r="8" fill="#00e5ff"/>
+    <text x="25" y="15" fill="#9CA3AF" font-family="Arial" font-size="13">main commits</text>
+    <circle cx="170" cy="10" r="8" fill="#ffb300"/>
+    <text x="185" y="15" fill="#9CA3AF" font-family="Arial" font-size="13">feature commits</text>
+    <circle cx="340" cy="10" r="8" fill="#10e891"/>
+    <text x="355" y="15" fill="#9CA3AF" font-family="Arial" font-size="13">merge commit</text>
+  </g>
+</svg>

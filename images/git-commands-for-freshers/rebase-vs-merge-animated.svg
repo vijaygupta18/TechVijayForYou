@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" width="1000" height="440">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0f1f"/>
+      <stop offset="100%" stop-color="#040818"/>
+    </linearGradient>
+    <filter id="glow3">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="440" fill="url(#bg3)"/>
+
+  <text x="500" y="45" text-anchor="middle" fill="#ffffff" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="800">Merge vs Rebase</text>
+  <text x="500" y="72" text-anchor="middle" fill="#64748b" font-family="Arial" font-size="14">same result. very different history.</text>
+
+  <!-- Divider -->
+  <line x1="500" y1="110" x2="500" y2="420" stroke="#1a2040" stroke-width="1"/>
+
+  <!-- MERGE SIDE (left) -->
+  <text x="250" y="120" text-anchor="middle" fill="#00e5ff" font-family="Montserrat, Arial, sans-serif" font-size="18" font-weight="700">git merge</text>
+  <text x="250" y="140" text-anchor="middle" fill="#64748b" font-family="Arial" font-size="12">preserves branch history</text>
+
+  <!-- Main line -->
+  <line x1="60" y1="220" x2="460" y2="220" stroke="#00e5ff" stroke-width="3"/>
+  <!-- Feature branch -->
+  <path d="M 130 220 Q 160 220 170 175 L 330 175 Q 360 220 400 220" fill="none" stroke="#ffb300" stroke-width="3"/>
+
+  <!-- Main commits -->
+  <circle cx="80" cy="220" r="10" fill="#00e5ff"/>
+  <circle cx="130" cy="220" r="10" fill="#00e5ff"/>
+  <circle cx="230" cy="220" r="10" fill="#00e5ff"/>
+  <circle cx="300" cy="220" r="10" fill="#00e5ff"/>
+
+  <!-- Feature commits -->
+  <circle cx="220" cy="175" r="10" fill="#ffb300"/>
+  <circle cx="290" cy="175" r="10" fill="#ffb300"/>
+
+  <!-- Merge commit -->
+  <circle cx="400" cy="220" r="13" fill="#10e891" filter="url(#glow3)">
+    <animate attributeName="r" values="13;16;13" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="400" y="255" text-anchor="middle" fill="#10e891" font-family="JetBrains Mono, Courier New, monospace" font-size="10" font-weight="700">merge</text>
+
+  <text x="250" y="300" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="13">+ safe, non-destructive</text>
+  <text x="250" y="320" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="13">+ nothing gets rewritten</text>
+  <text x="250" y="340" text-anchor="middle" fill="#ff6b85" font-family="Arial" font-size="13">− messy history with extra commit</text>
+  <text x="250" y="360" text-anchor="middle" fill="#ff6b85" font-family="Arial" font-size="13">− hard to read long-term</text>
+
+  <!-- REBASE SIDE (right) -->
+  <text x="750" y="120" text-anchor="middle" fill="#a855f7" font-family="Montserrat, Arial, sans-serif" font-size="18" font-weight="700">git rebase</text>
+  <text x="750" y="140" text-anchor="middle" fill="#64748b" font-family="Arial" font-size="12">linear history — commits get replayed</text>
+
+  <!-- Main line (straight) -->
+  <line x1="560" y1="220" x2="940" y2="220" stroke="#a855f7" stroke-width="3"/>
+
+  <!-- Commits all on main -->
+  <circle cx="580" cy="220" r="10" fill="#00e5ff"/>
+  <circle cx="630" cy="220" r="10" fill="#00e5ff"/>
+  <circle cx="700" cy="220" r="10" fill="#00e5ff"/>
+  <circle cx="760" cy="220" r="10" fill="#00e5ff"/>
+
+  <!-- Rebased feature commits (replayed on top — animate sliding into place) -->
+  <circle cx="820" cy="220" r="10" fill="#ffb300">
+    <animate attributeName="cy" values="170;220;220" keyTimes="0;0.4;1" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.4;1" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="880" cy="220" r="10" fill="#ffb300">
+    <animate attributeName="cy" values="170;170;220;220" keyTimes="0;0.3;0.6;1" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;0.5;1;1" keyTimes="0;0.3;0.6;1" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="820" y="255" text-anchor="middle" fill="#ffb300" font-family="JetBrains Mono, Courier New, monospace" font-size="10" font-weight="700">replayed</text>
+  <text x="880" y="255" text-anchor="middle" fill="#ffb300" font-family="JetBrains Mono, Courier New, monospace" font-size="10" font-weight="700">replayed</text>
+
+  <text x="750" y="300" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="13">+ clean, linear history</text>
+  <text x="750" y="320" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="13">+ easy to read with git log</text>
+  <text x="750" y="340" text-anchor="middle" fill="#ff6b85" font-family="Arial" font-size="13">− rewrites history (dangerous on shared branch)</text>
+  <text x="750" y="360" text-anchor="middle" fill="#ff6b85" font-family="Arial" font-size="13">− never rebase pushed commits others use</text>
+
+  <!-- Bottom rule -->
+  <rect x="180" y="385" width="640" height="40" rx="8" fill="#0a1230" stroke="#ffb300" stroke-width="2"/>
+  <text x="500" y="410" text-anchor="middle" fill="#ffb300" font-family="Montserrat, Arial, sans-serif" font-size="14" font-weight="700">Golden rule: never rebase commits pushed to a shared branch</text>
+</svg>
