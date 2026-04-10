@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="520" viewBox="0 0 700 520">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#F59E0B" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowStrong">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="700" height="520" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- Title -->
+  <text x="350" y="35" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="bold">OAuth2 Authorization Code Flow + PKCE</text>
+
+  <!-- === NODES === -->
+
+  <!-- User -->
+  <rect x="30" y="70" width="120" height="50" rx="10" fill="#06B6D420" stroke="#06B6D4" stroke-width="2"/>
+  <text x="90" y="100" text-anchor="middle" fill="#06B6D4" font-family="Arial, sans-serif" font-size="14" font-weight="bold">👤 User</text>
+
+  <!-- Your App -->
+  <rect x="290" y="70" width="120" height="50" rx="10" fill="#22C55E20" stroke="#22C55E" stroke-width="2"/>
+  <text x="350" y="100" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🖥️ Your App</text>
+
+  <!-- Google Auth -->
+  <rect x="550" y="70" width="120" height="50" rx="10" fill="#8B5CF620" stroke="#8B5CF6" stroke-width="2"/>
+  <text x="610" y="100" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🔐 Google</text>
+
+  <!-- === STEP 1: User → App (click login) === -->
+  <line x1="150" y1="155" x2="290" y2="155" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <polygon points="287,150 287,160 297,155" fill="#06B6D4" opacity="0.5"/>
+  <text x="220" y="148" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">① Click Login</text>
+  <!-- Traveling dot step 1 -->
+  <circle r="5" fill="#06B6D4" filter="url(#glow)">
+    <animate attributeName="cx" values="150;290;290" dur="8s" repeatCount="indefinite" keyTimes="0;0.12;1"/>
+    <animate attributeName="cy" values="155;155;155" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;1;0;0" dur="8s" repeatCount="indefinite" keyTimes="0;0.11;0.13;1"/>
+  </circle>
+
+  <!-- === STEP 2: App → Google (redirect + code_challenge) === -->
+  <line x1="410" y1="180" x2="550" y2="180" stroke="#22C55E" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <polygon points="547,175 547,185 557,180" fill="#22C55E" opacity="0.5"/>
+  <text x="480" y="173" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">② Redirect + PKCE</text>
+  <!-- PKCE badge -->
+  <rect x="440" y="187" width="80" height="20" rx="6" fill="#F59E0B20" stroke="#F59E0B" stroke-width="1"/>
+  <text x="480" y="201" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="10" font-weight="bold">code_challenge</text>
+  <!-- Traveling dot step 2 -->
+  <circle r="5" fill="#22C55E" filter="url(#glow)">
+    <animate attributeName="cx" values="410;410;550;550" dur="8s" repeatCount="indefinite" keyTimes="0;0.15;0.27;1"/>
+    <animate attributeName="cy" values="180;180;180;180" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0;0" dur="8s" repeatCount="indefinite" keyTimes="0;0.15;0.26;0.28;1"/>
+  </circle>
+
+  <!-- === STEP 3: Google → App (authorization code) === -->
+  <line x1="550" y1="230" x2="410" y2="230" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+  <polygon points="413,225 413,235 403,230" fill="#8B5CF6" opacity="0.5"/>
+  <text x="480" y="223" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">③ Auth Code</text>
+  <!-- Badges -->
+  <rect x="430" y="237" width="55" height="18" rx="5" fill="#EF444420" stroke="#EF4444" stroke-width="1"/>
+  <text x="458" y="250" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="9" font-weight="bold">10 MIN</text>
+  <rect x="490" y="237" width="65" height="18" rx="5" fill="#F59E0B20" stroke="#F59E0B" stroke-width="1"/>
+  <text x="523" y="250" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="9" font-weight="bold">SINGLE USE</text>
+  <!-- Traveling dot step 3 -->
+  <circle r="5" fill="#8B5CF6" filter="url(#glow)">
+    <animate attributeName="cx" values="550;550;410;410" dur="8s" repeatCount="indefinite" keyTimes="0;0.30;0.42;1"/>
+    <animate attributeName="cy" values="230;230;230;230" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0;0" dur="8s" repeatCount="indefinite" keyTimes="0;0.30;0.41;0.43;1"/>
+  </circle>
+
+  <!-- === STEP 4: App → Google (server-to-server token exchange) === -->
+  <line x1="410" y1="300" x2="550" y2="300" stroke="#F59E0B" stroke-width="2.5" opacity="0.7"/>
+  <polygon points="547,295 547,305 557,300" fill="#F59E0B" opacity="0.7"/>
+  <text x="480" y="293" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="11" font-weight="bold">④ code + code_verifier + secret</text>
+  <text x="480" y="318" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">(server-to-server, no browser)</text>
+  <!-- Traveling dot step 4 — gold, larger -->
+  <circle r="6" fill="#F59E0B" filter="url(#glowStrong)">
+    <animate attributeName="cx" values="410;410;550;550" dur="8s" repeatCount="indefinite" keyTimes="0;0.45;0.57;1"/>
+    <animate attributeName="cy" values="300;300;300;300" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0;0" dur="8s" repeatCount="indefinite" keyTimes="0;0.45;0.56;0.58;1"/>
+  </circle>
+
+  <!-- === STEP 5: Google → App (3 tokens returned) === -->
+  <line x1="550" y1="360" x2="410" y2="360" stroke="#22C55E" stroke-width="2" opacity="0.6"/>
+  <polygon points="413,355 413,365 403,360" fill="#22C55E" opacity="0.6"/>
+  <text x="480" y="353" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">⑤ Tokens Returned</text>
+
+  <!-- 3 token boxes -->
+  <rect x="160" y="385" width="130" height="40" rx="8" fill="#22C55E15" stroke="#22C55E" stroke-width="1.5">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.60;0.65;1"/>
+  </rect>
+  <text x="225" y="400" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="11" font-weight="bold">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.60;0.65;1"/>
+    Access Token
+  </text>
+  <text x="225" y="416" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.60;0.65;1"/>
+    ~65 min
+  </text>
+
+  <rect x="300" y="385" width="130" height="40" rx="8" fill="#3B82F615" stroke="#3B82F6" stroke-width="1.5">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.65;0.70;1"/>
+  </rect>
+  <text x="365" y="400" text-anchor="middle" fill="#3B82F6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.65;0.70;1"/>
+    Refresh Token
+  </text>
+  <text x="365" y="416" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.65;0.70;1"/>
+    Days–Months
+  </text>
+
+  <rect x="440" y="385" width="130" height="40" rx="8" fill="#F59E0B15" stroke="#F59E0B" stroke-width="1.5">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.70;0.75;1"/>
+  </rect>
+  <text x="505" y="400" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="11" font-weight="bold">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.70;0.75;1"/>
+    ID Token (JWT)
+  </text>
+  <text x="505" y="416" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.70;0.75;1"/>
+    Identity
+  </text>
+
+  <!-- === STEP 6: App calls API === -->
+  <text x="350" y="460" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="12" font-weight="bold">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.78;0.82;1"/>
+    ⑥ App calls Google API → Authorization: Bearer {token} → User profile returned
+  </text>
+
+  <!-- Key insight at bottom -->
+  <rect x="150" y="478" width="400" height="30" rx="8" fill="#22C55E10" stroke="#22C55E" stroke-width="1">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.85;0.90;1"/>
+  </rect>
+  <text x="350" y="498" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="12" font-weight="bold">
+    <animate attributeName="opacity" values="0;0;1;1" dur="8s" repeatCount="indefinite" keyTimes="0;0.85;0.90;1"/>
+    Your app NEVER sees the user's password ✓
+  </text>
+</svg>

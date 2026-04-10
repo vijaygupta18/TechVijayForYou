@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="360" viewBox="0 0 700 360">
+  <defs>
+    <linearGradient id="rtBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#0A0F1E"/>
+    </linearGradient>
+    <filter id="rtGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="rtGlowBig">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="700" height="360" fill="url(#rtBg)" rx="12"/>
+
+  <text x="350" y="30" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Refresh Token Rotation — Built-in Theft Detection</text>
+
+  <!-- === Normal rotation cycle (top) === -->
+  <text x="350" y="60" text-anchor="middle" fill="#3B82F6" font-family="Arial, sans-serif" font-size="13" font-weight="bold">Normal Cycle</text>
+
+  <!-- Old access token (expired) -->
+  <rect x="30" y="75" width="130" height="50" rx="10" fill="#22C55E08" stroke="#22C55E40" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="95" y="96" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">Access Token</text>
+  <text x="95" y="113" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="10" font-weight="bold">EXPIRED</text>
+
+  <!-- Arrow → Use refresh token -->
+  <line x1="160" y1="100" x2="225" y2="100" stroke="#94A3B8" stroke-width="1.5"/>
+  <polygon points="222,95 222,105 232,100" fill="#94A3B8"/>
+
+  <!-- Refresh token used -->
+  <rect x="235" y="80" width="130" height="40" rx="8" fill="#3B82F615" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="300" y="105" text-anchor="middle" fill="#3B82F6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Use Refresh Token</text>
+
+  <!-- Arrow → New tokens -->
+  <line x1="365" y1="100" x2="430" y2="100" stroke="#F59E0B" stroke-width="1.5"/>
+  <polygon points="427,95 427,105 437,100" fill="#F59E0B"/>
+
+  <!-- Traveling token dot -->
+  <circle r="5" fill="#F59E0B" filter="url(#rtGlow)">
+    <animate attributeName="cx" values="160;300;430;430" dur="4s" repeatCount="indefinite" keyTimes="0;0.3;0.6;1"/>
+    <animate attributeName="cy" values="100;100;100;100" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;1;1;0" dur="4s" repeatCount="indefinite" keyTimes="0;0.55;0.6;1"/>
+  </circle>
+
+  <!-- New access token -->
+  <rect x="440" y="75" width="120" height="50" rx="10" fill="#22C55E15" stroke="#22C55E" stroke-width="1.5">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite"/>
+  </rect>
+  <text x="500" y="96" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="11" font-weight="bold">NEW Access</text>
+  <text x="500" y="113" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="10">~65 min</text>
+
+  <!-- New refresh token -->
+  <rect x="570" y="75" width="110" height="50" rx="10" fill="#3B82F615" stroke="#3B82F6" stroke-width="1.5">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite"/>
+  </rect>
+  <text x="625" y="96" text-anchor="middle" fill="#3B82F6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">NEW Refresh</text>
+  <text x="625" y="113" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">Old invalidated</text>
+
+  <!-- === Divider === -->
+  <line x1="30" y1="148" x2="670" y2="148" stroke="#EF444430" stroke-width="1"/>
+
+  <!-- === Theft detection (bottom) === -->
+  <text x="350" y="175" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="13" font-weight="bold">If Attacker Steals Refresh Token...</text>
+
+  <!-- Legitimate user uses token (gets new one) -->
+  <rect x="30" y="195" width="180" height="40" rx="8" fill="#22C55E10" stroke="#22C55E" stroke-width="1"/>
+  <text x="120" y="215" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="11">✅ Legit user uses token</text>
+  <text x="120" y="250" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">Gets new token pair → old rotated</text>
+
+  <!-- Attacker tries to use OLD (already rotated) token -->
+  <rect x="260" y="195" width="180" height="40" rx="8" fill="#EF444415" stroke="#EF4444" stroke-width="1.5">
+    <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="350" y="215" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="11">⚠️ Attacker uses OLD token</text>
+  <text x="350" y="250" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">Token already rotated!</text>
+
+  <!-- Arrow to detection -->
+  <line x1="440" y1="215" x2="495" y2="215" stroke="#EF4444" stroke-width="1.5"/>
+  <polygon points="492,210 492,220 502,215" fill="#EF4444"/>
+
+  <!-- THEFT DETECTED box -->
+  <rect x="505" y="190" width="175" height="55" rx="10" fill="#EF444425" stroke="#EF4444" stroke-width="2.5" filter="url(#rtGlowBig)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+  </rect>
+  <text x="593" y="213" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="14" font-weight="bold">THEFT DETECTED</text>
+  <text x="593" y="234" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="11" font-weight="bold">All tokens REVOKED</text>
+
+  <!-- Bottom summary -->
+  <rect x="150" y="280" width="400" height="55" rx="10" fill="#F59E0B08" stroke="#F59E0B40" stroke-width="1"/>
+  <text x="350" y="303" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Key Insight</text>
+  <text x="350" y="323" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="11">If a previously-rotated token is presented → server knows there's a breach</text>
+</svg>

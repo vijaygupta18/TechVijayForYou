@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="400" viewBox="0 0 700 400">
+  <defs>
+    <linearGradient id="pkBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1A0B2E"/>
+    </linearGradient>
+    <filter id="pkGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="pkGlowRed">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="700" height="400" fill="url(#pkBg)" rx="12"/>
+
+  <text x="350" y="32" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="17" font-weight="bold">PKCE — How It Prevents Code Interception</text>
+
+  <!-- === LEFT: Without PKCE (attack succeeds) === -->
+  <rect x="20" y="50" width="320" height="335" rx="10" fill="#EF444408" stroke="#EF444440" stroke-width="1"/>
+  <text x="180" y="75" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="14" font-weight="bold">❌ Without PKCE</text>
+
+  <!-- Step A: App sends request -->
+  <rect x="40" y="95" width="130" height="32" rx="6" fill="#22C55E15" stroke="#22C55E" stroke-width="1"/>
+  <text x="105" y="116" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="11">App → Google</text>
+
+  <!-- Arrow down -->
+  <line x1="105" y1="127" x2="105" y2="148" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,2"/>
+  <polygon points="100,145 110,145 105,153" fill="#94A3B8"/>
+
+  <!-- Step B: Google returns code to callback -->
+  <rect x="40" y="155" width="130" height="32" rx="6" fill="#8B5CF615" stroke="#8B5CF6" stroke-width="1"/>
+  <text x="105" y="176" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="11">Code → callback</text>
+
+  <!-- Attacker intercepts! -->
+  <line x1="170" y1="171" x2="240" y2="171" stroke="#EF4444" stroke-width="2">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+  <polygon points="237,166 237,176 250,171" fill="#EF4444">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+  </polygon>
+
+  <!-- Attacker node -->
+  <rect x="250" y="155" width="75" height="32" rx="6" fill="#EF444425" stroke="#EF4444" stroke-width="2">
+    <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+  </rect>
+  <text x="288" y="176" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Attacker</text>
+
+  <!-- Attacker uses code -->
+  <line x1="288" y1="187" x2="288" y2="215" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <polygon points="283,212 293,212 288,220" fill="#EF4444"/>
+
+  <!-- Step C: Attacker exchanges code (no secret needed) -->
+  <rect x="220" y="222" width="110" height="32" rx="6" fill="#EF444420" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="275" y="243" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="10">Code → Token</text>
+
+  <!-- Result: SUCCESS (bad) -->
+  <rect x="210" y="270" width="130" height="35" rx="8" fill="#EF444430" stroke="#EF4444" stroke-width="2" filter="url(#pkGlowRed)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="275" y="292" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="13" font-weight="bold">TOKEN STOLEN</text>
+
+  <text x="180" y="340" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">No client_secret on mobile</text>
+  <text x="180" y="355" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">→ nothing blocks the attacker</text>
+
+  <!-- === RIGHT: With PKCE (attack blocked) === -->
+  <rect x="360" y="50" width="320" height="335" rx="10" fill="#22C55E08" stroke="#22C55E40" stroke-width="1"/>
+  <text x="520" y="75" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="14" font-weight="bold">✅ With PKCE</text>
+
+  <!-- Step A: App generates code_verifier, sends SHA256 hash -->
+  <rect x="380" y="95" width="145" height="32" rx="6" fill="#F59E0B15" stroke="#F59E0B" stroke-width="1"/>
+  <text x="453" y="110" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="10">code_verifier = random</text>
+  <text x="453" y="122" text-anchor="middle" fill="#F59E0B" font-family="Arial, sans-serif" font-size="9">Send SHA256(verifier)</text>
+
+  <!-- Arrow down -->
+  <line x1="453" y1="127" x2="453" y2="148" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,2"/>
+  <polygon points="448,145 458,145 453,153" fill="#94A3B8"/>
+
+  <!-- Step B: Code returned (attacker intercepts) -->
+  <rect x="380" y="155" width="130" height="32" rx="6" fill="#8B5CF615" stroke="#8B5CF6" stroke-width="1"/>
+  <text x="445" y="176" text-anchor="middle" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="11">Code → callback</text>
+
+  <!-- Attacker intercepts -->
+  <line x1="510" y1="171" x2="580" y2="171" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3,2">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+  <rect x="582" y="158" width="75" height="26" rx="6" fill="#EF444415" stroke="#EF444460" stroke-width="1"/>
+  <text x="620" y="176" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="10">Attacker</text>
+
+  <!-- Attacker tries to exchange -->
+  <line x1="620" y1="184" x2="620" y2="215" stroke="#EF4444" stroke-width="1" stroke-dasharray="3,2"/>
+  <polygon points="615,212 625,212 620,220" fill="#EF4444"/>
+
+  <!-- Step C: Attacker sends code BUT no code_verifier -->
+  <rect x="555" y="222" width="120" height="32" rx="6" fill="#EF444415" stroke="#EF444460" stroke-width="1"/>
+  <text x="615" y="237" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="9">Code + ???</text>
+  <text x="615" y="250" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="9">No code_verifier!</text>
+
+  <!-- Google checks: SHA256(???) ≠ code_challenge -->
+  <rect x="545" y="270" width="135" height="35" rx="8" fill="#22C55E20" stroke="#22C55E" stroke-width="2" filter="url(#pkGlow)">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="613" y="292" text-anchor="middle" fill="#22C55E" font-family="Arial, sans-serif" font-size="13" font-weight="bold">REJECTED ✓</text>
+
+  <text x="520" y="340" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">SHA-256 is one-way</text>
+  <text x="520" y="355" text-anchor="middle" fill="#94A3B8" font-family="Arial, sans-serif" font-size="10">→ can't reverse code_challenge</text>
+
+  <!-- Center divider -->
+  <line x1="350" y1="55" x2="350" y2="380" stroke="#94A3B830" stroke-width="1" stroke-dasharray="5,4"/>
+</svg>

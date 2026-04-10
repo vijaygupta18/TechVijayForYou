@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="300" viewBox="0 0 700 300">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <filter id="gl2">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="700" height="300" fill="url(#bg2)" rx="12"/>
+  <text x="350" y="30" text-anchor="middle" fill="#F59E0B" font-family="system-ui,sans-serif" font-size="16" font-weight="800">PKCE — Proof Key for Code Exchange</text>
+
+  <!-- Step 1: Generate code_verifier -->
+  <rect x="30" y="55" width="200" height="45" rx="8" fill="#3B82F615" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="130" y="72" text-anchor="middle" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Step 1: App generates</text>
+  <text x="130" y="90" text-anchor="middle" fill="#3B82F6" font-family="monospace" font-size="13" font-weight="700">code_verifier</text>
+
+  <!-- Arrow 1 → SHA256 -->
+  <line x1="235" y1="78" x2="280" y2="78" stroke="#F59E0B" stroke-width="2"/>
+  <polygon points="280,73 280,83 290,78" fill="#F59E0B"/>
+
+  <!-- Traveling hash particle -->
+  <circle r="6" fill="#F59E0B" filter="url(#gl2)">
+    <animate attributeName="cx" values="235;285;285" dur="4s" repeatCount="indefinite" keyTimes="0;0.3;1"/>
+    <animate attributeName="cy" values="78;78;78" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.25;0.35;1" dur="4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- SHA-256 box -->
+  <rect x="295" y="55" width="120" height="45" rx="8" fill="#F59E0B20" stroke="#F59E0B" stroke-width="2">
+    <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="355" y="75" text-anchor="middle" fill="#F59E0B" font-family="monospace" font-size="14" font-weight="800">SHA-256</text>
+  <text x="355" y="92" text-anchor="middle" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="10" font-weight="600">one-way hash</text>
+
+  <!-- Arrow 2 → code_challenge -->
+  <line x1="420" y1="78" x2="465" y2="78" stroke="#F59E0B" stroke-width="2"/>
+  <polygon points="465,73 465,83 475,78" fill="#F59E0B"/>
+
+  <!-- code_challenge output -->
+  <rect x="480" y="55" width="200" height="45" rx="8" fill="#22C55E15" stroke="#22C55E" stroke-width="1.5"/>
+  <text x="580" y="72" text-anchor="middle" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Step 2: Sent to Google</text>
+  <text x="580" y="90" text-anchor="middle" fill="#22C55E" font-family="monospace" font-size="13" font-weight="700">code_challenge</text>
+
+  <!-- Divider -->
+  <line x1="50" y1="120" x2="650" y2="120" stroke="#94A3B840" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="350" y="140" text-anchor="middle" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Later — at token exchange (Step 4)</text>
+
+  <!-- Verification: App sends code_verifier -->
+  <rect x="30" y="155" width="200" height="45" rx="8" fill="#3B82F615" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="130" y="172" text-anchor="middle" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="11" font-weight="600">App sends original</text>
+  <text x="130" y="190" text-anchor="middle" fill="#3B82F6" font-family="monospace" font-size="13" font-weight="700">code_verifier</text>
+
+  <!-- Arrow → Google hashes it -->
+  <line x1="235" y1="178" x2="280" y2="178" stroke="#8B5CF6" stroke-width="2"/>
+  <polygon points="280,173 280,183 290,178" fill="#8B5CF6"/>
+
+  <!-- Google re-hashes -->
+  <rect x="295" y="155" width="120" height="45" rx="8" fill="#8B5CF620" stroke="#8B5CF6" stroke-width="2"/>
+  <text x="355" y="175" text-anchor="middle" fill="#8B5CF6" font-family="monospace" font-size="14" font-weight="800">SHA-256</text>
+  <text x="355" y="192" text-anchor="middle" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="10" font-weight="600">Google re-hashes</text>
+
+  <!-- Arrow → Compare -->
+  <line x1="420" y1="178" x2="465" y2="178" stroke="#8B5CF6" stroke-width="2"/>
+  <polygon points="465,173 465,183 475,178" fill="#8B5CF6"/>
+
+  <!-- Match result -->
+  <rect x="480" y="155" width="200" height="45" rx="8" fill="#22C55E20" stroke="#22C55E" stroke-width="2">
+    <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/>
+  </rect>
+  <text x="580" y="175" text-anchor="middle" fill="#22C55E" font-family="system-ui,sans-serif" font-size="14" font-weight="800">MATCH ✓</text>
+  <text x="580" y="192" text-anchor="middle" fill="#94A3B8" font-family="system-ui,sans-serif" font-size="10" font-weight="600">Same app — tokens issued</text>
+
+  <!-- Attacker section -->
+  <line x1="50" y1="220" x2="650" y2="220" stroke="#EF444440" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="350" y="240" text-anchor="middle" fill="#EF4444" font-family="system-ui,sans-serif" font-size="12" font-weight="700">If attacker intercepts the code...</text>
+
+  <rect x="30" y="252" width="200" height="35" rx="8" fill="#EF444415" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="130" y="274" text-anchor="middle" fill="#EF4444" font-family="monospace" font-size="12" font-weight="700">attacker_guess</text>
+
+  <line x1="235" y1="270" x2="310" y2="270" stroke="#EF4444" stroke-width="1.5"/>
+  <polygon points="310,266 310,274 318,270" fill="#EF4444"/>
+
+  <rect x="325" y="252" width="100" height="35" rx="8" fill="#EF444415" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="375" y="274" text-anchor="middle" fill="#EF4444" font-family="monospace" font-size="12" font-weight="700">SHA-256</text>
+
+  <line x1="430" y1="270" x2="485" y2="270" stroke="#EF4444" stroke-width="1.5"/>
+  <polygon points="485,266 485,274 493,270" fill="#EF4444"/>
+
+  <rect x="500" y="252" width="180" height="35" rx="8" fill="#EF444425" stroke="#EF4444" stroke-width="2">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+  </rect>
+  <text x="590" y="274" text-anchor="middle" fill="#EF4444" font-family="system-ui,sans-serif" font-size="14" font-weight="800">MISMATCH ✗ REJECTED</text>
+</svg>
