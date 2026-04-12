@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bgFanout" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A" />
+      <stop offset="100%" stop-color="#14182B" />
+    </linearGradient>
+    <linearGradient id="downBeam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#50E3C2" />
+      <stop offset="100%" stop-color="#BD10E0" />
+    </linearGradient>
+    <linearGradient id="upBeam" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#BD10E0" />
+      <stop offset="100%" stop-color="#00FF85" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgFanout)" />
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="800">vmselect — fan out, merge, return</text>
+
+  <!-- Grafana box (top) -->
+  <g transform="translate(280, 60)">
+    <rect width="240" height="60" rx="12" fill="#181B2C" stroke="#F46800" stroke-width="2.5" />
+    <circle cx="35" cy="30" r="20" fill="#F46800" />
+    <text x="35" y="38" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="20" font-weight="900">G</text>
+    <text x="130" y="28" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="800">Grafana</text>
+    <text x="130" y="48" fill="#94A3B8" font-family="monospace" font-size="11">/api/v1/query_range</text>
+  </g>
+
+  <!-- vmselect (middle) -->
+  <g transform="translate(310, 180)">
+    <polygon points="30,0 150,0 180,40 150,80 30,80 0,40" fill="#181B2C" stroke="#50E3C2" stroke-width="2.5" />
+    <text x="90" y="35" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="900">vmselect</text>
+    <text x="90" y="55" text-anchor="middle" fill="#50E3C2" font-family="monospace" font-size="12">MetricsQL</text>
+  </g>
+
+  <!-- 3 vmstorage nodes (bottom) -->
+  <g transform="translate(60, 360)">
+    <rect width="180" height="80" rx="12" fill="#181B2C" stroke="#BD10E0" stroke-width="2" />
+    <text x="90" y="32" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="800">vmstorage 1</text>
+    <text x="90" y="55" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="11">inverted index</text>
+  </g>
+  <g transform="translate(310, 360)">
+    <rect width="180" height="80" rx="12" fill="#181B2C" stroke="#BD10E0" stroke-width="2" />
+    <text x="90" y="32" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="800">vmstorage 2</text>
+    <text x="90" y="55" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="11">inverted index</text>
+  </g>
+  <g transform="translate(560, 360)">
+    <rect width="180" height="80" rx="12" fill="#181B2C" stroke="#BD10E0" stroke-width="2" />
+    <text x="90" y="32" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="800">vmstorage 3</text>
+    <text x="90" y="55" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="11">inverted index</text>
+  </g>
+
+  <!-- Grafana → vmselect line -->
+  <line x1="400" y1="120" x2="400" y2="180" stroke="#F46800" stroke-width="2" stroke-dasharray="4 4" />
+
+  <!-- Down: fan-out paths from vmselect to 3 storage nodes -->
+  <path d="M 400 260 C 400 320, 200 340, 150 360" fill="none" stroke="url(#downBeam)" stroke-width="3" />
+  <path d="M 400 260 L 400 360" fill="none" stroke="url(#downBeam)" stroke-width="3" />
+  <path d="M 400 260 C 400 320, 600 340, 650 360" fill="none" stroke="url(#downBeam)" stroke-width="3" />
+
+  <!-- Down: traveling query packets -->
+  <circle r="6" fill="#50E3C2">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M 400 260 C 400 320, 200 340, 150 360" />
+  </circle>
+  <circle r="6" fill="#50E3C2">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M 400 260 L 400 360" />
+  </circle>
+  <circle r="6" fill="#50E3C2">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M 400 260 C 400 320, 600 340, 650 360" />
+  </circle>
+
+  <!-- Up: return data packets (delayed) -->
+  <circle r="5" fill="#00FF85">
+    <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite" path="M 150 360 C 200 340, 400 320, 400 260" />
+  </circle>
+  <circle r="5" fill="#00FF85">
+    <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite" path="M 400 360 L 400 260" />
+  </circle>
+  <circle r="5" fill="#00FF85">
+    <animateMotion dur="3s" begin="1.5s" repeatCount="indefinite" path="M 650 360 C 600 340, 400 320, 400 260" />
+  </circle>
+
+  <!-- "FAN OUT" label -->
+  <text x="400" y="290" text-anchor="middle" fill="#50E3C2" font-family="monospace" font-size="11" font-weight="700">↓ fan-out (label filters + time range)</text>
+
+  <!-- Bottom annotation -->
+  <text x="400" y="465" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="14" font-weight="700">vmselect asks ALL nodes — no global index — then min-heap merges results</text>
+  <text x="400" y="488" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="11">vmstorage is dumb (no MetricsQL) · vmselect runs rate(), sum by, histogram_quantile</text>
+</svg>

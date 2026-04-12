@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" viewBox="0 0 800 380">
+  <defs>
+    <linearGradient id="bgScrape" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A" />
+      <stop offset="100%" stop-color="#14182B" />
+    </linearGradient>
+    <radialGradient id="packetGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="1" />
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="380" fill="url(#bgScrape)" />
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="800">vmagent scrape cycle (every 15 seconds)</text>
+
+  <!-- App box (left) -->
+  <g transform="translate(60, 90)">
+    <rect width="180" height="100" rx="12" fill="#181B2C" stroke="#38BDF8" stroke-width="2.5" />
+    <text x="90" y="38" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="800">YOUR APP</text>
+    <text x="90" y="62" text-anchor="middle" fill="#00FF85" font-family="monospace" font-size="14" font-weight="700">:9999/metrics</text>
+    <text x="90" y="84" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="11">in-RAM counter</text>
+  </g>
+
+  <!-- vmagent box (right) -->
+  <g transform="translate(560, 90)">
+    <rect width="180" height="100" rx="12" fill="#181B2C" stroke="#F59E0B" stroke-width="2.5" />
+    <text x="90" y="38" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="800">vmagent</text>
+    <text x="90" y="62" text-anchor="middle" fill="#F59E0B" font-family="monospace" font-size="13" font-weight="700">every 15s</text>
+    <text x="90" y="84" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="11">scrape · parse · buffer</text>
+  </g>
+
+  <!-- Connection arc -->
+  <path d="M 240 140 Q 400 60 560 140" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="4 4" opacity="0.5" />
+
+  <!-- Scrape packet (animated, repeats) -->
+  <g>
+    <circle r="18" fill="url(#packetGlow)">
+      <animateMotion dur="3s" repeatCount="indefinite" path="M 240 140 Q 400 60 560 140" />
+    </circle>
+    <circle r="6" fill="#F59E0B">
+      <animateMotion dur="3s" repeatCount="indefinite" path="M 240 140 Q 400 60 560 140" />
+    </circle>
+  </g>
+
+  <!-- GET label -->
+  <text x="400" y="80" text-anchor="middle" fill="#F59E0B" font-family="monospace" font-size="12" font-weight="700">GET /metrics</text>
+
+  <!-- Persistent disk queue -->
+  <g transform="translate(60, 230)">
+    <rect width="680" height="120" rx="14" fill="#181B2C" stroke="#F59E0B" stroke-width="2" />
+    <text x="20" y="30" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="800">Persistent Disk Queue</text>
+    <text x="660" y="30" text-anchor="end" fill="#94A3B8" font-family="monospace" font-size="11">~500 MB chunks</text>
+
+    <!-- Queue bars (animated heights) -->
+    <g transform="translate(20, 50)">
+      <rect x="0" y="20" width="36" height="50" rx="3" fill="#F59E0B" opacity="0.85">
+        <animate attributeName="height" values="50;65;50" dur="2.5s" repeatCount="indefinite" />
+        <animate attributeName="y" values="20;5;20" dur="2.5s" repeatCount="indefinite" />
+      </rect>
+      <rect x="46" y="10" width="36" height="60" rx="3" fill="#F59E0B" opacity="0.9">
+        <animate attributeName="height" values="60;50;60" dur="2.5s" repeatCount="indefinite" begin="0.2s" />
+        <animate attributeName="y" values="10;20;10" dur="2.5s" repeatCount="indefinite" begin="0.2s" />
+      </rect>
+      <rect x="92" y="15" width="36" height="55" rx="3" fill="#F59E0B" opacity="0.85">
+        <animate attributeName="height" values="55;65;55" dur="2.5s" repeatCount="indefinite" begin="0.4s" />
+        <animate attributeName="y" values="15;5;15" dur="2.5s" repeatCount="indefinite" begin="0.4s" />
+      </rect>
+      <rect x="138" y="5" width="36" height="65" rx="3" fill="#F59E0B" opacity="0.95">
+        <animate attributeName="height" values="65;70;65" dur="2.5s" repeatCount="indefinite" begin="0.6s" />
+        <animate attributeName="y" values="5;0;5" dur="2.5s" repeatCount="indefinite" begin="0.6s" />
+      </rect>
+      <rect x="184" y="20" width="36" height="50" rx="3" fill="#F59E0B" opacity="0.8">
+        <animate attributeName="height" values="50;60;50" dur="2.5s" repeatCount="indefinite" begin="0.8s" />
+        <animate attributeName="y" values="20;10;20" dur="2.5s" repeatCount="indefinite" begin="0.8s" />
+      </rect>
+      <rect x="230" y="12" width="36" height="58" rx="3" fill="#F59E0B" opacity="0.9">
+        <animate attributeName="height" values="58;48;58" dur="2.5s" repeatCount="indefinite" begin="1s" />
+        <animate attributeName="y" values="12;22;12" dur="2.5s" repeatCount="indefinite" begin="1s" />
+      </rect>
+      <rect x="276" y="18" width="36" height="52" rx="3" fill="#F59E0B" opacity="0.85">
+        <animate attributeName="height" values="52;62;52" dur="2.5s" repeatCount="indefinite" begin="1.2s" />
+        <animate attributeName="y" values="18;8;18" dur="2.5s" repeatCount="indefinite" begin="1.2s" />
+      </rect>
+      <rect x="322" y="8" width="36" height="62" rx="3" fill="#F59E0B" opacity="0.9">
+        <animate attributeName="height" values="62;52;62" dur="2.5s" repeatCount="indefinite" begin="1.4s" />
+        <animate attributeName="y" values="8;18;8" dur="2.5s" repeatCount="indefinite" begin="1.4s" />
+      </rect>
+      <rect x="368" y="22" width="36" height="48" rx="3" fill="#F59E0B" opacity="0.8">
+        <animate attributeName="height" values="48;58;48" dur="2.5s" repeatCount="indefinite" begin="1.6s" />
+        <animate attributeName="y" values="22;12;22" dur="2.5s" repeatCount="indefinite" begin="1.6s" />
+      </rect>
+      <rect x="414" y="14" width="36" height="56" rx="3" fill="#F59E0B" opacity="0.9">
+        <animate attributeName="height" values="56;66;56" dur="2.5s" repeatCount="indefinite" begin="1.8s" />
+        <animate attributeName="y" values="14;4;14" dur="2.5s" repeatCount="indefinite" begin="1.8s" />
+      </rect>
+      <rect x="460" y="6" width="36" height="64" rx="3" fill="#F59E0B" opacity="0.95">
+        <animate attributeName="height" values="64;54;64" dur="2.5s" repeatCount="indefinite" begin="2s" />
+        <animate attributeName="y" values="6;16;6" dur="2.5s" repeatCount="indefinite" begin="2s" />
+      </rect>
+      <rect x="506" y="20" width="36" height="50" rx="3" fill="#F59E0B" opacity="0.85">
+        <animate attributeName="height" values="50;60;50" dur="2.5s" repeatCount="indefinite" begin="2.2s" />
+        <animate attributeName="y" values="20;10;20" dur="2.5s" repeatCount="indefinite" begin="2.2s" />
+      </rect>
+      <rect x="552" y="10" width="36" height="60" rx="3" fill="#F59E0B" opacity="0.9">
+        <animate attributeName="height" values="60;50;60" dur="2.5s" repeatCount="indefinite" begin="2.4s" />
+        <animate attributeName="y" values="10;20;10" dur="2.5s" repeatCount="indefinite" begin="2.4s" />
+      </rect>
+      <rect x="598" y="16" width="36" height="54" rx="3" fill="#F59E0B" opacity="0.9">
+        <animate attributeName="height" values="54;64;54" dur="2.5s" repeatCount="indefinite" begin="2.6s" />
+        <animate attributeName="y" values="16;6;16" dur="2.5s" repeatCount="indefinite" begin="2.6s" />
+      </rect>
+    </g>
+  </g>
+
+  <!-- Drop arrow from vmagent to queue -->
+  <line x1="650" y1="200" x2="650" y2="225" stroke="#F59E0B" stroke-width="2" />
+  <polygon points="650,235 644,225 656,225" fill="#F59E0B" />
+
+  <!-- Bottom annotation -->
+  <text x="400" y="370" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="12">Network down? Buffers to disk. Replay on reconnect. Zero data loss.</text>
+</svg>

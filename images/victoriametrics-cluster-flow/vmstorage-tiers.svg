@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bgTiers" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A" />
+      <stop offset="100%" stop-color="#14182B" />
+    </linearGradient>
+    <radialGradient id="dropGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00FF85" stop-opacity="1" />
+      <stop offset="100%" stop-color="#00FF85" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgTiers)" />
+
+  <!-- Title -->
+  <text x="400" y="32" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="800">vmstorage — 3 tiers, no WAL, atomic rename = commit</text>
+
+  <!-- Tier 1: Raw row shards (RAM) -->
+  <g transform="translate(120, 80)">
+    <rect width="560" height="90" rx="14" fill="#181B2C" stroke="#EF4444" stroke-width="2" />
+    <rect x="0" y="0" width="14" height="90" rx="14" fill="#EF4444" />
+    <text x="30" y="30" fill="#EF4444" font-family="monospace" font-size="11" font-weight="700">TIER 1</text>
+    <text x="30" y="55" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="800">Raw Row Shards</text>
+    <text x="30" y="76" fill="#94A3B8" font-family="monospace" font-size="13">per-CPU RAM buffer · NOT queryable yet</text>
+    <rect x="430" y="30" width="110" height="30" rx="15" fill="#EF444425" stroke="#EF4444" stroke-width="1.5" />
+    <text x="485" y="50" text-anchor="middle" fill="#EF4444" font-family="monospace" font-size="12" font-weight="800">✗ not yet</text>
+  </g>
+
+  <!-- Falling sample droplets between tier 1 and tier 2 -->
+  <g>
+    <circle r="6" fill="url(#dropGlow)">
+      <animate attributeName="cy" values="170;220" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle r="4" fill="#00FF85">
+      <animate attributeName="cy" values="170;220" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <animateTransform attributeName="transform" type="translate" values="320 0;320 0" dur="2s" repeatCount="indefinite" />
+  </g>
+  <g>
+    <circle r="6" fill="url(#dropGlow)">
+      <animate attributeName="cy" values="170;220" dur="2s" repeatCount="indefinite" begin="0.5s" />
+      <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="0.5s" />
+    </circle>
+    <circle r="4" fill="#00FF85">
+      <animate attributeName="cy" values="170;220" dur="2s" repeatCount="indefinite" begin="0.5s" />
+      <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="0.5s" />
+    </circle>
+    <animateTransform attributeName="transform" type="translate" values="450 0;450 0" dur="2s" repeatCount="indefinite" />
+  </g>
+
+  <!-- Tier 2: In-memory parts -->
+  <g transform="translate(120, 220)">
+    <rect width="560" height="90" rx="14" fill="#181B2C" stroke="#FACC15" stroke-width="2" />
+    <rect x="0" y="0" width="14" height="90" rx="14" fill="#FACC15" />
+    <text x="30" y="30" fill="#FACC15" font-family="monospace" font-size="11" font-weight="700">TIER 2</text>
+    <text x="30" y="55" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="800">In-Memory Parts</text>
+    <text x="30" y="76" fill="#94A3B8" font-family="monospace" font-size="13">flushed every ~2s · queryable, in RAM</text>
+    <rect x="430" y="30" width="110" height="30" rx="15" fill="#00FF8525" stroke="#00FF85" stroke-width="1.5" />
+    <text x="485" y="50" text-anchor="middle" fill="#00FF85" font-family="monospace" font-size="12" font-weight="800">✓ queryable</text>
+  </g>
+
+  <!-- Falling samples between tier 2 and tier 3 -->
+  <g>
+    <circle r="6" fill="url(#dropGlow)">
+      <animate attributeName="cy" values="310;360" dur="2s" repeatCount="indefinite" begin="0.7s" />
+      <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="0.7s" />
+    </circle>
+    <circle r="4" fill="#00FF85">
+      <animate attributeName="cy" values="310;360" dur="2s" repeatCount="indefinite" begin="0.7s" />
+      <animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite" begin="0.7s" />
+    </circle>
+    <animateTransform attributeName="transform" type="translate" values="380 0;380 0" dur="2s" repeatCount="indefinite" />
+  </g>
+
+  <!-- Tier 3: On-disk parts -->
+  <g transform="translate(120, 360)">
+    <rect width="560" height="90" rx="14" fill="#181B2C" stroke="#00FF85" stroke-width="2" />
+    <rect x="0" y="0" width="14" height="90" rx="14" fill="#00FF85" />
+    <text x="30" y="30" fill="#00FF85" font-family="monospace" font-size="11" font-weight="700">TIER 3 · DISK</text>
+    <text x="30" y="55" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="800">On-Disk Parts</text>
+    <text x="30" y="76" fill="#94A3B8" font-family="monospace" font-size="13">flush ~5s · fsync · atomic rename = commit</text>
+    <rect x="430" y="30" width="110" height="30" rx="15" fill="#00FF8525" stroke="#00FF85" stroke-width="1.5" />
+    <text x="485" y="50" text-anchor="middle" fill="#00FF85" font-family="monospace" font-size="12" font-weight="800">✓ durable</text>
+  </g>
+
+  <!-- NO WAL stamp -->
+  <g transform="translate(560, 75) rotate(-8)">
+    <rect width="170" height="50" rx="6" fill="#EF444415" stroke="#EF4444" stroke-width="3" />
+    <text x="85" y="34" text-anchor="middle" fill="#EF4444" font-family="Arial, sans-serif" font-size="22" font-weight="900">NO WAL</text>
+  </g>
+
+  <!-- Bottom annotation -->
+  <text x="400" y="478" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="12">durability = fsync(file) + fsync(dir) + atomic rename — no log replay, no chunk rewriting</text>
+</svg>
