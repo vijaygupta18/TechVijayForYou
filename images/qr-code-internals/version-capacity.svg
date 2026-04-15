@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="460" fill="url(#bg)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="20" font-weight="800">QR Capacity — From Version 1 to Version 40</text>
+  <text x="400" y="56" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="13">Numeric capacity (max digits) grows ~280× across versions</text>
+
+  <!-- Y axis label -->
+  <text x="40" y="120" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="10">DIGITS</text>
+
+  <!-- Baseline -->
+  <line x1="100" y1="340" x2="740" y2="340" stroke="#2A334A" stroke-width="2"/>
+
+  <!-- Five representative bars at V1, V5, V10, V20, V40 -->
+  <!-- Max bar height 220 maps to 7089 digits -->
+  <!-- V1: 41 digits → 1.3px -->
+  <!-- V5: 255 → 8px -->
+  <!-- V10: 652 → 20px -->
+  <!-- V20: 2061 → 64px -->
+  <!-- V40: 7089 → 220px -->
+
+  <g>
+    <!-- V1 -->
+    <rect x="150" y="340" width="80" height="0" fill="url(#barGrad)" rx="3">
+      <animate attributeName="y" values="340;338" keyTimes="0;1" dur="3s" begin="0s" fill="freeze"/>
+      <animate attributeName="height" values="0;2" keyTimes="0;1" dur="3s" begin="0s" fill="freeze"/>
+    </rect>
+    <text x="190" y="360" text-anchor="middle" fill="#E8EEF7" font-family="Montserrat,sans-serif" font-size="13" font-weight="700">V1</text>
+    <text x="190" y="376" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="10">21×21</text>
+    <text x="190" y="330" text-anchor="middle" fill="#00D4FF" font-family="Montserrat,sans-serif" font-size="12" font-weight="700">41</text>
+
+    <!-- V5 -->
+    <rect x="260" y="340" width="80" height="0" fill="url(#barGrad)" rx="3">
+      <animate attributeName="y" values="340;332" keyTimes="0;1" dur="3s" begin="0.4s" fill="freeze"/>
+      <animate attributeName="height" values="0;8" keyTimes="0;1" dur="3s" begin="0.4s" fill="freeze"/>
+    </rect>
+    <text x="300" y="360" text-anchor="middle" fill="#E8EEF7" font-family="Montserrat,sans-serif" font-size="13" font-weight="700">V5</text>
+    <text x="300" y="376" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="10">37×37</text>
+    <text x="300" y="324" text-anchor="middle" fill="#00D4FF" font-family="Montserrat,sans-serif" font-size="12" font-weight="700">255</text>
+
+    <!-- V10 -->
+    <rect x="370" y="340" width="80" height="0" fill="url(#barGrad)" rx="3">
+      <animate attributeName="y" values="340;320" keyTimes="0;1" dur="3s" begin="0.8s" fill="freeze"/>
+      <animate attributeName="height" values="0;20" keyTimes="0;1" dur="3s" begin="0.8s" fill="freeze"/>
+    </rect>
+    <text x="410" y="360" text-anchor="middle" fill="#E8EEF7" font-family="Montserrat,sans-serif" font-size="13" font-weight="700">V10</text>
+    <text x="410" y="376" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="10">57×57</text>
+    <text x="410" y="312" text-anchor="middle" fill="#00D4FF" font-family="Montserrat,sans-serif" font-size="12" font-weight="700">652</text>
+
+    <!-- V20 -->
+    <rect x="480" y="340" width="80" height="0" fill="url(#barGrad)" rx="3">
+      <animate attributeName="y" values="340;276" keyTimes="0;1" dur="3s" begin="1.2s" fill="freeze"/>
+      <animate attributeName="height" values="0;64" keyTimes="0;1" dur="3s" begin="1.2s" fill="freeze"/>
+    </rect>
+    <text x="520" y="360" text-anchor="middle" fill="#E8EEF7" font-family="Montserrat,sans-serif" font-size="13" font-weight="700">V20</text>
+    <text x="520" y="376" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="10">97×97</text>
+    <text x="520" y="268" text-anchor="middle" fill="#A855F7" font-family="Montserrat,sans-serif" font-size="13" font-weight="700">2,061</text>
+
+    <!-- V40 (hero) -->
+    <rect x="590" y="340" width="100" height="0" fill="url(#barGrad)" rx="3" filter="url(#soft)">
+      <animate attributeName="y" values="340;120" keyTimes="0;1" dur="3s" begin="1.6s" fill="freeze"/>
+      <animate attributeName="height" values="0;220" keyTimes="0;1" dur="3s" begin="1.6s" fill="freeze"/>
+    </rect>
+    <text x="640" y="360" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="14" font-weight="800">V40</text>
+    <text x="640" y="376" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="10">177×177</text>
+    <text x="640" y="108" text-anchor="middle" fill="#A855F7" font-family="Montserrat,sans-serif" font-size="18" font-weight="800" opacity="0">
+      7,089
+      <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.5;1" dur="5s" begin="1.6s" fill="freeze"/>
+    </text>
+
+    <!-- Arrow callout on V40 -->
+    <text x="640" y="90" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="10" opacity="0">
+      MAX NUMERIC
+      <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.6;1" dur="5s" begin="1.6s" fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- Side capacity table -->
+  <g transform="translate(60 100)" font-family="Montserrat,sans-serif" fill="#E8EEF7" font-size="11">
+    <rect x="0" y="0" width="220" height="170" fill="#14182B" stroke="#2A334A" stroke-width="1" rx="8"/>
+    <text x="110" y="24" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">V40 Max Capacity</text>
+    <line x1="20" y1="34" x2="200" y2="34" stroke="#2A334A"/>
+    <text x="20" y="58">Numeric</text><text x="200" y="58" text-anchor="end" fill="#00D4FF" font-weight="700">7,089</text>
+    <text x="20" y="82">Alphanumeric</text><text x="200" y="82" text-anchor="end" fill="#00D4FF" font-weight="700">4,296</text>
+    <text x="20" y="106">Byte</text><text x="200" y="106" text-anchor="end" fill="#00D4FF" font-weight="700">2,953</text>
+    <text x="20" y="130">Kanji</text><text x="200" y="130" text-anchor="end" fill="#00D4FF" font-weight="700">1,817</text>
+    <text x="20" y="156" fill="#8B9BB8" font-size="10">Modules/side = 4×ver + 17</text>
+  </g>
+
+  <text x="400" y="420" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="11">UPI QRs typically use V3-V6 — small, robust, high error-correction. V40 is reserved for rare use cases like embedding entire PDFs.</text>
+  <text x="400" y="440" text-anchor="middle" fill="#E8EEF7" font-family="Montserrat,sans-serif" font-size="12" font-weight="700">Capacity formula: side = 4 × version + 17 modules</text>
+</svg>

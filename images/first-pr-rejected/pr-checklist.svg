@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="400" viewBox="0 0 700 400">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0C0A1D" />
+      <stop offset="100%" stop-color="#1A1635" />
+    </linearGradient>
+    <filter id="checkGlow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="700" height="400" fill="url(#bg4)" />
+
+  <!-- Title -->
+  <text x="350" y="35" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="sans-serif" opacity="0">
+    5-Point PR Checklist
+    <animate attributeName="opacity" values="0;1" dur="0.6s" fill="freeze" />
+  </text>
+  <text x="350" y="55" text-anchor="middle" fill="#9CA3B8" font-size="11" font-family="sans-serif" opacity="0">
+    Run this before every single PR — takes 10 minutes, saves hours
+    <animate attributeName="opacity" values="0;1" dur="0.4s" begin="0.3s" fill="freeze" />
+  </text>
+
+  <!-- Checklist items -->
+  <!-- Item 1: Self-review diff -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="0.8s" fill="freeze" />
+    <rect x="50" y="80" width="600" height="48" rx="10" fill="#6366F108" stroke="#6366F130" stroke-width="1" />
+    <!-- Checkbox -->
+    <rect x="70" y="92" width="24" height="24" rx="5" fill="none" stroke="#6366F160" stroke-width="2" />
+    <!-- Checkmark (animated) -->
+    <path d="M 76 104 L 82 110 L 90 98" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30" filter="url(#checkGlow)">
+      <animate attributeName="stroke-dashoffset" values="30;0" dur="0.4s" begin="1.2s" fill="freeze" />
+    </path>
+    <!-- Number -->
+    <text x="115" y="110" fill="#6366F1" font-size="16" font-weight="900" font-family="sans-serif">1</text>
+    <!-- Text -->
+    <text x="140" y="102" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">Self-review your diff</text>
+    <text x="140" y="118" fill="#9CA3B8" font-size="11" font-family="sans-serif">Read every line as if someone else wrote it</text>
+  </g>
+
+  <!-- Item 2: Run tests locally -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.4s" fill="freeze" />
+    <rect x="50" y="140" width="600" height="48" rx="10" fill="#8B5CF608" stroke="#8B5CF630" stroke-width="1" />
+    <rect x="70" y="152" width="24" height="24" rx="5" fill="none" stroke="#8B5CF660" stroke-width="2" />
+    <path d="M 76 164 L 82 170 L 90 158" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30" filter="url(#checkGlow)">
+      <animate attributeName="stroke-dashoffset" values="30;0" dur="0.4s" begin="1.8s" fill="freeze" />
+    </path>
+    <text x="115" y="170" fill="#8B5CF6" font-size="16" font-weight="900" font-family="sans-serif">2</text>
+    <text x="140" y="162" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">Run tests locally</text>
+    <text x="140" y="178" fill="#9CA3B8" font-size="11" font-family="sans-serif">Don't rely on CI — fix before pushing</text>
+  </g>
+
+  <!-- Item 3: Small focused commits -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.0s" fill="freeze" />
+    <rect x="50" y="200" width="600" height="48" rx="10" fill="#06B6D408" stroke="#06B6D430" stroke-width="1" />
+    <rect x="70" y="212" width="24" height="24" rx="5" fill="none" stroke="#06B6D460" stroke-width="2" />
+    <path d="M 76 224 L 82 230 L 90 218" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30" filter="url(#checkGlow)">
+      <animate attributeName="stroke-dashoffset" values="30;0" dur="0.4s" begin="2.4s" fill="freeze" />
+    </path>
+    <text x="115" y="230" fill="#06B6D4" font-size="16" font-weight="900" font-family="sans-serif">3</text>
+    <text x="140" y="222" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">Small, focused commits</text>
+    <text x="140" y="238" fill="#9CA3B8" font-size="11" font-family="sans-serif">One logical change per commit — optimal: 200-400 LOC</text>
+  </g>
+
+  <!-- Item 4: PR description with context -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.6s" fill="freeze" />
+    <rect x="50" y="260" width="600" height="48" rx="10" fill="#F59E0B08" stroke="#F59E0B30" stroke-width="1" />
+    <rect x="70" y="272" width="24" height="24" rx="5" fill="none" stroke="#F59E0B60" stroke-width="2" />
+    <path d="M 76 284 L 82 290 L 90 278" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30" filter="url(#checkGlow)">
+      <animate attributeName="stroke-dashoffset" values="30;0" dur="0.4s" begin="3.0s" fill="freeze" />
+    </path>
+    <text x="115" y="290" fill="#F59E0B" font-size="16" font-weight="900" font-family="sans-serif">4</text>
+    <text x="140" y="282" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">Write a PR description</text>
+    <text x="140" y="298" fill="#9CA3B8" font-size="11" font-family="sans-serif">What / Why / How / Testing — screenshots for UI</text>
+  </g>
+
+  <!-- Item 5: Link the ticket -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.2s" fill="freeze" />
+    <rect x="50" y="320" width="600" height="48" rx="10" fill="#22C55E08" stroke="#22C55E30" stroke-width="1" />
+    <rect x="70" y="332" width="24" height="24" rx="5" fill="none" stroke="#22C55E60" stroke-width="2" />
+    <path d="M 76 344 L 82 350 L 90 338" fill="none" stroke="#22C55E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30" filter="url(#checkGlow)">
+      <animate attributeName="stroke-dashoffset" values="30;0" dur="0.4s" begin="3.6s" fill="freeze" />
+    </path>
+    <text x="115" y="350" fill="#22C55E" font-size="16" font-weight="900" font-family="sans-serif">5</text>
+    <text x="140" y="342" fill="#fff" font-size="14" font-weight="700" font-family="sans-serif">Link the ticket</text>
+    <text x="140" y="358" fill="#9CA3B8" font-size="11" font-family="sans-serif">Jira / Linear / GitHub Issue — gives business context</text>
+  </g>
+
+  <!-- Bottom tagline -->
+  <text x="350" y="390" text-anchor="middle" fill="#22C55E80" font-size="10" font-weight="600" font-family="sans-serif" opacity="0">
+    10 minutes of prep = hours saved in review ping-pong
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4.0s" fill="freeze" />
+  </text>
+</svg>

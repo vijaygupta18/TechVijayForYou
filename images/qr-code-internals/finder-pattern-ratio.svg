@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="scanLineGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00D4FF" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00D4FF" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="800" height="440" fill="url(#bg)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="20" font-weight="800">The 1:1:3:1:1 Ratio — The Rarest Pattern in Print</text>
+  <text x="400" y="56" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="13">Scan line traveling through a finder pattern, revealing the ratio</text>
+
+  <!-- Finder pattern, 7x7 modules, module=40px, total 280px -->
+  <!-- x0=80, y0=90 -->
+  <g transform="translate(80 90)">
+    <!-- outer 7x7 black -->
+    <rect x="0" y="0" width="280" height="280" fill="#F4F7FC"/>
+    <rect x="0" y="0" width="280" height="280" fill="#0A0E1A"/>
+    <rect x="40" y="40" width="200" height="200" fill="#F4F7FC"/>
+    <rect x="80" y="80" width="120" height="120" fill="#0A0E1A"/>
+
+    <!-- Scanning line (horizontal, moving top to bottom) -->
+    <rect x="-10" y="0" width="300" height="4" fill="url(#scanLineGrad)" filter="url(#glow)">
+      <animate attributeName="y" values="0;280;280;0" keyTimes="0;0.5;0.75;1" dur="6s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Ratio segment highlight — lives at center horizontal scan (y=140) -->
+    <!-- segments: 0-40 black(1), 40-80 white(1), 80-200 black(3), 200-240 white(1), 240-280 black(1) -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.45;0.55;0.85;1" dur="6s" repeatCount="indefinite"/>
+      <rect x="0" y="136" width="40" height="10" fill="#00D4FF" opacity="0.85"/>
+      <rect x="40" y="136" width="40" height="10" fill="#FFD447" opacity="0.85"/>
+      <rect x="80" y="136" width="120" height="10" fill="#FF6B35" opacity="0.85"/>
+      <rect x="200" y="136" width="40" height="10" fill="#FFD447" opacity="0.85"/>
+      <rect x="240" y="136" width="40" height="10" fill="#00D4FF" opacity="0.85"/>
+    </g>
+  </g>
+
+  <!-- Right side: ratio breakdown -->
+  <g transform="translate(440 100)">
+    <text x="0" y="0" fill="#fff" font-family="Montserrat,sans-serif" font-size="16" font-weight="800">Pixel ratio across the line:</text>
+
+    <!-- Ratio bar showing 1:1:3:1:1 -->
+    <g transform="translate(0 30)">
+      <rect x="0" y="0" width="40" height="40" fill="#00D4FF">
+        <animate attributeName="opacity" values="0;1" keyTimes="0;0.2" dur="6s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="40" y="0" width="40" height="40" fill="#FFD447" stroke="#FFD447" stroke-width="1">
+        <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.25;0.3" dur="6s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="80" y="0" width="120" height="40" fill="#FF6B35">
+        <animate attributeName="opacity" values="0;0;0;1" keyTimes="0;0.3;0.35;0.4" dur="6s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="200" y="0" width="40" height="40" fill="#FFD447">
+        <animate attributeName="opacity" values="0;0;0;0;1" keyTimes="0;0.4;0.45;0.5;0.55" dur="6s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="240" y="0" width="40" height="40" fill="#00D4FF">
+        <animate attributeName="opacity" values="0;0;0;0;0;1" keyTimes="0;0.55;0.6;0.65;0.7;0.75" dur="6s" repeatCount="indefinite"/>
+      </rect>
+
+      <text x="20" y="60" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="22" font-weight="800">1</text>
+      <text x="60" y="60" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="22" font-weight="800">1</text>
+      <text x="140" y="60" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="22" font-weight="800">3</text>
+      <text x="220" y="60" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="22" font-weight="800">1</text>
+      <text x="260" y="60" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="22" font-weight="800">1</text>
+
+      <text x="20" y="85" text-anchor="middle" fill="#00D4FF" font-family="Montserrat,sans-serif" font-size="10">BLACK</text>
+      <text x="60" y="85" text-anchor="middle" fill="#FFD447" font-family="Montserrat,sans-serif" font-size="10">WHITE</text>
+      <text x="140" y="85" text-anchor="middle" fill="#FF6B35" font-family="Montserrat,sans-serif" font-size="10">BLACK</text>
+      <text x="220" y="85" text-anchor="middle" fill="#FFD447" font-family="Montserrat,sans-serif" font-size="10">WHITE</text>
+      <text x="260" y="85" text-anchor="middle" fill="#00D4FF" font-family="Montserrat,sans-serif" font-size="10">BLACK</text>
+    </g>
+
+    <g transform="translate(0 215)">
+      <rect x="0" y="0" width="320" height="90" fill="#14182B" stroke="#00D4FF" stroke-width="1" rx="8" opacity="0">
+        <animate attributeName="opacity" values="0;0;0.95" keyTimes="0;0.78;0.88" dur="6s" repeatCount="indefinite"/>
+      </rect>
+      <text x="16" y="28" fill="#00D4FF" font-family="Montserrat,sans-serif" font-size="13" font-weight="700" opacity="0">
+        Why this ratio?
+        <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.8;0.9" dur="6s" repeatCount="indefinite"/>
+      </text>
+      <text x="16" y="52" fill="#E8EEF7" font-family="Montserrat,sans-serif" font-size="12" opacity="0">
+        Denso Wave scanned thousands of magazines,
+        <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.82;0.92" dur="6s" repeatCount="indefinite"/>
+      </text>
+      <text x="16" y="68" fill="#E8EEF7" font-family="Montserrat,sans-serif" font-size="12" opacity="0">
+        newspapers, and forms in 1994 to find
+        <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.84;0.94" dur="6s" repeatCount="indefinite"/>
+      </text>
+      <text x="16" y="84" fill="#E8EEF7" font-family="Montserrat,sans-serif" font-size="12" font-weight="700" opacity="0">
+        the rarest black:white pattern in print.
+        <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.86;0.96" dur="6s" repeatCount="indefinite"/>
+      </text>
+    </g>
+  </g>
+
+  <text x="400" y="420" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="11">The scan line moves top to bottom. When the black:white:black:white:black run hits 1:1:3:1:1, the scanner confirms a finder pattern.</text>
+</svg>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <radialGradient id="finderGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="alignGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="20" font-weight="800">QR Code Anatomy</text>
+  <text x="400" y="56" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="13">7 functional regions, labeled with sequential reveal</text>
+
+  <!-- QR grid 21x21 representation, cell=12px, origin x=230 y=90 -->
+  <g transform="translate(230 90)">
+    <rect x="-16" y="-16" width="284" height="284" fill="#E8EEF7" rx="6"/>
+    <rect x="0" y="0" width="252" height="252" fill="#F4F7FC"/>
+
+    <!-- Finder pattern top-left (7x7 at 0,0) -->
+    <g>
+      <rect x="0" y="0" width="84" height="84" fill="#0A0E1A">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="12" y="12" width="60" height="60" fill="#F4F7FC">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="24" y="24" width="36" height="36" fill="#0A0E1A">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <circle cx="42" cy="42" r="70" fill="url(#finderGlow)" opacity="0">
+        <animate attributeName="opacity" values="0;0.6;0" keyTimes="0;0.18;0.35" dur="12s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Finder pattern top-right (7x7 at 168,0) -->
+    <g>
+      <rect x="168" y="0" width="84" height="84" fill="#0A0E1A">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="180" y="12" width="60" height="60" fill="#F4F7FC">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="192" y="24" width="36" height="36" fill="#0A0E1A">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <circle cx="210" cy="42" r="70" fill="url(#finderGlow)" opacity="0">
+        <animate attributeName="opacity" values="0;0.6;0" keyTimes="0;0.18;0.35" dur="12s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Finder pattern bottom-left -->
+    <g>
+      <rect x="0" y="168" width="84" height="84" fill="#0A0E1A">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="12" y="180" width="60" height="60" fill="#F4F7FC">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="24" y="192" width="36" height="36" fill="#0A0E1A">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.12;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <circle cx="42" cy="210" r="70" fill="url(#finderGlow)" opacity="0">
+        <animate attributeName="opacity" values="0;0.6;0" keyTimes="0;0.18;0.35" dur="12s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Alignment pattern (5x5 near bottom-right, version 2 example) -->
+    <g>
+      <rect x="156" y="156" width="60" height="60" fill="#0A0E1A" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.35;0.45;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="168" y="168" width="36" height="36" fill="#F4F7FC" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.35;0.45;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="180" y="180" width="12" height="12" fill="#0A0E1A" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.35;0.45;1" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <circle cx="186" cy="186" r="55" fill="url(#alignGlow)" opacity="0">
+        <animate attributeName="opacity" values="0;0;0.7;0" keyTimes="0;0.42;0.5;0.62" dur="12s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Horizontal timing pattern row 6 between top-left and top-right -->
+    <g>
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.65;1" dur="12s" repeatCount="indefinite"/>
+        <rect x="96" y="72" width="12" height="12" fill="#0A0E1A"/>
+        <rect x="120" y="72" width="12" height="12" fill="#0A0E1A"/>
+        <rect x="144" y="72" width="12" height="12" fill="#0A0E1A"/>
+        <rect x="108" y="72" width="12" height="12" fill="#F4F7FC"/>
+        <rect x="132" y="72" width="12" height="12" fill="#F4F7FC"/>
+        <rect x="156" y="72" width="12" height="12" fill="#F4F7FC"/>
+      </g>
+    </g>
+
+    <!-- Vertical timing pattern col 6 -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.65;1" dur="12s" repeatCount="indefinite"/>
+      <rect x="72" y="96" width="12" height="12" fill="#0A0E1A"/>
+      <rect x="72" y="120" width="12" height="12" fill="#0A0E1A"/>
+      <rect x="72" y="144" width="12" height="12" fill="#0A0E1A"/>
+      <rect x="72" y="108" width="12" height="12" fill="#F4F7FC"/>
+      <rect x="72" y="132" width="12" height="12" fill="#F4F7FC"/>
+      <rect x="72" y="156" width="12" height="12" fill="#F4F7FC"/>
+    </g>
+
+    <!-- Format info strips (simplified 15 modules each) -->
+    <g fill="#A855F7" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.85;0.85" keyTimes="0;0.75;0.82;1" dur="12s" repeatCount="indefinite"/>
+      <rect x="96" y="84" width="84" height="8"/>
+      <rect x="84" y="96" width="8" height="84"/>
+      <rect x="168" y="96" width="8" height="48"/>
+      <rect x="96" y="168" width="48" height="8"/>
+    </g>
+
+    <!-- Data region fill (scatter pattern) -->
+    <g fill="#0A0E1A" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.9;0.9" keyTimes="0;0.86;0.93;1" dur="12s" repeatCount="indefinite"/>
+      <rect x="96" y="96" width="12" height="12"/>
+      <rect x="120" y="108" width="12" height="12"/>
+      <rect x="144" y="96" width="12" height="12"/>
+      <rect x="108" y="132" width="12" height="12"/>
+      <rect x="132" y="120" width="12" height="12"/>
+      <rect x="156" y="144" width="12" height="12"/>
+      <rect x="96" y="120" width="12" height="12"/>
+      <rect x="120" y="144" width="12" height="12"/>
+      <rect x="144" y="132" width="12" height="12"/>
+      <rect x="108" y="156" width="12" height="12"/>
+      <rect x="132" y="156" width="12" height="12"/>
+      <rect x="96" y="144" width="12" height="12"/>
+      <rect x="120" y="132" width="12" height="12"/>
+      <rect x="144" y="120" width="12" height="12"/>
+    </g>
+  </g>
+
+  <!-- Callouts -->
+  <g font-family="Montserrat,sans-serif" font-size="13" fill="#E8EEF7">
+    <!-- Finder patterns label -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.15;1" dur="12s" repeatCount="indefinite"/>
+      <line x1="230" y1="110" x2="140" y2="110" stroke="#00D4FF" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="20" y="96" fill="#00D4FF" font-weight="700">FINDER PATTERNS (×3)</text>
+      <text x="20" y="116" font-size="11" fill="#8B9BB8">1:1:3:1:1 ratio — orientation</text>
+      <text x="20" y="132" font-size="11" fill="#8B9BB8">Detect in &lt;30ms, any angle</text>
+    </g>
+
+    <!-- Alignment pattern label -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.42;0.5;1" dur="12s" repeatCount="indefinite"/>
+      <line x1="500" y1="290" x2="420" y2="290" stroke="#FF6B35" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="510" y="280" fill="#FF6B35" font-weight="700">ALIGNMENT PATTERN</text>
+      <text x="510" y="300" font-size="11" fill="#8B9BB8">Fixes perspective + tilt</text>
+      <text x="510" y="316" font-size="11" fill="#8B9BB8">V1: none &#183; V40: 46</text>
+    </g>
+
+    <!-- Timing patterns label -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.62;0.7;1" dur="12s" repeatCount="indefinite"/>
+      <line x1="500" y1="160" x2="390" y2="160" stroke="#FFD447" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="510" y="150" fill="#FFD447" font-weight="700">TIMING PATTERNS</text>
+      <text x="510" y="170" font-size="11" fill="#8B9BB8">Row 6 &amp; column 6</text>
+      <text x="510" y="186" font-size="11" fill="#8B9BB8">Ruler for module count</text>
+    </g>
+
+    <!-- Format info label -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.78;0.86;1" dur="12s" repeatCount="indefinite"/>
+      <line x1="230" y1="220" x2="160" y2="220" stroke="#A855F7" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="20" y="212" fill="#A855F7" font-weight="700">FORMAT INFO</text>
+      <text x="20" y="230" font-size="11" fill="#8B9BB8">15 bits, BCH coded</text>
+      <text x="20" y="246" font-size="11" fill="#8B9BB8">EC level + mask pattern</text>
+    </g>
+
+    <!-- Data label -->
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.9;0.95;1" dur="12s" repeatCount="indefinite"/>
+      <line x1="500" y1="360" x2="400" y2="340" stroke="#10B981" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <text x="510" y="352" fill="#10B981" font-weight="700">DATA MODULES</text>
+      <text x="510" y="372" font-size="11" fill="#8B9BB8">black = 1, white = 0</text>
+      <text x="510" y="388" font-size="11" fill="#8B9BB8">+ Reed-Solomon ECC</text>
+    </g>
+  </g>
+
+  <!-- Footer caption -->
+  <text x="400" y="472" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="11">Every QR code: 3 finder patterns (any angle), alignment (perspective), timing (ruler), format info (metadata), data + ECC (payload).</text>
+</svg>

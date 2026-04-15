@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <radialGradient id="healGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="460" fill="url(#bg)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="20" font-weight="800">Reed-Solomon Recovery — Up to 30% Damage</text>
+  <text x="400" y="56" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="13">Same math NASA uses to talk to Voyager at 24 billion km</text>
+
+  <!-- Left QR (damaged) -->
+  <g transform="translate(60 90)">
+    <text x="140" y="-14" text-anchor="middle" fill="#F43F5E" font-family="Montserrat,sans-serif" font-size="13" font-weight="700">DAMAGED QR (30%)</text>
+
+    <!-- White base -->
+    <rect x="0" y="0" width="280" height="280" fill="#F4F7FC"/>
+
+    <!-- Finder patterns (kept intact) -->
+    <g fill="#0A0E1A">
+      <rect x="0" y="0" width="80" height="80"/><rect x="10" y="10" width="60" height="60" fill="#F4F7FC"/><rect x="20" y="20" width="40" height="40"/>
+      <rect x="200" y="0" width="80" height="80"/><rect x="210" y="10" width="60" height="60" fill="#F4F7FC"/><rect x="220" y="20" width="40" height="40"/>
+      <rect x="0" y="200" width="80" height="80"/><rect x="10" y="210" width="60" height="60" fill="#F4F7FC"/><rect x="20" y="220" width="40" height="40"/>
+    </g>
+
+    <!-- Scatter data modules -->
+    <g fill="#0A0E1A">
+      <rect x="100" y="90" width="10" height="10"/><rect x="120" y="90" width="10" height="10"/><rect x="150" y="90" width="10" height="10"/><rect x="180" y="90" width="10" height="10"/>
+      <rect x="90" y="110" width="10" height="10"/><rect x="110" y="110" width="10" height="10"/><rect x="140" y="110" width="10" height="10"/><rect x="170" y="110" width="10" height="10"/>
+      <rect x="100" y="130" width="10" height="10"/><rect x="130" y="130" width="10" height="10"/><rect x="160" y="130" width="10" height="10"/><rect x="190" y="130" width="10" height="10"/>
+      <rect x="90" y="150" width="10" height="10"/><rect x="120" y="150" width="10" height="10"/><rect x="150" y="150" width="10" height="10"/><rect x="180" y="150" width="10" height="10"/>
+      <rect x="100" y="170" width="10" height="10"/><rect x="130" y="170" width="10" height="10"/><rect x="170" y="170" width="10" height="10"/><rect x="200" y="170" width="10" height="10"/>
+      <rect x="90" y="190" width="10" height="10"/><rect x="110" y="190" width="10" height="10"/><rect x="150" y="190" width="10" height="10"/><rect x="210" y="170" width="10" height="10"/>
+      <rect x="100" y="220" width="10" height="10"/><rect x="130" y="220" width="10" height="10"/><rect x="160" y="220" width="10" height="10"/><rect x="190" y="220" width="10" height="10"/><rect x="220" y="220" width="10" height="10"/>
+      <rect x="110" y="240" width="10" height="10"/><rect x="140" y="240" width="10" height="10"/><rect x="170" y="240" width="10" height="10"/><rect x="200" y="240" width="10" height="10"/>
+    </g>
+
+    <!-- Damage rip overlay (torn corner + diagonal scratch) -->
+    <g>
+      <!-- big rip zone -->
+      <rect x="155" y="120" width="120" height="100" fill="#F43F5E" opacity="0.35"/>
+      <!-- jagged torn edge illustration -->
+      <path d="M 155 120 L 165 135 L 155 150 L 170 160 L 155 175 L 170 190 L 155 205 L 275 205 L 275 120 Z" fill="#F43F5E" opacity="0.25"/>
+      <!-- scratch -->
+      <rect x="90" y="250" width="150" height="6" fill="#F43F5E" opacity="0.7" transform="rotate(-15 165 253)"/>
+    </g>
+
+    <!-- Damage label -->
+    <text x="215" y="170" text-anchor="middle" fill="#F43F5E" font-family="Montserrat,sans-serif" font-size="18" font-weight="800" filter="url(#soft)">30%</text>
+    <text x="215" y="186" text-anchor="middle" fill="#F43F5E" font-family="Montserrat,sans-serif" font-size="10">DAMAGED</text>
+  </g>
+
+  <!-- Arrow / heal effect in the middle -->
+  <g transform="translate(380 220)">
+    <text x="30" y="-80" text-anchor="middle" fill="#10B981" font-family="Montserrat,sans-serif" font-size="13" font-weight="700">REED-SOLOMON</text>
+    <text x="30" y="-64" text-anchor="middle" fill="#10B981" font-family="Montserrat,sans-serif" font-size="11">ECC reconstructs</text>
+
+    <!-- Healing particles along arrow -->
+    <circle r="14" fill="url(#healGlow)">
+      <animateMotion dur="3s" repeatCount="indefinite" path="M 0 0 L 60 0"/>
+    </circle>
+    <circle r="8" fill="#10B981" filter="url(#soft)">
+      <animateMotion dur="3s" repeatCount="indefinite" path="M 0 0 L 60 0"/>
+    </circle>
+
+    <!-- Arrow shaft -->
+    <path d="M 0 0 L 60 0" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="60,-6 60,6 72,0" fill="#10B981"/>
+  </g>
+
+  <!-- Right QR (recovered) -->
+  <g transform="translate(460 90)">
+    <text x="140" y="-14" text-anchor="middle" fill="#10B981" font-family="Montserrat,sans-serif" font-size="13" font-weight="700">DECODED SUCCESSFULLY</text>
+
+    <rect x="0" y="0" width="280" height="280" fill="#F4F7FC"/>
+    <g fill="#0A0E1A">
+      <rect x="0" y="0" width="80" height="80"/><rect x="10" y="10" width="60" height="60" fill="#F4F7FC"/><rect x="20" y="20" width="40" height="40"/>
+      <rect x="200" y="0" width="80" height="80"/><rect x="210" y="10" width="60" height="60" fill="#F4F7FC"/><rect x="220" y="20" width="40" height="40"/>
+      <rect x="0" y="200" width="80" height="80"/><rect x="10" y="210" width="60" height="60" fill="#F4F7FC"/><rect x="20" y="220" width="40" height="40"/>
+      <rect x="100" y="90" width="10" height="10"/><rect x="120" y="90" width="10" height="10"/><rect x="150" y="90" width="10" height="10"/><rect x="180" y="90" width="10" height="10"/>
+      <rect x="90" y="110" width="10" height="10"/><rect x="110" y="110" width="10" height="10"/><rect x="140" y="110" width="10" height="10"/><rect x="170" y="110" width="10" height="10"/>
+      <rect x="100" y="130" width="10" height="10"/><rect x="130" y="130" width="10" height="10"/><rect x="160" y="130" width="10" height="10"/><rect x="190" y="130" width="10" height="10"/>
+      <rect x="90" y="150" width="10" height="10"/><rect x="120" y="150" width="10" height="10"/><rect x="150" y="150" width="10" height="10"/><rect x="180" y="150" width="10" height="10"/>
+      <rect x="100" y="170" width="10" height="10"/><rect x="130" y="170" width="10" height="10"/><rect x="170" y="170" width="10" height="10"/><rect x="200" y="170" width="10" height="10"/>
+      <rect x="90" y="190" width="10" height="10"/><rect x="110" y="190" width="10" height="10"/><rect x="150" y="190" width="10" height="10"/><rect x="210" y="170" width="10" height="10"/>
+      <rect x="100" y="220" width="10" height="10"/><rect x="130" y="220" width="10" height="10"/><rect x="160" y="220" width="10" height="10"/><rect x="190" y="220" width="10" height="10"/><rect x="220" y="220" width="10" height="10"/>
+      <rect x="110" y="240" width="10" height="10"/><rect x="140" y="240" width="10" height="10"/><rect x="170" y="240" width="10" height="10"/><rect x="200" y="240" width="10" height="10"/>
+    </g>
+
+    <!-- Pulse ring over recovered zone -->
+    <circle cx="215" cy="170" r="30" fill="none" stroke="#10B981" stroke-width="2" opacity="0">
+      <animate attributeName="r" values="20;60" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="215" y="176" text-anchor="middle" fill="#10B981" font-family="Montserrat,sans-serif" font-size="16" font-weight="800">✓</text>
+  </g>
+
+  <!-- Bottom strip: EC levels -->
+  <g transform="translate(100 400)">
+    <text x="0" y="-4" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="11">EC Levels:</text>
+    <g transform="translate(100 -12)" font-family="Montserrat,sans-serif" font-size="11" fill="#E8EEF7">
+      <rect x="0" y="0" width="120" height="20" fill="#14182B" stroke="#8B9BB8" stroke-width="1" rx="4"/>
+      <text x="60" y="14" text-anchor="middle">L — 7%</text>
+      <rect x="130" y="0" width="120" height="20" fill="#14182B" stroke="#FFD447" stroke-width="1" rx="4"/>
+      <text x="190" y="14" text-anchor="middle" fill="#FFD447">M — 15%</text>
+      <rect x="260" y="0" width="120" height="20" fill="#14182B" stroke="#FF6B35" stroke-width="1" rx="4"/>
+      <text x="320" y="14" text-anchor="middle" fill="#FF6B35">Q — 25%</text>
+      <rect x="390" y="0" width="120" height="20" fill="#14182B" stroke="#10B981" stroke-width="1.5" rx="4"/>
+      <text x="450" y="14" text-anchor="middle" fill="#10B981" font-weight="700">H — 30%</text>
+    </g>
+  </g>
+
+  <text x="400" y="444" text-anchor="middle" fill="#8B9BB8" font-family="Montserrat,sans-serif" font-size="11">Block-interleaving spreads damage across many blocks — each block sees small, correctable errors. Same RS family as CDs, DVDs, and Voyager.</text>
+</svg>

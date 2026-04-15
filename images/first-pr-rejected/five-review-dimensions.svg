@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="420" viewBox="0 0 700 420">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0C0A1D" />
+      <stop offset="100%" stop-color="#1A1635" />
+    </linearGradient>
+    <filter id="g3">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="700" height="420" fill="url(#bg3)" />
+
+  <!-- Title -->
+  <text x="350" y="32" text-anchor="middle" fill="#fff" font-size="17" font-weight="800" font-family="sans-serif" opacity="0">
+    5 Dimensions Seniors Review
+    <animate attributeName="opacity" values="0;1" dur="0.6s" fill="freeze" />
+  </text>
+  <text x="350" y="52" text-anchor="middle" fill="#9CA3B8" font-size="11" font-family="sans-serif" opacity="0">
+    Score low on any one = "Request Changes"
+    <animate attributeName="opacity" values="0;1" dur="0.4s" begin="0.4s" fill="freeze" />
+  </text>
+
+  <!-- Center glow -->
+  <circle cx="350" cy="220" r="100" fill="url(#rg1)" opacity="0">
+    <animate attributeName="opacity" values="0;0.5;0.3;0.5" dur="4s" begin="1s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Pentagon / Star arrangement — 5 nodes around center -->
+  <!-- Node 1: Naming (top) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.0s" fill="freeze" />
+    <rect x="290" y="78" width="120" height="55" rx="12" fill="#6366F118" stroke="#6366F1" stroke-width="2" />
+    <text x="350" y="100" text-anchor="middle" fill="#6366F1" font-size="13" font-weight="800" font-family="sans-serif">NAMING</text>
+    <text x="350" y="118" text-anchor="middle" fill="#ccc" font-size="10" font-weight="600" font-family="sans-serif">Intent Clear?</text>
+    <!-- Pulse -->
+    <rect x="290" y="78" width="120" height="55" rx="12" fill="none" stroke="#6366F1" stroke-width="1" opacity="0">
+      <animate attributeName="opacity" values="0;0.5;0" dur="2s" begin="1.5s" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="2s" begin="1.5s" repeatCount="indefinite" additive="sum" />
+    </rect>
+  </g>
+
+  <!-- Node 2: Error Handling (top-right) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.5s" fill="freeze" />
+    <rect x="470" y="148" width="140" height="55" rx="12" fill="#EF444418" stroke="#EF4444" stroke-width="2" />
+    <text x="540" y="170" text-anchor="middle" fill="#EF4444" font-size="13" font-weight="800" font-family="sans-serif">ERROR</text>
+    <text x="540" y="188" text-anchor="middle" fill="#ccc" font-size="10" font-weight="600" font-family="sans-serif">Failures Handled?</text>
+    <rect x="470" y="148" width="140" height="55" rx="12" fill="none" stroke="#EF4444" stroke-width="1" opacity="0">
+      <animate attributeName="opacity" values="0;0.5;0" dur="2s" begin="2.0s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <!-- Node 3: Tests (bottom-right) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.0s" fill="freeze" />
+    <rect x="440" y="278" width="130" height="55" rx="12" fill="#22C55E18" stroke="#22C55E" stroke-width="2" />
+    <text x="505" y="300" text-anchor="middle" fill="#22C55E" font-size="13" font-weight="800" font-family="sans-serif">TESTS</text>
+    <text x="505" y="318" text-anchor="middle" fill="#ccc" font-size="10" font-weight="600" font-family="sans-serif">Actually Proving?</text>
+    <rect x="440" y="278" width="130" height="55" rx="12" fill="none" stroke="#22C55E" stroke-width="1" opacity="0">
+      <animate attributeName="opacity" values="0;0.5;0" dur="2s" begin="2.5s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <!-- Node 4: Commits (bottom-left) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.5s" fill="freeze" />
+    <rect x="130" y="278" width="130" height="55" rx="12" fill="#F59E0B18" stroke="#F59E0B" stroke-width="2" />
+    <text x="195" y="300" text-anchor="middle" fill="#F59E0B" font-size="13" font-weight="800" font-family="sans-serif">COMMITS</text>
+    <text x="195" y="318" text-anchor="middle" fill="#ccc" font-size="10" font-weight="600" font-family="sans-serif">Story Clear?</text>
+    <rect x="130" y="278" width="130" height="55" rx="12" fill="none" stroke="#F59E0B" stroke-width="1" opacity="0">
+      <animate attributeName="opacity" values="0;0.5;0" dur="2s" begin="3.0s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <!-- Node 5: PR Description (top-left) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.0s" fill="freeze" />
+    <rect x="90" y="148" width="140" height="55" rx="12" fill="#8B5CF618" stroke="#8B5CF6" stroke-width="2" />
+    <text x="160" y="170" text-anchor="middle" fill="#8B5CF6" font-size="13" font-weight="800" font-family="sans-serif">PR DESC</text>
+    <text x="160" y="188" text-anchor="middle" fill="#ccc" font-size="10" font-weight="600" font-family="sans-serif">Context Given?</text>
+    <rect x="90" y="148" width="140" height="55" rx="12" fill="none" stroke="#8B5CF6" stroke-width="1" opacity="0">
+      <animate attributeName="opacity" values="0;0.5;0" dur="2s" begin="3.5s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <!-- Connecting lines (pentagon edges) — drawn sequentially -->
+  <line x1="350" y1="133" x2="470" y2="170" stroke="#ffffff15" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200">
+    <animate attributeName="stroke-dashoffset" values="200;0" dur="0.5s" begin="3.5s" fill="freeze" />
+  </line>
+  <line x1="540" y1="203" x2="505" y2="278" stroke="#ffffff15" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200">
+    <animate attributeName="stroke-dashoffset" values="200;0" dur="0.5s" begin="3.7s" fill="freeze" />
+  </line>
+  <line x1="440" y1="305" x2="260" y2="305" stroke="#ffffff15" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200">
+    <animate attributeName="stroke-dashoffset" values="200;0" dur="0.5s" begin="3.9s" fill="freeze" />
+  </line>
+  <line x1="160" y1="278" x2="160" y2="203" stroke="#ffffff15" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200">
+    <animate attributeName="stroke-dashoffset" values="200;0" dur="0.5s" begin="4.1s" fill="freeze" />
+  </line>
+  <line x1="230" y1="170" x2="290" y2="110" stroke="#ffffff15" stroke-width="1" stroke-dasharray="200" stroke-dashoffset="200">
+    <animate attributeName="stroke-dashoffset" values="200;0" dur="0.5s" begin="4.3s" fill="freeze" />
+  </line>
+
+  <!-- Bottom caption -->
+  <text x="350" y="395" text-anchor="middle" fill="#9CA3B870" font-size="10" font-family="sans-serif" opacity="0">
+    Even 4/5 perfect — one low score triggers "Request Changes"
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4.5s" fill="freeze" />
+  </text>
+</svg>
