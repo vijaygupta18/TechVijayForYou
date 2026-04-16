@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+
+    <!-- Zone A gradient -->
+    <linearGradient id="zoneAGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D1B3E"/>
+      <stop offset="100%" stop-color="#0A1428"/>
+    </linearGradient>
+
+    <!-- Zone C gradient -->
+    <linearGradient id="zoneCGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A0D2E"/>
+      <stop offset="100%" stop-color="#120A1E"/>
+    </linearGradient>
+
+    <!-- Pod glow gradient (green) -->
+    <radialGradient id="podGlowA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00FF88" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#00FF88" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="podGlowC" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00DDFF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#00DDFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- vmagent glow (amber) -->
+    <radialGradient id="vmGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFAA00" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FFAA00" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Red cross-zone glow -->
+    <radialGradient id="redGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF2222" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FF2222" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Glow filter for lines -->
+    <filter id="glowRed" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow filter for pods -->
+    <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow filter for vmagent -->
+    <filter id="glowAmber" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft glow filter for zone border -->
+    <filter id="zonePulse" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Cross-zone path A to C (for animateMotion) -->
+    <path id="pathAtoC1" d="M 195 210 C 310 160, 450 280, 565 175"/>
+    <path id="pathAtoC2" d="M 195 250 C 320 320, 440 140, 565 220"/>
+    <path id="pathAtoC3" d="M 195 230 C 330 180, 430 300, 565 245"/>
+    <path id="pathCtoA1" d="M 565 210 C 450 160, 310 280, 195 175"/>
+    <path id="pathCtoA2" d="M 565 250 C 440 320, 320 140, 195 220"/>
+    <path id="pathCtoA3" d="M 565 230 C 430 180, 330 300, 195 245"/>
+  </defs>
+
+  <!-- Background -->
+  <rect width="760" height="440" fill="url(#bgGrad)"/>
+
+  <!-- Background grid dots -->
+  <g opacity="0.08">
+    <!-- Row 1 -->
+    <circle cx="40" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.25;0.08" dur="3.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.22;0.08" dur="2.7s" begin="0.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="160" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.2;0.08" dur="3.4s" begin="0.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="220" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.25;0.08" dur="2.9s" begin="1.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="280" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.18;0.08" dur="3.2s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="340" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.23;0.08" dur="2.8s" begin="0.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.21;0.08" dur="3.5s" begin="0.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="460" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.26;0.08" dur="2.6s" begin="1.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="520" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.19;0.08" dur="3.3s" begin="0.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="580" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.24;0.08" dur="2.9s" begin="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="640" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.22;0.08" dur="3.1s" begin="0.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="700" cy="40" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.2;0.08" dur="2.7s" begin="1.2s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Row 2 -->
+    <circle cx="40" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.22;0.08" dur="3.2s" begin="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.25;0.08" dur="2.8s" begin="0.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="160" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.18;0.08" dur="3.6s" begin="0.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="220" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.21;0.08" dur="2.9s" begin="1.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="280" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.26;0.08" dur="3.1s" begin="0.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="340" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.2;0.08" dur="2.7s" begin="1.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.23;0.08" dur="3.4s" begin="0.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="460" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.19;0.08" dur="2.6s" begin="1.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="520" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.24;0.08" dur="3.3s" begin="0.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="580" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.22;0.08" dur="2.9s" begin="1.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="640" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.25;0.08" dur="3.0s" begin="0.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="700" cy="100" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.18;0.08" dur="2.8s" begin="1.6s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Row 3 -->
+    <circle cx="40" cy="360" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.21;0.08" dur="3.3s" begin="0.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="360" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.24;0.08" dur="2.7s" begin="1.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="640" cy="360" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.19;0.08" dur="3.2s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="700" cy="360" r="1.5" fill="#4488FF">
+      <animate attributeName="opacity" values="0.08;0.23;0.08" dur="2.9s" begin="1.0s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Title -->
+  <text x="380" y="28" font-family="monospace, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Before: Cross-Zone Scraping Chaos</text>
+
+  <!-- Subtitle -->
+  <text x="380" y="50" font-family="monospace, sans-serif" font-size="11" fill="#8899CC" text-anchor="middle">Every vmagent in Zone A scrapes pods in Zone C — and vice versa</text>
+
+  <!-- ===== ZONE A ===== -->
+  <!-- Zone A outer glow -->
+  <rect x="14" y="65" width="348" height="300" rx="14" ry="14" fill="none" stroke="#1A88FF" stroke-width="6" opacity="0.15" filter="url(#zonePulse)">
+    <animate attributeName="stroke-width" values="6;10;6" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.15;0.3;0.15" dur="3s" repeatCount="indefinite"/>
+  </rect>
+  <!-- Zone A background -->
+  <rect x="18" y="68" width="340" height="294" rx="12" ry="12" fill="url(#zoneAGrad)" stroke="#1A44AA" stroke-width="1.5" opacity="0.9"/>
+  <!-- Zone A label -->
+  <text x="188" y="92" font-family="monospace, sans-serif" font-size="13" font-weight="bold" fill="#4499FF" text-anchor="middle">ap-south-1a</text>
+  <line x1="38" y1="98" x2="338" y2="98" stroke="#1A44AA" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Zone A pods -->
+  <!-- Pod A1 -->
+  <rect x="28" y="108" width="90" height="40" rx="6" ry="6" fill="url(#podGlowA)" stroke="#00FF88" stroke-width="1.2" opacity="0.85" filter="url(#glowGreen)">
+    <animate attributeName="stroke-width" values="1.2;2.2;1.2" dur="2.8s" begin="0s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.85;1;0.85" dur="2.8s" begin="0s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="28" y="108" width="90" height="40" rx="6" ry="6" fill="#0A2A1A" stroke="none"/>
+  <rect x="28" y="108" width="90" height="40" rx="6" ry="6" fill="none" stroke="#00FF88" stroke-width="1.2">
+    <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.8s" begin="0s" repeatCount="indefinite"/>
+  </rect>
+  <text x="73" y="133" font-family="monospace" font-size="11" fill="#00FF88" text-anchor="middle" font-weight="bold">Pod A1</text>
+
+  <!-- Pod A2 -->
+  <rect x="28" y="162" width="90" height="40" rx="6" ry="6" fill="#0A2A1A" stroke="#00FF88" stroke-width="1.2">
+    <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.5s" begin="0.4s" repeatCount="indefinite"/>
+  </rect>
+  <text x="73" y="187" font-family="monospace" font-size="11" fill="#00FF88" text-anchor="middle" font-weight="bold">Pod A2</text>
+
+  <!-- Pod A3 -->
+  <rect x="28" y="216" width="90" height="40" rx="6" ry="6" fill="#0A2A1A" stroke="#00FF88" stroke-width="1.2">
+    <animate attributeName="stroke-width" values="1.2;2;1.2" dur="3.1s" begin="0.9s" repeatCount="indefinite"/>
+  </rect>
+  <text x="73" y="241" font-family="monospace" font-size="11" fill="#00FF88" text-anchor="middle" font-weight="bold">Pod A3</text>
+
+  <!-- vmagent A -->
+  <rect x="140" y="270" width="110" height="54" rx="8" ry="8" fill="none" stroke="#FFAA00" stroke-width="2" filter="url(#glowAmber)">
+    <animate attributeName="stroke-width" values="2;3.5;2" dur="2.2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="140" y="270" width="110" height="54" rx="8" ry="8" fill="#1A0E00" stroke="none"/>
+  <rect x="140" y="270" width="110" height="54" rx="8" ry="8" fill="none" stroke="#FFAA00" stroke-width="2">
+    <animate attributeName="stroke-width" values="2;3.5;2" dur="2.2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="2.2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="195" y="291" font-family="monospace" font-size="10" fill="#FFAA00" text-anchor="middle" font-weight="bold">vmagent-a</text>
+  <text x="195" y="307" font-family="monospace" font-size="9" fill="#CC8800" text-anchor="middle">scrapes ALL zones</text>
+  <text x="195" y="320" font-family="monospace" font-size="9" fill="#FF4444" text-anchor="middle">&#x26A0; cross-zone!</text>
+
+  <!-- ===== ZONE C ===== -->
+  <!-- Zone C outer glow -->
+  <rect x="396" y="65" width="348" height="300" rx="14" ry="14" fill="none" stroke="#AA44FF" stroke-width="6" opacity="0.15" filter="url(#zonePulse)">
+    <animate attributeName="stroke-width" values="6;10;6" dur="3.4s" begin="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.15;0.3;0.15" dur="3.4s" begin="0.5s" repeatCount="indefinite"/>
+  </rect>
+  <!-- Zone C background -->
+  <rect x="400" y="68" width="340" height="294" rx="12" ry="12" fill="url(#zoneCGrad)" stroke="#5A1AAA" stroke-width="1.5" opacity="0.9"/>
+  <!-- Zone C label -->
+  <text x="570" y="92" font-family="monospace, sans-serif" font-size="13" font-weight="bold" fill="#AA66FF" text-anchor="middle">ap-south-1c</text>
+  <line x1="420" y1="98" x2="720" y2="98" stroke="#5A1AAA" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Zone C pods -->
+  <!-- Pod C1 -->
+  <rect x="640" y="108" width="90" height="40" rx="6" ry="6" fill="#0A001A" stroke="#00DDFF" stroke-width="1.2">
+    <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.6s" begin="0.2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="685" y="133" font-family="monospace" font-size="11" fill="#00DDFF" text-anchor="middle" font-weight="bold">Pod C1</text>
+
+  <!-- Pod C2 -->
+  <rect x="640" y="162" width="90" height="40" rx="6" ry="6" fill="#0A001A" stroke="#00DDFF" stroke-width="1.2">
+    <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.9s" begin="0.7s" repeatCount="indefinite"/>
+  </rect>
+  <text x="685" y="187" font-family="monospace" font-size="11" fill="#00DDFF" text-anchor="middle" font-weight="bold">Pod C2</text>
+
+  <!-- Pod C3 -->
+  <rect x="640" y="216" width="90" height="40" rx="6" ry="6" fill="#0A001A" stroke="#00DDFF" stroke-width="1.2">
+    <animate attributeName="stroke-width" values="1.2;2;1.2" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="685" y="241" font-family="monospace" font-size="11" fill="#00DDFF" text-anchor="middle" font-weight="bold">Pod C3</text>
+
+  <!-- vmagent C -->
+  <rect x="508" y="270" width="110" height="54" rx="8" ry="8" fill="#1A0E00" stroke="#FFAA00" stroke-width="2">
+    <animate attributeName="stroke-width" values="2;3.5;2" dur="2.5s" begin="0.6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="2.5s" begin="0.6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="508" y="270" width="110" height="54" rx="8" ry="8" fill="none" stroke="#FFAA00" stroke-width="2" filter="url(#glowAmber)">
+    <animate attributeName="stroke-width" values="2;3.5;2" dur="2.5s" begin="0.6s" repeatCount="indefinite"/>
+  </rect>
+  <text x="563" y="291" font-family="monospace" font-size="10" fill="#FFAA00" text-anchor="middle" font-weight="bold">vmagent-c</text>
+  <text x="563" y="307" font-family="monospace" font-size="9" fill="#CC8800" text-anchor="middle">scrapes ALL zones</text>
+  <text x="563" y="320" font-family="monospace" font-size="9" fill="#FF4444" text-anchor="middle">&#x26A0; cross-zone!</text>
+
+  <!-- ===== CROSS-ZONE RED LINES (A vmagent -> C pods) ===== -->
+  <!-- Line: vmagent-a to Pod C1 -->
+  <path d="M 250 278 C 330 200, 470 150, 640 128" fill="none" stroke="#FF3333" stroke-width="1.8" stroke-dasharray="8,5" opacity="0.8" filter="url(#glowRed)">
+    <animate attributeName="stroke-dashoffset" values="130;0" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Line: vmagent-a to Pod C2 -->
+  <path d="M 250 297 C 340 260, 480 200, 640 182" fill="none" stroke="#FF4411" stroke-width="1.8" stroke-dasharray="8,5" opacity="0.75" filter="url(#glowRed)">
+    <animate attributeName="stroke-dashoffset" values="130;0" dur="4s" begin="0.6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.75;0.95;0.75" dur="2.3s" begin="0.3s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Line: vmagent-a to Pod C3 -->
+  <path d="M 250 316 C 360 320, 490 260, 640 236" fill="none" stroke="#FF2222" stroke-width="1.8" stroke-dasharray="8,5" opacity="0.7" filter="url(#glowRed)">
+    <animate attributeName="stroke-dashoffset" values="130;0" dur="4s" begin="1.2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.7;0.9;0.7" dur="2.1s" begin="0.7s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- ===== CROSS-ZONE RED LINES (C vmagent -> A pods) ===== -->
+  <!-- Line: vmagent-c to Pod A1 -->
+  <path d="M 508 278 C 430 200, 290 150, 118 128" fill="none" stroke="#FF3344" stroke-width="1.8" stroke-dasharray="8,5" opacity="0.8" filter="url(#glowRed)">
+    <animate attributeName="stroke-dashoffset" values="130;0" dur="4s" begin="0.3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2.2s" begin="0.9s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Line: vmagent-c to Pod A2 -->
+  <path d="M 508 297 C 420 260, 280 200, 118 182" fill="none" stroke="#FF1133" stroke-width="1.8" stroke-dasharray="8,5" opacity="0.75" filter="url(#glowRed)">
+    <animate attributeName="stroke-dashoffset" values="130;0" dur="4s" begin="0.9s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.75;0.95;0.75" dur="1.9s" begin="0.4s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Line: vmagent-c to Pod A3 -->
+  <path d="M 508 316 C 400 320, 270 260, 118 236" fill="none" stroke="#FF4422" stroke-width="1.8" stroke-dasharray="8,5" opacity="0.7" filter="url(#glowRed)">
+    <animate attributeName="stroke-dashoffset" values="130;0" dur="4s" begin="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.7;0.9;0.7" dur="2.4s" begin="1.1s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- ===== ANIMATED RED DOTS along cross-zone paths ===== -->
+  <!-- Dot: vmagent-a -> Pod C1 -->
+  <circle r="4" fill="#FF3333" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="0s">
+      <mpath href="#pathAtoC1"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="0s"/>
+  </circle>
+
+  <!-- Dot: vmagent-a -> Pod C2 -->
+  <circle r="4" fill="#FF6611" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="0.8s">
+      <mpath href="#pathAtoC2"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="0.8s"/>
+  </circle>
+
+  <!-- Dot: vmagent-a -> Pod C3 -->
+  <circle r="4" fill="#FF2244" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="1.6s">
+      <mpath href="#pathAtoC3"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="1.6s"/>
+  </circle>
+
+  <!-- Dot: vmagent-c -> Pod A1 -->
+  <circle r="4" fill="#FF3355" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="0.4s">
+      <mpath href="#pathCtoA1"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="0.4s"/>
+  </circle>
+
+  <!-- Dot: vmagent-c -> Pod A2 -->
+  <circle r="4" fill="#FF1133" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="1.2s">
+      <mpath href="#pathCtoA2"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="1.2s"/>
+  </circle>
+
+  <!-- Dot: vmagent-c -> Pod A3 -->
+  <circle r="4" fill="#FF4422" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="2s">
+      <mpath href="#pathCtoA3"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite" begin="2s"/>
+  </circle>
+
+  <!-- ===== DOLLAR SIGNS along cross-zone paths ===== -->
+  <!-- $ along A->C path 1, position ~33% -->
+  <text font-family="monospace" font-size="13" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="0.5s" keyPoints="0;0.4;0.4;1" keyTimes="0;0.3;0.7;1" calcMode="linear">
+      <mpath href="#pathAtoC1"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" dur="4s" repeatCount="indefinite" begin="0.5s" keyTimes="0;0.2;0.35;0.65;0.8;1"/>
+    $
+  </text>
+
+  <!-- $ along A->C path 2, position ~50% -->
+  <text font-family="monospace" font-size="13" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="1.3s" keyPoints="0;0.5;0.5;1" keyTimes="0;0.4;0.6;1" calcMode="linear">
+      <mpath href="#pathAtoC2"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" dur="4s" repeatCount="indefinite" begin="1.3s" keyTimes="0;0.3;0.45;0.55;0.7;1"/>
+    $
+  </text>
+
+  <!-- $ along A->C path 3 -->
+  <text font-family="monospace" font-size="13" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="2.1s" keyPoints="0;0.45;0.45;1" keyTimes="0;0.35;0.65;1" calcMode="linear">
+      <mpath href="#pathAtoC3"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" dur="4s" repeatCount="indefinite" begin="2.1s" keyTimes="0;0.25;0.4;0.6;0.75;1"/>
+    $
+  </text>
+
+  <!-- $ along C->A path 1 -->
+  <text font-family="monospace" font-size="13" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="0.9s" keyPoints="0;0.4;0.4;1" keyTimes="0;0.3;0.7;1" calcMode="linear">
+      <mpath href="#pathCtoA1"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" dur="4s" repeatCount="indefinite" begin="0.9s" keyTimes="0;0.2;0.35;0.65;0.8;1"/>
+    $
+  </text>
+
+  <!-- $ along C->A path 2 -->
+  <text font-family="monospace" font-size="13" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="1.7s" keyPoints="0;0.5;0.5;1" keyTimes="0;0.4;0.6;1" calcMode="linear">
+      <mpath href="#pathCtoA2"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" dur="4s" repeatCount="indefinite" begin="1.7s" keyTimes="0;0.3;0.45;0.55;0.7;1"/>
+    $
+  </text>
+
+  <!-- $ along C->A path 3 -->
+  <text font-family="monospace" font-size="13" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="2.5s" keyPoints="0;0.45;0.45;1" keyTimes="0;0.35;0.65;1" calcMode="linear">
+      <mpath href="#pathCtoA3"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" dur="4s" repeatCount="indefinite" begin="2.5s" keyTimes="0;0.25;0.4;0.6;0.75;1"/>
+    $
+  </text>
+
+  <!-- Additional static pulsing $ symbols at midpoints for emphasis -->
+  <text x="380" y="195" font-family="monospace" font-size="16" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0s"/>
+  </text>
+  <text x="375" y="225" font-family="monospace" font-size="14" fill="#FF8800" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+    $
+  </text>
+  <text x="385" y="255" font-family="monospace" font-size="16" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="1s"/>
+    $
+  </text>
+  <text x="372" y="170" font-family="monospace" font-size="12" fill="#FFAA00" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+    $
+  </text>
+  <text x="388" y="280" font-family="monospace" font-size="15" fill="#FFD700" font-weight="bold" text-anchor="middle" filter="url(#glowRed)">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0.75s"/>
+    $
+  </text>
+
+  <!-- AZ divider line -->
+  <line x1="380" y1="75" x2="380" y2="355" stroke="#FF4444" stroke-width="1" stroke-dasharray="4,6" opacity="0.4">
+    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="2s" repeatCount="indefinite"/>
+  </line>
+  <text x="380" y="370" font-family="monospace" font-size="9" fill="#FF4444" text-anchor="middle" opacity="0.7">AZ boundary</text>
+
+  <!-- Cost label in the middle of the chaos zone -->
+  <rect x="320" y="155" width="120" height="28" rx="5" ry="5" fill="#1A0000" stroke="#FF3333" stroke-width="1.2" opacity="0.85">
+    <animate attributeName="opacity" values="0.85;1;0.85" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-width" values="1.2;2;1.2" dur="1.5s" repeatCount="indefinite"/>
+  </rect>
+  <text x="380" y="174" font-family="monospace" font-size="11" fill="#FF5555" font-weight="bold" text-anchor="middle">$0.02 / GB</text>
+
+  <!-- ===== CAPTION ===== -->
+  <text x="380" y="406" font-family="monospace, sans-serif" font-size="11" fill="#FF5555" text-anchor="middle" font-weight="bold">Red lines = cross-AZ traffic = $0.02/GB burning</text>
+</svg>

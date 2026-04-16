@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="520" viewBox="0 0 780 520">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+
+    <!-- Before bar gradient (orange → red) -->
+    <linearGradient id="beforeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF6B00"/>
+      <stop offset="100%" stop-color="#E5001E"/>
+    </linearGradient>
+
+    <!-- After bar gradient (emerald → teal) -->
+    <linearGradient id="afterGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00C979"/>
+      <stop offset="100%" stop-color="#00B4D8"/>
+    </linearGradient>
+
+    <!-- Glow filter for before numbers -->
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow filter for after numbers -->
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feColorMatrix in="SourceGraphic" type="matrix"
+        values="0 0 0 0 0  1 0 0 0 0.8  0 0 0 0 0.5  0 0 0 1 0" result="green"/>
+      <feGaussianBlur in="green" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Sparkle filter -->
+    <filter id="sparkleFx" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="780" height="520" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="1" x2="780" y2="1" stroke="#1E2440" stroke-width="1"/>
+  <line x1="0" y1="519" x2="780" y2="519" stroke="#1E2440" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="390" y="42" text-anchor="middle"
+    font-family="'Montserrat', 'Arial Black', sans-serif"
+    font-size="22" font-weight="900" fill="#FFFFFF" letter-spacing="1">
+    The Results: Before → After
+  </text>
+
+  <!-- Subtitle -->
+  <text x="390" y="66" text-anchor="middle"
+    font-family="'Montserrat', Arial, sans-serif"
+    font-size="12" font-weight="600" fill="#8892B0" letter-spacing="0.5">
+    Zero cross-AZ traffic · ~$10K/year saved · 30% less compute
+  </text>
+
+  <!-- Divider -->
+  <line x1="40" y1="80" x2="740" y2="80" stroke="#1E2440" stroke-width="1.5"/>
+
+  <!-- ============================================================
+       ROW LAYOUT:
+       Bar area: x=180 to x=680 (500px wide = 100%)
+       Label: x=30
+       Before bar y offset: row_y
+       After bar y offset: row_y + 22
+  ============================================================ -->
+
+  <!-- ── ROW 1: Cross-AZ data transfer ── -->
+  <!-- begin=0s -->
+  <g id="row1">
+    <!-- Row label -->
+    <text x="30" y="121" font-family="'Montserrat', Arial, sans-serif"
+      font-size="12" font-weight="700" fill="#CDD6F4">Cross-AZ traffic</text>
+
+    <!-- BEFORE track label -->
+    <text x="165" y="136" text-anchor="end" font-family="Arial, sans-serif"
+      font-size="10" font-weight="600" fill="#FF6B00" opacity="0.85">BEFORE</text>
+
+    <!-- Before bar clip rect (grows from 0 → 450px = 90%) -->
+    <rect id="r1-before" x="180" y="124" height="16" width="0" rx="3" fill="url(#beforeGrad)">
+      <animate attributeName="width" from="0" to="450" dur="1.5s" begin="0.3s" fill="freeze"/>
+    </rect>
+
+    <!-- Before number -->
+    <text x="637" y="137" font-family="'Montserrat', Arial, sans-serif"
+      font-size="11" font-weight="800" fill="#FF6B00" filter="url(#glowRed)" opacity="0">
+      2.5 TB/day
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="r1-before.end" fill="freeze"/>
+    </text>
+
+    <!-- AFTER track label -->
+    <text x="165" y="158" text-anchor="end" font-family="Arial, sans-serif"
+      font-size="10" font-weight="600" fill="#00C979" opacity="0.85">AFTER</text>
+
+    <!-- After bar (grows from 0 → 10px = 2%) -->
+    <rect id="r1-after" x="180" y="146" height="16" width="0" rx="3" fill="url(#afterGrad)">
+      <animate attributeName="width" from="0" to="10" dur="0.8s" begin="3.5s" fill="freeze"/>
+    </rect>
+
+    <!-- After number with pulse -->
+    <text id="r1-num" x="197" y="159" font-family="'Montserrat', Arial, sans-serif"
+      font-size="11" font-weight="800" fill="#00C979" filter="url(#glowGreen)" opacity="0">
+      ~0 GB/day
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="r1-after.end" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="1.8s" begin="r1-after.end+0.5s" repeatCount="3"/>
+    </text>
+
+    <!-- Sparkles row 1 -->
+    <g opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="r1-after.end+0.1s" fill="freeze"/>
+      <circle cx="285" cy="154" r="2.5" fill="#00FF99">
+        <animate attributeName="opacity" values="0;1;0" dur="1.2s" begin="r1-after.end+0.1s" repeatCount="2"/>
+        <animate attributeName="r" values="1;3;1" dur="1.2s" begin="r1-after.end+0.1s" repeatCount="2"/>
+      </circle>
+      <circle cx="310" cy="150" r="1.8" fill="#FFD700">
+        <animate attributeName="opacity" values="0;1;0" dur="1s" begin="r1-after.end+0.3s" repeatCount="2"/>
+        <animate attributeName="r" values="0.5;2.5;0.5" dur="1s" begin="r1-after.end+0.3s" repeatCount="2"/>
+      </circle>
+      <circle cx="265" cy="157" r="2" fill="#00E5FF">
+        <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="r1-after.end+0.2s" repeatCount="2"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Separator -->
+  <line x1="30" y1="175" x2="750" y2="175" stroke="#1E2440" stroke-width="1" opacity="0.6"/>
+
+
+  <!-- ── ROW 2: Monthly AWS Cost ── -->
+  <!-- begins 0.5s after row 1 (begin=0.8s) -->
+  <g id="row2">
+    <text x="30" y="201" font-family="'Montserrat', Arial, sans-serif"
+      font-size="12" font-weight="700" fill="#CDD6F4">Monthly AWS cost</text>
+
+    <text x="165" y="216" text-anchor="end" font-family="Arial, sans-serif"
+      font-size="10" font-weight="600" fill="#FF6B00" opacity="0.85">BEFORE</text>
+
+    <!-- Before bar: $900/mo → 90% → 450px -->
+    <rect id="r2-before" x="180" y="204" height="16" width="0" rx="3" fill="url(#beforeGrad)">
+      <animate attributeName="width" from="0" to="450" dur="1.5s" begin="0.8s" fill="freeze"/>
+    </rect>
+
+    <text x="637" y="217" font-family="'Montserrat', Arial, sans-serif"
+      font-size="11" font-weight="800" fill="#FF6B00" filter="url(#glowRed)" opacity="0">
+      $900/mo
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="r2-before.end" fill="freeze"/>
+    </text>
+
+    <text x="165" y="238" text-anchor="end" font-family="Arial, sans-serif"
+      font-size="10" font-weight="600" fill="#00C979" opacity="0.85">AFTER</text>
+
+    <!-- After bar: $0–$50/mo → ~5% → 25px -->
+    <rect id="r2-after" x="180" y="226" height="16" width="0" rx="3" fill="url(#afterGrad)">
+      <animate attributeName="width" from="0" to="25" dur="0.8s" begin="4.0s" fill="freeze"/>
+    </rect>
+
+    <text id="r2-num" x="212" y="239" font-family="'Montserrat', Arial, sans-serif"
+      font-size="11" font-weight="800" fill="#00C979" filter="url(#glowGreen)" opacity="0">
+      $0–$50/mo
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="r2-after.end" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="1.8s" begin="r2-after.end+0.5s" repeatCount="3"/>
+    </text>
+
+    <!-- Sparkles row 2 -->
+    <g>
+      <circle cx="295" cy="234" r="2.5" fill="#00FF99" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1.2s" begin="r2-after.end+0.1s" repeatCount="2"/>
+        <animate attributeName="r" values="1;3;1" dur="1.2s" begin="r2-after.end+0.1s" repeatCount="2"/>
+      </circle>
+      <circle cx="320" cy="230" r="1.8" fill="#FFD700" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1s" begin="r2-after.end+0.25s" repeatCount="2"/>
+        <animate attributeName="r" values="0.5;2.5;0.5" dur="1s" begin="r2-after.end+0.25s" repeatCount="2"/>
+      </circle>
+      <circle cx="275" cy="237" r="2" fill="#00E5FF" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="r2-after.end+0.15s" repeatCount="2"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Separator -->
+  <line x1="30" y1="255" x2="750" y2="255" stroke="#1E2440" stroke-width="1" opacity="0.6"/>
+
+
+  <!-- ── ROW 3: vmagent CPU usage ── -->
+  <!-- begins 0.5s after row 2 (begin=1.3s) -->
+  <g id="row3">
+    <text x="30" y="281" font-family="'Montserrat', Arial, sans-serif"
+      font-size="12" font-weight="700" fill="#CDD6F4">vmagent CPU</text>
+
+    <text x="165" y="296" text-anchor="end" font-family="Arial, sans-serif"
+      font-size="10" font-weight="600" fill="#FF6B00" opacity="0.85">BEFORE</text>
+
+    <!-- Before bar: 100% → 500px full width -->
+    <rect id="r3-before" x="180" y="284" height="16" width="0" rx="3" fill="url(#beforeGrad)">
+      <animate attributeName="width" from="0" to="500" dur="1.5s" begin="1.3s" fill="freeze"/>
+    </rect>
+
+    <text x="687" y="297" font-family="'Montserrat', Arial, sans-serif"
+      font-size="11" font-weight="800" fill="#FF6B00" filter="url(#glowRed)" opacity="0">
+      100%
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="r3-before.end" fill="freeze"/>
+    </text>
+
+    <text x="165" y="318" text-anchor="end" font-family="Arial, sans-serif"
+      font-size="10" font-weight="600" fill="#00C979" opacity="0.85">AFTER</text>
+
+    <!-- After bar: 70% → 350px -->
+    <rect id="r3-after" x="180" y="306" height="16" width="0" rx="3" fill="url(#afterGrad)">
+      <animate attributeName="width" from="0" to="350" dur="1.2s" begin="4.5s" fill="freeze"/>
+    </rect>
+
+    <text id="r3-num" x="537" y="319" font-family="'Montserrat', Arial, sans-serif"
+      font-size="11" font-weight="800" fill="#00C979" filter="url(#glowGreen)" opacity="0">
+      70% (−30%)
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="r3-after.end" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="1.8s" begin="r3-after.end+0.5s" repeatCount="3"/>
+    </text>
+
+    <!-- Sparkles row 3 -->
+    <g>
+      <circle cx="420" cy="314" r="2.5" fill="#00FF99" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1.2s" begin="r3-after.end+0.1s" repeatCount="2"/>
+        <animate attributeName="r" values="1;3;1" dur="1.2s" begin="r3-after.end+0.1s" repeatCount="2"/>
+      </circle>
+      <circle cx="445" cy="310" r="1.8" fill="#FFD700" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1s" begin="r3-after.end+0.3s" repeatCount="2"/>
+        <animate attributeName="r" values="0.5;2.5;0.5" dur="1s" begin="r3-after.end+0.3s" repeatCount="2"/>
+      </circle>
+      <circle cx="400" cy="317" r="2" fill="#00E5FF" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="r3-after.end+0.2s" repeatCount="2"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Separator -->
+  <line x1="30" y1="335" x2="750" y2="335" stroke="#1E2440" stroke-width="1" opacity="0.6"/>
+
+
+  <!-- ── ROW 4: vmagent memory ── -->
+  <!-- begins 0.5s after row 3 (begin=1.8s) -->
+  <g id="row4">
+    <text x="30" y="361" font-family="'Montserrat', Arial, sans-serif"
+      font-size="12" font-weight="700" fill="#CDD6F4">vmagent Memory</text>
+
+    <text x="165" y="376" text-anchor="end" font-family="Arial, sans-serif"
+      font-size="10" font-weight="600" fill="#FF6B00" opacity="0.85">BEFORE</text>
+
+    <!-- Before bar: 100% → 500px -->
+    <rect id="r4-before" x="180" y="364" height="16" width="0" rx="3" fill="url(#beforeGrad)">
+      <animate attributeName="width" from="0" to="500" dur="1.5s" begin="1.8s" fill="freeze"/>
+    </rect>
+
+    <text x="687" y="377" font-family="'Montserrat', Arial, sans-serif"
+      font-size="11" font-weight="800" fill="#FF6B00" filter="url(#glowRed)" opacity="0">
+      100%
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="r4-before.end" fill="freeze"/>
+    </text>
+
+    <text x="165" y="398" text-anchor="end" font-family="Arial, sans-serif"
+      font-size="10" font-weight="600" fill="#00C979" opacity="0.85">AFTER</text>
+
+    <!-- After bar: 75% → 375px -->
+    <rect id="r4-after" x="180" y="386" height="16" width="0" rx="3" fill="url(#afterGrad)">
+      <animate attributeName="width" from="0" to="375" dur="1.2s" begin="5.0s" fill="freeze"/>
+    </rect>
+
+    <text id="r4-num" x="562" y="399" font-family="'Montserrat', Arial, sans-serif"
+      font-size="11" font-weight="800" fill="#00C979" filter="url(#glowGreen)" opacity="0">
+      75% (−25%)
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="r4-after.end" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0.6;1" dur="1.8s" begin="r4-after.end+0.5s" repeatCount="3"/>
+    </text>
+
+    <!-- Sparkles row 4 -->
+    <g>
+      <circle cx="445" cy="394" r="2.5" fill="#00FF99" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1.2s" begin="r4-after.end+0.1s" repeatCount="2"/>
+        <animate attributeName="r" values="1;3;1" dur="1.2s" begin="r4-after.end+0.1s" repeatCount="2"/>
+      </circle>
+      <circle cx="465" cy="390" r="1.8" fill="#FFD700" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1s" begin="r4-after.end+0.3s" repeatCount="2"/>
+        <animate attributeName="r" values="0.5;2.5;0.5" dur="1s" begin="r4-after.end+0.3s" repeatCount="2"/>
+      </circle>
+      <circle cx="425" cy="397" r="2" fill="#00E5FF" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="1.4s" begin="r4-after.end+0.2s" repeatCount="2"/>
+      </circle>
+      <!-- Extra star burst for final row -->
+      <circle cx="485" cy="392" r="2.2" fill="#FFFFFF" opacity="0">
+        <animate attributeName="opacity" values="0;1;0" dur="0.9s" begin="r4-after.end+0.4s" repeatCount="3"/>
+        <animate attributeName="r" values="1;3.5;1" dur="0.9s" begin="r4-after.end+0.4s" repeatCount="3"/>
+      </circle>
+    </g>
+  </g>
+
+  <!-- Separator above footer -->
+  <line x1="30" y1="420" x2="750" y2="420" stroke="#1E2440" stroke-width="1.5"/>
+
+  <!-- Scale reference labels at top of bar area -->
+  <text x="180" y="95" font-family="Arial, sans-serif" font-size="9" fill="#3A4060">0%</text>
+  <text x="305" y="95" font-family="Arial, sans-serif" font-size="9" fill="#3A4060">25%</text>
+  <text x="430" y="95" font-family="Arial, sans-serif" font-size="9" fill="#3A4060">50%</text>
+  <text x="555" y="95" font-family="Arial, sans-serif" font-size="9" fill="#3A4060">75%</text>
+  <text x="672" y="95" font-family="Arial, sans-serif" font-size="9" fill="#3A4060">100%</text>
+
+  <!-- Vertical grid ticks (subtle) -->
+  <line x1="305" y1="82" x2="305" y2="415" stroke="#1E2440" stroke-width="0.5" stroke-dasharray="3,6"/>
+  <line x1="430" y1="82" x2="430" y2="415" stroke="#1E2440" stroke-width="0.5" stroke-dasharray="3,6"/>
+  <line x1="555" y1="82" x2="555" y2="415" stroke="#1E2440" stroke-width="0.5" stroke-dasharray="3,6"/>
+  <line x1="680" y1="82" x2="680" y2="415" stroke="#1E2440" stroke-width="0.5" stroke-dasharray="3,6"/>
+
+  <!-- Footer caption -->
+  <rect x="220" y="438" width="340" height="36" rx="8" fill="#0F1628" stroke="#1E2E50" stroke-width="1.5"/>
+  <text x="390" y="461" text-anchor="middle"
+    font-family="'Montserrat', Arial, sans-serif"
+    font-size="13" font-weight="800" fill="#00C979" letter-spacing="0.8" opacity="0">
+    Zone-pinning = cleaner, cheaper, faster
+    <animate attributeName="opacity" from="0" to="1" dur="0.8s" begin="r4-after.end+0.3s" fill="freeze"/>
+    <animate attributeName="opacity" values="1;0.75;1" dur="2.5s" begin="r4-after.end+1.2s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Legend -->
+  <rect x="30" y="438" width="12" height="12" rx="2" fill="url(#beforeGrad)"/>
+  <text x="47" y="449" font-family="Arial, sans-serif" font-size="10" fill="#8892B0">Before</text>
+  <rect x="90" y="438" width="12" height="12" rx="2" fill="url(#afterGrad)"/>
+  <text x="107" y="449" font-family="Arial, sans-serif" font-size="10" fill="#8892B0">After</text>
+
+  <!-- Corner accent lines (decorative) -->
+  <polyline points="20,20 20,8 32,8" fill="none" stroke="#2A3A6A" stroke-width="1.5"/>
+  <polyline points="760,20 760,8 748,8" fill="none" stroke="#2A3A6A" stroke-width="1.5"/>
+  <polyline points="20,500 20,512 32,512" fill="none" stroke="#2A3A6A" stroke-width="1.5"/>
+  <polyline points="760,500 760,512 748,512" fill="none" stroke="#2A3A6A" stroke-width="1.5"/>
+</svg>

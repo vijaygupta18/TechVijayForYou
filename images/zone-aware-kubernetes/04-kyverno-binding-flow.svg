@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+
+    <!-- Pod box gradient (blue) -->
+    <linearGradient id="podGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A5F"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <!-- Scheduler box gradient (purple) -->
+    <linearGradient id="schedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B1E6E"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+
+    <!-- Kyverno box gradient (orange/amber) -->
+    <linearGradient id="kyvernoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350F"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+
+    <!-- Node box gradient (green) -->
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064E3B"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Final pod gradient (blue, brighter) -->
+    <linearGradient id="finalPodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D4ED8"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+
+    <!-- Label chip gradient (green) -->
+    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065F46"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+
+    <!-- Pod packet gradient (yellow) -->
+    <radialGradient id="packetGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="60%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </radialGradient>
+
+    <!-- Glow filters -->
+    <filter id="blueGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="purpleGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="orangeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="greenGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="packetGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="chipGlow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="textGlow" x="-10%" y="-30%" width="120%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Radial glow for box halos -->
+    <radialGradient id="blueHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2563EB" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="purpleHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="orangeHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#D97706" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#D97706" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="greenHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#059669" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="760" height="440" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#1E2440" stroke-width="0.5" opacity="0.5">
+    <line x1="0" y1="88" x2="760" y2="88"/>
+    <line x1="0" y1="176" x2="760" y2="176"/>
+    <line x1="0" y1="264" x2="760" y2="264"/>
+    <line x1="0" y1="352" x2="760" y2="352"/>
+    <line x1="152" y1="0" x2="152" y2="440"/>
+    <line x1="304" y1="0" x2="304" y2="440"/>
+    <line x1="456" y1="0" x2="456" y2="440"/>
+    <line x1="608" y1="0" x2="608" y2="440"/>
+  </g>
+
+  <!-- Title -->
+  <text x="380" y="32" text-anchor="middle" font-family="'Courier New', monospace" font-size="14" font-weight="700" fill="#F8FAFC" filter="url(#textGlow)">Kyverno: Auto-Label Pods With Their Zone at Bind Time</text>
+  <text x="380" y="52" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#94A3B8">Intercepts Pod/binding → reads node's zone → injects label</text>
+
+  <!-- ══════════════════════════════════════════════
+       BOX 1: Pod (unlabeled) — x=28, y=170, w=90, h=100
+       ══════════════════════════════════════════════ -->
+  <!-- Halo -->
+  <ellipse cx="73" cy="220" rx="65" ry="55" fill="url(#blueHalo)" opacity="0.6"/>
+
+  <!-- Box -->
+  <rect x="28" y="170" width="90" height="100" rx="10" fill="url(#podGrad)" stroke="#3B82F6" stroke-width="1.5" filter="url(#blueGlow)"/>
+
+  <!-- kubectl label -->
+  <text x="73" y="165" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#60A5FA">kubectl apply</text>
+
+  <!-- Pod icon (simplified cube top) -->
+  <g transform="translate(73,200)">
+    <rect x="-16" y="-12" width="32" height="22" rx="3" fill="#1E40AF" stroke="#60A5FA" stroke-width="1"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#BFDBFE">POD</text>
+  </g>
+
+  <!-- Unlabeled indicator -->
+  <rect x="45" y="234" width="56" height="16" rx="3" fill="#1E3A5F" stroke="#3B82F6" stroke-width="0.8"/>
+  <text x="73" y="245" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#93C5FD">unlabeled</text>
+
+  <!-- Box label -->
+  <text x="73" y="285" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="700" fill="#93C5FD">Pod</text>
+
+  <!-- ══════════════════════════════════════════════
+       ARROW 1: Pod → Scheduler, labeled "scheduled to Node"
+       ══════════════════════════════════════════════ -->
+  <line x1="120" y1="220" x2="168" y2="220" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="168,216 176,220 168,224" fill="#475569"/>
+  <text x="148" y="213" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#64748B">scheduled</text>
+  <text x="148" y="223" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#64748B">to Node</text>
+
+  <!-- ══════════════════════════════════════════════
+       BOX 2: Scheduler — x=178, y=170, w=100, h=100
+       ══════════════════════════════════════════════ -->
+  <!-- Halo -->
+  <ellipse cx="228" cy="220" rx="68" ry="55" fill="url(#purpleHalo)" opacity="0.6"/>
+
+  <!-- Box -->
+  <rect x="178" y="170" width="100" height="100" rx="10" fill="url(#schedGrad)" stroke="#7C3AED" stroke-width="1.5" filter="url(#purpleGlow)"/>
+
+  <!-- Scheduler icon -->
+  <g transform="translate(228,200)">
+    <circle r="14" fill="#4C1D95" stroke="#A78BFA" stroke-width="1"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#A78BFA" stroke-width="1.5"/>
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#A78BFA" stroke-width="1.5"/>
+    <line x1="-6" y1="-6" x2="6" y2="6" stroke="#A78BFA" stroke-width="1"/>
+    <line x1="6" y1="-6" x2="-6" y2="6" stroke="#A78BFA" stroke-width="1"/>
+    <circle r="3" fill="#A78BFA"/>
+  </g>
+
+  <!-- Pod/binding output label -->
+  <rect x="190" y="234" width="76" height="16" rx="3" fill="#3B1E6E" stroke="#7C3AED" stroke-width="0.8"/>
+  <text x="228" y="245" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#C4B5FD">Pod/binding</text>
+
+  <text x="228" y="285" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="700" fill="#C4B5FD">Scheduler</text>
+
+  <!-- ══════════════════════════════════════════════
+       ARROW 2: Scheduler → Kyverno, labeled "intercepts"
+       ══════════════════════════════════════════════ -->
+  <line x1="280" y1="220" x2="328" y2="220" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="328,215 338,220 328,225" fill="#F59E0B"/>
+  <text x="309" y="213" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#FCD34D">intercepts</text>
+
+  <!-- ══════════════════════════════════════════════
+       BOX 3: Kyverno (big) — x=340, y=148, w=130, h=144
+       ══════════════════════════════════════════════ -->
+  <!-- Outer halo -->
+  <ellipse cx="405" cy="220" rx="90" ry="80" fill="url(#orangeHalo)" opacity="0.7">
+    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- Main box -->
+  <rect x="340" y="148" width="130" height="144" rx="12" fill="url(#kyvernoGrad)" stroke="#F59E0B" stroke-width="2" filter="url(#orangeGlow)"/>
+
+  <!-- Kyverno label top -->
+  <text x="405" y="168" text-anchor="middle" font-family="'Courier New', monospace" font-size="13" font-weight="700" fill="#FEF3C7">Kyverno</text>
+
+  <!-- Spinning Gear icon -->
+  <g id="gear" transform="translate(405,196)">
+    <!-- Gear body -->
+    <circle r="10" fill="#78350F" stroke="#FCD34D" stroke-width="1.5"/>
+    <circle r="4" fill="#14182B"/>
+    <!-- Gear teeth (8 teeth) -->
+    <g stroke="#FCD34D" stroke-width="2.5" stroke-linecap="round">
+      <line x1="0" y1="-10" x2="0" y2="-14"/>
+      <line x1="7.07" y1="-7.07" x2="9.9" y2="-9.9"/>
+      <line x1="10" y1="0" x2="14" y2="0"/>
+      <line x1="7.07" y1="7.07" x2="9.9" y2="9.9"/>
+      <line x1="0" y1="10" x2="0" y2="14"/>
+      <line x1="-7.07" y1="7.07" x2="-9.9" y2="9.9"/>
+      <line x1="-10" y1="0" x2="-14" y2="0"/>
+      <line x1="-7.07" y1="-7.07" x2="-9.9" y2="-9.9"/>
+    </g>
+    <!-- Continuous rotation -->
+    <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="4s" repeatCount="indefinite" additive="sum"/>
+  </g>
+
+  <!-- Inner panel: API call text -->
+  <rect x="350" y="214" width="110" height="40" rx="6" fill="#1A0E05" stroke="#92400E" stroke-width="1"/>
+  <text x="405" y="228" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#6EE7B7">
+    GET /api/v1/nodes/
+    <animate attributeName="fill" values="#6EE7B7;#34D399;#A7F3D0;#6EE7B7" dur="5s" repeatCount="indefinite"/>
+  </text>
+  <text x="405" y="240" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#6EE7B7">
+    {{node}}
+    <animate attributeName="fill" values="#6EE7B7;#34D399;#A7F3D0;#6EE7B7" dur="5s" repeatCount="indefinite"/>
+  </text>
+  <!-- Flash indicator dot -->
+  <circle cx="354" cy="234" r="3" fill="#10B981">
+    <animate attributeName="opacity" values="0;1;0;0;0" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="2;4;2;2;2" dur="5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Mutation label -->
+  <text x="405" y="275" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#FDE68A">mutates label</text>
+  <text x="405" y="287" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" font-weight="700" fill="#FEF3C7">MutatingWebhook</text>
+
+  <!-- ══════════════════════════════════════════════
+       ARROW DOWN: Kyverno → Node (reads zone)
+       ══════════════════════════════════════════════ -->
+  <line x1="405" y1="294" x2="405" y2="330" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="401,330 405,338 409,330" fill="#10B981"/>
+  <text x="430" y="318" font-family="'Courier New', monospace" font-size="8" fill="#34D399">reads</text>
+  <text x="430" y="328" font-family="'Courier New', monospace" font-size="8" fill="#34D399">zone</text>
+
+  <!-- ══════════════════════════════════════════════
+       BOX 4: Node — x=360, y=340, w=90, h=70
+       ══════════════════════════════════════════════ -->
+  <ellipse cx="405" cy="375" rx="60" ry="38" fill="url(#greenHalo)" opacity="0.6"/>
+  <rect x="360" y="340" width="90" height="70" rx="8" fill="url(#nodeGrad)" stroke="#10B981" stroke-width="1.5" filter="url(#greenGlow)"/>
+  <text x="405" y="358" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" font-weight="700" fill="#D1FAE5">Node</text>
+  <rect x="368" y="362" width="74" height="16" rx="3" fill="#064E3B" stroke="#10B981" stroke-width="0.8"/>
+  <text x="405" y="373" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#6EE7B7">zone: ap-south-1a</text>
+  <text x="405" y="398" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#6EE7B7">worker-node-01</text>
+
+  <!-- ══════════════════════════════════════════════
+       ARROW 3: Kyverno → Final Pod (right)
+       ══════════════════════════════════════════════ -->
+  <line x1="472" y1="220" x2="528" y2="220" stroke="#F59E0B" stroke-width="2"/>
+  <polygon points="528,215 538,220 528,225" fill="#F59E0B"/>
+  <text x="500" y="213" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#FCD34D">inject</text>
+  <text x="500" y="222" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#FCD34D">label</text>
+
+  <!-- ══════════════════════════════════════════════
+       BOX 5: Final Pod (labeled) — x=540, y=155, w=100, h=130
+       ══════════════════════════════════════════════ -->
+  <ellipse cx="590" cy="220" rx="70" ry="70" fill="url(#blueHalo)" opacity="0.6">
+    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <rect x="540" y="155" width="100" height="130" rx="10" fill="url(#finalPodGrad)" stroke="#60A5FA" stroke-width="2" filter="url(#blueGlow)"/>
+
+  <!-- Running indicator -->
+  <circle cx="562" cy="172" r="5" fill="#10B981">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <text x="570" y="175" font-family="'Courier New', monospace" font-size="8" fill="#6EE7B7">Running</text>
+
+  <!-- Pod icon -->
+  <g transform="translate(590,205)">
+    <rect x="-18" y="-13" width="36" height="24" rx="3" fill="#1E40AF" stroke="#93C5FD" stroke-width="1.2"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#BFDBFE">POD</text>
+  </g>
+
+  <!-- Label chip (with scale pop animation) -->
+  <g id="labelChip" transform="translate(590,237)">
+    <g>
+      <animateTransform attributeName="transform" type="scale" values="0,0;1.15,1.15;1,1" keyTimes="0;0.6;1" keySplines="0.34,1.56,0.64,1;0.5,0,0.5,1" calcMode="spline" dur="5s" begin="2.5s" repeatCount="indefinite" additive="sum"/>
+      <rect x="-44" y="-10" width="88" height="20" rx="5" fill="url(#chipGrad)" stroke="#10B981" stroke-width="1.2" filter="url(#chipGlow)"/>
+      <text x="0" y="4" text-anchor="middle" font-family="'Courier New', monospace" font-size="6.5" fill="#D1FAE5" font-weight="700">topology.k8s.io/zone</text>
+    </g>
+  </g>
+  <text x="590" y="264" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#34D399">=ap-south-1a</text>
+
+  <text x="590" y="298" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="700" fill="#93C5FD">Pod</text>
+  <text x="590" y="312" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#60A5FA">(zone-labeled)</text>
+
+  <!-- ══════════════════════════════════════════════
+       ARROW 4: Final Pod → Cluster (right edge arrow)
+       ══════════════════════════════════════════════ -->
+  <line x1="642" y1="220" x2="688" y2="220" stroke="#60A5FA" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="688,216 696,220 688,224" fill="#60A5FA"/>
+  <text x="669" y="213" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#93C5FD">cluster</text>
+  <text x="669" y="222" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#93C5FD">scheduled</text>
+
+  <!-- Cluster endpoint box -->
+  <rect x="696" y="204" width="52" height="32" rx="6" fill="#1E2440" stroke="#334155" stroke-width="1"/>
+  <text x="722" y="218" text-anchor="middle" font-family="'Courier New', monospace" font-size="8" fill="#94A3B8">etcd</text>
+  <text x="722" y="229" text-anchor="middle" font-family="'Courier New', monospace" font-size="7" fill="#64748B">persisted</text>
+
+  <!-- ══════════════════════════════════════════════
+       ANIMATED POD PACKET — travels left to right
+       Path: starts left of Pod → through Scheduler → Kyverno → Final Pod
+       ══════════════════════════════════════════════ -->
+  <g id="podPacket" filter="url(#packetGlow)">
+    <circle r="8" fill="url(#packetGrad)">
+      <animate attributeName="r" values="7;9;7" dur="0.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="3" fill="#FEF9C3" opacity="0.9"/>
+    <animateMotion dur="5s" repeatCount="indefinite"
+      path="M 28,220 L 120,220 L 178,220 L 280,220 L 340,220 L 472,220 L 540,220"
+      keyPoints="0;0.13;0.2;0.38;0.44;0.73;1"
+      keyTimes="0;0.13;0.2;0.38;0.44;0.73;1"
+      calcMode="linear"/>
+    <animate attributeName="opacity" values="1;1;1;1;0.6;1;1" keyTimes="0;0.13;0.2;0.44;0.55;0.73;1" dur="5s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- ══════════════════════════════════════════════
+       STEP LABELS (numbered flow indicators)
+       ══════════════════════════════════════════════ -->
+  <g font-family="'Courier New', monospace" font-size="9" fill="#475569">
+    <text x="73" y="148" text-anchor="middle">① created</text>
+    <text x="228" y="148" text-anchor="middle">② binds pod</text>
+    <text x="405" y="142" text-anchor="middle">③ intercept + mutate</text>
+    <text x="590" y="148" text-anchor="middle">④ labeled pod</text>
+  </g>
+
+  <!-- Step connector dots -->
+  <circle cx="73" cy="170" r="3" fill="#3B82F6" opacity="0.6"/>
+  <circle cx="228" cy="170" r="3" fill="#7C3AED" opacity="0.6"/>
+  <circle cx="405" cy="148" r="3" fill="#F59E0B" opacity="0.6"/>
+  <circle cx="590" cy="155" r="3" fill="#3B82F6" opacity="0.6"/>
+
+  <!-- ══════════════════════════════════════════════
+       BOTTOM LEGEND
+       ══════════════════════════════════════════════ -->
+  <rect x="20" y="410" width="720" height="22" rx="4" fill="#0F1629" stroke="#1E2A48" stroke-width="1"/>
+  <g font-family="'Courier New', monospace" font-size="8.5">
+    <rect x="30" y="417" width="10" height="8" rx="2" fill="url(#podGrad)"/>
+    <text x="45" y="424" fill="#93C5FD">Pod</text>
+    <rect x="90" y="417" width="10" height="8" rx="2" fill="url(#schedGrad)"/>
+    <text x="105" y="424" fill="#C4B5FD">Scheduler</text>
+    <rect x="175" y="417" width="10" height="8" rx="2" fill="url(#kyvernoGrad)"/>
+    <text x="190" y="424" fill="#FDE68A">Kyverno Webhook</text>
+    <rect x="300" y="417" width="10" height="8" rx="2" fill="url(#nodeGrad)"/>
+    <text x="315" y="424" fill="#6EE7B7">Node (zone source)</text>
+    <circle cx="432" cy="421" r="5" fill="url(#packetGrad)" filter="url(#packetGlow)"/>
+    <text x="442" y="424" fill="#FCD34D">Pod packet (animated)</text>
+    <rect x="560" y="417" width="10" height="8" rx="2" fill="url(#chipGrad)"/>
+    <text x="575" y="424" fill="#34D399">zone label injected</text>
+  </g>
+</svg>

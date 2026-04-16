@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440">
+
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+
+    <!-- Zone A gradient -->
+    <linearGradient id="zoneAGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0D2B1A"/>
+      <stop offset="100%" stop-color="#091A10"/>
+    </linearGradient>
+
+    <!-- Zone C gradient -->
+    <linearGradient id="zoneCGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0D2B1A"/>
+      <stop offset="100%" stop-color="#091A10"/>
+    </linearGradient>
+
+    <!-- Green pod glow -->
+    <radialGradient id="podGlowGreen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00FF88" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#00FF88" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- vmagent glow -->
+    <radialGradient id="vagentGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Green line glow filter -->
+    <filter id="greenGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Pod glow filter -->
+    <filter id="podGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Checkmark glow filter -->
+    <filter id="checkGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Wall block filter -->
+    <filter id="wallGlow" x="-50%" y="-10%" width="200%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Pod shape -->
+    <symbol id="pod" viewBox="0 0 36 36">
+      <rect x="2" y="2" width="32" height="32" rx="6" fill="#0F3D2A" stroke="#00CC66" stroke-width="1.5"/>
+      <text x="18" y="22" font-family="monospace" font-size="12" fill="#00FF88" text-anchor="middle">⬡</text>
+    </symbol>
+
+    <!-- vmagent shape -->
+    <symbol id="vmagent" viewBox="0 0 44 32">
+      <rect x="1" y="1" width="42" height="30" rx="7" fill="#0A1F3A" stroke="#00E5FF" stroke-width="1.5"/>
+      <text x="22" y="20" font-family="monospace" font-size="9" fill="#00E5FF" text-anchor="middle" font-weight="bold">vmagent</text>
+    </symbol>
+  </defs>
+
+  <!-- Background -->
+  <rect width="760" height="440" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="380" y="32" font-family="'Montserrat', sans-serif" font-size="16" font-weight="bold"
+        fill="#FFFFFF" text-anchor="middle">After: Zone-Aware Scraping (Zero Cross-AZ)</text>
+
+  <!-- Subtitle -->
+  <text x="380" y="54" font-family="'Montserrat', sans-serif" font-size="11" fill="#8899AA" text-anchor="middle">
+    vmagent-a scrapes only Zone A pods. vmagent-c scrapes only Zone C pods.
+  </text>
+
+  <!-- ═══════════════════════════ ZONE A ═══════════════════════════ -->
+  <rect x="30" y="72" width="310" height="290" rx="12" fill="url(#zoneAGrad)" stroke="#00CC66" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="185" y="95" font-family="'Montserrat', sans-serif" font-size="13" font-weight="bold"
+        fill="#00FF88" text-anchor="middle">Zone A (us-east-1a)</text>
+
+  <!-- Zone A Pod glows (radial) -->
+  <ellipse cx="100" cy="175" rx="28" ry="28" fill="url(#podGlowGreen)" opacity="0.8"/>
+  <ellipse cx="185" cy="175" rx="28" ry="28" fill="url(#podGlowGreen)" opacity="0.8"/>
+  <ellipse cx="270" cy="175" rx="28" ry="28" fill="url(#podGlowGreen)" opacity="0.8"/>
+
+  <!-- Zone A Pods -->
+  <use href="#pod" x="82" y="157" width="36" height="36">
+    <animate attributeName="opacity" values="0.85;1;0.85" dur="2.8s" repeatCount="indefinite"/>
+  </use>
+  <text x="100" y="206" font-family="monospace" font-size="9" fill="#66FFAA" text-anchor="middle">pod-a1</text>
+
+  <use href="#pod" x="167" y="157" width="36" height="36">
+    <animate attributeName="opacity" values="1;0.85;1" dur="3.1s" repeatCount="indefinite"/>
+  </use>
+  <text x="185" y="206" font-family="monospace" font-size="9" fill="#66FFAA" text-anchor="middle">pod-a2</text>
+
+  <use href="#pod" x="252" y="157" width="36" height="36">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="2.5s" repeatCount="indefinite"/>
+  </use>
+  <text x="270" y="206" font-family="monospace" font-size="9" fill="#66FFAA" text-anchor="middle">pod-a3</text>
+
+  <!-- Zone A vmagent glow -->
+  <ellipse cx="185" cy="285" rx="55" ry="22" fill="url(#vagentGlow)" opacity="0.7"/>
+
+  <!-- Zone A vmagent -->
+  <use href="#vmagent" x="163" y="269" width="44" height="32"/>
+  <text x="185" y="315" font-family="monospace" font-size="9" fill="#00E5FF" text-anchor="middle">vmagent-a</text>
+
+  <!-- Zone A: green lines vmagent → pods (marching dashes) -->
+  <!-- Line vmagent-a → pod-a1 -->
+  <line x1="175" y1="269" x2="100" y2="193" stroke="#00FF88" stroke-width="1.8"
+        stroke-dasharray="6 4" filter="url(#greenGlow)" opacity="0.9">
+    <animate attributeName="stroke-dashoffset" from="0" to="-30" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Line vmagent-a → pod-a2 -->
+  <line x1="185" y1="269" x2="185" y2="193" stroke="#00FF88" stroke-width="1.8"
+        stroke-dasharray="6 4" filter="url(#greenGlow)" opacity="0.9">
+    <animate attributeName="stroke-dashoffset" from="0" to="-30" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Line vmagent-a → pod-a3 -->
+  <line x1="195" y1="269" x2="270" y2="193" stroke="#00FF88" stroke-width="1.8"
+        stroke-dasharray="6 4" filter="url(#greenGlow)" opacity="0.9">
+    <animate attributeName="stroke-dashoffset" from="0" to="-30" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Zone A: traveling metric dots — pod-a1 -->
+  <circle r="4" fill="#00FF88" opacity="0.95" filter="url(#podGlow)">
+    <animateMotion dur="1.8s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#pathA1"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <path id="pathA1" d="M 100,193 L 175,269" fill="none"/>
+
+  <!-- Zone A: traveling metric dots — pod-a2 -->
+  <circle r="4" fill="#00FF88" opacity="0.95" filter="url(#podGlow)">
+    <animateMotion dur="1.8s" begin="0.6s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#pathA2"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" begin="0.6s" repeatCount="indefinite"/>
+  </circle>
+  <path id="pathA2" d="M 185,193 L 185,269" fill="none"/>
+
+  <!-- Zone A: traveling metric dots — pod-a3 -->
+  <circle r="4" fill="#00FF88" opacity="0.95" filter="url(#podGlow)">
+    <animateMotion dur="1.8s" begin="1.2s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#pathA3"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" begin="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <path id="pathA3" d="M 270,193 L 195,269" fill="none"/>
+
+  <!-- ═══════════════════════════ WALL ═══════════════════════════ -->
+  <!-- Thick vertical wall between zones -->
+  <rect x="349" y="80" width="6" height="270" rx="3" fill="#FF3355" opacity="0.85" filter="url(#wallGlow)">
+    <animate attributeName="opacity" values="0.7;0.95;0.7" dur="2s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Wall label -->
+  <text x="352" y="226" font-family="'Montserrat', sans-serif" font-size="18" fill="#FF3355"
+        text-anchor="middle" filter="url(#wallGlow)">✕</text>
+  <text x="352" y="248" font-family="'Montserrat', sans-serif" font-size="8" fill="#FF6677"
+        text-anchor="middle">NO CROSS-ZONE</text>
+
+  <!-- ═══════════════════════════ ZONE C ═══════════════════════════ -->
+  <rect x="420" y="72" width="310" height="290" rx="12" fill="url(#zoneCGrad)" stroke="#00CC66" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="575" y="95" font-family="'Montserrat', sans-serif" font-size="13" font-weight="bold"
+        fill="#00FF88" text-anchor="middle">Zone C (us-east-1c)</text>
+
+  <!-- Zone C Pod glows -->
+  <ellipse cx="490" cy="175" rx="28" ry="28" fill="url(#podGlowGreen)" opacity="0.8"/>
+  <ellipse cx="575" cy="175" rx="28" ry="28" fill="url(#podGlowGreen)" opacity="0.8"/>
+  <ellipse cx="660" cy="175" rx="28" ry="28" fill="url(#podGlowGreen)" opacity="0.8"/>
+
+  <!-- Zone C Pods -->
+  <use href="#pod" x="472" y="157" width="36" height="36">
+    <animate attributeName="opacity" values="1;0.85;1" dur="3.0s" repeatCount="indefinite"/>
+  </use>
+  <text x="490" y="206" font-family="monospace" font-size="9" fill="#66FFAA" text-anchor="middle">pod-c1</text>
+
+  <use href="#pod" x="557" y="157" width="36" height="36">
+    <animate attributeName="opacity" values="0.85;1;0.85" dur="2.7s" repeatCount="indefinite"/>
+  </use>
+  <text x="575" y="206" font-family="monospace" font-size="9" fill="#66FFAA" text-anchor="middle">pod-c2</text>
+
+  <use href="#pod" x="642" y="157" width="36" height="36">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="3.3s" repeatCount="indefinite"/>
+  </use>
+  <text x="660" y="206" font-family="monospace" font-size="9" fill="#66FFAA" text-anchor="middle">pod-c3</text>
+
+  <!-- Zone C vmagent glow -->
+  <ellipse cx="575" cy="285" rx="55" ry="22" fill="url(#vagentGlow)" opacity="0.7"/>
+
+  <!-- Zone C vmagent -->
+  <use href="#vmagent" x="553" y="269" width="44" height="32"/>
+  <text x="575" y="315" font-family="monospace" font-size="9" fill="#00E5FF" text-anchor="middle">vmagent-c</text>
+
+  <!-- Zone C: green lines vmagent → pods (marching dashes) -->
+  <line x1="565" y1="269" x2="490" y2="193" stroke="#00FF88" stroke-width="1.8"
+        stroke-dasharray="6 4" filter="url(#greenGlow)" opacity="0.9">
+    <animate attributeName="stroke-dashoffset" from="0" to="-30" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+
+  <line x1="575" y1="269" x2="575" y2="193" stroke="#00FF88" stroke-width="1.8"
+        stroke-dasharray="6 4" filter="url(#greenGlow)" opacity="0.9">
+    <animate attributeName="stroke-dashoffset" from="0" to="-30" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+
+  <line x1="585" y1="269" x2="660" y2="193" stroke="#00FF88" stroke-width="1.8"
+        stroke-dasharray="6 4" filter="url(#greenGlow)" opacity="0.9">
+    <animate attributeName="stroke-dashoffset" from="0" to="-30" dur="1.5s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Zone C: traveling metric dots — pod-c1 -->
+  <circle r="4" fill="#00FF88" opacity="0.95" filter="url(#podGlow)">
+    <animateMotion dur="1.8s" begin="0.3s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#pathC1"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" begin="0.3s" repeatCount="indefinite"/>
+  </circle>
+  <path id="pathC1" d="M 490,193 L 565,269" fill="none"/>
+
+  <!-- Zone C: traveling metric dots — pod-c2 -->
+  <circle r="4" fill="#00FF88" opacity="0.95" filter="url(#podGlow)">
+    <animateMotion dur="1.8s" begin="0.9s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#pathC2"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" begin="0.9s" repeatCount="indefinite"/>
+  </circle>
+  <path id="pathC2" d="M 575,193 L 575,269" fill="none"/>
+
+  <!-- Zone C: traveling metric dots — pod-c3 -->
+  <circle r="4" fill="#00FF88" opacity="0.95" filter="url(#podGlow)">
+    <animateMotion dur="1.8s" begin="1.5s" repeatCount="indefinite" calcMode="linear">
+      <mpath href="#pathC3"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" begin="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <path id="pathC3" d="M 660,193 L 585,269" fill="none"/>
+
+  <!-- ═══════════════════════════ GREEN CHECKMARK ═══════════════════════════ -->
+  <g transform="translate(352, 360)" filter="url(#checkGlow)">
+    <!-- Checkmark path scaled via animateTransform -->
+    <g transform-origin="0 0">
+      <path d="M -18,0 L -6,14 L 18,-14" stroke="#00FF88" stroke-width="4"
+            stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <animateTransform attributeName="transform" type="scale"
+          values="0;1.2;0.9;1.05;1"
+          keyTimes="0;0.5;0.7;0.85;1"
+          dur="1.2s" begin="0.3s" fill="freeze" additive="sum"/>
+        <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.3s" fill="freeze"/>
+        <!-- Pulse after entrance -->
+        <animateTransform attributeName="transform" type="scale"
+          values="1;1.08;1"
+          keyTimes="0;0.5;1"
+          dur="2s" begin="1.6s" repeatCount="indefinite" additive="sum"/>
+      </path>
+    </g>
+  </g>
+
+  <!-- ═══════════════════════════ $0 SYMBOLS ═══════════════════════════ -->
+  <!-- Left $0 -->
+  <text x="80" y="342" font-family="'Montserrat', sans-serif" font-size="13" font-weight="bold"
+        fill="#00FF88" text-anchor="middle" opacity="0">
+    $0
+    <animate attributeName="opacity" values="0;0;0.7;0.7;0.4;0.7" keyTimes="0;0.3;0.5;0.7;0.85;1"
+             dur="4s" begin="1s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Right $0 -->
+  <text x="660" y="342" font-family="'Montserrat', sans-serif" font-size="13" font-weight="bold"
+        fill="#00FF88" text-anchor="middle" opacity="0">
+    $0
+    <animate attributeName="opacity" values="0;0;0.7;0.7;0.4;0.7" keyTimes="0;0.3;0.5;0.7;0.85;1"
+             dur="4s" begin="1.8s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Second pair $0 -->
+  <text x="130" y="358" font-family="'Montserrat', sans-serif" font-size="10"
+        fill="#00CC55" text-anchor="middle" opacity="0">
+    $0
+    <animate attributeName="opacity" values="0;0.5;0.5;0" keyTimes="0;0.4;0.7;1"
+             dur="5s" begin="2.5s" repeatCount="indefinite"/>
+  </text>
+  <text x="615" y="358" font-family="'Montserrat', sans-serif" font-size="10"
+        fill="#00CC55" text-anchor="middle" opacity="0">
+    $0
+    <animate attributeName="opacity" values="0;0.5;0.5;0" keyTimes="0;0.4;0.7;1"
+             dur="5s" begin="3.2s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- ═══════════════════════════ BOTTOM CAPTION ═══════════════════════════ -->
+  <rect x="160" y="386" width="440" height="28" rx="8" fill="#0D2B1A" stroke="#00CC55" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="380" y="405" font-family="'Montserrat', sans-serif" font-size="12" font-weight="bold"
+        fill="#00FF88" text-anchor="middle">Green = same-zone only = ZERO cross-AZ cost</text>
+
+</svg>

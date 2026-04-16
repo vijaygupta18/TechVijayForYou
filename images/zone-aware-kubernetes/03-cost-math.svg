@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="500" viewBox="0 0 760 500">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+
+    <!-- Glow filter for counter -->
+    <filter id="greenGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Pulse glow filter -->
+    <filter id="pulseGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Row highlight gradient -->
+    <linearGradient id="rowGrad1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF4444" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FF4444" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="rowGrad2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF8C00" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FF8C00" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="rowGrad3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF2020" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FF2020" stop-opacity="0.02"/>
+    </linearGradient>
+
+    <!-- Falling dollar path -->
+    <path id="fallPath1" d="M 0,0 C 10,60 -5,120 5,180 C 15,240 -10,300 0,360"/>
+    <path id="fallPath2" d="M 0,0 C -8,50 12,100 -3,160 C -15,220 8,280 -5,340"/>
+    <path id="fallPath3" d="M 0,0 C 5,70 -12,140 8,200 C 20,260 -8,320 3,380"/>
+  </defs>
+
+  <!-- Background -->
+  <rect width="760" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Background grid lines -->
+  <g opacity="0.07" stroke="#4488FF" stroke-width="0.5">
+    <!-- Horizontal lines -->
+    <line x1="0" y1="50" x2="760" y2="50"/>
+    <line x1="0" y1="100" x2="760" y2="100"/>
+    <line x1="0" y1="150" x2="760" y2="150"/>
+    <line x1="0" y1="200" x2="760" y2="200"/>
+    <line x1="0" y1="250" x2="760" y2="250"/>
+    <line x1="0" y1="300" x2="760" y2="300"/>
+    <line x1="0" y1="350" x2="760" y2="350"/>
+    <line x1="0" y1="400" x2="760" y2="400"/>
+    <line x1="0" y1="450" x2="760" y2="450"/>
+    <!-- Vertical lines -->
+    <line x1="76" y1="0" x2="76" y2="500"/>
+    <line x1="152" y1="0" x2="152" y2="500"/>
+    <line x1="228" y1="0" x2="228" y2="500"/>
+    <line x1="304" y1="0" x2="304" y2="500"/>
+    <line x1="380" y1="0" x2="380" y2="500"/>
+    <line x1="456" y1="0" x2="456" y2="500"/>
+    <line x1="532" y1="0" x2="532" y2="500"/>
+    <line x1="608" y1="0" x2="608" y2="500"/>
+    <line x1="684" y1="0" x2="684" y2="500"/>
+  </g>
+
+  <!-- Title -->
+  <text x="30" y="42" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#FFFFFF">The Math: Why Cross-AZ Hurts</text>
+  <!-- Title underline -->
+  <line x1="30" y1="50" x2="380" y2="50" stroke="#FF4444" stroke-width="2" opacity="0.7"/>
+
+  <!-- ===== GIANT GLOWING DOLLAR COUNTER (top-right) ===== -->
+  <g filter="url(#pulseGlow)">
+    <!-- Pulse animation on the glow group -->
+    <animate attributeName="opacity" values="0.85;1;0.85" dur="2s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Counter background box -->
+  <rect x="530" y="15" width="210" height="80" rx="8" fill="#001A00" stroke="#00FF66" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Counter label -->
+  <text x="635" y="35" font-family="'Courier New', monospace" font-size="11" fill="#00CC44" text-anchor="middle" opacity="0.8">ANNUAL WASTE COUNTER</text>
+
+  <!-- Counter value — multiple text elements with opacity swap -->
+  <g font-family="'Courier New', monospace" font-size="32" font-weight="bold" text-anchor="middle" filter="url(#greenGlow)">
+
+    <text x="635" y="78" fill="#00FF66">
+      $0
+      <animate attributeName="opacity" values="1;0;0;0;0;0;0" keyTimes="0;0.08;0.2;0.4;0.6;0.8;1" dur="5s" begin="0.5s" fill="freeze"/>
+    </text>
+    <text x="635" y="78" fill="#00FF66" opacity="0">
+      $1,000
+      <animate attributeName="opacity" values="0;1;0;0;0;0;0" keyTimes="0;0.08;0.2;0.4;0.6;0.8;1" dur="5s" begin="0.5s" fill="freeze"/>
+    </text>
+    <text x="635" y="78" fill="#22FF77" opacity="0">
+      $2,500
+      <animate attributeName="opacity" values="0;0;1;0;0;0;0" keyTimes="0;0.08;0.2;0.4;0.6;0.8;1" dur="5s" begin="0.5s" fill="freeze"/>
+    </text>
+    <text x="635" y="78" fill="#44FF88" opacity="0">
+      $5,000
+      <animate attributeName="opacity" values="0;0;0;1;0;0;0" keyTimes="0;0.08;0.2;0.4;0.6;0.8;1" dur="5s" begin="0.5s" fill="freeze"/>
+    </text>
+    <text x="635" y="78" fill="#66FF99" opacity="0">
+      $7,500
+      <animate attributeName="opacity" values="0;0;0;0;1;0;0" keyTimes="0;0.08;0.2;0.4;0.6;0.8;1" dur="5s" begin="0.5s" fill="freeze"/>
+    </text>
+    <text x="635" y="78" fill="#88FFAA" opacity="0">
+      $10,000
+      <animate attributeName="opacity" values="0;0;0;0;0;1;1" keyTimes="0;0.08;0.2;0.4;0.6;0.8;1" dur="5s" begin="0.5s" fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- Counter glow pulse ring -->
+  <rect x="530" y="15" width="210" height="80" rx="8" fill="none" stroke="#00FF66" stroke-width="3" opacity="0">
+    <animate attributeName="opacity" values="0;0.6;0" dur="2s" begin="5.5s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-width" values="3;8;3" dur="2s" begin="5.5s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- ===== ROW 1: $0.01/GB × 2 = $0.02/GB ===== -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.6s" begin="0s" fill="freeze"/>
+
+    <!-- Row background -->
+    <rect x="20" y="68" width="490" height="100" rx="6" fill="url(#rowGrad1)"/>
+    <rect x="20" y="68" width="3" height="100" rx="2" fill="#FF4444"/>
+
+    <!-- Row label -->
+    <text x="35" y="90" font-family="'Courier New', monospace" font-size="11" fill="#FF6666" font-weight="bold">STEP 1 — PER-GB RATE</text>
+
+    <!-- Main math text -->
+    <text x="35" y="120" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#FFFFFF">
+      $0.01/GB
+    </text>
+    <text x="155" y="120" font-family="'Courier New', monospace" font-size="16" fill="#AAAAAA">×</text>
+    <text x="175" y="120" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#FF8888">
+      2 directions
+    </text>
+    <text x="355" y="120" font-family="'Courier New', monospace" font-size="16" fill="#AAAAAA">=</text>
+    <text x="375" y="120" font-family="'Courier New', monospace" font-size="22" font-weight="bold" fill="#FF4444">
+      $0.02/GB effective
+    </text>
+
+    <!-- Animated bidirectional arrows -->
+    <g>
+      <!-- Left arrow (←) -->
+      <text font-family="'Courier New', monospace" font-size="18" fill="#FF6644" y="155">
+        <animate attributeName="x" values="35;20;35;50;35" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+        ←
+      </text>
+      <!-- Right arrow (→) -->
+      <text font-family="'Courier New', monospace" font-size="18" fill="#FF6644" y="155">
+        <animate attributeName="x" values="65;80;65;50;65" keyTimes="0;0.25;0.5;0.75;1" dur="2s" repeatCount="indefinite"/>
+        →
+      </text>
+      <text x="95" y="155" font-family="'Courier New', monospace" font-size="12" fill="#888888">each direction billed separately by AWS</text>
+    </g>
+  </g>
+
+  <!-- ===== ROW 2: 2.5 TB/day × $0.02 = $50/day ===== -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.6s" begin="1.5s" fill="freeze"/>
+
+    <!-- Row background -->
+    <rect x="20" y="185" width="490" height="95" rx="6" fill="url(#rowGrad2)"/>
+    <rect x="20" y="185" width="3" height="95" rx="2" fill="#FF8C00"/>
+
+    <!-- Row label -->
+    <text x="35" y="207" font-family="'Courier New', monospace" font-size="11" fill="#FFAA44" font-weight="bold">STEP 2 — DAILY VOLUME</text>
+
+    <!-- Small cloud icon (AWS-style) -->
+    <g transform="translate(35, 222)">
+      <ellipse cx="18" cy="12" rx="14" ry="9" fill="none" stroke="#FF8C00" stroke-width="1.5"/>
+      <ellipse cx="8" cy="15" rx="8" ry="6" fill="none" stroke="#FF8C00" stroke-width="1.5"/>
+      <ellipse cx="28" cy="15" rx="8" ry="6" fill="none" stroke="#FF8C00" stroke-width="1.5"/>
+      <rect x="3" y="15" width="32" height="5" fill="#14182B"/>
+      <!-- Animated cloud bounce -->
+      <animateTransform attributeName="transform" type="translate" values="0,0;0,-2;0,0" dur="3s" repeatCount="indefinite" additive="sum"/>
+    </g>
+
+    <!-- Main math text -->
+    <text x="85" y="240" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#FFFFFF">
+      2.5 TB/day
+    </text>
+    <text x="225" y="240" font-family="'Courier New', monospace" font-size="16" fill="#AAAAAA">×</text>
+    <text x="245" y="240" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#FF8C00">
+      $0.02/GB
+    </text>
+    <text x="365" y="240" font-family="'Courier New', monospace" font-size="16" fill="#AAAAAA">=</text>
+    <text x="385" y="240" font-family="'Courier New', monospace" font-size="22" font-weight="bold" fill="#FFAA00">
+      $50/day
+    </text>
+
+    <text x="85" y="268" font-family="'Courier New', monospace" font-size="12" fill="#666666">
+      (2,500 GB/day × $0.02 = $50 — cross-AZ transfer only)
+    </text>
+  </g>
+
+  <!-- ===== ROW 3: $50/day × 365 = $18,250/year ===== -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.6s" begin="3s" fill="freeze"/>
+
+    <!-- Row background -->
+    <rect x="20" y="297" width="490" height="140" rx="6" fill="url(#rowGrad3)"/>
+    <rect x="20" y="297" width="3" height="140" rx="2" fill="#FF2020"/>
+
+    <!-- Row label -->
+    <text x="35" y="319" font-family="'Courier New', monospace" font-size="11" fill="#FF6666" font-weight="bold">STEP 3 — ANNUALIZED</text>
+
+    <!-- Main math text line 1 -->
+    <text x="35" y="350" font-family="'Courier New', monospace" font-size="19" font-weight="bold" fill="#FFFFFF">
+      $50/day × 365 days
+    </text>
+    <text x="295" y="350" font-family="'Courier New', monospace" font-size="16" fill="#AAAAAA">=</text>
+    <text x="315" y="350" font-family="'Courier New', monospace" font-size="20" font-weight="bold" fill="#FF3333">
+      $18,250/year
+    </text>
+
+    <text x="35" y="372" font-family="'Courier New', monospace" font-size="12" fill="#888888">
+      (pre-optimization peak — actual varies by AZ traffic mix)
+    </text>
+
+    <!-- Divider -->
+    <line x1="35" y1="383" x2="490" y2="383" stroke="#FF4444" stroke-width="0.5" opacity="0.4"/>
+
+    <!-- Savings line -->
+    <text x="35" y="403" font-family="'Courier New', monospace" font-size="13" fill="#AAAAAA">
+      Actual observed savings after zone-aware fix:
+    </text>
+    <text x="35" y="424" font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#00FF88">
+      $7,200 – $10,800 / year saved
+    </text>
+  </g>
+
+  <!-- ===== BURNING MONEY $ SYMBOLS (falling) ===== -->
+  <!-- Dollar 1 -->
+  <text font-family="'Courier New', monospace" font-size="16" font-weight="bold" fill="#FF4400" opacity="0">
+    $
+    <animate attributeName="opacity" values="0;0.9;0.6;0" dur="4s" begin="2s" repeatCount="indefinite"/>
+    <animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M 700,110 C 710,160 695,210 705,260 C 715,310 700,360 705,430"/>
+  </text>
+
+  <!-- Dollar 2 -->
+  <text font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="#FF6600" opacity="0">
+    $
+    <animate attributeName="opacity" values="0;0.8;0.5;0" dur="3.5s" begin="3s" repeatCount="indefinite"/>
+    <animateMotion dur="3.5s" begin="3s" repeatCount="indefinite" path="M 720,95 C 708,150 725,200 712,260 C 700,310 718,365 710,440"/>
+  </text>
+
+  <!-- Dollar 3 -->
+  <text font-family="'Courier New', monospace" font-size="18" font-weight="bold" fill="#FF2200" opacity="0">
+    $
+    <animate attributeName="opacity" values="0;0.85;0.4;0" dur="5s" begin="1s" repeatCount="indefinite"/>
+    <animateMotion dur="5s" begin="1s" repeatCount="indefinite" path="M 740,100 C 728,155 745,215 730,270 C 715,325 735,375 725,445"/>
+  </text>
+
+  <!-- Dollar 4 (small) -->
+  <text font-family="'Courier New', monospace" font-size="10" font-weight="bold" fill="#FF8800" opacity="0">
+    $
+    <animate attributeName="opacity" values="0;0.7;0.3;0" dur="3s" begin="4s" repeatCount="indefinite"/>
+    <animateMotion dur="3s" begin="4s" repeatCount="indefinite" path="M 750,105 C 740,165 755,220 742,280 C 730,340 748,390 740,450"/>
+  </text>
+
+  <!-- Bottom flame glow effect -->
+  <ellipse cx="720" cy="460" rx="40" ry="12" fill="#FF4400" opacity="0">
+    <animate attributeName="opacity" values="0;0.4;0.2;0.5;0.1;0.4;0" dur="2s" begin="3s" repeatCount="indefinite"/>
+    <animate attributeName="rx" values="35;45;38;50;35" dur="2s" begin="3s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- ===== BOTTOM SUMMARY BAR ===== -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.8s" begin="4.5s" fill="freeze"/>
+
+    <rect x="20" y="450" width="520" height="36" rx="5" fill="#0D1F0D" stroke="#00CC44" stroke-width="1"/>
+    <text x="35" y="473" font-family="'Courier New', monospace" font-size="13" fill="#00FF66" font-weight="bold">
+      FIX: Zone-aware routing → $0.00/GB intra-AZ → save $10K+/year
+    </text>
+  </g>
+
+  <!-- ===== DECORATIVE: AZ labels on right side ===== -->
+  <g opacity="0.35" font-family="'Courier New', monospace" font-size="10" fill="#4488FF">
+    <text x="558" y="115" text-anchor="middle">us-east-1a</text>
+    <text x="558" y="128" text-anchor="middle">↕ $0.01/GB</text>
+    <text x="558" y="141" text-anchor="middle">us-east-1b</text>
+  </g>
+
+</svg>

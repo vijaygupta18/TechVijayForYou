@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#161b22;stop-opacity:1"/>
+    </linearGradient>
+
+    <!-- Top half green tint -->
+    <linearGradient id="topGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a2f1a;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#071a10;stop-opacity:0.7"/>
+    </linearGradient>
+
+    <!-- Bottom half red tint -->
+    <linearGradient id="botGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a0a0a;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#1a0707;stop-opacity:0.7"/>
+    </linearGradient>
+
+    <!-- Box gradients -->
+    <linearGradient id="greenBoxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a4a2a"/>
+      <stop offset="100%" style="stop-color:#0d2a18"/>
+    </linearGradient>
+    <linearGradient id="blueBoxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2a4a"/>
+      <stop offset="100%" style="stop-color:#0d1a2a"/>
+    </linearGradient>
+    <linearGradient id="purpleBoxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a1a4a"/>
+      <stop offset="100%" style="stop-color:#1a0d2a"/>
+    </linearGradient>
+    <linearGradient id="redBoxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a1a1a"/>
+      <stop offset="100%" style="stop-color:#2a0d0d"/>
+    </linearGradient>
+    <linearGradient id="grayBoxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </linearGradient>
+
+    <!-- Glow filters -->
+    <filter id="glowGreen" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowRed" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowBlue" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowPurple" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Marker arrows -->
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#a855f7"/>
+    </marker>
+    <marker id="arrowYellow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#eab308"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="520" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="700" fill="#f0f6ff" letter-spacing="0.3">
+    Why TAH / PreferClose Doesn't Save Your Scraper Traffic
+  </text>
+  <text x="400" y="44" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#8b949e" letter-spacing="0.2">
+    Services route via kube-proxy. Scrapers skip the Service entirely.
+  </text>
+
+  <!-- Divider line -->
+  <line x1="20" y1="260" x2="780" y2="260" stroke="#30363d" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- ===================== TOP HALF ===================== -->
+  <rect x="10" y="52" width="780" height="202" rx="8" fill="url(#topGrad)" stroke="#1a5c30" stroke-width="1"/>
+
+  <!-- Section label top -->
+  <text x="22" y="70" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="700" fill="#4ade80" letter-spacing="0.5">
+    REGULAR SERVICE TRAFFIC
+  </text>
+  <text x="22" y="83" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#6b9e7a">
+    (TAH / topology hints work here)
+  </text>
+
+  <!-- Client Pod box -->
+  <rect x="28" y="118" width="88" height="52" rx="6" fill="url(#greenBoxGrad)" stroke="#22c55e" stroke-width="1.5" filter="url(#glowGreen)"/>
+  <text x="72" y="138" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#86efac" font-weight="600">Client Pod</text>
+  <!-- Pod icon: small hexagon shape -->
+  <polygon points="72,145 79,149 79,157 72,161 65,157 65,149" fill="none" stroke="#22c55e" stroke-width="1.2"/>
+  <circle cx="72" cy="153" r="2.5" fill="#22c55e"/>
+  <text x="72" y="178" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#6b9e7a">Zone A</text>
+
+  <!-- Arrow: Client → Service -->
+  <line x1="116" y1="144" x2="196" y2="144" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+
+  <!-- Service (ClusterIP) box -->
+  <rect x="198" y="118" width="96" height="52" rx="6" fill="url(#blueBoxGrad)" stroke="#3b82f6" stroke-width="1.5" filter="url(#glowBlue)"/>
+  <text x="246" y="136" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#93c5fd" font-weight="600">Service</text>
+  <text x="246" y="148" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#60a5fa">(ClusterIP)</text>
+  <!-- Cloud icon -->
+  <path d="M235,155 Q235,151 239,151 Q239,147 244,147 Q249,147 249,151 Q253,150 253,154 Q253,158 249,158 L238,158 Q235,158 235,155Z" fill="none" stroke="#3b82f6" stroke-width="1.2"/>
+
+  <!-- Arrow: Service → kube-proxy -->
+  <line x1="294" y1="144" x2="362" y2="144" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+
+  <!-- kube-proxy box -->
+  <rect x="364" y="110" width="96" height="68" rx="6" fill="url(#purpleBoxGrad)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#softGlow)"/>
+  <text x="412" y="128" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#c4b5fd" font-weight="600">kube-proxy</text>
+  <!-- Filter icon -->
+  <path d="M402,133 L422,133 L417,140 L417,148 L407,145 L407,140Z" fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+  <line x1="404" y1="136" x2="420" y2="136" stroke="#8b5cf6" stroke-width="0.8"/>
+  <line x1="406" y1="139" x2="418" y2="139" stroke="#8b5cf6" stroke-width="0.8"/>
+  <text x="412" y="165" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#7c5cbd">picks same-zone</text>
+  <text x="412" y="174" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#7c5cbd">endpoint</text>
+
+  <!-- Arrow: kube-proxy → Server Pod -->
+  <line x1="460" y1="144" x2="542" y2="144" stroke="#22c55e" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+
+  <!-- Server Pod box -->
+  <rect x="544" y="118" width="88" height="52" rx="6" fill="url(#greenBoxGrad)" stroke="#22c55e" stroke-width="1.5" filter="url(#glowGreen)"/>
+  <text x="588" y="138" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#86efac" font-weight="600">Server Pod</text>
+  <polygon points="588,145 595,149 595,157 588,161 581,157 581,149" fill="none" stroke="#22c55e" stroke-width="1.2"/>
+  <circle cx="588" cy="153" r="2.5" fill="#22c55e"/>
+  <text x="588" y="178" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#6b9e7a">Same Zone A</text>
+
+  <!-- TAH badge -->
+  <rect x="648" y="124" width="118" height="36" rx="6" fill="#052e16" stroke="#22c55e" stroke-width="1.5">
+    <animate attributeName="opacity" values="1;0.7;1" dur="2.2s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="1,1;1.03,1.03;1,1" dur="2.2s" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" repeatCount="indefinite" transformOrigin="707 142"/>
+  </rect>
+  <!-- Checkmark path drawn via stroke-dasharray -->
+  <path id="checkPath" d="M660,140 L665,147 L676,133" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+    stroke-dasharray="22" stroke-dashoffset="22">
+    <animate attributeName="stroke-dashoffset" from="22" to="0" dur="0.8s" begin="0.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+  </path>
+  <text x="682" y="138" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#4ade80" font-weight="700">TAH hint</text>
+  <text x="682" y="152" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#4ade80" font-weight="700">applied</text>
+
+  <!-- Green traveling dot on service chain path (top) -->
+  <path id="topChainPath" d="M116,144 L196,144 L294,144 L362,144 L460,144 L542,144" fill="none" stroke="none"/>
+  <circle r="5.5" fill="#22c55e" filter="url(#glowGreen)" opacity="0.95">
+    <animateMotion dur="3.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1">
+      <mpath href="#topChainPath"/>
+    </animateMotion>
+    <animate attributeName="r" values="5.5;7;5.5" dur="3.2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ===================== BOTTOM HALF ===================== -->
+  <rect x="10" y="263" width="780" height="248" rx="8" fill="url(#botGrad)" stroke="#5c1a1a" stroke-width="1"/>
+
+  <!-- Section label bottom -->
+  <text x="22" y="281" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="700" fill="#f87171" letter-spacing="0.5">
+    PROMETHEUS / VMAGENT SCRAPING
+  </text>
+  <text x="22" y="294" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#9e6b6b">
+    (TAH is invisible — scraper bypasses Service entirely)
+  </text>
+
+  <!-- vmagent box -->
+  <rect x="20" y="313" width="100" height="62" rx="6" fill="url(#purpleBoxGrad)" stroke="#a855f7" stroke-width="1.5" filter="url(#glowPurple)"/>
+  <text x="70" y="331" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#d8b4fe" font-weight="700">vmagent /</text>
+  <text x="70" y="342" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#d8b4fe" font-weight="700">Prometheus</text>
+  <!-- Gauge icon -->
+  <path d="M60,350 A10,10 0 0,1 80,350" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="70" y1="350" x2="70" y2="344" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="70" y="363" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#7c5cbd">scraper</text>
+  <text x="70" y="373" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#7c5cbd">&amp; discovery</text>
+
+  <!-- Arrow: vmagent → K8s API (yellow) -->
+  <line x1="120" y1="341" x2="232" y2="341" stroke="#eab308" stroke-width="1.8" marker-end="url(#arrowYellow)"/>
+  <text x="176" y="333" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ca8a04">list Pods /</text>
+  <text x="176" y="345" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ca8a04">EndpointSlices</text>
+
+  <!-- K8s API Server (cylinder) -->
+  <ellipse cx="287" cy="319" rx="46" ry="10" fill="#1a2a4a" stroke="#3b82f6" stroke-width="1.5"/>
+  <rect x="241" y="319" width="92" height="46" fill="#1a2a4a" stroke="#3b82f6" stroke-width="1.5" stroke-left="none" stroke-right="none"/>
+  <rect x="241" y="319" width="92" height="46" fill="url(#blueBoxGrad)" opacity="0.7"/>
+  <ellipse cx="287" cy="365" rx="46" ry="10" fill="#0d1a2a" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="287" y="338" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#93c5fd" font-weight="700">K8s API</text>
+  <text x="287" y="350" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#60a5fa">Server</text>
+  <text x="287" y="361" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#3b82f6">all Pod IPs</text>
+
+  <!-- API returns ALL pods (both zones) label -->
+  <text x="395" y="308" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#8b949e">returns ALL Pod IPs (both zones)</text>
+
+  <!-- Pod IPs returned — Zone A pods -->
+  <rect x="355" y="313" width="64" height="26" rx="4" fill="#0a1f0a" stroke="#22c55e" stroke-width="1"/>
+  <circle cx="368" cy="326" r="4" fill="#22c55e" opacity="0.8"/>
+  <text x="380" y="323" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#86efac">Pod A1</text>
+  <text x="380" y="333" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#4ade80">10.0.1.4</text>
+
+  <rect x="355" y="345" width="64" height="26" rx="4" fill="#0a1f0a" stroke="#22c55e" stroke-width="1"/>
+  <circle cx="368" cy="358" r="4" fill="#22c55e" opacity="0.8"/>
+  <text x="380" y="355" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#86efac">Pod A2</text>
+  <text x="380" y="365" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#4ade80">10.0.1.5</text>
+
+  <!-- Pod IPs returned — Zone B pods -->
+  <rect x="432" y="313" width="64" height="26" rx="4" fill="#1f0a0a" stroke="#f87171" stroke-width="1"/>
+  <circle cx="445" cy="326" r="4" fill="#f87171" opacity="0.8"/>
+  <text x="458" y="323" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#fca5a5">Pod B1</text>
+  <text x="458" y="333" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#f87171">10.0.2.7</text>
+
+  <rect x="432" y="345" width="64" height="26" rx="4" fill="#1f0a0a" stroke="#f87171" stroke-width="1"/>
+  <circle cx="445" cy="358" r="4" fill="#f87171" opacity="0.8"/>
+  <text x="458" y="355" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#fca5a5">Pod B2</text>
+  <text x="458" y="365" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#f87171">10.0.2.8</text>
+
+  <text x="387" y="383" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#4ade80">Zone A</text>
+  <text x="464" y="383" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7.5" fill="#f87171">Zone B</text>
+
+  <!-- Grayed-out Service box (not used) -->
+  <rect x="292" y="400" width="90" height="42" rx="5" fill="url(#grayBoxGrad)" stroke="#444" stroke-width="1">
+    <animate attributeName="opacity" values="0.7;0.15;0.7" dur="3s" repeatCount="indefinite"/>
+  </rect>
+  <text x="337" y="416" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#666" font-weight="600">Service</text>
+  <text x="337" y="428" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#555">(ClusterIP)</text>
+  <!-- Strikethrough -->
+  <line x1="298" y1="421" x2="376" y2="421" stroke="#ef4444" stroke-width="1.5" opacity="0.7"/>
+  <text x="337" y="438" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="7" fill="#ef4444" opacity="0.8">not used</text>
+
+  <!-- Direct dashed purple lines: vmagent → Pod IPs -->
+  <!-- Path to Pod A1 -->
+  <path id="pathToA1" d="M120,330 C180,330 300,326 355,326" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)" opacity="0.85"/>
+  <!-- Path to A2 -->
+  <path id="pathToA2" d="M120,344 C180,352 300,358 355,358" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)" opacity="0.85"/>
+  <!-- Path to B1 -->
+  <path id="pathToB1" d="M120,330 C200,330 350,326 432,326" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)" opacity="0.7"/>
+  <!-- Path to B2 -->
+  <path id="pathToB2" d="M120,344 C200,354 360,360 432,358" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowPurple)" opacity="0.7"/>
+
+  <!-- "direct connection" label -->
+  <text x="240" y="395" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#a855f7" font-style="italic">direct Pod IP connections</text>
+  <text x="240" y="406" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#7c3aed" font-style="italic">(bypasses Service)</text>
+
+  <!-- Traveling dot to A1 -->
+  <circle r="4.5" fill="#a855f7" filter="url(#glowPurple)" opacity="0.9">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="0s" calcMode="spline" keySplines="0.4 0 0.6 1">
+      <mpath href="#pathToA1"/>
+    </animateMotion>
+  </circle>
+
+  <!-- Traveling dot to A2 -->
+  <circle r="4.5" fill="#a855f7" filter="url(#glowPurple)" opacity="0.9">
+    <animateMotion dur="2.4s" repeatCount="indefinite" begin="0.6s" calcMode="spline" keySplines="0.4 0 0.6 1">
+      <mpath href="#pathToA2"/>
+    </animateMotion>
+  </circle>
+
+  <!-- Traveling dot to B1 (cross-zone — yellow) -->
+  <circle r="4.5" fill="#eab308" filter="url(#glowGreen)" opacity="0.9">
+    <animateMotion dur="2.8s" repeatCount="indefinite" begin="0.3s" calcMode="spline" keySplines="0.4 0 0.6 1">
+      <mpath href="#pathToB1"/>
+    </animateMotion>
+  </circle>
+
+  <!-- Traveling dot to B2 (cross-zone — yellow) -->
+  <circle r="4.5" fill="#eab308" filter="url(#glowGreen)" opacity="0.9">
+    <animateMotion dur="2.8s" repeatCount="indefinite" begin="1s" calcMode="spline" keySplines="0.4 0 0.6 1">
+      <mpath href="#pathToB2"/>
+    </animateMotion>
+  </circle>
+
+  <!-- TAH doesn't apply badge -->
+  <rect x="535" y="356" width="230" height="50" rx="7" fill="#1a0000" stroke="#ef4444" stroke-width="2">
+    <animate attributeName="opacity" values="1;0.65;1" dur="1.8s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="scale" additive="sum" values="1,1;1.025,1.025;1,1" dur="1.8s" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" repeatCount="indefinite" transformOrigin="650 381"/>
+  </rect>
+  <!-- X path drawn via stroke-dasharray -->
+  <line x1="548" y1="368" x2="564" y2="394" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"
+    stroke-dasharray="30" stroke-dashoffset="30">
+    <animate attributeName="stroke-dashoffset" from="30" to="0" dur="0.6s" begin="0.3s" fill="freeze"/>
+  </line>
+  <line x1="564" y1="368" x2="548" y2="394" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"
+    stroke-dasharray="30" stroke-dashoffset="30">
+    <animate attributeName="stroke-dashoffset" from="30" to="0" dur="0.6s" begin="0.7s" fill="freeze"/>
+  </line>
+  <text x="576" y="373" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#f87171" font-weight="700">TAH doesn't apply</text>
+  <text x="576" y="386" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ef4444">Scraper sees raw Pod IPs.</text>
+  <text x="576" y="397" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ef4444">Topology hints = invisible.</text>
+
+  <!-- Bottom note -->
+  <text x="400" y="500" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#8b949e">
+    TAH works for kube-proxy–routed Service traffic only. Pod-IP-direct scrapers need zone-aware filtering at the discovery layer.
+  </text>
+
+  <!-- Separator label center -->
+  <rect x="330" y="253" width="140" height="15" rx="4" fill="#161b22"/>
+  <text x="400" y="263" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#484f58" letter-spacing="0.5">
+    ── vs ──
+  </text>
+</svg>
