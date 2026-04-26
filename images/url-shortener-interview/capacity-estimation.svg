@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="440" viewBox="0 0 820 440">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="440" fill="url(#bg5)"/>
+  <text x="410" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">Capacity Estimation — show your math or lose the interview</text>
+
+  <!-- Row 1: Writes -->
+  <g transform="translate(60, 80)">
+    <rect width="700" height="64" rx="8" fill="#1a2340" stroke="#4FC3F7" stroke-width="1.5"/>
+    <text x="18" y="26" fill="#4FC3F7" font-size="13" font-weight="800">WRITE LOAD</text>
+    <text x="18" y="48" fill="#fff" font-size="13" font-family="monospace">
+      100,000,000 / day   ÷   86,400 s   =
+    </text>
+    <text x="520" y="48" fill="#00FF85" font-size="18" font-family="monospace" font-weight="800">
+      <tspan>~1,200 QPS</tspan>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Row 2: Reads -->
+  <g transform="translate(60, 160)">
+    <rect width="700" height="64" rx="8" fill="#2a1e2f" stroke="#EC407A" stroke-width="1.5"/>
+    <text x="18" y="26" fill="#EC407A" font-size="13" font-weight="800">READ LOAD  (100:1 ratio)</text>
+    <text x="18" y="48" fill="#fff" font-size="13" font-family="monospace">
+      100 × write QPS   =
+    </text>
+    <text x="520" y="48" fill="#00FF85" font-size="18" font-family="monospace" font-weight="800">
+      <tspan>~120,000 QPS</tspan>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Row 3: Storage -->
+  <g transform="translate(60, 240)">
+    <rect width="700" height="64" rx="8" fill="#1e1a2f" stroke="#B74BFF" stroke-width="1.5"/>
+    <text x="18" y="26" fill="#B74BFF" font-size="13" font-weight="800">STORAGE  (10 years)</text>
+    <text x="18" y="48" fill="#fff" font-size="13" font-family="monospace">
+      100M × 365 × 10 × 500 B   =
+    </text>
+    <text x="520" y="48" fill="#00FF85" font-size="18" font-family="monospace" font-weight="800">
+      <tspan>~182 TB</tspan>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Row 4: ID space -->
+  <g transform="translate(60, 320)">
+    <rect width="700" height="64" rx="8" fill="#141f1a" stroke="#81C784" stroke-width="1.5"/>
+    <text x="18" y="26" fill="#81C784" font-size="13" font-weight="800">KEY SPACE  (7-char base62)</text>
+    <text x="18" y="48" fill="#fff" font-size="13" font-family="monospace">
+      62⁷   =
+    </text>
+    <text x="520" y="48" fill="#00FF85" font-size="18" font-family="monospace" font-weight="800">
+      <tspan>3.5 trillion</tspan>
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Footer note -->
+  <text x="410" y="410" text-anchor="middle" fill="#8aa0c8" font-size="11">
+    At 100M URLs/day we exhaust the 3.5T keyspace in 96+ years. 7 chars is enough. No need for 8.
+  </text>
+</svg>

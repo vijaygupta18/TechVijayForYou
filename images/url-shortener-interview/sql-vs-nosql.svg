@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="420" viewBox="0 0 820 420">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="420" fill="url(#bg6)"/>
+  <text x="410" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">SQL vs NoSQL — why NoSQL wins here</text>
+  <text x="410" y="54" text-anchor="middle" fill="#8aa0c8" font-size="12">The interviewer WILL ask. Have a 3-line answer ready.</text>
+
+  <!-- SQL column -->
+  <g transform="translate(60, 90)">
+    <rect width="340" height="290" rx="12" fill="#2a1e1e" stroke="#FF5252" stroke-width="2"/>
+    <text x="170" y="30" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">SQL (Postgres / MySQL)</text>
+    <line x1="20" y1="46" x2="320" y2="46" stroke="#FF5252" opacity="0.4"/>
+
+    <text x="20" y="78" fill="#FF5252" font-size="11" font-weight="700">✗ ACID txn across rows</text>
+    <text x="20" y="94" fill="#8aa0c8" font-size="10">Not needed — one row per URL, no multi-row atomicity</text>
+
+    <text x="20" y="126" fill="#FF5252" font-size="11" font-weight="700">✗ Joins</text>
+    <text x="20" y="142" fill="#8aa0c8" font-size="10">Not needed — access is single key lookup</text>
+
+    <text x="20" y="174" fill="#FF5252" font-size="11" font-weight="700">✗ Strong schema</text>
+    <text x="20" y="190" fill="#8aa0c8" font-size="10">Cost without benefit — schema is static and trivial</text>
+
+    <text x="20" y="222" fill="#FF5252" font-size="11" font-weight="700">✗ Horizontal scale pain</text>
+    <text x="20" y="238" fill="#8aa0c8" font-size="10">Need Vitess / PgBouncer / manual sharding to hit 120K QPS</text>
+
+    <text x="20" y="272" fill="#FFB74D" font-size="11" font-weight="700">✓ If your team only knows SQL</text>
+    <text x="20" y="288" fill="#8aa0c8" font-size="10">→ sharded MySQL w/ Vitess is a legit fallback answer</text>
+  </g>
+
+  <!-- NoSQL column -->
+  <g transform="translate(420, 90)">
+    <rect width="340" height="290" rx="12" fill="#141f1a" stroke="#00FF85" stroke-width="2">
+      <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="170" y="30" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">NoSQL (Cassandra / DynamoDB)</text>
+    <line x1="20" y1="46" x2="320" y2="46" stroke="#00FF85" opacity="0.4"/>
+
+    <text x="20" y="78" fill="#00FF85" font-size="11" font-weight="700">✓ Pure key-value access</text>
+    <text x="20" y="94" fill="#8aa0c8" font-size="10">PK = short_code → long_url — one primary-key lookup</text>
+
+    <text x="20" y="126" fill="#00FF85" font-size="11" font-weight="700">✓ Horizontal scale built-in</text>
+    <text x="20" y="142" fill="#8aa0c8" font-size="10">Consistent-hash shards · add nodes · linear throughput</text>
+
+    <text x="20" y="174" fill="#00FF85" font-size="11" font-weight="700">✓ Append-heavy workload</text>
+    <text x="20" y="190" fill="#8aa0c8" font-size="10">URLs are write-once, read-many — matches LSM-tree pattern</text>
+
+    <text x="20" y="222" fill="#00FF85" font-size="11" font-weight="700">✓ Tunable consistency</text>
+    <text x="20" y="238" fill="#8aa0c8" font-size="10">Eventual is fine — URL doesn't change after create</text>
+
+    <text x="20" y="272" fill="#4FC3F7" font-size="11" font-weight="700">Instagram uses Cassandra for photos.</text>
+    <text x="20" y="288" fill="#8aa0c8" font-size="10">Same access pattern — photo_id → blob path.</text>
+  </g>
+</svg>

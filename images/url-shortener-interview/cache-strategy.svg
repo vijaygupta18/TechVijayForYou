@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg4)"/>
+  <text x="400" y="30" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">Cache Strategy — 80-20 rule does the heavy lifting</text>
+  <text x="400" y="52" text-anchor="middle" fill="#8aa0c8" font-size="12">20% of short URLs absorb 80% of reads. Keep them hot in Redis. DB only sees the long tail.</text>
+
+  <!-- Traffic bar -->
+  <g transform="translate(80, 100)">
+    <text x="0" y="-6" fill="#fff" font-size="11" font-weight="700">120,000 read QPS (incoming)</text>
+    <rect x="0" y="0" width="640" height="40" rx="6" fill="#1a2340" stroke="#4FC3F7"/>
+    <rect x="0" y="0" width="512" height="40" rx="6" fill="#FF5252">
+      <animate attributeName="width" values="0;512" dur="2s" fill="freeze"/>
+    </rect>
+    <rect x="512" y="0" width="128" height="40" rx="6" fill="#EC407A">
+      <animate attributeName="width" values="0;128" dur="2s" begin="2s" fill="freeze"/>
+    </rect>
+    <text x="256" y="25" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">80% → Redis  ≈ 96K QPS</text>
+    <text x="576" y="25" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">20% → DB  ≈ 24K QPS</text>
+  </g>
+
+  <!-- Redis box -->
+  <g transform="translate(80, 190)">
+    <rect width="300" height="110" rx="10" fill="#2a1e1e" stroke="#FF5252" stroke-width="2"/>
+    <text x="150" y="26" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">Redis Cluster (cache-aside)</text>
+    <text x="150" y="48" text-anchor="middle" fill="#8aa0c8" font-size="10">hot working set · LRU eviction · TTL 24h</text>
+    <text x="150" y="72" text-anchor="middle" fill="#FF5252" font-size="18" font-weight="800" font-family="monospace">
+      <tspan>10 GB</tspan>
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+    </text>
+    <text x="150" y="88" text-anchor="middle" fill="#8aa0c8" font-size="10">(20M hot URLs × 500 bytes)</text>
+    <text x="150" y="102" text-anchor="middle" fill="#00FF85" font-size="10" font-weight="700">latency: 1 ms</text>
+  </g>
+
+  <!-- DB box -->
+  <g transform="translate(420, 190)">
+    <rect width="300" height="110" rx="10" fill="#2a1e2f" stroke="#EC407A" stroke-width="2"/>
+    <text x="150" y="26" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">Cassandra (long tail)</text>
+    <text x="150" y="48" text-anchor="middle" fill="#8aa0c8" font-size="10">12 shards · consistent hash on short_code</text>
+    <text x="150" y="72" text-anchor="middle" fill="#EC407A" font-size="18" font-weight="800" font-family="monospace">182 TB</text>
+    <text x="150" y="88" text-anchor="middle" fill="#8aa0c8" font-size="10">(10 years of cold URLs)</text>
+    <text x="150" y="102" text-anchor="middle" fill="#00FF85" font-size="10" font-weight="700">latency: 3 ms</text>
+  </g>
+
+  <!-- Bloom filter -->
+  <g transform="translate(80, 330)">
+    <rect width="640" height="60" rx="8" fill="#14182b" stroke="#B74BFF" stroke-width="2"/>
+    <text x="20" y="22" fill="#B74BFF" font-size="12" font-weight="800">+ BLOOM FILTER in front of cache</text>
+    <text x="20" y="42" fill="#8aa0c8" font-size="11">Incoming short_code not in filter → return 404 immediately. Kills 100% of random-string scan attacks. Cost: ~10 MB for 100M URLs.</text>
+    <circle cx="600" cy="30" r="12" fill="#B74BFF" opacity="0.7">
+      <animate attributeName="r" values="10;16;10" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="600" y="34" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">BF</text>
+  </g>
+</svg>

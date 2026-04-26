@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <radialGradient id="packetGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fsyncGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="760" height="420" fill="url(#bg)"/>
+  <text x="380" y="26" text-anchor="middle" fill="#ffffff" font-family="system-ui" font-size="17" font-weight="800">One Record — Produce to Consume</text>
+  <text x="380" y="46" text-anchor="middle" fill="#94A3B8" font-family="system-ui" font-size="12">9 hops from Xinfra client back to a consumer group</text>
+
+  <!-- Pipeline nodes -->
+  <g font-family="system-ui" font-size="11" fill="#ffffff">
+    <g><rect x="40" y="180" width="90" height="50" rx="8" fill="#1F2937" stroke="#A855F7" stroke-width="2"><animate attributeName="stroke-width" values="2;3.5;2" dur="5s" begin="0.0s" repeatCount="indefinite"/></rect><text x="85" y="202" text-anchor="middle" font-weight="700">Producer</text><text x="85" y="218" text-anchor="middle" font-size="10" fill="#94A3B8">App</text></g>
+    <g><rect x="150" y="180" width="90" height="50" rx="8" fill="#1F2937" stroke="#14B8A6" stroke-width="2"><animate attributeName="stroke-width" values="2;3.5;2" dur="5s" begin="0.7s" repeatCount="indefinite"/></rect><text x="195" y="202" text-anchor="middle" font-weight="700">Xinfra</text><text x="195" y="218" text-anchor="middle" font-size="10" fill="#94A3B8">client</text></g>
+    <g><rect x="260" y="180" width="100" height="50" rx="8" fill="#1F2937" stroke="#A855F7" stroke-width="2"><animate attributeName="stroke-width" values="2;3.5;2" dur="5s" begin="1.4s" repeatCount="indefinite"/></rect><text x="310" y="198" text-anchor="middle" font-weight="700">Metadata</text><text x="310" y="214" text-anchor="middle" font-size="10" fill="#94A3B8">virt → phys</text></g>
+    <g><rect x="380" y="180" width="100" height="50" rx="8" fill="#1F2937" stroke="#22D3EE" stroke-width="2"><animate attributeName="stroke-width" values="2;3.5;2" dur="5s" begin="2.1s" repeatCount="indefinite"/></rect><text x="430" y="198" text-anchor="middle" font-weight="700">Segment</text><text x="430" y="214" text-anchor="middle" font-size="10" fill="#94A3B8">leader</text></g>
+    <g><rect x="500" y="180" width="100" height="50" rx="8" fill="#1F2937" stroke="#A855F7" stroke-width="2"><animate attributeName="stroke-width" values="2;3.5;2" dur="5s" begin="3.0s" repeatCount="indefinite"/></rect><text x="550" y="198" text-anchor="middle" font-weight="700">RocksDB</text><text x="550" y="214" text-anchor="middle" font-size="10" fill="#94A3B8">sparse idx</text></g>
+    <g><rect x="620" y="180" width="100" height="50" rx="8" fill="#1F2937" stroke="#10B981" stroke-width="2"><animate attributeName="stroke-width" values="2;3.5;2" dur="5s" begin="3.8s" repeatCount="indefinite"/></rect><text x="670" y="202" text-anchor="middle" font-weight="700">Consumer</text><text x="670" y="218" text-anchor="middle" font-size="10" fill="#94A3B8">range sub</text></g>
+  </g>
+
+  <!-- Connector lines -->
+  <g stroke="#334155" stroke-width="1.5" stroke-dasharray="4 3">
+    <line x1="130" y1="205" x2="150" y2="205"/>
+    <line x1="240" y1="205" x2="260" y2="205"/>
+    <line x1="360" y1="205" x2="380" y2="205"/>
+    <line x1="480" y1="205" x2="500" y2="205"/>
+    <line x1="600" y1="205" x2="620" y2="205"/>
+  </g>
+
+  <!-- Hero packet traveling -->
+  <circle r="7" fill="#22D3EE" filter="url(#glow)">
+    <animateMotion dur="5s" repeatCount="indefinite" path="M 85 205 L 195 205 L 310 205 L 430 205 L 550 205 L 670 205"/>
+  </circle>
+  <circle r="18" fill="url(#packetGlow)" opacity="0.7">
+    <animateMotion dur="5s" repeatCount="indefinite" path="M 85 205 L 195 205 L 310 205 L 430 205 L 550 205 L 670 205"/>
+  </circle>
+
+  <!-- Replicas (3 boxes below segment leader) with fsync packets -->
+  <g font-family="system-ui" font-size="10" fill="#94A3B8">
+    <rect x="340" y="290" width="60" height="32" rx="4" fill="#1F2937" stroke="#EF4444" stroke-width="1"/><text x="370" y="310" text-anchor="middle">Replica 1</text>
+    <rect x="405" y="290" width="60" height="32" rx="4" fill="#1F2937" stroke="#EF4444" stroke-width="1"/><text x="435" y="310" text-anchor="middle">Replica 2</text>
+    <rect x="470" y="290" width="60" height="32" rx="4" fill="#1F2937" stroke="#EF4444" stroke-width="1"/><text x="500" y="310" text-anchor="middle">Replica 3</text>
+    <text x="435" y="342" text-anchor="middle" fill="#EF4444" font-weight="700">fsync before ack</text>
+  </g>
+
+  <!-- fsync packets fanning out -->
+  <circle r="5" fill="#EF4444" filter="url(#glow)"><animateMotion dur="5s" repeatCount="indefinite" path="M 430 230 L 370 290" begin="0s"/><animate attributeName="opacity" values="0;0;1;0" dur="5s" keyTimes="0;0.42;0.5;0.7" repeatCount="indefinite"/></circle>
+  <circle r="5" fill="#EF4444" filter="url(#glow)"><animateMotion dur="5s" repeatCount="indefinite" path="M 430 230 L 435 290" begin="0s"/><animate attributeName="opacity" values="0;0;1;0" dur="5s" keyTimes="0;0.42;0.5;0.7" repeatCount="indefinite"/></circle>
+  <circle r="5" fill="#EF4444" filter="url(#glow)"><animateMotion dur="5s" repeatCount="indefinite" path="M 430 230 L 500 290" begin="0s"/><animate attributeName="opacity" values="0;0;1;0" dur="5s" keyTimes="0;0.42;0.5;0.7" repeatCount="indefinite"/></circle>
+
+  <!-- Steps legend -->
+  <g font-family="system-ui" font-size="10" fill="#94A3B8">
+    <text x="40" y="100" fill="#22D3EE" font-weight="700">Step trace</text>
+    <text x="40" y="120">1. produce()  →  2. virtual topic lookup  →  3. route to segment leader  →  4. append + stream to replicas</text>
+    <text x="40" y="135">5. fsync all replicas  →  6. ack producer  →  7. RocksDB sparse index update  →  8. push to consumer  →  9. checkpoint</text>
+  </g>
+
+  <rect x="0" y="390" width="760" height="30" fill="#0A0E1A" opacity="0.95"/>
+  <text x="380" y="409" text-anchor="middle" fill="#22D3EE" font-family="system-ui" font-size="11" font-style="italic">The app sees one topic. The infra team reroutes the backend per topic per day.</text>
+</svg>

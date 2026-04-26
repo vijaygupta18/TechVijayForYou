@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="520" viewBox="0 0 880 520">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="netBox" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2340"/>
+      <stop offset="100%" stop-color="#0f1530"/>
+    </linearGradient>
+    <linearGradient id="computeBox" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e2a1f"/>
+      <stop offset="100%" stop-color="#0f1a14"/>
+    </linearGradient>
+    <linearGradient id="storageBox" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a1e2f"/>
+      <stop offset="100%" stop-color="#160f1a"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4FC3F7"/>
+    </marker>
+  </defs>
+  <rect width="880" height="520" fill="url(#bg)"/>
+
+  <text x="440" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Montserrat, sans-serif">URL Shortener — HLD Architecture</text>
+  <text x="440" y="56" text-anchor="middle" fill="#8aa0c8" font-size="12" font-family="sans-serif">100M writes/day · 120K read QPS · 7-char base62 · 182TB over 10 years</text>
+
+  <!-- Client -->
+  <g filter="url(#glow)">
+    <circle cx="60" cy="260" r="26" fill="#1a2340" stroke="#4FC3F7" stroke-width="2">
+      <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="60" y="265" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">USER</text>
+  </g>
+
+  <!-- DNS -->
+  <g>
+    <rect x="130" y="240" width="90" height="48" rx="6" fill="url(#netBox)" stroke="#4FC3F7" stroke-width="1.5"/>
+    <text x="175" y="260" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">DNS</text>
+    <text x="175" y="276" text-anchor="middle" fill="#8aa0c8" font-size="9">Route53</text>
+  </g>
+
+  <!-- CDN (top) -->
+  <g>
+    <rect x="240" y="130" width="100" height="48" rx="6" fill="url(#netBox)" stroke="#4FC3F7" stroke-width="1.5"/>
+    <text x="290" y="150" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">CDN</text>
+    <text x="290" y="166" text-anchor="middle" fill="#8aa0c8" font-size="9">static assets only</text>
+  </g>
+
+  <!-- Load Balancer -->
+  <g>
+    <rect x="240" y="240" width="100" height="48" rx="6" fill="url(#netBox)" stroke="#4FC3F7" stroke-width="1.5"/>
+    <text x="290" y="260" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Load Balancer</text>
+    <text x="290" y="276" text-anchor="middle" fill="#8aa0c8" font-size="9">L7 · x2 AZs</text>
+  </g>
+
+  <!-- Rate Limiter -->
+  <g>
+    <rect x="240" y="350" width="100" height="48" rx="6" fill="url(#netBox)" stroke="#FFB74D" stroke-width="1.5"/>
+    <text x="290" y="370" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Rate Limiter</text>
+    <text x="290" y="386" text-anchor="middle" fill="#8aa0c8" font-size="9">token bucket</text>
+  </g>
+
+  <!-- App Server -->
+  <g>
+    <rect x="400" y="240" width="110" height="48" rx="6" fill="url(#computeBox)" stroke="#81C784" stroke-width="2">
+      <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="455" y="260" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">App Server</text>
+    <text x="455" y="276" text-anchor="middle" fill="#8aa0c8" font-size="9">stateless · x20</text>
+  </g>
+
+  <!-- Counter Service (NEW) -->
+  <g>
+    <rect x="400" y="380" width="110" height="48" rx="6" fill="url(#computeBox)" stroke="#B74BFF" stroke-width="2"/>
+    <text x="455" y="398" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Counter Svc</text>
+    <text x="455" y="413" text-anchor="middle" fill="#B74BFF" font-size="9" font-weight="700">NEW — ID ranges</text>
+  </g>
+
+  <!-- Zookeeper (NEW) -->
+  <g>
+    <rect x="540" y="380" width="110" height="48" rx="6" fill="url(#computeBox)" stroke="#B74BFF" stroke-width="2"/>
+    <text x="595" y="398" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Zookeeper</text>
+    <text x="595" y="413" text-anchor="middle" fill="#B74BFF" font-size="9" font-weight="700">NEW — ZK quorum</text>
+  </g>
+
+  <!-- Cache -->
+  <g>
+    <rect x="570" y="130" width="130" height="48" rx="6" fill="url(#storageBox)" stroke="#FF5252" stroke-width="2">
+      <animate attributeName="stroke-opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+    </rect>
+    <text x="635" y="150" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Redis Cluster</text>
+    <text x="635" y="166" text-anchor="middle" fill="#8aa0c8" font-size="9">80% hit · 10GB hot</text>
+  </g>
+
+  <!-- NoSQL DB -->
+  <g>
+    <rect x="570" y="240" width="160" height="48" rx="6" fill="url(#storageBox)" stroke="#EC407A" stroke-width="1.5"/>
+    <text x="650" y="260" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">NoSQL (Cassandra)</text>
+    <text x="650" y="276" text-anchor="middle" fill="#8aa0c8" font-size="9">12 shards · cons. hash</text>
+  </g>
+
+  <!-- Kafka (NEW) -->
+  <g>
+    <rect x="690" y="380" width="110" height="48" rx="6" fill="url(#storageBox)" stroke="#B74BFF" stroke-width="2"/>
+    <text x="745" y="398" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Kafka</text>
+    <text x="745" y="413" text-anchor="middle" fill="#B74BFF" font-size="9" font-weight="700">NEW — click events</text>
+  </g>
+
+  <!-- Analytics Consumer (NEW) -->
+  <g>
+    <rect x="690" y="440" width="160" height="42" rx="6" fill="url(#computeBox)" stroke="#B74BFF" stroke-width="1.5"/>
+    <text x="770" y="458" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">Analytics Consumer</text>
+    <text x="770" y="470" text-anchor="middle" fill="#B74BFF" font-size="8" font-weight="700">NEW — async rollups</text>
+  </g>
+
+  <!-- Monitoring -->
+  <g>
+    <rect x="740" y="60" width="120" height="42" rx="6" fill="#151b30" stroke="#4FC3F7" stroke-width="1"/>
+    <text x="800" y="77" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">Prometheus</text>
+    <text x="800" y="90" text-anchor="middle" fill="#8aa0c8" font-size="8">SLO: p99 &lt; 50ms</text>
+  </g>
+
+  <!-- Edges -->
+  <path d="M86 260 L130 264" stroke="#4FC3F7" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M220 255 L240 250" stroke="#4FC3F7" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M220 270 L240 160 L240 155" stroke="#4FC3F7" stroke-width="1.5" marker-end="url(#arrow)" fill="none"/>
+  <path d="M290 288 L290 350" stroke="#FFB74D" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M340 370 L400 280" stroke="#81C784" stroke-width="1.5" marker-end="url(#arrow)" fill="none"/>
+  <path d="M510 260 L570 260" stroke="#EC407A" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M510 250 L570 160" stroke="#FF5252" stroke-width="1.5" marker-end="url(#arrow)" fill="none"/>
+  <path d="M455 288 L455 380" stroke="#B74BFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M510 404 L540 404" stroke="#B74BFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M510 268 L690 400" stroke="#B74BFF" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow)" fill="none"/>
+  <path d="M745 428 L770 440" stroke="#B74BFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M510 245 L740 90" stroke="#4FC3F7" stroke-width="1" stroke-dasharray="3 3" fill="none" opacity="0.6"/>
+
+  <!-- Traveling packet on read path -->
+  <circle r="5" fill="#00FF85">
+    <animateMotion dur="4s" repeatCount="indefinite" path="M86 260 L220 255 L340 255 L400 260 L510 260 L570 260"/>
+  </circle>
+  <circle r="10" fill="#00FF85" opacity="0.3">
+    <animateMotion dur="4s" repeatCount="indefinite" path="M86 260 L220 255 L340 255 L400 260 L510 260 L570 260"/>
+  </circle>
+
+  <!-- Traveling packet — cache hit -->
+  <circle r="4" fill="#FF5252">
+    <animateMotion dur="3s" begin="1s" repeatCount="indefinite" path="M455 260 L570 160 L455 260"/>
+  </circle>
+
+  <!-- Legend -->
+  <g transform="translate(60, 480)">
+    <text x="0" y="0" fill="#B74BFF" font-size="10" font-weight="700">NEW components added to original design →</text>
+    <text x="0" y="16" fill="#8aa0c8" font-size="10">Counter Service · Zookeeper · Kafka · Analytics Consumer (the 4 missing pieces for a complete answer)</text>
+  </g>
+</svg>

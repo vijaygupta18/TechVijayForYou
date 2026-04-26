@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="760" height="440" fill="url(#bg)"/>
+  <text x="380" y="26" text-anchor="middle" fill="#ffffff" font-family="system-ui" font-size="17" font-weight="800">Xinfra Epochs — Transparent Kafka → Northguard Cutover</text>
+  <text x="380" y="46" text-anchor="middle" fill="#94A3B8" font-family="system-ui" font-size="12">One virtual topic, two physical backends. 90%+ of LinkedIn apps migrated this way.</text>
+
+  <!-- Producer at top -->
+  <rect x="330" y="70" width="100" height="40" rx="8" fill="#1F2937" stroke="#A855F7" stroke-width="2"/>
+  <text x="380" y="95" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="13" font-weight="700">Producer App</text>
+
+  <!-- Fork arrows to Kafka + Northguard -->
+  <path d="M 360 110 L 250 160" stroke="#F59E0B" stroke-width="2" fill="none"/>
+  <path d="M 400 110 L 510 160" stroke="#14B8A6" stroke-width="2" fill="none"/>
+
+  <!-- Epoch boundary vertical line -->
+  <line x1="380" y1="130" x2="380" y2="380" stroke="#A855F7" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="380" y="145" text-anchor="middle" fill="#A855F7" font-family="system-ui" font-size="11" font-weight="700">EPOCH BOUNDARY</text>
+
+  <!-- Kafka track (upper) -->
+  <text x="60" y="170" fill="#F59E0B" font-family="system-ui" font-size="13" font-weight="800">KAFKA — Epoch 1</text>
+  <rect x="50" y="180" width="710" height="60" rx="8" fill="#1F2937" stroke="#F59E0B" stroke-width="1" stroke-opacity="0.5"/>
+  <!-- pre-boundary full opacity tiles -->
+  <rect x="60" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.85"/>
+  <rect x="112" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.85"/>
+  <rect x="164" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.85"/>
+  <rect x="216" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.85"/>
+  <rect x="268" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.85"/>
+  <rect x="320" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.75"/>
+  <!-- post-boundary faded tiles -->
+  <rect x="390" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.2"/>
+  <rect x="442" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.15"/>
+  <rect x="494" y="190" width="46" height="40" rx="4" fill="#F59E0B" opacity="0.1"/>
+  <text x="180" y="215" text-anchor="middle" fill="#0A0E1A" font-family="system-ui" font-size="11" font-weight="700">segments</text>
+
+  <!-- Northguard track (lower) -->
+  <text x="60" y="260" fill="#14B8A6" font-family="system-ui" font-size="13" font-weight="800">NORTHGUARD — Epoch 2</text>
+  <rect x="50" y="270" width="710" height="60" rx="8" fill="#1F2937" stroke="#14B8A6" stroke-width="1" stroke-opacity="0.5"/>
+  <!-- pre-boundary faded -->
+  <rect x="60" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.15"/>
+  <rect x="102" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.15"/>
+  <rect x="144" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.15"/>
+  <rect x="186" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.2"/>
+  <rect x="228" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.2"/>
+  <rect x="270" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.25"/>
+  <rect x="312" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.4"/>
+  <!-- post-boundary full -->
+  <rect x="390" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.9"/>
+  <rect x="432" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.9"/>
+  <rect x="474" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.9"/>
+  <rect x="516" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.9"/>
+  <rect x="558" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.9"/>
+  <rect x="600" y="280" width="36" height="40" rx="4" fill="#14B8A6" opacity="0.9"/>
+  <rect x="642" y="280" width="36" height="40" rx="4" fill="#22D3EE" opacity="1" stroke="#fff" stroke-width="1"><animate attributeName="opacity" values="0.6;1;0.6" dur="1.4s" repeatCount="indefinite"/></rect>
+
+  <!-- Consumer below tracks with traveling cursor -->
+  <rect x="50" y="350" width="710" height="36" rx="8" fill="#1F2937" stroke="#10B981" stroke-width="1.5"/>
+  <text x="70" y="373" fill="#10B981" font-family="system-ui" font-size="12" font-weight="700">Consumer →</text>
+  <polygon points="0,-7 10,0 0,7" fill="#10B981" filter="url(#glow)">
+    <animateTransform attributeName="transform" type="translate" values="160,368; 380,368; 660,368; 160,368" keyTimes="0;0.5;1;1" dur="6s" repeatCount="indefinite"/>
+  </polygon>
+
+  <!-- Dual-write packets near boundary -->
+  <circle r="4" fill="#A855F7" filter="url(#glow)">
+    <animateMotion dur="2s" repeatCount="indefinite" path="M 380 110 L 350 200"/>
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="4" fill="#A855F7" filter="url(#glow)">
+    <animateMotion dur="2s" repeatCount="indefinite" path="M 380 110 L 410 295"/>
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Dual-write label -->
+  <text x="380" y="160" text-anchor="middle" fill="#A855F7" font-family="system-ui" font-size="10" font-weight="700">dual-write window</text>
+
+  <rect x="0" y="410" width="760" height="30" fill="#0A0E1A" opacity="0.95"/>
+  <text x="380" y="429" text-anchor="middle" fill="#22D3EE" font-family="system-ui" font-size="11" font-style="italic">Dual-write + epoch handoff = zero app code changes, per-topic cutover.</text>
+</svg>

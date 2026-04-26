@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="420" viewBox="0 0 780 420">
+  <defs>
+    <linearGradient id="bg-wom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A" />
+      <stop offset="100%" stop-color="#14182B" />
+    </linearGradient>
+    <linearGradient id="laptop-glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="server-glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF2D2D" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#FF2D2D" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="impact" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF2D2D" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#FF2D2D" stop-opacity="0" />
+    </radialGradient>
+    <filter id="glow-wom" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="780" height="420" fill="url(#bg-wom)" />
+
+  <!-- Title -->
+  <text x="390" y="34" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="800">Same Code. Different Environment. Crash.</text>
+  <text x="390" y="58" text-anchor="middle" fill="#7A8AA0" font-family="Montserrat, sans-serif" font-size="14" font-weight="600">The fresher's first deploy nightmare</text>
+
+  <!-- LEFT: Laptop (works) -->
+  <g transform="translate(110, 130)">
+    <ellipse cx="100" cy="200" rx="140" ry="14" fill="url(#laptop-glow)" />
+    <rect x="20" y="40" width="160" height="110" rx="8" fill="#1F2937" stroke="#10B981" stroke-width="2.5" />
+    <rect x="30" y="50" width="140" height="90" rx="4" fill="#0F172A" />
+    <text x="100" y="88" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">$ node server.js</text>
+    <text x="100" y="108" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="11">Listening :3000</text>
+    <text x="100" y="124" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">✓ OK</text>
+    <rect x="0" y="150" width="200" height="14" rx="4" fill="#1F2937" />
+    <rect x="80" y="160" width="40" height="6" rx="2" fill="#0F172A" />
+    <text x="100" y="195" text-anchor="middle" fill="#10B981" font-family="Montserrat, sans-serif" font-size="16" font-weight="800">YOUR LAPTOP</text>
+    <text x="100" y="216" text-anchor="middle" fill="#9CA3AF" font-family="Montserrat, sans-serif" font-size="12" font-weight="600">Node 20 · macOS · libssl 3</text>
+    <circle cx="100" cy="20" r="14" fill="#10B981" filter="url(#glow-wom)">
+      <animate attributeName="r" values="14;16;14" dur="1.6s" repeatCount="indefinite" />
+    </circle>
+    <text x="100" y="25" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="16" font-weight="900">✓</text>
+  </g>
+
+  <!-- Code packet traveling -->
+  <g>
+    <circle r="10" fill="#FFE93E" filter="url(#glow-wom)">
+      <animateMotion dur="3s" repeatCount="indefinite" path="M 240 230 Q 390 160 540 230" />
+      <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.7;0.85;1" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <text fill="#FFE93E" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" opacity="0.9">
+      <animateMotion dur="3s" repeatCount="indefinite" path="M 240 220 Q 390 150 540 220" />
+      <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.7;0.85;1" dur="3s" repeatCount="indefinite" />
+      git push
+    </text>
+  </g>
+
+  <!-- RIGHT: Server (crashes) -->
+  <g transform="translate(450, 130)">
+    <ellipse cx="100" cy="200" rx="140" ry="14" fill="url(#server-glow)" />
+    <rect x="30" y="40" width="140" height="120" rx="6" fill="#1F2937" stroke="#FF2D2D" stroke-width="2.5">
+      <animate attributeName="x" values="30;28;32;30" dur="0.5s" begin="2.4s" repeatCount="2" />
+    </rect>
+    <!-- server slots -->
+    <g>
+      <rect x="40" y="55" width="120" height="10" rx="2" fill="#0F172A" />
+      <circle cx="50" cy="60" r="2.5" fill="#FF2D2D"><animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite"/></circle>
+      <rect x="40" y="72" width="120" height="10" rx="2" fill="#0F172A" />
+      <circle cx="50" cy="77" r="2.5" fill="#FF2D2D"><animate attributeName="opacity" values="0.3;1;0.3" dur="0.8s" repeatCount="indefinite"/></circle>
+      <rect x="40" y="89" width="120" height="10" rx="2" fill="#0F172A" />
+      <rect x="40" y="106" width="120" height="10" rx="2" fill="#0F172A" />
+      <rect x="40" y="123" width="120" height="10" rx="2" fill="#0F172A" />
+    </g>
+    <text x="100" y="150" text-anchor="middle" fill="#FF6B6B" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">Error: libssl mismatch</text>
+    <text x="100" y="195" text-anchor="middle" fill="#FF2D2D" font-family="Montserrat, sans-serif" font-size="16" font-weight="800">PROD SERVER</text>
+    <text x="100" y="216" text-anchor="middle" fill="#9CA3AF" font-family="Montserrat, sans-serif" font-size="12" font-weight="600">Node 16 · Linux · libssl 1.1</text>
+    <circle cx="100" cy="20" r="14" fill="#FF2D2D" filter="url(#glow-wom)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.78;0.85;1" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="r" values="14;18;14" dur="1.2s" begin="2.4s" repeatCount="indefinite" />
+    </circle>
+    <text x="100" y="25" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="16" font-weight="900" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.78;0.85;1" dur="3s" repeatCount="indefinite" />
+      ✗
+    </text>
+    <!-- impact ring -->
+    <circle cx="100" cy="100" r="0" fill="url(#impact)" opacity="0">
+      <animate attributeName="r" values="0;80" keyTimes="0;1" dur="0.6s" begin="2.4s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.8;0" dur="0.6s" begin="2.4s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <!-- "Works on my machine" callout -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.7;0.78;0.95;1" dur="3s" repeatCount="indefinite" />
+    <rect x="240" y="350" width="300" height="40" rx="20" fill="#FF2D2D" opacity="0.15" stroke="#FF2D2D" stroke-width="2" />
+    <text x="390" y="376" text-anchor="middle" fill="#FF6B6B" font-family="Montserrat, sans-serif" font-size="16" font-weight="800">"works on my machine 🤷"</text>
+  </g>
+</svg>

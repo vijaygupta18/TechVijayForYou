@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="520" viewBox="0 0 720 520">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="layer1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="layer2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#33D4FF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#66C0FF" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="layer3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7AA5FF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#8E90FF" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="layer4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9B70FF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#A860FF" stop-opacity="0.65"/>
+    </linearGradient>
+    <linearGradient id="layer5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#AE55FF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#B74BFF" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="layer6" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#B74BFF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#D36BFF" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="foundation" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4FC3F7" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#4FC3F7" stop-opacity="0.45"/>
+    </linearGradient>
+    <radialGradient id="topGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#B74BFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#B74BFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <text x="360" y="28" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="sans-serif">THE 6-LAYER AI ENGINEER STACK</text>
+  <text x="360" y="50" text-anchor="middle" fill="#9BA5B7" font-size="13" font-family="sans-serif">Built on top of your backend foundation — 6 months, 6 layers</text>
+
+  <!-- Top floating AI ENGINEER label with pulsing glow -->
+  <ellipse cx="360" cy="82" rx="160" ry="22" fill="url(#topGlow)" opacity="0.6">
+    <animate attributeName="opacity" values="0.4;0.85;0.4" dur="2.4s" repeatCount="indefinite"/>
+  </ellipse>
+  <text x="360" y="87" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="sans-serif" letter-spacing="2">AI ENGINEER</text>
+
+  <!-- Master group loops 8s: 0-6s assemble, 6-8s hold, then restart -->
+  <g>
+    <animate attributeName="opacity" values="1;1;0;1" keyTimes="0;0.75;0.95;1" dur="10s" repeatCount="indefinite"/>
+
+    <!-- Layer 6 (top) - Agents + MCP - violet -->
+    <g>
+      <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;1;1" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,20;0,20;0,20;0,20;0,20;0,20;0,0;0,0;0,0;0,0" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <rect x="80" y="110" width="560" height="42" rx="6" fill="url(#layer6)" stroke="#B74BFF" stroke-width="1"/>
+      <text x="96" y="136" fill="#fff" font-size="13" font-weight="800" font-family="sans-serif">M6 · Agents &amp; MCP</text>
+      <text x="250" y="136" fill="#E8D5FF" font-size="12" font-family="sans-serif">tool loops · orchestration · 97M installs</text>
+    </g>
+
+    <!-- Layer 5 - Cost & Latency -->
+    <g>
+      <animate attributeName="opacity" values="0;0;0;0;0;1;1;1;1;1" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,20;0,20;0,20;0,20;0,20;0,0;0,0;0,0;0,0;0,0" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <rect x="80" y="162" width="560" height="42" rx="6" fill="url(#layer5)" stroke="#AE55FF" stroke-width="1"/>
+      <text x="96" y="188" fill="#fff" font-size="13" font-weight="800" font-family="sans-serif">M5 · Cost &amp; Latency</text>
+      <text x="250" y="188" fill="#E8D5FF" font-size="12" font-family="sans-serif">caching · batching · token accounting</text>
+    </g>
+
+    <!-- Layer 4 - Evals -->
+    <g>
+      <animate attributeName="opacity" values="0;0;0;0;1;1;1;1;1;1" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,20;0,20;0,20;0,20;0,0;0,0;0,0;0,0;0,0;0,0" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <rect x="80" y="214" width="560" height="42" rx="6" fill="url(#layer4)" stroke="#9B70FF" stroke-width="1"/>
+      <text x="96" y="240" fill="#fff" font-size="13" font-weight="800" font-family="sans-serif">M4 · Evals</text>
+      <text x="250" y="240" fill="#E0D0FF" font-size="12" font-family="sans-serif">golden sets · LLM-as-judge · regression tests</text>
+    </g>
+
+    <!-- Layer 3 - Prompt Engineering -->
+    <g>
+      <animate attributeName="opacity" values="0;0;0;1;1;1;1;1;1;1" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,20;0,20;0,20;0,0;0,0;0,0;0,0;0,0;0,0;0,0" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <rect x="80" y="266" width="560" height="42" rx="6" fill="url(#layer3)" stroke="#7AA5FF" stroke-width="1"/>
+      <text x="96" y="292" fill="#fff" font-size="13" font-weight="800" font-family="sans-serif">M3 · Prompt Engineering</text>
+      <text x="260" y="292" fill="#D8E0FF" font-size="12" font-family="sans-serif">templates · versioning · tool use</text>
+    </g>
+
+    <!-- Layer 2 - RAG & Retrieval -->
+    <g>
+      <animate attributeName="opacity" values="0;0;1;1;1;1;1;1;1;1" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,20;0,20;0,0;0,0;0,0;0,0;0,0;0,0;0,0;0,0" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <rect x="80" y="318" width="560" height="42" rx="6" fill="url(#layer2)" stroke="#33D4FF" stroke-width="1"/>
+      <text x="96" y="344" fill="#fff" font-size="13" font-weight="800" font-family="sans-serif">M2 · RAG &amp; Retrieval</text>
+      <text x="240" y="344" fill="#CCEFFF" font-size="12" font-family="sans-serif">vector DB · hybrid search · reranking</text>
+    </g>
+
+    <!-- Layer 1 - LLM APIs -->
+    <g>
+      <animate attributeName="opacity" values="0;1;1;1;1;1;1;1;1;1" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0,20;0,0;0,0;0,0;0,0;0,0;0,0;0,0;0,0;0,0" keyTimes="0;0.1;0.2;0.3;0.4;0.5;0.6;0.75;0.9;1" dur="10s" repeatCount="indefinite"/>
+      <rect x="80" y="370" width="560" height="42" rx="6" fill="url(#layer1)" stroke="#00E5FF" stroke-width="1"/>
+      <text x="96" y="396" fill="#fff" font-size="13" font-weight="800" font-family="sans-serif">M1 · LLM APIs</text>
+      <text x="230" y="396" fill="#C0F4FF" font-size="12" font-family="sans-serif">text-in / text-out · streaming · JSON schema</text>
+    </g>
+  </g>
+
+  <!-- Foundation slab (always visible) -->
+  <g>
+    <rect x="60" y="430" width="600" height="72" rx="8" fill="url(#foundation)" stroke="#4FC3F7" stroke-width="1.5"/>
+    <text x="80" y="455" fill="#fff" font-size="12" font-weight="800" font-family="sans-serif" letter-spacing="1.5">BACKEND FOUNDATION</text>
+    <!-- 4 chips -->
+    <g>
+      <rect x="80" y="466" width="120" height="26" rx="13" fill="#0A1F2E" stroke="#4FC3F7" stroke-width="1"/>
+      <text x="140" y="483" text-anchor="middle" fill="#4FC3F7" font-size="12" font-weight="700" font-family="sans-serif">APIs</text>
+    </g>
+    <g>
+      <rect x="210" y="466" width="140" height="26" rx="13" fill="#0A1F2E" stroke="#4FC3F7" stroke-width="1"/>
+      <text x="280" y="483" text-anchor="middle" fill="#4FC3F7" font-size="12" font-weight="700" font-family="sans-serif">Databases</text>
+    </g>
+    <g>
+      <rect x="360" y="466" width="140" height="26" rx="13" fill="#0A1F2E" stroke="#4FC3F7" stroke-width="1"/>
+      <text x="430" y="483" text-anchor="middle" fill="#4FC3F7" font-size="12" font-weight="700" font-family="sans-serif">Concurrency</text>
+    </g>
+    <g>
+      <rect x="510" y="466" width="140" height="26" rx="13" fill="#0A1F2E" stroke="#4FC3F7" stroke-width="1"/>
+      <text x="580" y="483" text-anchor="middle" fill="#4FC3F7" font-size="12" font-weight="700" font-family="sans-serif">Observability</text>
+    </g>
+    <animate attributeName="opacity" values="1;1;1;1" dur="10s" repeatCount="indefinite"/>
+  </g>
+</svg>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <filter id="g2"><feGaussianBlur stdDeviation="2"/></filter>
+    <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#B74BFF"/>
+    </marker>
+  </defs>
+  <rect width="800" height="440" fill="url(#bg2)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800">Short URL Generation — Counter + Zookeeper</text>
+  <text x="400" y="54" text-anchor="middle" fill="#8aa0c8" font-size="12">The bit.ly trick — monotonic ID ranges + base62 encoding. Zero collisions. Zero coordination per write.</text>
+
+  <!-- Zookeeper -->
+  <g transform="translate(60, 110)">
+    <rect width="140" height="80" rx="10" fill="#1a1530" stroke="#B74BFF" stroke-width="2"/>
+    <text x="70" y="25" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">Zookeeper</text>
+    <text x="70" y="42" text-anchor="middle" fill="#8aa0c8" font-size="10">/counter znode</text>
+    <text x="70" y="62" text-anchor="middle" fill="#B74BFF" font-size="14" font-weight="700" font-family="monospace">
+      <tspan>3,000,000</tspan>
+      <animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/>
+    </text>
+    <text x="70" y="74" text-anchor="middle" fill="#8aa0c8" font-size="8">global monotonic</text>
+  </g>
+
+  <!-- Counter Service -->
+  <g transform="translate(270, 110)">
+    <rect width="160" height="80" rx="10" fill="#1e1a2f" stroke="#B74BFF" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" fill="#fff" font-size="12" font-weight="800">Counter Service</text>
+    <text x="80" y="42" text-anchor="middle" fill="#8aa0c8" font-size="10">hands out 1M ranges</text>
+    <text x="80" y="62" text-anchor="middle" fill="#FFB74D" font-size="11" font-family="monospace">[3M → 4M]</text>
+    <text x="80" y="76" text-anchor="middle" fill="#8aa0c8" font-size="8">acquire ZK lock · bump · release</text>
+  </g>
+
+  <!-- App Server 1 -->
+  <g transform="translate(490, 70)">
+    <rect width="140" height="70" rx="8" fill="#141f1a" stroke="#81C784" stroke-width="2"/>
+    <text x="70" y="22" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">App Server A</text>
+    <text x="70" y="40" text-anchor="middle" fill="#8aa0c8" font-size="9">range [1M → 2M]</text>
+    <text x="70" y="58" text-anchor="middle" fill="#81C784" font-size="11" font-family="monospace">next id = 1,041,237</text>
+  </g>
+
+  <!-- App Server 2 -->
+  <g transform="translate(490, 160)">
+    <rect width="140" height="70" rx="8" fill="#141f1a" stroke="#81C784" stroke-width="2"/>
+    <text x="70" y="22" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">App Server B</text>
+    <text x="70" y="40" text-anchor="middle" fill="#8aa0c8" font-size="9">range [2M → 3M]</text>
+    <text x="70" y="58" text-anchor="middle" fill="#81C784" font-size="11" font-family="monospace">next id = 2,589,044</text>
+  </g>
+
+  <!-- Arrows -->
+  <path d="M200 150 L270 150" stroke="#B74BFF" stroke-width="1.5" marker-end="url(#ar2)"/>
+  <path d="M430 145 L490 105" stroke="#81C784" stroke-width="1.5" marker-end="url(#ar2)"/>
+  <path d="M430 160 L490 195" stroke="#81C784" stroke-width="1.5" marker-end="url(#ar2)"/>
+
+  <!-- Base62 encoding demo -->
+  <g transform="translate(60, 260)">
+    <text x="0" y="0" fill="#4FC3F7" font-size="14" font-weight="800">Base62 encoding — 7 chars = 3.5 TRILLION URLs</text>
+    <text x="0" y="22" fill="#8aa0c8" font-size="11">charset: a-z · A-Z · 0-9  (62 chars) · 62⁷ = 3,521,614,606,208</text>
+
+    <!-- Conversion visual -->
+    <g transform="translate(0, 50)">
+      <rect x="0" y="0" width="170" height="50" rx="8" fill="#1a2340" stroke="#4FC3F7" stroke-width="1.5"/>
+      <text x="85" y="18" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">counter id</text>
+      <text x="85" y="38" text-anchor="middle" fill="#4FC3F7" font-size="16" font-family="monospace" font-weight="700">1,041,237</text>
+    </g>
+
+    <g transform="translate(200, 60)">
+      <text x="0" y="20" fill="#FFB74D" font-size="18" font-family="monospace">→  divide by 62, take remainder, repeat  →</text>
+    </g>
+
+    <g transform="translate(530, 50)">
+      <rect x="0" y="0" width="170" height="50" rx="8" fill="#2a1e2f" stroke="#EC407A" stroke-width="1.5"/>
+      <text x="85" y="18" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">short_code</text>
+      <text x="85" y="38" text-anchor="middle" fill="#EC407A" font-size="18" font-family="monospace" font-weight="800">
+        <tspan>4Gp2Xb9</tspan>
+        <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite"/>
+      </text>
+    </g>
+  </g>
+
+  <!-- Flow at bottom -->
+  <g transform="translate(40, 360)">
+    <text x="0" y="0" fill="#fff" font-size="12" font-weight="700">WHY this beats the alternatives</text>
+
+    <text x="0" y="24" fill="#FF5252" font-size="11" font-weight="700">✗ MD5 hash · first 7 chars</text>
+    <text x="220" y="24" fill="#8aa0c8" font-size="10">→ random collisions · every write does a DB probe · melts at 1200 writes/sec</text>
+
+    <text x="0" y="44" fill="#FF5252" font-size="11" font-weight="700">✗ Random base62</text>
+    <text x="220" y="44" fill="#8aa0c8" font-size="10">→ same probe-loop problem · collision probability grows with URL count</text>
+
+    <text x="0" y="64" fill="#81C784" font-size="11" font-weight="700">✓ Counter + ZK ranges</text>
+    <text x="220" y="64" fill="#8aa0c8" font-size="10">→ guaranteed unique · local allocation · ZK hit only every ~1M writes</text>
+  </g>
+
+  <!-- animated pulse on packet moving from ZK to counter to app -->
+  <circle r="5" fill="#B74BFF">
+    <animateMotion dur="5s" repeatCount="indefinite" path="M200 150 L270 150 L430 160 L490 195"/>
+  </circle>
+</svg>

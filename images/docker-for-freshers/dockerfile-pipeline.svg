@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="380" viewBox="0 0 780 380">
+  <defs>
+    <linearGradient id="bg-pipe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A" />
+      <stop offset="100%" stop-color="#0F1A2E" />
+    </linearGradient>
+    <linearGradient id="dockerfile-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="image-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B4252" />
+      <stop offset="100%" stop-color="#2E3440" />
+    </linearGradient>
+    <linearGradient id="container-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="glow-pipe" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="780" height="380" fill="url(#bg-pipe)" />
+
+  <!-- Title -->
+  <text x="390" y="32" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="800">Dockerfile → Image → Container</text>
+  <text x="390" y="56" text-anchor="middle" fill="#7A8AA0" font-family="Montserrat, sans-serif" font-size="14" font-weight="600">Recipe → Frozen artifact → Live process</text>
+
+  <!-- DOCKERFILE -->
+  <g transform="translate(40, 130)">
+    <rect x="0" y="0" width="180" height="140" rx="10" fill="url(#dockerfile-bg)" stroke="#FBBF24" stroke-width="2" />
+    <rect x="0" y="0" width="180" height="22" rx="10" fill="#FBBF24" />
+    <text x="90" y="16" text-anchor="middle" fill="#0F172A" font-family="JetBrains Mono, monospace" font-size="11" font-weight="800">Dockerfile</text>
+    <text x="14" y="46" fill="#FBBF24" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">FROM</text>
+    <text x="58" y="46" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="13">node:20-alpine</text>
+    <text x="14" y="72" fill="#FBBF24" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">COPY</text>
+    <text x="58" y="72" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="13">. /app</text>
+    <text x="14" y="98" fill="#FBBF24" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">CMD</text>
+    <text x="58" y="98" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="13">["node","app.js"]</text>
+    <text x="90" y="125" text-anchor="middle" fill="#FBBF24" font-family="Montserrat, sans-serif" font-size="13" font-weight="800">RECIPE</text>
+  </g>
+
+  <!-- arrow 1: build -->
+  <g transform="translate(225, 200)">
+    <line x1="0" y1="0" x2="80" y2="0" stroke="#FBBF24" stroke-width="2" filter="url(#glow-pipe)" />
+    <polygon points="80,-6 92,0 80,6" fill="#FBBF24" filter="url(#glow-pipe)" />
+    <text x="46" y="-12" text-anchor="middle" fill="#FBBF24" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">docker build</text>
+    <!-- traveling packet -->
+    <circle r="5" fill="#fff" filter="url(#glow-pipe)">
+      <animate attributeName="cx" values="0;90" dur="1.6s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="0;0" dur="1.6s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="1.6s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <!-- IMAGE -->
+  <g transform="translate(320, 130)">
+    <rect x="0" y="0" width="140" height="140" rx="10" fill="url(#image-bg)" stroke="#7DD3FC" stroke-width="2" />
+    <rect x="0" y="0" width="140" height="22" rx="10" fill="#7DD3FC" />
+    <text x="70" y="16" text-anchor="middle" fill="#0F172A" font-family="Montserrat, sans-serif" font-size="11" font-weight="800">IMAGE (frozen)</text>
+    <!-- snowflake -->
+    <text x="70" y="55" text-anchor="middle" fill="#7DD3FC" font-family="Arial" font-size="32">❄</text>
+    <!-- layers inside -->
+    <rect x="20" y="70" width="100" height="10" rx="2" fill="#7DD3FC" opacity="0.6" />
+    <rect x="20" y="84" width="100" height="10" rx="2" fill="#7DD3FC" opacity="0.45" />
+    <rect x="20" y="98" width="100" height="10" rx="2" fill="#7DD3FC" opacity="0.3" />
+    <text x="70" y="125" text-anchor="middle" fill="#7DD3FC" font-family="Montserrat, sans-serif" font-size="13" font-weight="800">myapp:v1</text>
+  </g>
+
+  <!-- arrow 2: run -->
+  <g transform="translate(465, 200)">
+    <line x1="0" y1="0" x2="80" y2="0" stroke="#10B981" stroke-width="2" filter="url(#glow-pipe)" />
+    <polygon points="80,-6 92,0 80,6" fill="#10B981" filter="url(#glow-pipe)" />
+    <text x="46" y="-12" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">docker run</text>
+    <circle r="5" fill="#fff" filter="url(#glow-pipe)">
+      <animate attributeName="cx" values="0;90" dur="1.6s" begin="0.4s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="0;0" dur="1.6s" begin="0.4s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.85;1" dur="1.6s" begin="0.4s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <!-- CONTAINER -->
+  <g transform="translate(560, 130)">
+    <rect x="0" y="0" width="180" height="140" rx="10" fill="url(#container-bg)" stroke="#34D399" stroke-width="2" filter="url(#glow-pipe)">
+      <animate attributeName="opacity" values="1;0.85;1" dur="1.4s" repeatCount="indefinite" />
+    </rect>
+    <rect x="0" y="0" width="180" height="22" rx="10" fill="#0F172A" opacity="0.5" />
+    <text x="90" y="16" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="11" font-weight="800">CONTAINER (alive)</text>
+    <!-- pulsing core -->
+    <circle cx="90" cy="68" r="22" fill="#fff" opacity="0.9" filter="url(#glow-pipe)">
+      <animate attributeName="r" values="20;26;20" dur="1.2s" repeatCount="indefinite" />
+    </circle>
+    <text x="90" y="73" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="13" font-weight="900">PID 1</text>
+    <text x="90" y="105" text-anchor="middle" fill="#fff" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700">listening :3000</text>
+    <text x="90" y="125" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="13" font-weight="800">RUNNING ▶</text>
+  </g>
+
+  <!-- footer captions -->
+  <text x="110" y="305" text-anchor="middle" fill="#FBBF24" font-family="Montserrat, sans-serif" font-size="13" font-weight="800">3 lines of text</text>
+  <text x="390" y="305" text-anchor="middle" fill="#7DD3FC" font-family="Montserrat, sans-serif" font-size="13" font-weight="800">stamped artifact</text>
+  <text x="650" y="305" text-anchor="middle" fill="#10B981" font-family="Montserrat, sans-serif" font-size="13" font-weight="800">live process</text>
+
+  <text x="390" y="350" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">Build once. Run anywhere. Push to ship.</text>
+</svg>

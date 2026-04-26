@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="amberBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#B45309"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="tealBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0F766E"/>
+      <stop offset="100%" stop-color="#22D3EE"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="760" height="460" fill="url(#bg)"/>
+  <text x="380" y="26" text-anchor="middle" fill="#ffffff" font-family="system-ui" font-size="17" font-weight="800">Kafka vs Northguard — by the Numbers</text>
+  <text x="380" y="46" text-anchor="middle" fill="#94A3B8" font-family="system-ui" font-size="12">Granularity, controller sharding, cluster count — all flip in Northguard's favor</text>
+
+  <!-- Legend -->
+  <rect x="540" y="58" width="14" height="14" fill="#F59E0B"/><text x="560" y="70" fill="#F59E0B" font-family="system-ui" font-size="11" font-weight="700">Kafka</text>
+  <rect x="620" y="58" width="14" height="14" fill="#14B8A6"/><text x="640" y="70" fill="#14B8A6" font-family="system-ui" font-size="11" font-weight="700">Northguard</text>
+
+  <!-- Row 1: Replication unit size -->
+  <g font-family="system-ui">
+    <text x="40" y="100" fill="#fff" font-size="12" font-weight="700">Replication unit size</text>
+    <rect x="40" y="108" width="0" height="22" fill="url(#amberBar)"><animate attributeName="width" from="0" to="520" dur="1.5s" begin="0s" fill="freeze"/></rect>
+    <text x="50" y="124" fill="#0A0E1A" font-size="11" font-weight="700">Partition (TB-scale)</text>
+    <rect x="40" y="134" width="0" height="22" fill="url(#tealBar)"><animate attributeName="width" from="0" to="10" dur="1.5s" begin="0.3s" fill="freeze"/></rect>
+    <text x="55" y="150" fill="#14B8A6" font-size="11" font-weight="700">Segment (1 GB) — 100× smaller</text>
+  </g>
+
+  <!-- Row 2: Controllers -->
+  <g font-family="system-ui">
+    <text x="40" y="180" fill="#fff" font-size="12" font-weight="700">Controller / coordinator count</text>
+    <rect x="40" y="188" width="0" height="22" fill="url(#amberBar)"><animate attributeName="width" from="0" to="10" dur="1.5s" begin="0.6s" fill="freeze"/></rect>
+    <text x="55" y="204" fill="#F59E0B" font-size="11" font-weight="700">1 controller</text>
+    <rect x="40" y="214" width="0" height="22" fill="url(#tealBar)"><animate attributeName="width" from="0" to="520" dur="1.5s" begin="0.9s" fill="freeze"/></rect>
+    <text x="50" y="230" fill="#0A0E1A" font-size="11" font-weight="700">128+ coordinators — 128× more</text>
+  </g>
+
+  <!-- Row 3: Rebalance data movement -->
+  <g font-family="system-ui">
+    <text x="40" y="260" fill="#fff" font-size="12" font-weight="700">Rebalance data movement</text>
+    <rect x="40" y="268" width="0" height="22" fill="url(#amberBar)"><animate attributeName="width" from="0" to="520" dur="1.5s" begin="1.2s" fill="freeze"/></rect>
+    <text x="50" y="284" fill="#0A0E1A" font-size="11" font-weight="700">TB-scale data move</text>
+    <rect x="40" y="294" width="0" height="22" fill="url(#tealBar)"><animate attributeName="width" from="0" to="8" dur="1.5s" begin="1.5s" fill="freeze"/></rect>
+    <text x="55" y="310" fill="#10B981" font-size="11" font-weight="700" filter="url(#glow)">≈ 0 — next segments land on new broker</text>
+  </g>
+
+  <!-- Row 4: Clusters needed -->
+  <g font-family="system-ui">
+    <text x="40" y="340" fill="#fff" font-size="12" font-weight="700">Clusters needed at LinkedIn scale</text>
+    <rect x="40" y="348" width="0" height="22" fill="url(#amberBar)"><animate attributeName="width" from="0" to="520" dur="1.5s" begin="1.8s" fill="freeze"/></rect>
+    <text x="50" y="364" fill="#0A0E1A" font-size="11" font-weight="700">150 clusters (current)</text>
+    <rect x="40" y="374" width="0" height="22" fill="url(#tealBar)"><animate attributeName="width" from="0" to="104" dur="1.5s" begin="2.1s" fill="freeze"/></rect>
+    <text x="150" y="390" fill="#14B8A6" font-size="11" font-weight="700">~30 clusters projected — 80%+ fewer</text>
+  </g>
+
+  <!-- Call-out for the one sourced number -->
+  <rect x="570" y="340" width="170" height="60" rx="8" fill="#1F2937" stroke="#A855F7" stroke-width="1.5"/>
+  <text x="655" y="358" text-anchor="middle" fill="#A855F7" font-family="system-ui" font-size="10" font-weight="700">THE STATED NUMBER</text>
+  <text x="655" y="376" text-anchor="middle" fill="#fff" font-family="system-ui" font-size="13" font-weight="800">80%+ fewer</text>
+  <text x="655" y="392" text-anchor="middle" fill="#94A3B8" font-family="system-ui" font-size="10">clusters — LinkedIn 2025</text>
+
+  <rect x="0" y="430" width="760" height="30" fill="#0A0E1A" opacity="0.95"/>
+  <text x="380" y="449" text-anchor="middle" fill="#22D3EE" font-family="system-ui" font-size="11" font-style="italic">Only the cluster-reduction number is officially stated by LinkedIn; others are design-level comparisons.</text>
+</svg>

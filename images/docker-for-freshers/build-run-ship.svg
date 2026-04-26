@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="380" viewBox="0 0 780 380">
+  <defs>
+    <linearGradient id="bg-brs" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" />
+      <stop offset="100%" stop-color="#0A0F1F" />
+    </linearGradient>
+    <linearGradient id="terminal-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <filter id="glow-brs" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="780" height="380" fill="url(#bg-brs)" />
+
+  <!-- scanlines for terminal feel -->
+  <g opacity="0.06">
+    <line x1="0" y1="0" x2="780" y2="0" stroke="#00FF41" stroke-width="0.5" />
+    <line x1="0" y1="40" x2="780" y2="40" stroke="#00FF41" stroke-width="0.5" />
+    <line x1="0" y1="80" x2="780" y2="80" stroke="#00FF41" stroke-width="0.5" />
+    <line x1="0" y1="120" x2="780" y2="120" stroke="#00FF41" stroke-width="0.5" />
+    <line x1="0" y1="160" x2="780" y2="160" stroke="#00FF41" stroke-width="0.5" />
+    <line x1="0" y1="200" x2="780" y2="200" stroke="#00FF41" stroke-width="0.5" />
+    <line x1="0" y1="240" x2="780" y2="240" stroke="#00FF41" stroke-width="0.5" />
+    <line x1="0" y1="280" x2="780" y2="280" stroke="#00FF41" stroke-width="0.5" />
+    <line x1="0" y1="320" x2="780" y2="320" stroke="#00FF41" stroke-width="0.5" />
+  </g>
+
+  <!-- Title -->
+  <text x="390" y="32" text-anchor="middle" fill="#00FF41" font-family="JetBrains Mono, monospace" font-size="18" font-weight="800">$ docker build → run → push</text>
+  <text x="390" y="56" text-anchor="middle" fill="#94A3B8" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">three commands · 95% of daily Docker usage</text>
+
+  <!-- BUILD -->
+  <g transform="translate(40, 110)">
+    <rect x="0" y="0" width="220" height="180" rx="10" fill="url(#terminal-bg)" stroke="#FBBF24" stroke-width="2" filter="url(#glow-brs)">
+      <animate attributeName="opacity" values="1;0.95;1" dur="1.8s" repeatCount="indefinite" />
+    </rect>
+    <!-- step number -->
+    <circle cx="36" cy="36" r="22" fill="#FBBF24" filter="url(#glow-brs)" />
+    <text x="36" y="44" text-anchor="middle" fill="#0F172A" font-family="Montserrat, sans-serif" font-size="22" font-weight="900">1</text>
+    <text x="76" y="44" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="900">BUILD</text>
+    <line x1="14" y1="68" x2="206" y2="68" stroke="#FBBF24" stroke-width="0.5" opacity="0.5" />
+    <!-- command -->
+    <text x="14" y="94" fill="#00FF41" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">$ docker build</text>
+    <text x="14" y="112" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="11">  -t myapp:v1 .</text>
+    <text x="14" y="138" fill="#FBBF24" font-family="JetBrains Mono, monospace" font-size="11">→ Step 1/5 FROM ✓</text>
+    <text x="14" y="154" fill="#FBBF24" font-family="JetBrains Mono, monospace" font-size="11">→ Step 5/5 CMD ✓</text>
+    <text x="110" y="172" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">image created</text>
+  </g>
+
+  <!-- arrow 1 -->
+  <g transform="translate(265, 200)">
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#00FF41" stroke-width="2" filter="url(#glow-brs)" />
+    <polygon points="20,-5 28,0 20,5" fill="#00FF41" filter="url(#glow-brs)" />
+    <circle r="3" fill="#fff" filter="url(#glow-brs)">
+      <animate attributeName="cx" values="0;28" dur="1.2s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <!-- RUN -->
+  <g transform="translate(298, 110)">
+    <rect x="0" y="0" width="220" height="180" rx="10" fill="url(#terminal-bg)" stroke="#10B981" stroke-width="2" filter="url(#glow-brs)">
+      <animate attributeName="opacity" values="0.95;1;0.95" dur="1.8s" begin="0.3s" repeatCount="indefinite" />
+    </rect>
+    <circle cx="36" cy="36" r="22" fill="#10B981" filter="url(#glow-brs)" />
+    <text x="36" y="44" text-anchor="middle" fill="#0F172A" font-family="Montserrat, sans-serif" font-size="22" font-weight="900">2</text>
+    <text x="76" y="44" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="900">RUN</text>
+    <line x1="14" y1="68" x2="206" y2="68" stroke="#10B981" stroke-width="0.5" opacity="0.5" />
+    <text x="14" y="94" fill="#00FF41" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">$ docker run</text>
+    <text x="14" y="112" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="11">  -p 3000:3000 myapp:v1</text>
+    <text x="14" y="138" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="11">→ container started</text>
+    <text x="14" y="154" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="11">→ Listening :3000 ▶</text>
+    <text x="110" y="172" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">app is alive</text>
+  </g>
+
+  <!-- arrow 2 -->
+  <g transform="translate(523, 200)">
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#00FF41" stroke-width="2" filter="url(#glow-brs)" />
+    <polygon points="20,-5 28,0 20,5" fill="#00FF41" filter="url(#glow-brs)" />
+    <circle r="3" fill="#fff" filter="url(#glow-brs)">
+      <animate attributeName="cx" values="0;28" dur="1.2s" begin="0.4s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <!-- PUSH -->
+  <g transform="translate(556, 110)">
+    <rect x="0" y="0" width="220" height="180" rx="10" fill="url(#terminal-bg)" stroke="#A855F7" stroke-width="2" filter="url(#glow-brs)">
+      <animate attributeName="opacity" values="0.9;1;0.9" dur="1.8s" begin="0.6s" repeatCount="indefinite" />
+    </rect>
+    <circle cx="36" cy="36" r="22" fill="#A855F7" filter="url(#glow-brs)" />
+    <text x="36" y="44" text-anchor="middle" fill="#0F172A" font-family="Montserrat, sans-serif" font-size="22" font-weight="900">3</text>
+    <text x="76" y="44" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="900">PUSH</text>
+    <line x1="14" y1="68" x2="206" y2="68" stroke="#A855F7" stroke-width="0.5" opacity="0.5" />
+    <text x="14" y="94" fill="#00FF41" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">$ docker push</text>
+    <text x="14" y="112" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">  myorg/myapp:v1</text>
+    <text x="14" y="138" fill="#A855F7" font-family="JetBrains Mono, monospace" font-size="11">→ uploading layers...</text>
+    <text x="14" y="154" fill="#A855F7" font-family="JetBrains Mono, monospace" font-size="11">→ pushed ✓</text>
+    <text x="110" y="172" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">team can pull</text>
+  </g>
+
+  <!-- footer -->
+  <text x="390" y="335" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="15" font-weight="800">Same image. Laptop → Staging → Production.</text>
+  <text x="390" y="360" text-anchor="middle" fill="#94A3B8" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">Identical bytes everywhere · zero drift</text>
+</svg>

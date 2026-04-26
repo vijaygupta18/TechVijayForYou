@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="420" viewBox="0 0 780 420">
+  <defs>
+    <linearGradient id="bg-ship" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A" />
+      <stop offset="100%" stop-color="#0F1A2E" />
+    </linearGradient>
+    <linearGradient id="container-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00D4FF" />
+      <stop offset="100%" stop-color="#0EA5E9" />
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="1" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0" />
+    </linearGradient>
+    <filter id="glow-ship" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="780" height="420" fill="url(#bg-ship)" />
+
+  <!-- Title -->
+  <text x="390" y="34" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="800">Same Box. Every Transport.</text>
+  <text x="390" y="58" text-anchor="middle" fill="#7A8AA0" font-family="Montserrat, sans-serif" font-size="14" font-weight="600">Truck → Ship → Train · the box never changes</text>
+
+  <!-- ground line -->
+  <rect x="0" y="320" width="780" height="80" fill="url(#ground)" />
+  <line x1="40" y1="335" x2="740" y2="335" stroke="#334155" stroke-width="2" stroke-dasharray="6 6" />
+
+  <!-- TRUCK -->
+  <g transform="translate(70, 215)">
+    <text x="80" y="-10" text-anchor="middle" fill="#94A3B8" font-family="Montserrat, sans-serif" font-size="13" font-weight="700">TRUCK</text>
+    <!-- truck cab -->
+    <rect x="0" y="60" width="40" height="40" rx="4" fill="#475569" stroke="#94A3B8" stroke-width="1.5" />
+    <rect x="6" y="68" width="28" height="18" rx="2" fill="#1E293B" />
+    <!-- truck bed/container -->
+    <rect x="42" y="38" width="120" height="62" rx="3" fill="url(#container-grad)" stroke="#fff" stroke-width="1.5" filter="url(#glow-ship)">
+      <animate attributeName="y" values="38;36;38;36;38" dur="2s" begin="0s" repeatCount="indefinite" />
+    </rect>
+    <text x="102" y="76" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="11" font-weight="800">CARGO</text>
+    <!-- container ridges -->
+    <line x1="60" y1="42" x2="60" y2="96" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="80" y1="42" x2="80" y2="96" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="100" y1="42" x2="100" y2="96" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="120" y1="42" x2="120" y2="96" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="140" y1="42" x2="140" y2="96" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <!-- wheels -->
+    <circle cx="20" cy="106" r="9" fill="#1F2937" stroke="#64748B" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 20 106" to="360 20 106" dur="1s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="60" cy="106" r="9" fill="#1F2937" stroke="#64748B" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 60 106" to="360 60 106" dur="1s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="130" cy="106" r="9" fill="#1F2937" stroke="#64748B" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 130 106" to="360 130 106" dur="1s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <!-- arrow -->
+  <g transform="translate(255, 280)">
+    <path d="M 0 0 L 28 0 M 22 -6 L 28 0 L 22 6" stroke="#00D4FF" stroke-width="2" fill="none" filter="url(#glow-ship)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" />
+    </path>
+  </g>
+
+  <!-- SHIP -->
+  <g transform="translate(295, 215)">
+    <text x="80" y="-10" text-anchor="middle" fill="#94A3B8" font-family="Montserrat, sans-serif" font-size="13" font-weight="700">SHIP</text>
+    <!-- water -->
+    <path d="M -10 100 Q 30 96 80 100 T 170 100 L 170 120 L -10 120 Z" fill="#0EA5E9" opacity="0.3">
+      <animate attributeName="d" values="M -10 100 Q 30 96 80 100 T 170 100 L 170 120 L -10 120 Z;M -10 100 Q 30 100 80 96 T 170 100 L 170 120 L -10 120 Z;M -10 100 Q 30 96 80 100 T 170 100 L 170 120 L -10 120 Z" dur="2s" repeatCount="indefinite" />
+    </path>
+    <!-- ship hull -->
+    <path d="M 0 80 L 160 80 L 145 110 L 15 110 Z" fill="#475569" stroke="#94A3B8" stroke-width="1.5" />
+    <!-- bridge -->
+    <rect x="115" y="55" width="35" height="25" fill="#64748B" stroke="#94A3B8" stroke-width="1" />
+    <rect x="120" y="60" width="6" height="6" fill="#FBBF24" />
+    <rect x="130" y="60" width="6" height="6" fill="#FBBF24" />
+    <!-- container on top -->
+    <rect x="20" y="40" width="80" height="42" rx="2" fill="url(#container-grad)" stroke="#fff" stroke-width="1.5" filter="url(#glow-ship)">
+      <animate attributeName="y" values="40;38;40;38;40" dur="2s" begin="0.3s" repeatCount="indefinite" />
+    </rect>
+    <text x="60" y="66" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="10" font-weight="800">CARGO</text>
+    <line x1="35" y1="42" x2="35" y2="80" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="50" y1="42" x2="50" y2="80" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="65" y1="42" x2="65" y2="80" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="80" y1="42" x2="80" y2="80" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+  </g>
+
+  <!-- arrow 2 -->
+  <g transform="translate(485, 280)">
+    <path d="M 0 0 L 28 0 M 22 -6 L 28 0 L 22 6" stroke="#00D4FF" stroke-width="2" fill="none" filter="url(#glow-ship)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" begin="0.5s" repeatCount="indefinite" />
+    </path>
+  </g>
+
+  <!-- TRAIN -->
+  <g transform="translate(525, 215)">
+    <text x="100" y="-10" text-anchor="middle" fill="#94A3B8" font-family="Montserrat, sans-serif" font-size="13" font-weight="700">TRAIN</text>
+    <!-- locomotive -->
+    <rect x="0" y="55" width="50" height="50" rx="3" fill="#475569" stroke="#94A3B8" stroke-width="1.5" />
+    <rect x="6" y="62" width="38" height="20" rx="2" fill="#1E293B" />
+    <rect x="22" y="40" width="10" height="20" fill="#475569" />
+    <!-- container car -->
+    <rect x="55" y="40" width="80" height="65" rx="2" fill="url(#container-grad)" stroke="#fff" stroke-width="1.5" filter="url(#glow-ship)">
+      <animate attributeName="y" values="40;38;40;38;40" dur="2s" begin="0.6s" repeatCount="indefinite" />
+    </rect>
+    <text x="95" y="76" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="11" font-weight="800">CARGO</text>
+    <line x1="70" y1="42" x2="70" y2="103" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="85" y1="42" x2="85" y2="103" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="100" y1="42" x2="100" y2="103" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <line x1="115" y1="42" x2="115" y2="103" stroke="#fff" stroke-width="0.6" opacity="0.4" />
+    <!-- wheels -->
+    <circle cx="15" cy="110" r="7" fill="#1F2937" stroke="#64748B" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 15 110" to="360 15 110" dur="0.7s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="40" cy="110" r="7" fill="#1F2937" stroke="#64748B" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 40 110" to="360 40 110" dur="0.7s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="70" cy="110" r="7" fill="#1F2937" stroke="#64748B" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 70 110" to="360 70 110" dur="0.7s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="125" cy="110" r="7" fill="#1F2937" stroke="#64748B" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" from="0 125 110" to="360 125 110" dur="0.7s" repeatCount="indefinite" />
+    </circle>
+    <!-- track -->
+    <line x1="0" y1="120" x2="155" y2="120" stroke="#64748B" stroke-width="2" />
+  </g>
+
+  <!-- footer takeaway -->
+  <text x="390" y="380" text-anchor="middle" fill="#00D4FF" font-family="Montserrat, sans-serif" font-size="15" font-weight="800">Docker = the same idea, applied to software</text>
+  <text x="390" y="400" text-anchor="middle" fill="#94A3B8" font-family="Montserrat, sans-serif" font-size="12" font-weight="600">One image runs identically on laptop, cloud, edge, anywhere.</text>
+</svg>

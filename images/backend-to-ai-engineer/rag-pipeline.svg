@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="320" viewBox="0 0 800 320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <radialGradient id="packetGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#00E5FF" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bm25Glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#FFB800" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#FFB800" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <text x="400" y="28" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="sans-serif">PRODUCTION RAG PIPELINE</text>
+  <text x="400" y="50" text-anchor="middle" fill="#9BA5B7" font-size="13" font-family="sans-serif">Hybrid retrieval + rerank — how real teams ship RAG in 2026</text>
+
+  <!-- Connection lines -->
+  <!-- Query to Embed -->
+  <line x1="95" y1="150" x2="150" y2="150" stroke="#2A3550" stroke-width="1.5"/>
+  <!-- Embed splits to Vector + BM25 -->
+  <line x1="230" y1="150" x2="290" y2="110" stroke="#2A3550" stroke-width="1.5"/>
+  <line x1="230" y1="150" x2="290" y2="190" stroke="#2A3550" stroke-width="1.5"/>
+  <!-- Vector + BM25 merge into RRF -->
+  <line x1="400" y1="110" x2="455" y2="150" stroke="#2A3550" stroke-width="1.5"/>
+  <line x1="400" y1="190" x2="455" y2="150" stroke="#2A3550" stroke-width="1.5"/>
+  <!-- RRF to Reranker -->
+  <line x1="525" y1="150" x2="575" y2="150" stroke="#2A3550" stroke-width="1.5"/>
+  <!-- Reranker to Context -->
+  <line x1="650" y1="150" x2="675" y2="150" stroke="#2A3550" stroke-width="1.5"/>
+  <!-- Context to LLM (wrap back) -->
+  <line x1="745" y1="150" x2="760" y2="150" stroke="#2A3550" stroke-width="1.5"/>
+  <line x1="760" y1="150" x2="760" y2="240" stroke="#2A3550" stroke-width="1.5"/>
+  <line x1="760" y1="240" x2="400" y2="240" stroke="#2A3550" stroke-width="1.5"/>
+  <line x1="400" y1="240" x2="400" y2="250" stroke="#2A3550" stroke-width="1.5"/>
+
+  <!-- NODE: USER QUERY -->
+  <g>
+    <rect x="25" y="130" width="70" height="40" rx="6" fill="#0F1428" stroke="#9BA5B7" stroke-width="1.5"/>
+    <text x="60" y="148" text-anchor="middle" fill="#fff" font-size="10" font-weight="800" font-family="sans-serif">USER</text>
+    <text x="60" y="162" text-anchor="middle" fill="#fff" font-size="10" font-weight="800" font-family="sans-serif">QUERY</text>
+  </g>
+
+  <!-- NODE: EMBED -->
+  <g>
+    <rect x="150" y="130" width="80" height="40" rx="6" fill="#0F2430" stroke="#00E5FF" stroke-width="1.5">
+      <animate attributeName="stroke" values="#00E5FF;#fff;#00E5FF" keyTimes="0;0.1;0.2" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1.5;3;1.5" keyTimes="0;0.1;0.2" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="190" y="155" text-anchor="middle" fill="#00E5FF" font-size="12" font-weight="800" font-family="sans-serif">EMBED</text>
+  </g>
+
+  <!-- NODE: VECTOR SEARCH -->
+  <g>
+    <rect x="290" y="88" width="110" height="44" rx="6" fill="#0F2430" stroke="#00E5FF" stroke-width="1.5">
+      <animate attributeName="stroke" values="#00E5FF;#fff;#00E5FF" keyTimes="0;0.25;0.35" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1.5;3;1.5" keyTimes="0;0.25;0.35" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="345" y="106" text-anchor="middle" fill="#00E5FF" font-size="11" font-weight="800" font-family="sans-serif">VECTOR SEARCH</text>
+    <text x="345" y="122" text-anchor="middle" fill="#9BA5B7" font-size="9" font-family="sans-serif">pgvector / Pinecone</text>
+  </g>
+
+  <!-- NODE: BM25 -->
+  <g>
+    <rect x="290" y="168" width="110" height="44" rx="6" fill="#2B2010" stroke="#FFB800" stroke-width="1.5">
+      <animate attributeName="stroke" values="#FFB800;#fff;#FFB800" keyTimes="0;0.25;0.35" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1.5;3;1.5" keyTimes="0;0.25;0.35" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="345" y="186" text-anchor="middle" fill="#FFB800" font-size="11" font-weight="800" font-family="sans-serif">BM25</text>
+    <text x="345" y="202" text-anchor="middle" fill="#9BA5B7" font-size="9" font-family="sans-serif">keyword match</text>
+  </g>
+
+  <!-- NODE: RRF FUSION -->
+  <g>
+    <rect x="455" y="130" width="70" height="40" rx="6" fill="#1A2230" stroke="#7AA5FF" stroke-width="1.5">
+      <animate attributeName="stroke" values="#7AA5FF;#fff;#7AA5FF" keyTimes="0;0.45;0.55" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1.5;3;1.5" keyTimes="0;0.45;0.55" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="490" y="148" text-anchor="middle" fill="#7AA5FF" font-size="11" font-weight="800" font-family="sans-serif">RRF</text>
+    <text x="490" y="162" text-anchor="middle" fill="#9BA5B7" font-size="9" font-family="sans-serif">fusion</text>
+  </g>
+
+  <!-- NODE: RERANKER -->
+  <g>
+    <rect x="575" y="130" width="75" height="40" rx="6" fill="#20162B" stroke="#B74BFF" stroke-width="1.5">
+      <animate attributeName="stroke" values="#B74BFF;#fff;#B74BFF" keyTimes="0;0.6;0.7" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1.5;3;1.5" keyTimes="0;0.6;0.7" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="612" y="148" text-anchor="middle" fill="#B74BFF" font-size="11" font-weight="800" font-family="sans-serif">RERANKER</text>
+    <text x="612" y="162" text-anchor="middle" fill="#9BA5B7" font-size="9" font-family="sans-serif">cross-encoder</text>
+  </g>
+
+  <!-- NODE: CONTEXT INJECTION -->
+  <g>
+    <rect x="675" y="130" width="70" height="40" rx="6" fill="#20162B" stroke="#B74BFF" stroke-width="1.5">
+      <animate attributeName="stroke" values="#B74BFF;#fff;#B74BFF" keyTimes="0;0.72;0.8" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="710" y="148" text-anchor="middle" fill="#B74BFF" font-size="10" font-weight="800" font-family="sans-serif">CONTEXT</text>
+    <text x="710" y="162" text-anchor="middle" fill="#9BA5B7" font-size="9" font-family="sans-serif">inject</text>
+  </g>
+
+  <!-- NODE: LLM -->
+  <g>
+    <rect x="330" y="250" width="140" height="40" rx="6" fill="#2B1630" stroke="#B74BFF" stroke-width="1.5">
+      <animate attributeName="stroke" values="#B74BFF;#fff;#B74BFF" keyTimes="0;0.85;0.95" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="1.5;3;1.5" keyTimes="0;0.85;0.95" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text x="400" y="268" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="sans-serif">LLM → STREAM RESPONSE</text>
+    <text x="400" y="282" text-anchor="middle" fill="#D8BFFF" font-size="9" font-family="sans-serif">Claude Sonnet 4.6</text>
+  </g>
+
+  <!-- Hidden motion paths -->
+  <path id="vectorPath" d="M 60 150 L 190 150 L 345 110" fill="none" stroke="none"/>
+  <path id="bm25Path" d="M 60 150 L 190 150 L 345 190" fill="none" stroke="none"/>
+  <path id="mergePath" d="M 345 110 L 490 150 L 612 150 L 710 150 L 760 150 L 760 240 L 400 240 L 400 260" fill="none" stroke="none"/>
+  <path id="mergePath2" d="M 345 190 L 490 150 L 612 150 L 710 150 L 760 150 L 760 240 L 400 240 L 400 260" fill="none" stroke="none"/>
+
+  <!-- Packet 1: Vector branch (cyan) -->
+  <g>
+    <circle cx="0" cy="0" r="10" fill="url(#packetGlow)" opacity="0.9"/>
+    <circle cx="0" cy="0" r="5" fill="#00E5FF"/>
+    <animateMotion dur="6s" repeatCount="indefinite" keyTimes="0;0.3;1" keyPoints="0;1;1">
+      <mpath href="#vectorPath"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3;0.31;1" dur="6s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Packet 2: BM25 branch (amber) -->
+  <g>
+    <circle cx="0" cy="0" r="10" fill="url(#bm25Glow)" opacity="0.9"/>
+    <circle cx="0" cy="0" r="5" fill="#FFB800"/>
+    <animateMotion dur="6s" repeatCount="indefinite" keyTimes="0;0.3;1" keyPoints="0;1;1">
+      <mpath href="#bm25Path"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.3;0.31;1" dur="6s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Merged packet after RRF (violet) -->
+  <g>
+    <circle cx="0" cy="0" r="12" fill="url(#packetGlow)" opacity="0.9"/>
+    <circle cx="0" cy="0" r="6" fill="#B74BFF"/>
+    <animateMotion dur="6s" repeatCount="indefinite" keyTimes="0;0.32;0.33;1" keyPoints="0;0;1;1">
+      <mpath href="#mergePath"/>
+    </animateMotion>
+    <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.32;0.33;1" dur="6s" repeatCount="indefinite"/>
+  </g>
+
+  <!-- Caption strip -->
+  <rect x="0" y="294" width="800" height="26" fill="#000" opacity="0.4"/>
+  <text x="400" y="311" text-anchor="middle" fill="#9BA5B7" font-size="11" font-family="sans-serif">Naive RAG = prototype. Production RAG = hybrid + rerank.</text>
+</svg>

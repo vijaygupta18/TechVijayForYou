@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#5A6375"/>
+      <stop offset="100%" stop-color="#9BA5B7"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#0099B3"/>
+      <stop offset="100%" stop-color="#00E5FF"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#7A2FB0"/>
+      <stop offset="100%" stop-color="#B74BFF"/>
+    </linearGradient>
+    <linearGradient id="bar4" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="50%" stop-color="#7AA5FF"/>
+      <stop offset="100%" stop-color="#B74BFF"/>
+    </linearGradient>
+    <linearGradient id="shimmer" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#fff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <text x="360" y="28" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="sans-serif">The pivot pays.</text>
+  <text x="360" y="50" text-anchor="middle" fill="#9BA5B7" font-size="13" font-family="sans-serif">Backend-only vs. backend + AI — Indian product companies, 2026</text>
+
+  <!-- Y-axis gridlines -->
+  <line x1="60" y1="80" x2="700" y2="80" stroke="#1F2940" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="60" y1="140" x2="700" y2="140" stroke="#1F2940" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="60" y1="200" x2="700" y2="200" stroke="#1F2940" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="60" y1="260" x2="700" y2="260" stroke="#1F2940" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="60" y1="300" x2="700" y2="300" stroke="#2A3550" stroke-width="1.5"/>
+
+  <!-- Y-axis labels (LPA scale: 0 at y=300, 80 at y=80, so 220px = 80 LPA → 2.75px per LPA) -->
+  <text x="52" y="304" text-anchor="end" fill="#5A6375" font-size="10" font-family="monospace">0</text>
+  <text x="52" y="264" text-anchor="end" fill="#5A6375" font-size="10" font-family="monospace">20</text>
+  <text x="52" y="204" text-anchor="end" fill="#5A6375" font-size="10" font-family="monospace">40</text>
+  <text x="52" y="144" text-anchor="end" fill="#5A6375" font-size="10" font-family="monospace">60</text>
+  <text x="52" y="84" text-anchor="end" fill="#5A6375" font-size="10" font-family="monospace">80</text>
+  <text x="35" y="190" text-anchor="middle" fill="#9BA5B7" font-size="10" font-family="sans-serif" transform="rotate(-90 35 190)">LPA (₹)</text>
+
+  <!-- Bar 1: Backend Engineer - 13 LPA -->
+  <!-- Final height: 13 * 2.75 = 35.75px, top at y=300-35.75 = 264.25 -->
+  <g>
+    <rect x="95" y="300" width="100" height="0" fill="url(#bar1)" rx="4">
+      <animate attributeName="height" values="0;36;36;36;0" keyTimes="0;0.2;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="300;264;264;264;300" keyTimes="0;0.2;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <!-- shimmer -->
+    <rect x="95" y="264" width="100" height="36" fill="url(#shimmer)" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.6;0;0" keyTimes="0;0.25;0.4;0.55;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="x" values="95;195;195" keyTimes="0;0.55;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <text x="145" y="258" text-anchor="middle" fill="#fff" font-size="15" font-weight="800" font-family="monospace" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.2;0.3;0.9;1" dur="7s" repeatCount="indefinite"/>
+      ₹13 LPA
+    </text>
+    <text x="145" y="320" text-anchor="middle" fill="#9BA5B7" font-size="10" font-weight="700" font-family="sans-serif">Backend</text>
+    <text x="145" y="334" text-anchor="middle" fill="#5A6375" font-size="9" font-family="sans-serif">median, India</text>
+  </g>
+
+  <!-- Bar 2: Backend + AI - 21.6 LPA -->
+  <!-- Final height: 21.6 * 2.75 = 59.4px, top at y=300-59.4 = 240.6 -->
+  <g>
+    <rect x="245" y="300" width="100" height="0" fill="url(#bar2)" rx="4">
+      <animate attributeName="height" values="0;0;60;60;60;0" keyTimes="0;0.15;0.35;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="300;300;240;240;240;300" keyTimes="0;0.15;0.35;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="245" y="240" width="100" height="60" fill="url(#shimmer)" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.6;0;0" keyTimes="0;0.4;0.5;0.65;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="x" values="245;345;345" keyTimes="0;0.65;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <text x="295" y="234" text-anchor="middle" fill="#00E5FF" font-size="15" font-weight="800" font-family="monospace" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.35;0.45;0.9;1" dur="7s" repeatCount="indefinite"/>
+      ₹21.6 LPA
+    </text>
+    <text x="295" y="320" text-anchor="middle" fill="#00E5FF" font-size="10" font-weight="700" font-family="sans-serif">Backend + AI</text>
+    <text x="295" y="334" text-anchor="middle" fill="#5A6375" font-size="9" font-family="sans-serif">add LLM/RAG skills</text>
+  </g>
+
+  <!-- Bar 3: GenAI Engineer - 38 LPA -->
+  <!-- Final height: 38 * 2.75 = 104.5px, top at y=300-104.5 = 195.5 -->
+  <g>
+    <rect x="395" y="300" width="100" height="0" fill="url(#bar3)" rx="4">
+      <animate attributeName="height" values="0;0;0;105;105;105;0" keyTimes="0;0.2;0.45;0.5;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="300;300;300;195;195;195;300" keyTimes="0;0.2;0.45;0.5;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="395" y="195" width="100" height="105" fill="url(#shimmer)" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.6;0;0" keyTimes="0;0.55;0.65;0.75;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="x" values="395;495;495" keyTimes="0;0.75;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <text x="445" y="188" text-anchor="middle" fill="#B74BFF" font-size="15" font-weight="800" font-family="monospace" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5;0.6;0.9;1" dur="7s" repeatCount="indefinite"/>
+      ₹38 LPA
+    </text>
+    <text x="445" y="320" text-anchor="middle" fill="#B74BFF" font-size="10" font-weight="700" font-family="sans-serif">GenAI Engineer</text>
+    <text x="445" y="334" text-anchor="middle" fill="#5A6375" font-size="9" font-family="sans-serif">production LLM apps</text>
+  </g>
+
+  <!-- Bar 4: Senior GenAI - 70 LPA -->
+  <!-- Final height: 70 * 2.75 = 192.5px, top at y=300-192.5 = 107.5 -->
+  <g>
+    <rect x="545" y="300" width="100" height="0" fill="url(#bar4)" rx="4">
+      <animate attributeName="height" values="0;0;0;0;193;193;193;0" keyTimes="0;0.3;0.5;0.6;0.65;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="y" values="300;300;300;300;107;107;107;300" keyTimes="0;0.3;0.5;0.6;0.65;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="545" y="107" width="100" height="193" fill="url(#shimmer)" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.7;0;0" keyTimes="0;0.7;0.78;0.88;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="x" values="545;645;645" keyTimes="0;0.88;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <!-- Glow behind bar top -->
+    <circle cx="595" cy="107" r="20" fill="#B74BFF" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.5;0.3;0.5;0" keyTimes="0;0.6;0.7;0.8;0.9;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="15;25;20;25;15" keyTimes="0;0.7;0.8;0.9;1" dur="7s" repeatCount="indefinite"/>
+    </circle>
+    <text x="595" y="100" text-anchor="middle" fill="#fff" font-size="16" font-weight="800" font-family="monospace" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.65;0.75;0.9;1" dur="7s" repeatCount="indefinite"/>
+      ₹70 LPA
+    </text>
+    <text x="595" y="320" text-anchor="middle" fill="#fff" font-size="10" font-weight="800" font-family="sans-serif">Senior GenAI / LLM Eng</text>
+    <text x="595" y="334" text-anchor="middle" fill="#5A6375" font-size="9" font-family="sans-serif">architect + eval + infra</text>
+  </g>
+
+  <!-- Arrow showing growth trajectory -->
+  <path d="M 145 260 Q 300 240 445 190 T 595 110" stroke="#00FF85" stroke-width="2" fill="none" stroke-dasharray="300" stroke-dashoffset="300" opacity="0.7">
+    <animate attributeName="stroke-dashoffset" values="300;300;0;0;300" keyTimes="0;0.7;0.9;0.95;1" dur="7s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Source line -->
+  <text x="360" y="352" text-anchor="middle" fill="#5A6375" font-size="10" font-family="sans-serif" font-style="italic">Source: levels.fyi · 6figr · buildfastwithai.com (2026)</text>
+
+  <!-- Caption strip -->
+  <rect x="0" y="358" width="720" height="22" fill="#000" opacity="0.45"/>
+  <text x="360" y="373" text-anchor="middle" fill="#9BA5B7" font-size="11" font-family="sans-serif">Demand 3.3× supply in India. The gap widens with seniority.</text>
+</svg>

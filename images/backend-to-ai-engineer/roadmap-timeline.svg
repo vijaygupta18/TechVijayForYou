@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="360" viewBox="0 0 780 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="track" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#B74BFF"/>
+    </linearGradient>
+    <radialGradient id="sphereGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#4FC3F7" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#4FC3F7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bigGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <text x="390" y="34" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="sans-serif">6 months. 6 layers. One pivot.</text>
+  <text x="390" y="56" text-anchor="middle" fill="#9BA5B7" font-size="13" font-family="sans-serif">Backend engineer → AI engineer, month by month</text>
+
+  <!-- Background track (dim) -->
+  <path d="M 70 200 Q 195 140 330 200 T 590 200 Q 660 200 710 200" stroke="#1F2940" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+  <!-- Progress track (gradient, dashed, fills left→right) -->
+  <path d="M 70 200 Q 195 140 330 200 T 590 200 Q 660 200 710 200" stroke="url(#track)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700">
+    <animate attributeName="stroke-dashoffset" values="700;0;0;700" keyTimes="0;0.8;0.9;1" dur="10s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;0.9;0.9;0.9" dur="10s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Milestone nodes with activation -->
+  <!-- M1 at x=100 -->
+  <g>
+    <circle cx="100" cy="210" r="14" fill="#0A0E1A" stroke="#4FC3F7" stroke-width="2"/>
+    <circle cx="100" cy="210" r="14" fill="#00E5FF" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1;1;1;1;0" keyTimes="0;0.05;0.1;0.3;0.5;0.7;0.85;0.95;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="210" r="20" fill="none" stroke="#00E5FF" stroke-width="2" opacity="0">
+      <animate attributeName="r" values="14;26;14" keyTimes="0;0.5;1" dur="1s" begin="0.6s" repeatCount="1"/>
+      <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.08;0.12;0.18;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <text x="100" y="215" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="sans-serif" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.1;0.13;0.95;1" dur="10s" repeatCount="indefinite"/>✓</text>
+    <text x="100" y="175" text-anchor="middle" fill="#00E5FF" font-size="12" font-weight="800" font-family="sans-serif">M1</text>
+    <text x="100" y="245" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">LLM APIs</text>
+  </g>
+
+  <!-- M2 at x=220 -->
+  <g>
+    <circle cx="220" cy="175" r="14" fill="#0A0E1A" stroke="#4FC3F7" stroke-width="2"/>
+    <circle cx="220" cy="175" r="14" fill="#33D4FF" opacity="0">
+      <animate attributeName="opacity" values="0;0;0;1;1;1;1;1;0" keyTimes="0;0.1;0.2;0.25;0.5;0.7;0.85;0.95;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="220" cy="175" r="20" fill="none" stroke="#33D4FF" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.22;0.26;0.32;1" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="14;26" keyTimes="0;1" dur="0.8s" begin="2.2s" repeatCount="1"/>
+    </circle>
+    <text x="220" y="180" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="sans-serif" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.24;0.28;0.95;1" dur="10s" repeatCount="indefinite"/>✓</text>
+    <text x="220" y="145" text-anchor="middle" fill="#33D4FF" font-size="12" font-weight="800" font-family="sans-serif">M2</text>
+    <text x="220" y="135" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">RAG</text>
+  </g>
+
+  <!-- M3 at x=340 -->
+  <g>
+    <circle cx="340" cy="200" r="14" fill="#0A0E1A" stroke="#4FC3F7" stroke-width="2"/>
+    <circle cx="340" cy="200" r="14" fill="#7AA5FF" opacity="0">
+      <animate attributeName="opacity" values="0;0;0;0;1;1;1;1;0" keyTimes="0;0.2;0.3;0.4;0.45;0.7;0.85;0.95;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="340" cy="200" r="20" fill="none" stroke="#7AA5FF" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.42;0.46;0.52;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <text x="340" y="205" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="sans-serif" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.44;0.48;0.95;1" dur="10s" repeatCount="indefinite"/>✓</text>
+    <text x="340" y="165" text-anchor="middle" fill="#7AA5FF" font-size="12" font-weight="800" font-family="sans-serif">M3</text>
+    <text x="340" y="235" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">Prompts</text>
+  </g>
+
+  <!-- M4 at x=470 -->
+  <g>
+    <circle cx="470" cy="175" r="14" fill="#0A0E1A" stroke="#4FC3F7" stroke-width="2"/>
+    <circle cx="470" cy="175" r="14" fill="#9B70FF" opacity="0">
+      <animate attributeName="opacity" values="0;0;0;0;0;1;1;1;0" keyTimes="0;0.3;0.4;0.5;0.55;0.65;0.85;0.95;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="470" cy="175" r="20" fill="none" stroke="#9B70FF" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.62;0.66;0.72;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <text x="470" y="180" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="sans-serif" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.64;0.68;0.95;1" dur="10s" repeatCount="indefinite"/>✓</text>
+    <text x="470" y="145" text-anchor="middle" fill="#9B70FF" font-size="12" font-weight="800" font-family="sans-serif">M4</text>
+    <text x="470" y="135" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">Evals</text>
+  </g>
+
+  <!-- M5 at x=590 -->
+  <g>
+    <circle cx="590" cy="200" r="14" fill="#0A0E1A" stroke="#4FC3F7" stroke-width="2"/>
+    <circle cx="590" cy="200" r="14" fill="#AE55FF" opacity="0">
+      <animate attributeName="opacity" values="0;0;0;0;0;0;1;1;0" keyTimes="0;0.4;0.5;0.6;0.7;0.72;0.78;0.95;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="590" cy="200" r="20" fill="none" stroke="#AE55FF" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.76;0.8;0.86;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <text x="590" y="205" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="sans-serif" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.78;0.82;0.95;1" dur="10s" repeatCount="indefinite"/>✓</text>
+    <text x="590" y="165" text-anchor="middle" fill="#AE55FF" font-size="12" font-weight="800" font-family="sans-serif">M5</text>
+    <text x="590" y="235" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">Cost + Obs</text>
+  </g>
+
+  <!-- M6 at x=710 -->
+  <g>
+    <circle cx="710" cy="200" r="14" fill="#0A0E1A" stroke="#4FC3F7" stroke-width="2"/>
+    <circle cx="710" cy="200" r="14" fill="#B74BFF" opacity="0">
+      <animate attributeName="opacity" values="0;0;0;0;0;0;0;1;0" keyTimes="0;0.5;0.6;0.7;0.8;0.82;0.86;0.92;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="710" cy="200" r="20" fill="none" stroke="#B74BFF" stroke-width="2" opacity="0">
+      <animate attributeName="opacity" values="0;0;0.9;0;0" keyTimes="0;0.88;0.92;0.96;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <text x="710" y="205" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="sans-serif" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;0.9;0.94;0.95;1" dur="10s" repeatCount="indefinite"/>✓</text>
+    <text x="710" y="170" text-anchor="middle" fill="#B74BFF" font-size="12" font-weight="800" font-family="sans-serif">M6</text>
+    <text x="710" y="245" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="sans-serif">Agents + MCP</text>
+  </g>
+
+  <!-- Traveling sphere with orbital particles -->
+  <g filter="url(#bigGlow)">
+    <!-- outer glow halo -->
+    <circle cx="0" cy="0" r="22" fill="url(#sphereGlow)" opacity="0.8">
+      <animateMotion dur="10s" repeatCount="indefinite" rotate="auto" keyTimes="0;0.8;1" keyPoints="0;1;0">
+        <mpath href="#spherePath"/>
+      </animateMotion>
+    </circle>
+    <!-- core sphere -->
+    <circle cx="0" cy="0" r="12" fill="#4FC3F7">
+      <animateMotion dur="10s" repeatCount="indefinite" keyTimes="0;0.8;1" keyPoints="0;1;0">
+        <mpath href="#spherePath"/>
+      </animateMotion>
+      <animate attributeName="fill" values="#4FC3F7;#33D4FF;#7AA5FF;#9B70FF;#AE55FF;#B74BFF;#B74BFF" keyTimes="0;0.17;0.33;0.5;0.67;0.8;1" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="10;11;12;13;13;14;14" keyTimes="0;0.17;0.33;0.5;0.67;0.8;1" dur="10s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Orbital particles -->
+  <circle cx="0" cy="0" r="3" fill="#00E5FF" opacity="0.9">
+    <animateMotion dur="10s" repeatCount="indefinite" keyTimes="0;0.8;1" keyPoints="0;1;0">
+      <mpath href="#spherePath"/>
+    </animateMotion>
+    <animateTransform attributeName="transform" type="translate" values="18,0;0,18;-18,0;0,-18;18,0" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="0" cy="0" r="2.5" fill="#B74BFF" opacity="0.9">
+    <animateMotion dur="10s" repeatCount="indefinite" keyTimes="0;0.8;1" keyPoints="0;1;0">
+      <mpath href="#spherePath"/>
+    </animateMotion>
+    <animateTransform attributeName="transform" type="translate" values="-20,0;0,-20;20,0;0,20;-20,0" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="0" cy="0" r="2" fill="#fff" opacity="0.7">
+    <animateMotion dur="10s" repeatCount="indefinite" keyTimes="0;0.8;1" keyPoints="0;1;0">
+      <mpath href="#spherePath"/>
+    </animateMotion>
+    <animateTransform attributeName="transform" type="translate" values="0,22;22,0;0,-22;-22,0;0,22" dur="2.1s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Hidden motion path -->
+  <path id="spherePath" d="M 70 200 Q 195 140 330 200 T 590 200 Q 660 200 710 200" fill="none" stroke="none"/>
+
+  <!-- Start label "backend" -->
+  <text x="70" y="305" text-anchor="middle" fill="#4FC3F7" font-size="11" font-weight="700" font-family="sans-serif">BACKEND</text>
+  <text x="70" y="320" text-anchor="middle" fill="#9BA5B7" font-size="10" font-family="sans-serif">you are here</text>
+  <!-- End label "AI engineer" -->
+  <text x="710" y="305" text-anchor="middle" fill="#B74BFF" font-size="11" font-weight="700" font-family="sans-serif">AI ENGINEER</text>
+  <text x="710" y="320" text-anchor="middle" fill="#9BA5B7" font-size="10" font-family="sans-serif">in 6 months</text>
+
+  <!-- Caption strip -->
+  <rect x="0" y="335" width="780" height="25" fill="#000" opacity="0.35"/>
+  <text x="390" y="352" text-anchor="middle" fill="#9BA5B7" font-size="11" font-family="sans-serif">No PhD needed. Just a senior backend brain + 6 focused months.</text>
+</svg>
