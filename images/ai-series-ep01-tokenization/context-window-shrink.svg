@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440">
+  <defs>
+    <linearGradient id="bg-cw" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0618" />
+      <stop offset="100%" stop-color="#140A2C" />
+    </linearGradient>
+    <linearGradient id="full-bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#B74BFF" />
+      <stop offset="50%" stop-color="#EC4899" />
+      <stop offset="100%" stop-color="#FF6B7A" />
+    </linearGradient>
+    <linearGradient id="en-shrink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#1FE0A0" />
+    </linearGradient>
+    <linearGradient id="hi-shrink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFB74D" />
+      <stop offset="100%" stop-color="#FFD580" />
+    </linearGradient>
+    <linearGradient id="ta-shrink" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF4757" />
+      <stop offset="100%" stop-color="#FF8FA1" />
+    </linearGradient>
+    <filter id="glow-cw" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="900" height="440" fill="url(#bg-cw)" />
+
+  <text x="450" y="34" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="800">"128K Tokens" Means Different Things in Different Languages</text>
+  <text x="450" y="56" text-anchor="middle" fill="#9080B0" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">the marketed context window vs the effective one</text>
+
+  <!-- Full bar = 128K tokens -->
+  <g transform="translate(60, 95)">
+    <text x="0" y="0" fill="#EC4899" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">MODEL CONTEXT WINDOW</text>
+    <rect x="0" y="14" width="780" height="38" rx="8" fill="url(#full-bar)" filter="url(#glow-cw)" opacity="0.9"/>
+    <text x="390" y="40" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="16" font-weight="800">128,000 TOKENS</text>
+  </g>
+
+  <!-- Section label -->
+  <text x="60" y="180" fill="#9080B0" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">EFFECTIVE CAPACITY · approximate words you can fit</text>
+
+  <!-- English bar -->
+  <g transform="translate(60, 200)">
+    <text x="0" y="14" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">English</text>
+    <rect x="100" y="0" width="0" height="28" rx="6" fill="url(#en-shrink)">
+      <animate attributeName="width" values="780;620;620" keyTimes="0;0.4;1" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    <text x="0" y="46" fill="#7080A0" font-family="JetBrains Mono, monospace" font-size="11">~96,000 words · ~75 chars per token</text>
+    <text x="730" y="20" text-anchor="end" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="14" font-weight="800">~96K words</text>
+  </g>
+
+  <!-- Spanish bar -->
+  <g transform="translate(60, 270)">
+    <text x="0" y="14" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">Spanish</text>
+    <rect x="100" y="0" width="0" height="28" rx="6" fill="url(#en-shrink)" opacity="0.7">
+      <animate attributeName="width" values="780;500;500" keyTimes="0;0.4;1" dur="3s" repeatCount="indefinite" begin="0.2s"/>
+    </rect>
+    <text x="0" y="46" fill="#7080A0" font-family="JetBrains Mono, monospace" font-size="11">~70,000 words · ~1.4× more tokens than English</text>
+    <text x="610" y="20" text-anchor="end" fill="#4FC3F7" font-family="JetBrains Mono, monospace" font-size="14" font-weight="800">~70K words</text>
+  </g>
+
+  <!-- Hindi bar -->
+  <g transform="translate(60, 340)">
+    <text x="0" y="14" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">Hindi</text>
+    <rect x="100" y="0" width="0" height="28" rx="6" fill="url(#hi-shrink)">
+      <animate attributeName="width" values="780;260;260" keyTimes="0;0.4;1" dur="3s" repeatCount="indefinite" begin="0.4s"/>
+    </rect>
+    <text x="0" y="46" fill="#7080A0" font-family="JetBrains Mono, monospace" font-size="11">~40,000 words · 2-3× more tokens than English</text>
+    <text x="370" y="20" text-anchor="end" fill="#FFB74D" font-family="JetBrains Mono, monospace" font-size="14" font-weight="800">~40K words</text>
+  </g>
+
+  <!-- Tamil bar -->
+  <g transform="translate(60, 400)">
+    <text x="0" y="14" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">Tamil</text>
+    <rect x="100" y="0" width="0" height="28" rx="6" fill="url(#ta-shrink)">
+      <animate attributeName="width" values="780;200;200" keyTimes="0;0.4;1" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+    </rect>
+    <text x="310" y="20" text-anchor="end" fill="#FF4757" font-family="JetBrains Mono, monospace" font-size="14" font-weight="800">~32K words</text>
+  </g>
+</svg>

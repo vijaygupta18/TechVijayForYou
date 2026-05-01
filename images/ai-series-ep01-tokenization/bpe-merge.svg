@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+  <defs>
+    <linearGradient id="bg-bpe" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0618" />
+      <stop offset="100%" stop-color="#140A2C" />
+    </linearGradient>
+    <linearGradient id="char-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1F1640" />
+      <stop offset="100%" stop-color="#2A1860" />
+    </linearGradient>
+    <linearGradient id="merge-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFB74D" />
+      <stop offset="100%" stop-color="#FF8F40" />
+    </linearGradient>
+    <linearGradient id="final-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#0FA070" />
+    </linearGradient>
+    <filter id="glow-bpe" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="900" height="500" fill="url(#bg-bpe)" />
+
+  <text x="450" y="32" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="800">Byte-Pair Encoding · How "tokenization" Becomes 2 Tokens</text>
+  <text x="450" y="54" text-anchor="middle" fill="#9080B0" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">merge the most-frequent pair · repeat · stop at vocab limit</text>
+
+  <!-- ======= STEP 1: chars ======= -->
+  <g transform="translate(0, 90)">
+    <text x="40" y="20" fill="#7CC9FF" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">STEP 1 · CHARACTERS</text>
+    <g font-family="JetBrains Mono, monospace" font-size="20" font-weight="700" text-anchor="middle">
+      <g><rect x="80"  y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="101" y="62" fill="#fff">t</text></g>
+      <g><rect x="128" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="149" y="62" fill="#fff">o</text></g>
+      <g><rect x="176" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="197" y="62" fill="#fff">k</text></g>
+      <g><rect x="224" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="245" y="62" fill="#fff">e</text></g>
+      <g><rect x="272" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="293" y="62" fill="#fff">n</text></g>
+      <g><rect x="320" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="341" y="62" fill="#fff">i</text></g>
+      <g><rect x="368" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="389" y="62" fill="#fff">z</text></g>
+      <g><rect x="416" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="437" y="62" fill="#fff">a</text></g>
+      <g><rect x="464" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="485" y="62" fill="#fff">t</text></g>
+      <g><rect x="512" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="533" y="62" fill="#fff">i</text></g>
+      <g><rect x="560" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="581" y="62" fill="#fff">o</text></g>
+      <g><rect x="608" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="629" y="62" fill="#fff">n</text></g>
+    </g>
+    <text x="700" y="62" fill="#7080A0" font-family="JetBrains Mono, monospace" font-size="13"> 12 tokens</text>
+  </g>
+
+  <!-- ======= STEP 2: merge "ti" + "on" ======= -->
+  <g transform="translate(0, 190)">
+    <text x="40" y="20" fill="#FFB74D" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">STEP 2 · MERGE PAIR (i+o+n) · MERGE PAIR (t+i)</text>
+    <g font-family="JetBrains Mono, monospace" font-weight="700" text-anchor="middle">
+      <g><rect x="80"  y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="101" y="62" fill="#fff" font-size="20">t</text></g>
+      <g><rect x="128" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="149" y="62" fill="#fff" font-size="20">o</text></g>
+      <g><rect x="176" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="197" y="62" fill="#fff" font-size="20">k</text></g>
+      <g><rect x="224" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="245" y="62" fill="#fff" font-size="20">e</text></g>
+      <g><rect x="272" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="293" y="62" fill="#fff" font-size="20">n</text></g>
+      <!-- merged ti -->
+      <g filter="url(#glow-bpe)">
+        <rect x="320" y="34" width="64" height="42" rx="6" fill="url(#merge-grad)">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+        </rect>
+        <text x="352" y="62" fill="#0A0618" font-size="20">ti</text>
+      </g>
+      <g><rect x="390" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="411" y="62" fill="#fff" font-size="20">z</text></g>
+      <g><rect x="438" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="459" y="62" fill="#fff" font-size="20">a</text></g>
+      <!-- merged ti -->
+      <g filter="url(#glow-bpe)">
+        <rect x="486" y="34" width="64" height="42" rx="6" fill="url(#merge-grad)">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+        </rect>
+        <text x="518" y="62" fill="#0A0618" font-size="20">ti</text>
+      </g>
+      <!-- merged on -->
+      <g filter="url(#glow-bpe)">
+        <rect x="556" y="34" width="64" height="42" rx="6" fill="url(#merge-grad)">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+        </rect>
+        <text x="588" y="62" fill="#0A0618" font-size="20">on</text>
+      </g>
+    </g>
+    <text x="700" y="62" fill="#7080A0" font-family="JetBrains Mono, monospace" font-size="13">→ 9 tokens</text>
+  </g>
+
+  <!-- ======= STEP 3: merge "ation" "iz" ======= -->
+  <g transform="translate(0, 290)">
+    <text x="40" y="20" fill="#FFB74D" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">STEP 3 · MERGE (a+ti+on) → ation · MERGE (iz)</text>
+    <g font-family="JetBrains Mono, monospace" font-weight="700" text-anchor="middle">
+      <g><rect x="80"  y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="101" y="62" fill="#fff" font-size="20">t</text></g>
+      <g><rect x="128" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="149" y="62" fill="#fff" font-size="20">o</text></g>
+      <g><rect x="176" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="197" y="62" fill="#fff" font-size="20">k</text></g>
+      <g><rect x="224" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="245" y="62" fill="#fff" font-size="20">e</text></g>
+      <g><rect x="272" y="34" width="42" height="42" rx="6" fill="url(#char-grad)" stroke="#4FC3F7" stroke-width="1.5"/><text x="293" y="62" fill="#fff" font-size="20">n</text></g>
+      <g filter="url(#glow-bpe)">
+        <rect x="320" y="34" width="64" height="42" rx="6" fill="url(#merge-grad)">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <text x="352" y="62" fill="#0A0618" font-size="20">iz</text>
+      </g>
+      <g filter="url(#glow-bpe)">
+        <rect x="390" y="34" width="100" height="42" rx="6" fill="url(#merge-grad)">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+        </rect>
+        <text x="440" y="62" fill="#0A0618" font-size="20">ation</text>
+      </g>
+    </g>
+    <text x="700" y="62" fill="#7080A0" font-family="JetBrains Mono, monospace" font-size="13">→ 7 tokens</text>
+  </g>
+
+  <!-- ======= STEP 4: final ======= -->
+  <g transform="translate(0, 390)">
+    <text x="40" y="20" fill="#10B981" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">STEP 4 · FINAL · merge (token) · merge (ization)</text>
+    <g font-family="JetBrains Mono, monospace" font-weight="700" text-anchor="middle">
+      <g filter="url(#glow-bpe)">
+        <rect x="180" y="34" width="180" height="50" rx="8" fill="url(#final-grad)">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="2.4s" repeatCount="indefinite"/>
+        </rect>
+        <text x="270" y="66" fill="#0A0618" font-size="22">token</text>
+      </g>
+      <g filter="url(#glow-bpe)">
+        <rect x="380" y="34" width="220" height="50" rx="8" fill="url(#final-grad)">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="2.4s" repeatCount="indefinite" begin="0.4s"/>
+        </rect>
+        <text x="490" y="66" fill="#0A0618" font-size="22">ization</text>
+      </g>
+    </g>
+    <text x="700" y="68" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">→ 2 tokens ✓</text>
+  </g>
+</svg>

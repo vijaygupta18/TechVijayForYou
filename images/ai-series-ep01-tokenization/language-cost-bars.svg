@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440">
+  <defs>
+    <linearGradient id="bg-lc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0618" />
+      <stop offset="100%" stop-color="#140A2C" />
+    </linearGradient>
+    <linearGradient id="bar-en" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#1FE0A0" />
+    </linearGradient>
+    <linearGradient id="bar-es" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4FC3F7" />
+      <stop offset="100%" stop-color="#7DE0FF" />
+    </linearGradient>
+    <linearGradient id="bar-hi" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFB74D" />
+      <stop offset="100%" stop-color="#FFD580" />
+    </linearGradient>
+    <linearGradient id="bar-ta" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF4757" />
+      <stop offset="100%" stop-color="#FF8FA1" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="440" fill="url(#bg-lc)" />
+
+  <text x="450" y="34" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="800">Same Sentence. Different Tokens.</text>
+  <text x="450" y="56" text-anchor="middle" fill="#9080B0" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">"Hello, how are you?" — GPT-4o tokenizer</text>
+
+  <!-- chart area -->
+  <line x1="220" y1="100" x2="220" y2="380" stroke="#3A2860" stroke-width="1.5"/>
+
+  <!-- English -->
+  <g transform="translate(0, 120)">
+    <text x="200" y="25" text-anchor="end" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">English</text>
+    <text x="200" y="42" text-anchor="end" fill="#7080A0" font-family="Montserrat, sans-serif" font-size="10" font-weight="500">"Hello, how are you?"</text>
+    <rect x="222" y="12" width="0" height="32" rx="4" fill="url(#bar-en)">
+      <animate attributeName="width" from="0" to="100" dur="1s" fill="freeze" begin="0s"/>
+    </rect>
+    <text x="332" y="34" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="16" font-weight="800" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" fill="freeze" begin="1s"/>
+      6 tokens
+    </text>
+  </g>
+
+  <!-- Spanish -->
+  <g transform="translate(0, 190)">
+    <text x="200" y="25" text-anchor="end" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">Spanish</text>
+    <text x="200" y="42" text-anchor="end" fill="#7080A0" font-family="Montserrat, sans-serif" font-size="10" font-weight="500">"Hola, ¿cómo estás?"</text>
+    <rect x="222" y="12" width="0" height="32" rx="4" fill="url(#bar-es)">
+      <animate attributeName="width" from="0" to="140" dur="1s" fill="freeze" begin="0.3s"/>
+    </rect>
+    <text x="372" y="34" fill="#4FC3F7" font-family="JetBrains Mono, monospace" font-size="16" font-weight="800" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" fill="freeze" begin="1.3s"/>
+      9 tokens
+    </text>
+  </g>
+
+  <!-- Hindi -->
+  <g transform="translate(0, 260)">
+    <text x="200" y="25" text-anchor="end" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">Hindi</text>
+    <text x="200" y="42" text-anchor="end" fill="#7080A0" font-family="Montserrat, sans-serif" font-size="10" font-weight="500">"नमस्ते, आप कैसे हैं?"</text>
+    <rect x="222" y="12" width="0" height="32" rx="4" fill="url(#bar-hi)">
+      <animate attributeName="width" from="0" to="320" dur="1.2s" fill="freeze" begin="0.6s"/>
+    </rect>
+    <text x="552" y="34" fill="#FFB74D" font-family="JetBrains Mono, monospace" font-size="16" font-weight="800" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" fill="freeze" begin="1.8s"/>
+      ~22 tokens
+    </text>
+  </g>
+
+  <!-- Tamil -->
+  <g transform="translate(0, 330)">
+    <text x="200" y="25" text-anchor="end" fill="#fff" font-family="Montserrat, sans-serif" font-size="14" font-weight="700">Tamil</text>
+    <text x="200" y="42" text-anchor="end" fill="#7080A0" font-family="Montserrat, sans-serif" font-size="10" font-weight="500">"வணக்கம், எப்படி இருக்கிறீர்கள்?"</text>
+    <rect x="222" y="12" width="0" height="32" rx="4" fill="url(#bar-ta)">
+      <animate attributeName="width" from="0" to="430" dur="1.4s" fill="freeze" begin="0.9s"/>
+    </rect>
+    <text x="662" y="34" fill="#FF4757" font-family="JetBrains Mono, monospace" font-size="16" font-weight="800" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur="0.4s" fill="freeze" begin="2.4s"/>
+      ~30 tokens
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <text x="450" y="410" text-anchor="middle" fill="#9080B0" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">Indic scripts use byte-level fallback · 3-5× more tokens than English</text>
+  <text x="450" y="430" text-anchor="middle" fill="#5A4880" font-family="Montserrat, sans-serif" font-size="11" font-weight="500">Same meaning. Different cost. Different speed.</text>
+</svg>

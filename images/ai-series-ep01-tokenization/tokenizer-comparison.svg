@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+  <defs>
+    <linearGradient id="bg-cmp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0618" />
+      <stop offset="100%" stop-color="#140A2C" />
+    </linearGradient>
+    <linearGradient id="gpt-card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0F2A1F" />
+      <stop offset="100%" stop-color="#0A1F18" />
+    </linearGradient>
+    <linearGradient id="claude-card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2A1F0F" />
+      <stop offset="100%" stop-color="#1F1808" />
+    </linearGradient>
+    <linearGradient id="llama-card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1F0F2A" />
+      <stop offset="100%" stop-color="#180A1F" />
+    </linearGradient>
+  </defs>
+  <rect width="900" height="420" fill="url(#bg-cmp)" />
+
+  <text x="450" y="34" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="800">Three Tokenizers · One Sentence</text>
+  <text x="450" y="56" text-anchor="middle" fill="#9080B0" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">"I love coding in Python" — same input, different splits</text>
+
+  <!-- GPT-4o -->
+  <g transform="translate(40, 90)">
+    <rect x="0" y="0" width="260" height="280" rx="14" fill="url(#gpt-card)" stroke="#10B981" stroke-width="2"/>
+    <text x="130" y="32" text-anchor="middle" fill="#10B981" font-family="Montserrat, sans-serif" font-size="14" font-weight="800">GPT-4o</text>
+    <text x="130" y="50" text-anchor="middle" fill="#7CB89C" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">o200k_base · ~200K vocab</text>
+
+    <g font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">
+      <rect x="20" y="70"  width="60" height="28" rx="5" fill="#10B981" opacity="0">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.2;1" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="50" y="89" text-anchor="middle" fill="#0A0618" opacity="0">
+        <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.2;1" dur="3s" repeatCount="indefinite"/>I</text>
+
+      <rect x="90"  y="70" width="80" height="28" rx="5" fill="#10B981" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.4;1" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="130" y="89" text-anchor="middle" fill="#0A0618" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.3;0.4;1" dur="3s" repeatCount="indefinite"/> love</text>
+
+      <rect x="180" y="70" width="60" height="28" rx="5" fill="#10B981" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.45;0.55;1" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="210" y="89" text-anchor="middle" fill="#0A0618" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.45;0.55;1" dur="3s" repeatCount="indefinite"/> cod</text>
+
+      <rect x="20" y="108" width="60" height="28" rx="5" fill="#10B981" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.65;1" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="50" y="127" text-anchor="middle" fill="#0A0618" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.55;0.65;1" dur="3s" repeatCount="indefinite"/>ing</text>
+
+      <rect x="90" y="108" width="60" height="28" rx="5" fill="#10B981" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.65;0.75;1" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="120" y="127" text-anchor="middle" fill="#0A0618" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.65;0.75;1" dur="3s" repeatCount="indefinite"/> in</text>
+
+      <rect x="160" y="108" width="80" height="28" rx="5" fill="#10B981" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.75;0.85;1" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="200" y="127" text-anchor="middle" fill="#0A0618" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.75;0.85;1" dur="3s" repeatCount="indefinite"/> Python</text>
+    </g>
+
+    <line x1="20" y1="170" x2="240" y2="170" stroke="#10B981" stroke-width="1" opacity="0.3"/>
+
+    <text x="130" y="200" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="40" font-weight="800">6</text>
+    <text x="130" y="222" text-anchor="middle" fill="#10B981" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">tokens</text>
+    <text x="130" y="252" text-anchor="middle" fill="#7CB89C" font-family="Montserrat, sans-serif" font-size="11" font-weight="600">$2.50/M input</text>
+    <text x="130" y="268" text-anchor="middle" fill="#7CB89C" font-family="Montserrat, sans-serif" font-size="11" font-weight="600">$15/M output</text>
+  </g>
+
+  <!-- Claude -->
+  <g transform="translate(320, 90)">
+    <rect x="0" y="0" width="260" height="280" rx="14" fill="url(#claude-card)" stroke="#FFB74D" stroke-width="2"/>
+    <text x="130" y="32" text-anchor="middle" fill="#FFB74D" font-family="Montserrat, sans-serif" font-size="14" font-weight="800">Claude (Sonnet 4.6)</text>
+    <text x="130" y="50" text-anchor="middle" fill="#C9A77C" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">custom Anthropic tokenizer</text>
+
+    <g font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">
+      <rect x="20" y="70" width="50" height="28" rx="5" fill="#FFB74D" opacity="0.95"/>
+      <text x="45" y="89" text-anchor="middle" fill="#0A0618">I</text>
+
+      <rect x="80" y="70" width="80" height="28" rx="5" fill="#FFB74D" opacity="0.95"/>
+      <text x="120" y="89" text-anchor="middle" fill="#0A0618"> love</text>
+
+      <rect x="170" y="70" width="80" height="28" rx="5" fill="#FFB74D" opacity="0.95"/>
+      <text x="210" y="89" text-anchor="middle" fill="#0A0618"> coding</text>
+
+      <rect x="20"  y="108" width="50" height="28" rx="5" fill="#FFB74D" opacity="0.95"/>
+      <text x="45"  y="127" text-anchor="middle" fill="#0A0618"> in</text>
+
+      <rect x="80" y="108" width="90" height="28" rx="5" fill="#FFB74D" opacity="0.95"/>
+      <text x="125" y="127" text-anchor="middle" fill="#0A0618"> Python</text>
+    </g>
+
+    <line x1="20" y1="170" x2="240" y2="170" stroke="#FFB74D" stroke-width="1" opacity="0.3"/>
+
+    <text x="130" y="200" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="40" font-weight="800">~5</text>
+    <text x="130" y="222" text-anchor="middle" fill="#FFB74D" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">tokens</text>
+    <text x="130" y="252" text-anchor="middle" fill="#C9A77C" font-family="Montserrat, sans-serif" font-size="11" font-weight="600">$3/M input · $15/M out</text>
+    <text x="130" y="268" text-anchor="middle" fill="#C9A77C" font-family="Montserrat, sans-serif" font-size="11" font-weight="600">(Opus 4.7: $5 / $25)</text>
+  </g>
+
+  <!-- Llama -->
+  <g transform="translate(600, 90)">
+    <rect x="0" y="0" width="260" height="280" rx="14" fill="url(#llama-card)" stroke="#B74BFF" stroke-width="2"/>
+    <text x="130" y="32" text-anchor="middle" fill="#B74BFF" font-family="Montserrat, sans-serif" font-size="14" font-weight="800">Llama 3</text>
+    <text x="130" y="50" text-anchor="middle" fill="#C99CFF" font-family="Montserrat, sans-serif" font-size="10" font-weight="600">tiktoken-based · 128K vocab</text>
+
+    <g font-family="JetBrains Mono, monospace" font-size="13" font-weight="700">
+      <rect x="20" y="70" width="50" height="28" rx="5" fill="#B74BFF" opacity="0.95"/>
+      <text x="45" y="89" text-anchor="middle" fill="#fff">I</text>
+
+      <rect x="80" y="70" width="80" height="28" rx="5" fill="#B74BFF" opacity="0.95"/>
+      <text x="120" y="89" text-anchor="middle" fill="#fff"> love</text>
+
+      <rect x="170" y="70" width="80" height="28" rx="5" fill="#B74BFF" opacity="0.95"/>
+      <text x="210" y="89" text-anchor="middle" fill="#fff"> coding</text>
+
+      <rect x="20"  y="108" width="50" height="28" rx="5" fill="#B74BFF" opacity="0.95"/>
+      <text x="45"  y="127" text-anchor="middle" fill="#fff"> in</text>
+
+      <rect x="80" y="108" width="90" height="28" rx="5" fill="#B74BFF" opacity="0.95"/>
+      <text x="125" y="127" text-anchor="middle" fill="#fff"> Python</text>
+    </g>
+
+    <line x1="20" y1="170" x2="240" y2="170" stroke="#B74BFF" stroke-width="1" opacity="0.3"/>
+
+    <text x="130" y="200" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="40" font-weight="800">5</text>
+    <text x="130" y="222" text-anchor="middle" fill="#B74BFF" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">tokens</text>
+    <text x="130" y="252" text-anchor="middle" fill="#C99CFF" font-family="Montserrat, sans-serif" font-size="11" font-weight="600">open weights</text>
+    <text x="130" y="268" text-anchor="middle" fill="#C99CFF" font-family="Montserrat, sans-serif" font-size="11" font-weight="600">self-host or Groq/Together</text>
+  </g>
+
+  <text x="450" y="400" text-anchor="middle" fill="#9080B0" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">Different tokenizers → different costs → different context limits.</text>
+</svg>

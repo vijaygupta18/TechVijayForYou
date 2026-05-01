@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380">
+  <defs>
+    <linearGradient id="bg-tp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0618" />
+      <stop offset="100%" stop-color="#140A2C" />
+    </linearGradient>
+    <linearGradient id="tok-box" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E1640" />
+      <stop offset="100%" stop-color="#2A1860" />
+    </linearGradient>
+    <linearGradient id="brain-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#B74BFF" />
+      <stop offset="100%" stop-color="#EC4899" />
+    </linearGradient>
+    <radialGradient id="brain-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#B74BFF" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#B74BFF" stop-opacity="0" />
+    </radialGradient>
+    <filter id="glow-tp" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="900" height="380" fill="url(#bg-tp)" />
+
+  <!-- Title -->
+  <text x="450" y="34" text-anchor="middle" fill="#fff" font-family="Montserrat, sans-serif" font-size="20" font-weight="800">The Tokenizer Pipeline</text>
+  <text x="450" y="56" text-anchor="middle" fill="#9080B0" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">text → chunks → AI</text>
+
+  <!-- Stage labels -->
+  <text x="100" y="110" text-anchor="middle" fill="#4FC3F7" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">INPUT</text>
+  <text x="380" y="110" text-anchor="middle" fill="#FFB74D" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">TOKENIZER</text>
+  <text x="640" y="110" text-anchor="middle" fill="#10B981" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">TOKENS</text>
+  <text x="820" y="110" text-anchor="middle" fill="#B74BFF" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="2">MODEL</text>
+
+  <!-- Input text -->
+  <g>
+    <rect x="30" y="160" width="140" height="60" rx="8" fill="#1A1030" stroke="#4FC3F7" stroke-width="2" />
+    <text x="100" y="198" text-anchor="middle" fill="#fff" font-family="JetBrains Mono, monospace" font-size="20" font-weight="700">strawberry</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line x1="180" y1="190" x2="290" y2="190" stroke="#4FC3F7" stroke-width="2" stroke-dasharray="5,5" opacity="0.6">
+    <animate attributeName="stroke-dashoffset" values="0;-20" dur="1s" repeatCount="indefinite" />
+  </line>
+  <polygon points="290,190 282,184 282,196" fill="#4FC3F7" />
+
+  <!-- Tokenizer box -->
+  <g>
+    <rect x="300" y="140" width="160" height="100" rx="12" fill="url(#tok-box)" stroke="#FFB74D" stroke-width="2.5" />
+    <!-- spinning gears -->
+    <g transform="translate(360,178)">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite" />
+        <circle r="14" fill="none" stroke="#FFB74D" stroke-width="2"/>
+        <circle r="4" fill="#FFB74D"/>
+        <line x1="-14" y1="0" x2="14" y2="0" stroke="#FFB74D" stroke-width="2"/>
+        <line x1="0" y1="-14" x2="0" y2="14" stroke="#FFB74D" stroke-width="2"/>
+      </g>
+    </g>
+    <g transform="translate(400,200)">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="3s" repeatCount="indefinite" />
+        <circle r="10" fill="none" stroke="#EC4899" stroke-width="2"/>
+        <circle r="3" fill="#EC4899"/>
+        <line x1="-10" y1="0" x2="10" y2="0" stroke="#EC4899" stroke-width="2"/>
+        <line x1="0" y1="-10" x2="0" y2="10" stroke="#EC4899" stroke-width="2"/>
+      </g>
+    </g>
+    <text x="380" y="225" text-anchor="middle" fill="#FFB74D" font-family="Montserrat, sans-serif" font-size="11" font-weight="700">BPE SPLIT</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <line x1="470" y1="190" x2="560" y2="190" stroke="#FFB74D" stroke-width="2" stroke-dasharray="5,5" opacity="0.6">
+    <animate attributeName="stroke-dashoffset" values="0;-20" dur="1s" repeatCount="indefinite" />
+  </line>
+  <polygon points="560,190 552,184 552,196" fill="#FFB74D" />
+
+  <!-- Token chunks -->
+  <g>
+    <rect x="570" y="155" width="70" height="34" rx="6" fill="#10B981" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.3;0.8;1" dur="3s" repeatCount="indefinite" />
+    </rect>
+    <text x="605" y="178" text-anchor="middle" fill="#0A0618" font-family="JetBrains Mono, monospace" font-size="14" font-weight="800" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;1" keyTimes="0;0.3;0.8;1" dur="3s" repeatCount="indefinite" />
+      straw
+    </text>
+
+    <rect x="570" y="195" width="70" height="34" rx="6" fill="#10B981" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.45;0.6;1" dur="3s" repeatCount="indefinite" />
+    </rect>
+    <text x="605" y="218" text-anchor="middle" fill="#0A0618" font-family="JetBrains Mono, monospace" font-size="14" font-weight="800" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.45;0.6;1" dur="3s" repeatCount="indefinite" />
+      berry
+    </text>
+  </g>
+
+  <!-- Token IDs hint -->
+  <text x="605" y="252" text-anchor="middle" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.7">[125634, 51240]</text>
+
+  <!-- Arrow 3 -->
+  <line x1="650" y1="190" x2="740" y2="190" stroke="#10B981" stroke-width="2" stroke-dasharray="5,5" opacity="0.6">
+    <animate attributeName="stroke-dashoffset" values="0;-20" dur="1s" repeatCount="indefinite" />
+  </line>
+  <polygon points="740,190 732,184 732,196" fill="#10B981" />
+
+  <!-- AI Brain -->
+  <g transform="translate(820, 190)">
+    <circle r="60" fill="url(#brain-glow)" />
+    <circle r="38" fill="url(#brain-grad)" opacity="0.3">
+      <animate attributeName="r" values="36;42;36" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <!-- neural net nodes -->
+    <g stroke="#fff" stroke-width="1" opacity="0.6">
+      <line x1="-25" y1="-15" x2="0" y2="-5"/>
+      <line x1="-25" y1="15" x2="0" y2="5"/>
+      <line x1="-25" y1="0" x2="0" y2="0"/>
+      <line x1="0" y1="-5" x2="25" y2="-15"/>
+      <line x1="0" y1="5" x2="25" y2="15"/>
+      <line x1="0" y1="0" x2="25" y2="0"/>
+    </g>
+    <circle cx="-25" cy="-15" r="4" fill="#EC4899"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.4s" repeatCount="indefinite"/></circle>
+    <circle cx="-25" cy="0" r="4" fill="#B74BFF"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+    <circle cx="-25" cy="15" r="4" fill="#EC4899"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></circle>
+    <circle cx="0" cy="-5" r="5" fill="#fff"/>
+    <circle cx="0" cy="5" r="5" fill="#fff"/>
+    <circle cx="25" cy="-15" r="4" fill="#B74BFF"><animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/></circle>
+    <circle cx="25" cy="0" r="4" fill="#EC4899"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.3s" repeatCount="indefinite"/></circle>
+    <circle cx="25" cy="15" r="4" fill="#B74BFF"><animate attributeName="opacity" values="1;0.3;1" dur="1.7s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <!-- Traveling packets -->
+  <circle r="5" fill="#4FC3F7" filter="url(#glow-tp)">
+    <animateMotion dur="4s" repeatCount="indefinite" path="M 175 190 L 295 190" />
+    <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.9;1" dur="4s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Footer note -->
+  <text x="450" y="335" text-anchor="middle" fill="#7060A0" font-family="Montserrat, sans-serif" font-size="13" font-weight="600">The model never sees individual letters — only token IDs.</text>
+  <text x="450" y="356" text-anchor="middle" fill="#5A4880" font-family="Montserrat, sans-serif" font-size="11" font-weight="500">Every prompt to GPT, Claude, Gemini goes through this pipeline first.</text>
+</svg>
