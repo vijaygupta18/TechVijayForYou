@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <filter id="check-glow">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg4)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Montserrat, sans-serif">The 9 Checks Envoy Runs Before It Compresses</text>
+  <text x="400" y="55" text-anchor="middle" fill="#9aa3b8" font-size="13" font-family="Montserrat, sans-serif">Any single FAIL → response passes through uncompressed.</text>
+
+  <!-- Check rows -->
+  <g font-family="Montserrat, sans-serif">
+    <!-- Row 1 -->
+    <g>
+      <rect x="60" y="85" width="680" height="36" rx="6" fill="#1a1530" stroke="#2a3045" stroke-width="1"/>
+      <circle cx="85" cy="103" r="10" fill="#2a3045">
+        <animate attributeName="fill" values="#2a3045;#00FF85;#00FF85" dur="9s" keyTimes="0;0.1;1" repeatCount="indefinite"/>
+      </circle>
+      <text x="85" y="107" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">1</text>
+      <text x="115" y="107" fill="#fff" font-size="13" font-weight="600">Accept-Encoding header has gzip, br, or zstd</text>
+      <text x="700" y="107" text-anchor="end" fill="#00FF85" font-size="11" font-weight="700" opacity="0">
+        <animate attributeName="opacity" values="0;1;1" dur="9s" keyTimes="0;0.1;1" repeatCount="indefinite"/>
+        <tspan>✓ PASS</tspan>
+      </text>
+    </g>
+
+    <g>
+      <rect x="60" y="130" width="680" height="36" rx="6" fill="#1a1530" stroke="#2a3045" stroke-width="1"/>
+      <circle cx="85" cy="148" r="10" fill="#2a3045">
+        <animate attributeName="fill" values="#2a3045;#2a3045;#00FF85;#00FF85" dur="9s" keyTimes="0;0.18;0.22;1" repeatCount="indefinite"/>
+      </circle>
+      <text x="85" y="152" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">2</text>
+      <text x="115" y="152" fill="#fff" font-size="13" font-weight="600">Encoding q-weight is not 0</text>
+      <text x="700" y="152" text-anchor="end" fill="#00FF85" font-size="11" font-weight="700" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.18;0.22;1" repeatCount="indefinite"/>
+        <tspan>✓ PASS</tspan>
+      </text>
+    </g>
+
+    <g>
+      <rect x="60" y="175" width="680" height="36" rx="6" fill="#1a1530" stroke="#2a3045" stroke-width="1"/>
+      <circle cx="85" cy="193" r="10" fill="#2a3045">
+        <animate attributeName="fill" values="#2a3045;#2a3045;#00FF85;#00FF85" dur="9s" keyTimes="0;0.28;0.32;1" repeatCount="indefinite"/>
+      </circle>
+      <text x="85" y="197" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">3</text>
+      <text x="115" y="197" fill="#fff" font-size="13" font-weight="600">Content-Encoding NOT already set (upstream not pre-compressed)</text>
+      <text x="700" y="197" text-anchor="end" fill="#00FF85" font-size="11" font-weight="700" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.28;0.32;1" repeatCount="indefinite"/>
+        <tspan>✓ PASS</tspan>
+      </text>
+    </g>
+
+    <g>
+      <rect x="60" y="220" width="680" height="36" rx="6" fill="#1a1530" stroke="#2a3045" stroke-width="1"/>
+      <circle cx="85" cy="238" r="10" fill="#2a3045">
+        <animate attributeName="fill" values="#2a3045;#2a3045;#00FF85;#00FF85" dur="9s" keyTimes="0;0.38;0.42;1" repeatCount="indefinite"/>
+      </circle>
+      <text x="85" y="242" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">4</text>
+      <text x="115" y="242" fill="#fff" font-size="13" font-weight="600">Cache-Control does NOT contain no-transform</text>
+      <text x="700" y="242" text-anchor="end" fill="#00FF85" font-size="11" font-weight="700" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.38;0.42;1" repeatCount="indefinite"/>
+        <tspan>✓ PASS</tspan>
+      </text>
+    </g>
+
+    <g>
+      <rect x="60" y="265" width="680" height="36" rx="6" fill="#1a1530" stroke="#FFD93D" stroke-width="1.5"/>
+      <circle cx="85" cy="283" r="10" fill="#2a3045">
+        <animate attributeName="fill" values="#2a3045;#2a3045;#FFD93D;#FFD93D" dur="9s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/>
+      </circle>
+      <text x="85" y="287" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">5</text>
+      <text x="115" y="287" fill="#fff" font-size="13" font-weight="700">Content-Type ∈ allowlist (json, html, css, js, plain, xml)</text>
+      <text x="700" y="287" text-anchor="end" fill="#FFD93D" font-size="11" font-weight="700" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.48;0.52;1" repeatCount="indefinite"/>
+        <tspan>✓ KEY GATE</tspan>
+      </text>
+    </g>
+
+    <g>
+      <rect x="60" y="310" width="680" height="36" rx="6" fill="#1a1530" stroke="#FFD93D" stroke-width="1.5"/>
+      <circle cx="85" cy="328" r="10" fill="#2a3045">
+        <animate attributeName="fill" values="#2a3045;#2a3045;#FFD93D;#FFD93D" dur="9s" keyTimes="0;0.58;0.62;1" repeatCount="indefinite"/>
+      </circle>
+      <text x="85" y="332" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">6</text>
+      <text x="115" y="332" fill="#fff" font-size="13" font-weight="700">Content-Length ≥ min_content_length (set 256, default 30)</text>
+      <text x="700" y="332" text-anchor="end" fill="#FFD93D" font-size="11" font-weight="700" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.58;0.62;1" repeatCount="indefinite"/>
+        <tspan>✓ KEY GATE</tspan>
+      </text>
+    </g>
+
+    <g>
+      <rect x="60" y="355" width="680" height="36" rx="6" fill="#1a1530" stroke="#2a3045" stroke-width="1"/>
+      <circle cx="85" cy="373" r="10" fill="#2a3045">
+        <animate attributeName="fill" values="#2a3045;#2a3045;#00FF85;#00FF85" dur="9s" keyTimes="0;0.68;0.72;1" repeatCount="indefinite"/>
+      </circle>
+      <text x="85" y="377" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">7</text>
+      <text x="115" y="377" fill="#fff" font-size="13" font-weight="600">Status code NOT in uncompressible_response_codes</text>
+      <text x="700" y="377" text-anchor="end" fill="#00FF85" font-size="11" font-weight="700" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.68;0.72;1" repeatCount="indefinite"/>
+        <tspan>✓ PASS</tspan>
+      </text>
+    </g>
+
+    <g>
+      <rect x="60" y="400" width="680" height="36" rx="6" fill="#1a1530" stroke="#2a3045" stroke-width="1"/>
+      <circle cx="85" cy="418" r="10" fill="#2a3045">
+        <animate attributeName="fill" values="#2a3045;#2a3045;#00FF85;#00FF85" dur="9s" keyTimes="0;0.78;0.82;1" repeatCount="indefinite"/>
+      </circle>
+      <text x="85" y="422" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">8</text>
+      <text x="115" y="422" fill="#fff" font-size="13" font-weight="600">disable_on_etag_header gate (handles ETag weakening)</text>
+      <text x="700" y="422" text-anchor="end" fill="#00FF85" font-size="11" font-weight="700" opacity="0">
+        <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.78;0.82;1" repeatCount="indefinite"/>
+        <tspan>✓ PASS</tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- Compress badge -->
+  <rect x="280" y="455" width="240" height="32" rx="8" fill="#FFD93D" filter="url(#check-glow)" opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.88;0.92;1" repeatCount="indefinite"/>
+  </rect>
+  <text x="400" y="476" text-anchor="middle" fill="#0A0E1A" font-size="14" font-weight="800" font-family="Montserrat, sans-serif" opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1" dur="9s" keyTimes="0;0.88;0.92;1" repeatCount="indefinite"/>
+    <tspan>→ COMPRESS WITH GZIP</tspan>
+  </text>
+</svg>

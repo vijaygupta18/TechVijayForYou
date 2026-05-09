@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="gateway-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7B61FF"/>
+      <stop offset="100%" stop-color="#4F3FCF"/>
+    </linearGradient>
+    <linearGradient id="client-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#2E86AB"/>
+    </linearGradient>
+    <linearGradient id="service-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00FF85"/>
+      <stop offset="100%" stop-color="#00B85F"/>
+    </linearGradient>
+    <radialGradient id="glow-gateway" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7B61FF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#7B61FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-glow">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="420" fill="url(#bg)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Montserrat, sans-serif">Istio Ingress Gateway — Compression at the Edge</text>
+  <text x="400" y="55" text-anchor="middle" fill="#9aa3b8" font-size="13" font-family="Montserrat, sans-serif">One Envoy proxy. Every API. Zero application changes.</text>
+
+  <!-- Client -->
+  <g>
+    <ellipse cx="100" cy="240" rx="60" ry="20" fill="url(#client-grad)" opacity="0.15"/>
+    <rect x="55" y="180" width="90" height="120" rx="12" fill="url(#client-grad)" opacity="0.95">
+      <animate attributeName="opacity" values="0;0.95;0.95" dur="6s" keyTimes="0;0.15;1" repeatCount="indefinite"/>
+    </rect>
+    <text x="100" y="220" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="Montserrat, sans-serif">CLIENT</text>
+    <text x="100" y="245" text-anchor="middle" fill="#e0f4ff" font-size="11" font-family="Montserrat, sans-serif">Browser / App</text>
+    <text x="100" y="265" text-anchor="middle" fill="#e0f4ff" font-size="10" font-family="Montserrat, sans-serif">Accept-Encoding:</text>
+    <text x="100" y="280" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="monospace">gzip, br, zstd</text>
+  </g>
+
+  <!-- Gateway (hero) -->
+  <g>
+    <circle cx="400" cy="240" r="120" fill="url(#glow-gateway)">
+      <animate attributeName="r" values="100;130;100" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <rect x="320" y="160" width="160" height="160" rx="14" fill="url(#gateway-grad)">
+      <animate attributeName="opacity" values="0;1;1" dur="6s" keyTimes="0;0.3;1" repeatCount="indefinite"/>
+    </rect>
+    <text x="400" y="195" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">ISTIO INGRESS</text>
+    <text x="400" y="213" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">GATEWAY</text>
+    <line x1="340" y1="225" x2="460" y2="225" stroke="#a89fff" stroke-width="0.5"/>
+    <text x="400" y="245" text-anchor="middle" fill="#e8e3ff" font-size="11" font-family="Montserrat, sans-serif">Envoy Proxy</text>
+    <rect x="335" y="258" width="130" height="22" rx="4" fill="#1a1530" stroke="#7B61FF" stroke-width="1"/>
+    <text x="400" y="273" text-anchor="middle" fill="#FFD93D" font-size="10" font-weight="700" font-family="monospace">compressor filter</text>
+    <rect x="335" y="285" width="130" height="22" rx="4" fill="#1a1530" stroke="#5747a8" stroke-width="1"/>
+    <text x="400" y="300" text-anchor="middle" fill="#a89fff" font-size="10" font-family="monospace">router (terminal)</text>
+  </g>
+
+  <!-- Service mesh / app -->
+  <g>
+    <rect x="650" y="180" width="100" height="120" rx="12" fill="url(#service-grad)" opacity="0.95">
+      <animate attributeName="opacity" values="0;0.95;0.95" dur="6s" keyTimes="0;0.45;1" repeatCount="indefinite"/>
+    </rect>
+    <text x="700" y="220" text-anchor="middle" fill="#0A0E1A" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">YOUR API</text>
+    <text x="700" y="245" text-anchor="middle" fill="#0A0E1A" font-size="11" font-family="Montserrat, sans-serif">Pod / Service</text>
+    <text x="700" y="265" text-anchor="middle" fill="#0A0E1A" font-size="10" font-family="Montserrat, sans-serif">Returns raw JSON</text>
+    <text x="700" y="280" text-anchor="middle" fill="#0A0E1A" font-size="10" font-weight="700" font-family="monospace">1,258 KB</text>
+  </g>
+
+  <!-- Request arrow (large packet → gateway) -->
+  <line x1="148" y1="240" x2="318" y2="240" stroke="#4FC3F7" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+  <circle r="14" fill="#4FC3F7" filter="url(#soft-glow)">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M 148 240 L 318 240"/>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Gateway → service request -->
+  <line x1="482" y1="240" x2="650" y2="240" stroke="#a89fff" stroke-width="2" stroke-dasharray="6 4" opacity="0.4"/>
+
+  <!-- Response: large JSON from service → gateway -->
+  <circle r="22" fill="#00FF85" filter="url(#soft-glow)" opacity="0">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="1.5s" path="M 650 240 L 482 240"/>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite" begin="1.5s"/>
+  </circle>
+
+  <!-- Compressed packet leaving gateway (small) -->
+  <circle r="6" fill="#FFD93D" filter="url(#soft-glow)" opacity="0">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="2.5s" path="M 318 240 L 148 240"/>
+    <animate attributeName="opacity" values="0;1;1;0" dur="4s" keyTimes="0;0.1;0.9;1" repeatCount="indefinite" begin="2.5s"/>
+  </circle>
+
+  <!-- Labels for arrows -->
+  <text x="233" y="225" text-anchor="middle" fill="#4FC3F7" font-size="10" font-family="Montserrat, sans-serif">REQUEST</text>
+  <text x="566" y="225" text-anchor="middle" fill="#a89fff" font-size="10" font-family="Montserrat, sans-serif">to upstream</text>
+  <text x="233" y="265" text-anchor="middle" fill="#FFD93D" font-size="10" font-weight="700" font-family="Montserrat, sans-serif">262 KB ← compressed</text>
+  <text x="566" y="265" text-anchor="middle" fill="#00FF85" font-size="10" font-weight="700" font-family="Montserrat, sans-serif">1,258 KB → raw</text>
+
+  <!-- Caption -->
+  <text x="400" y="385" text-anchor="middle" fill="#9aa3b8" font-size="11" font-family="Montserrat, sans-serif">Compression happens at the Envoy proxy on the gateway pod —</text>
+  <text x="400" y="402" text-anchor="middle" fill="#9aa3b8" font-size="11" font-family="Montserrat, sans-serif">your application service stays untouched.</text>
+</svg>

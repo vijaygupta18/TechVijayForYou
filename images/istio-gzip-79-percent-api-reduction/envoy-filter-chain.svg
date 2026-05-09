@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="filter-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7B61FF"/>
+      <stop offset="100%" stop-color="#5747a8"/>
+    </linearGradient>
+    <linearGradient id="compressor-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD93D"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+    <linearGradient id="router-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#C0392B"/>
+    </linearGradient>
+    <filter id="filter-glow">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="440" fill="url(#bg3)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Montserrat, sans-serif">Envoy HTTP Filter Chain</text>
+  <text x="400" y="55" text-anchor="middle" fill="#9aa3b8" font-size="13" font-family="Montserrat, sans-serif">Forward on request. Reverse on response. Router is terminal.</text>
+
+  <!-- Filter boxes -->
+  <g>
+    <!-- Filter 1: Compressor -->
+    <rect x="60" y="180" width="140" height="80" rx="10" fill="url(#compressor-grad)"/>
+    <text x="130" y="215" text-anchor="middle" fill="#0A0E1A" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">COMPRESSOR</text>
+    <text x="130" y="235" text-anchor="middle" fill="#0A0E1A" font-size="10" font-family="monospace">envoy.filters.http</text>
+    <text x="130" y="248" text-anchor="middle" fill="#0A0E1A" font-size="10" font-family="monospace">.compressor</text>
+
+    <!-- Filter 2: JWT Auth -->
+    <rect x="240" y="180" width="140" height="80" rx="10" fill="url(#filter-grad)"/>
+    <text x="310" y="215" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">JWT AUTH</text>
+    <text x="310" y="235" text-anchor="middle" fill="#e8e3ff" font-size="10" font-family="monospace">envoy.filters.http</text>
+    <text x="310" y="248" text-anchor="middle" fill="#e8e3ff" font-size="10" font-family="monospace">.jwt_authn</text>
+
+    <!-- Filter 3: CORS -->
+    <rect x="420" y="180" width="140" height="80" rx="10" fill="url(#filter-grad)"/>
+    <text x="490" y="215" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">CORS</text>
+    <text x="490" y="235" text-anchor="middle" fill="#e8e3ff" font-size="10" font-family="monospace">envoy.filters.http</text>
+    <text x="490" y="248" text-anchor="middle" fill="#e8e3ff" font-size="10" font-family="monospace">.cors</text>
+
+    <!-- Filter 4: Router (terminal) -->
+    <rect x="600" y="180" width="140" height="80" rx="10" fill="url(#router-grad)"/>
+    <text x="670" y="212" text-anchor="middle" fill="#fff" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">ROUTER</text>
+    <text x="670" y="230" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Montserrat, sans-serif">(TERMINAL)</text>
+    <text x="670" y="248" text-anchor="middle" fill="#ffd6d6" font-size="10" font-family="monospace">.router</text>
+  </g>
+
+  <!-- Decode (forward) arrow -->
+  <g>
+    <text x="400" y="100" text-anchor="middle" fill="#4FC3F7" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">DECODE → REQUEST FLOWS FORWARD</text>
+    <line x1="60" y1="135" x2="740" y2="135" stroke="#4FC3F7" stroke-width="2" stroke-dasharray="6 4" opacity="0.5"/>
+    <circle r="9" fill="#4FC3F7" filter="url(#filter-glow)">
+      <animateMotion dur="4s" repeatCount="indefinite" path="M 60 135 L 740 135"/>
+    </circle>
+    <polygon points="730,128 745,135 730,142" fill="#4FC3F7"/>
+  </g>
+
+  <!-- Encode (reverse) arrow -->
+  <g>
+    <text x="400" y="335" text-anchor="middle" fill="#00FF85" font-size="13" font-weight="800" font-family="Montserrat, sans-serif">ENCODE ← RESPONSE FLOWS REVERSE</text>
+    <line x1="60" y1="305" x2="740" y2="305" stroke="#00FF85" stroke-width="2" stroke-dasharray="6 4" opacity="0.5"/>
+    <circle r="11" fill="#00FF85" filter="url(#filter-glow)">
+      <animateMotion dur="4s" repeatCount="indefinite" path="M 740 305 L 60 305"/>
+    </circle>
+    <polygon points="70,298 55,305 70,312" fill="#00FF85"/>
+    <!-- compress flash when packet hits compressor on encode -->
+    <circle cx="130" cy="305" r="0" fill="#FFD93D" opacity="0.7">
+      <animate attributeName="r" values="0;25;0" dur="4s" keyTimes="0;0.92;1" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="4s" keyTimes="0;0.92;1" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Order numbers on filters -->
+  <g font-family="monospace" font-size="10" font-weight="700">
+    <text x="130" y="170" text-anchor="middle" fill="#4FC3F7">[1]</text>
+    <text x="310" y="170" text-anchor="middle" fill="#4FC3F7">[2]</text>
+    <text x="490" y="170" text-anchor="middle" fill="#4FC3F7">[3]</text>
+    <text x="670" y="170" text-anchor="middle" fill="#4FC3F7">[4]</text>
+
+    <text x="130" y="285" text-anchor="middle" fill="#00FF85">[4]</text>
+    <text x="310" y="285" text-anchor="middle" fill="#00FF85">[3]</text>
+    <text x="490" y="285" text-anchor="middle" fill="#00FF85">[2]</text>
+    <text x="670" y="285" text-anchor="middle" fill="#00FF85">[1]</text>
+  </g>
+
+  <!-- Insight box -->
+  <rect x="140" y="370" width="520" height="50" rx="8" fill="#1a1530" stroke="#FFD93D" stroke-width="1"/>
+  <text x="400" y="395" text-anchor="middle" fill="#FFD93D" font-size="13" font-weight="700" font-family="Montserrat, sans-serif">Compressor must sit BEFORE router so it sees response bytes last on encode pass.</text>
+  <text x="400" y="412" text-anchor="middle" fill="#9aa3b8" font-size="11" font-family="Montserrat, sans-serif">EnvoyFilter operation: INSERT_BEFORE  ·  subFilter: envoy.filters.http.router</text>
+</svg>

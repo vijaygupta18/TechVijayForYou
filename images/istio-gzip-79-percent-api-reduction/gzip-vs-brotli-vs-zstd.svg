@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="gzip-bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#2E86AB"/>
+    </linearGradient>
+    <linearGradient id="brotli-bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#C0392B"/>
+    </linearGradient>
+    <linearGradient id="zstd-bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFD93D"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="440" fill="url(#bg5)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Montserrat, sans-serif">gzip vs brotli vs zstd — 1 MB JSON Response</text>
+  <text x="400" y="55" text-anchor="middle" fill="#9aa3b8" font-size="13" font-family="Montserrat, sans-serif">Cloudflare production benchmark, billions of requests (2024)</text>
+
+  <!-- Compression ratio bars -->
+  <text x="60" y="100" fill="#fff" font-size="14" font-weight="700" font-family="Montserrat, sans-serif">COMPRESSION RATIO (higher = smaller output)</text>
+
+  <g font-family="Montserrat, sans-serif">
+    <!-- gzip -->
+    <text x="60" y="135" fill="#4FC3F7" font-size="13" font-weight="700">gzip</text>
+    <rect x="120" y="120" width="0" height="22" fill="url(#gzip-bar)" rx="4">
+      <animate attributeName="width" values="0;430" dur="2s" begin="0s" fill="freeze"/>
+    </rect>
+    <text x="555" y="136" fill="#fff" font-size="13" font-weight="800" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2s" fill="freeze"/>
+      <tspan>2.56:1</tspan>
+    </text>
+
+    <!-- zstd -->
+    <text x="60" y="175" fill="#FFD93D" font-size="13" font-weight="700">zstd L3</text>
+    <rect x="120" y="160" width="0" height="22" fill="url(#zstd-bar)" rx="4">
+      <animate attributeName="width" values="0;480" dur="2s" begin="0.4s" fill="freeze"/>
+    </rect>
+    <text x="605" y="176" fill="#fff" font-size="13" font-weight="800" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.4s" fill="freeze"/>
+      <tspan>2.86:1</tspan>
+    </text>
+
+    <!-- brotli -->
+    <text x="60" y="215" fill="#FF6B6B" font-size="13" font-weight="700">brotli L4</text>
+    <rect x="120" y="200" width="0" height="22" fill="url(#brotli-bar)" rx="4">
+      <animate attributeName="width" values="0;520" dur="2s" begin="0.8s" fill="freeze"/>
+    </rect>
+    <text x="645" y="216" fill="#fff" font-size="13" font-weight="800" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.8s" fill="freeze"/>
+      <tspan>3.08:1</tspan>
+    </text>
+  </g>
+
+  <!-- Speed bars -->
+  <text x="60" y="260" fill="#fff" font-size="14" font-weight="700" font-family="Montserrat, sans-serif">AVG COMPRESS TIME (lower = faster)</text>
+
+  <g font-family="Montserrat, sans-serif">
+    <text x="60" y="295" fill="#4FC3F7" font-size="13" font-weight="700">gzip</text>
+    <rect x="120" y="280" width="0" height="22" fill="url(#gzip-bar)" rx="4">
+      <animate attributeName="width" values="0;240" dur="2s" begin="3s" fill="freeze"/>
+    </rect>
+    <text x="370" y="296" fill="#fff" font-size="13" font-weight="800" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="5s" fill="freeze"/>
+      <tspan>0.872 ms</tspan>
+    </text>
+
+    <text x="60" y="335" fill="#FFD93D" font-size="13" font-weight="700">zstd L3</text>
+    <rect x="120" y="320" width="0" height="22" fill="url(#zstd-bar)" rx="4">
+      <animate attributeName="width" values="0;230" dur="2s" begin="3.4s" fill="freeze"/>
+    </rect>
+    <text x="360" y="336" fill="#fff" font-size="13" font-weight="800" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="5.4s" fill="freeze"/>
+      <tspan>0.848 ms ← fastest</tspan>
+    </text>
+
+    <text x="60" y="375" fill="#FF6B6B" font-size="13" font-weight="700">brotli L4</text>
+    <rect x="120" y="360" width="0" height="22" fill="url(#brotli-bar)" rx="4">
+      <animate attributeName="width" values="0;430" dur="2s" begin="3.8s" fill="freeze"/>
+    </rect>
+    <text x="555" y="376" fill="#fff" font-size="13" font-weight="800" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.5s" begin="5.8s" fill="freeze"/>
+      <tspan>1.544 ms</tspan>
+    </text>
+  </g>
+
+  <!-- Browser support footer -->
+  <rect x="60" y="400" width="680" height="30" rx="6" fill="#1a1530" stroke="#2a3045" stroke-width="1"/>
+  <text x="80" y="420" fill="#9aa3b8" font-size="11" font-family="Montserrat, sans-serif">
+    <tspan fill="#4FC3F7" font-weight="700">gzip:</tspan> universal  ·
+    <tspan fill="#FF6B6B" font-weight="700">brotli:</tspan> Chrome 50+, Firefox 44+, Safari 11+  ·
+    <tspan fill="#FFD93D" font-weight="700">zstd:</tspan> Chrome 123+, Firefox 126+, Safari 26.3+
+  </text>
+</svg>

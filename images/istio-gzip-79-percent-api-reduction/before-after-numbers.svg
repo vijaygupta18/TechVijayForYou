@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" viewBox="0 0 800 380">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="before-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#C0392B"/>
+    </linearGradient>
+    <linearGradient id="after-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00FF85"/>
+      <stop offset="100%" stop-color="#00B85F"/>
+    </linearGradient>
+    <filter id="glow6">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="380" fill="url(#bg6)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Montserrat, sans-serif">Before vs After — One EnvoyFilter</text>
+  <text x="400" y="55" text-anchor="middle" fill="#9aa3b8" font-size="13" font-family="Montserrat, sans-serif">Production case study, 1M API calls / month</text>
+
+  <!-- Bar chart: shrinking response size -->
+  <text x="180" y="100" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="Montserrat, sans-serif">Response Size</text>
+
+  <!-- Before bar -->
+  <rect x="120" y="130" width="60" height="200" fill="url(#before-grad)" rx="4">
+    <animate attributeName="height" values="200;200;42" dur="6s" keyTimes="0;0.4;0.7" repeatCount="indefinite"/>
+    <animate attributeName="y" values="130;130;288" dur="6s" keyTimes="0;0.4;0.7" repeatCount="indefinite"/>
+    <animate attributeName="fill" values="url(#before-grad);url(#before-grad);url(#after-grad)" dur="6s" keyTimes="0;0.4;0.7" repeatCount="indefinite"/>
+  </rect>
+  <text x="150" y="350" text-anchor="middle" fill="#fff" font-size="11" font-family="Montserrat, sans-serif">RAW</text>
+  <text x="150" y="120" text-anchor="middle" fill="#FF6B6B" font-size="13" font-weight="800" font-family="monospace">1,258 KB</text>
+
+  <!-- After bar -->
+  <rect x="220" y="288" width="60" height="42" fill="url(#after-grad)" rx="4"/>
+  <text x="250" y="350" text-anchor="middle" fill="#fff" font-size="11" font-family="Montserrat, sans-serif">GZIP</text>
+  <text x="250" y="278" text-anchor="middle" fill="#00FF85" font-size="13" font-weight="800" font-family="monospace">262 KB</text>
+
+  <!-- 79.4% callout -->
+  <g transform="translate(330, 150)">
+    <rect x="0" y="0" width="180" height="80" rx="10" fill="#1a1530" stroke="#FFD93D" stroke-width="1.5" filter="url(#glow6)"/>
+    <text x="90" y="38" text-anchor="middle" fill="#FFD93D" font-size="32" font-weight="800" font-family="Montserrat, sans-serif">79.4%</text>
+    <text x="90" y="60" text-anchor="middle" fill="#fff" font-size="11" font-family="Montserrat, sans-serif">SMALLER</text>
+  </g>
+
+  <!-- Latency drop -->
+  <g transform="translate(540, 100)">
+    <rect x="0" y="0" width="220" height="60" rx="8" fill="#1a1530" stroke="#00FF85" stroke-width="1"/>
+    <text x="110" y="28" text-anchor="middle" fill="#00FF85" font-size="22" font-weight="800" font-family="Montserrat, sans-serif">3.682s → 3.517s</text>
+    <text x="110" y="48" text-anchor="middle" fill="#9aa3b8" font-size="11" font-family="Montserrat, sans-serif">avg latency  ·  −165 ms</text>
+  </g>
+
+  <!-- Egress saved -->
+  <g transform="translate(540, 175)">
+    <rect x="0" y="0" width="220" height="60" rx="8" fill="#1a1530" stroke="#4FC3F7" stroke-width="1"/>
+    <text x="110" y="28" text-anchor="middle" fill="#4FC3F7" font-size="22" font-weight="800" font-family="Montserrat, sans-serif">9.8 GB → 2 GB</text>
+    <text x="110" y="48" text-anchor="middle" fill="#9aa3b8" font-size="11" font-family="Montserrat, sans-serif">egress / 1M calls  ·  7.8 GB saved</text>
+  </g>
+
+  <!-- AWS cost ticker -->
+  <g transform="translate(540, 250)">
+    <rect x="0" y="0" width="220" height="60" rx="8" fill="#1a1530" stroke="#FFD93D" stroke-width="1"/>
+    <text x="110" y="28" text-anchor="middle" fill="#FFD93D" font-size="22" font-weight="800" font-family="Montserrat, sans-serif">$0.88 → $0.18</text>
+    <text x="110" y="48" text-anchor="middle" fill="#9aa3b8" font-size="11" font-family="Montserrat, sans-serif">AWS egress / 1M calls</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="400" y="362" text-anchor="middle" fill="#9aa3b8" font-size="11" font-family="Montserrat, sans-serif">
+    At 100M calls/month → ~$840 saved per year. Per cluster. From one YAML file.
+  </text>
+</svg>

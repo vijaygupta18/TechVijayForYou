@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" viewBox="0 0 800 380">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="raw" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00FF85"/>
+      <stop offset="100%" stop-color="#00B85F"/>
+    </linearGradient>
+    <linearGradient id="compressed" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFD93D"/>
+      <stop offset="100%" stop-color="#FFA500"/>
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="380" fill="url(#bg2)"/>
+
+  <text x="400" y="32" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Montserrat, sans-serif">A 1,258 KB Response, Travelling Through the Pipeline</text>
+  <text x="400" y="55" text-anchor="middle" fill="#9aa3b8" font-size="13" font-family="Montserrat, sans-serif">Watch the packet shrink at the gateway.</text>
+
+  <!-- Pipeline track -->
+  <line x1="80" y1="200" x2="720" y2="200" stroke="#2a3045" stroke-width="3"/>
+
+  <!-- Stage markers -->
+  <g>
+    <circle cx="80" cy="200" r="10" fill="#4FC3F7"/>
+    <text x="80" y="170" text-anchor="middle" fill="#4FC3F7" font-size="11" font-weight="700" font-family="Montserrat, sans-serif">CLIENT</text>
+    <text x="80" y="232" text-anchor="middle" fill="#9aa3b8" font-size="10" font-family="Montserrat, sans-serif">browser</text>
+  </g>
+  <g>
+    <circle cx="280" cy="200" r="14" fill="#7B61FF"/>
+    <text x="280" y="170" text-anchor="middle" fill="#7B61FF" font-size="11" font-weight="700" font-family="Montserrat, sans-serif">ISTIO GATEWAY</text>
+    <text x="280" y="232" text-anchor="middle" fill="#9aa3b8" font-size="10" font-family="Montserrat, sans-serif">Envoy proxy</text>
+  </g>
+  <g>
+    <circle cx="520" cy="200" r="14" fill="#7B61FF"/>
+    <text x="520" y="170" text-anchor="middle" fill="#7B61FF" font-size="11" font-weight="700" font-family="Montserrat, sans-serif">COMPRESSOR</text>
+    <text x="520" y="232" text-anchor="middle" fill="#FFD93D" font-size="10" font-weight="700" font-family="monospace">gzip level 6</text>
+  </g>
+  <g>
+    <circle cx="720" cy="200" r="10" fill="#00FF85"/>
+    <text x="720" y="170" text-anchor="middle" fill="#00FF85" font-size="11" font-weight="700" font-family="Montserrat, sans-serif">UPSTREAM</text>
+    <text x="720" y="232" text-anchor="middle" fill="#9aa3b8" font-size="10" font-family="Montserrat, sans-serif">your service</text>
+  </g>
+
+  <!-- Animated raw packet (large) — flows from upstream back, hits compressor, shrinks -->
+  <g>
+    <!-- Raw blob (large) leaving service -->
+    <rect width="140" height="48" rx="8" fill="url(#raw)" filter="url(#glow2)" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0;0" dur="6s" keyTimes="0;0.1;0.45;0.55;1" repeatCount="indefinite"/>
+      <animate attributeName="x" values="650;520;520;520;520" dur="6s" keyTimes="0;0.4;0.5;0.55;1" repeatCount="indefinite"/>
+      <animate attributeName="y" values="176;176;176;176;176" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="width" values="140;140;140;40;40" dur="6s" keyTimes="0;0.4;0.5;0.55;1" repeatCount="indefinite"/>
+    </rect>
+    <text fill="#0A0E1A" font-size="11" font-weight="800" font-family="monospace" opacity="0">
+      <animate attributeName="opacity" values="0;1;1;0" dur="6s" keyTimes="0;0.1;0.5;0.55" repeatCount="indefinite"/>
+      <animate attributeName="x" values="720;590;590" dur="6s" keyTimes="0;0.4;0.5" repeatCount="indefinite"/>
+      <animate attributeName="y" values="206;206;206" dur="6s" repeatCount="indefinite"/>
+      <tspan>1,258 KB JSON</tspan>
+    </text>
+
+    <!-- Small compressed blob -->
+    <rect width="40" height="48" rx="6" fill="url(#compressed)" filter="url(#glow2)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="6s" keyTimes="0;0.55;0.6;0.95;1" repeatCount="indefinite"/>
+      <animate attributeName="x" values="500;500;280;100;80" dur="6s" keyTimes="0;0.55;0.7;0.95;1" repeatCount="indefinite"/>
+      <animate attributeName="y" values="176;176;176;176;176" dur="6s" repeatCount="indefinite"/>
+    </rect>
+    <text fill="#0A0E1A" font-size="10" font-weight="800" font-family="monospace" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0" dur="6s" keyTimes="0;0.55;0.6;0.95;1" repeatCount="indefinite"/>
+      <animate attributeName="x" values="520;520;300;120;100" dur="6s" keyTimes="0;0.55;0.7;0.95;1" repeatCount="indefinite"/>
+      <animate attributeName="y" values="206;206;206;206;206" dur="6s" repeatCount="indefinite"/>
+      <tspan>262 KB</tspan>
+    </text>
+
+    <!-- Compression burst at gateway -->
+    <circle cx="520" cy="200" r="0" fill="#FFD93D" opacity="0.6">
+      <animate attributeName="r" values="0;0;30;0;0" dur="6s" keyTimes="0;0.5;0.55;0.6;1" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.7;0;0" dur="6s" keyTimes="0;0.5;0.55;0.6;1" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Stat callouts -->
+  <g transform="translate(150, 295)">
+    <rect width="180" height="55" rx="8" fill="#1a1530" stroke="#FFD93D" stroke-width="1"/>
+    <text x="90" y="22" text-anchor="middle" fill="#FFD93D" font-size="22" font-weight="800" font-family="Montserrat, sans-serif">79.4%</text>
+    <text x="90" y="42" text-anchor="middle" fill="#fff" font-size="11" font-family="Montserrat, sans-serif">smaller on the wire</text>
+  </g>
+  <g transform="translate(355, 295)">
+    <rect width="180" height="55" rx="8" fill="#1a1530" stroke="#00FF85" stroke-width="1"/>
+    <text x="90" y="22" text-anchor="middle" fill="#00FF85" font-size="22" font-weight="800" font-family="Montserrat, sans-serif">−165 ms</text>
+    <text x="90" y="42" text-anchor="middle" fill="#fff" font-size="11" font-family="Montserrat, sans-serif">avg latency drop</text>
+  </g>
+  <g transform="translate(560, 295)">
+    <rect width="180" height="55" rx="8" fill="#1a1530" stroke="#4FC3F7" stroke-width="1"/>
+    <text x="90" y="22" text-anchor="middle" fill="#4FC3F7" font-size="22" font-weight="800" font-family="Montserrat, sans-serif">7.8 GB</text>
+    <text x="90" y="42" text-anchor="middle" fill="#fff" font-size="11" font-family="Montserrat, sans-serif">saved per 1M calls</text>
+  </g>
+</svg>
