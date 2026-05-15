@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" font-family="-apple-system, system-ui, sans-serif">
+  <style>
+    .h1   { font-size: 20px; fill: #111827; font-weight: 700; }
+    .h2   { font-size: 14px; fill: #1f2937; font-weight: 700; }
+    .lbl  { font-size: 13px; fill: #1f2937; font-weight: 600; }
+    .sub  { font-size: 12px; fill: #6b7280; }
+    .tiny { font-size: 11px; fill: #6b7280; }
+    .step { font-size: 12px; fill: #1f2937; font-weight: 700; }
+    .cellC { fill: #ecfeff; stroke: #06b6d4; stroke-width: 2; rx: 12; }
+    .cellD { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 12; }
+    .node { fill: #fff; stroke-width: 1.5; rx: 22; }
+  </style>
+
+  <text class="h1" x="500" y="35" text-anchor="middle">A booking, end to end</text>
+  <text class="sub" x="500" y="58" text-anchor="middle">search → select → init → dispatch  |  only "select" and "init" cross the cell boundary</text>
+
+  <!-- Cells -->
+  <rect x="40" y="90" width="440" height="240" class="cellC"/>
+  <text class="h2" x="60" y="115" fill="#0e7490">Customer Cell</text>
+  <text class="tiny" x="60" y="131">rider lives here</text>
+
+  <rect x="520" y="90" width="440" height="240" class="cellD"/>
+  <text class="h2" x="540" y="115" fill="#92400e">Driver Cell</text>
+  <text class="tiny" x="540" y="131">driver lives here</text>
+
+  <!-- Nodes -->
+  <circle cx="100" cy="220" r="26" fill="#06b6d4"/>
+  <text x="100" y="226" text-anchor="middle" font-size="16" fill="#fff" font-weight="700">R</text>
+  <text class="tiny" x="100" y="265" text-anchor="middle">rider app</text>
+
+  <rect x="220" y="195" width="170" height="50" class="node" stroke="#06b6d4"/>
+  <text class="lbl" x="305" y="226" text-anchor="middle" fill="#0e7490">BAP service</text>
+
+  <rect x="600" y="195" width="170" height="50" class="node" stroke="#d97706"/>
+  <text class="lbl" x="685" y="226" text-anchor="middle" fill="#92400e">BPP service</text>
+
+  <rect x="860" y="195" width="50" height="50" class="node" stroke="#d97706"/>
+  <text x="885" y="226" text-anchor="middle" font-size="16" fill="#92400e" font-weight="700">D</text>
+  <text class="tiny" x="885" y="265" text-anchor="middle">driver app</text>
+
+  <!-- Forward arrow -->
+  <line x1="126" y1="215" x2="220" y2="215" stroke="#06b6d4" stroke-width="2"/>
+  <polygon points="220,215 213,211 213,219" fill="#06b6d4"/>
+
+  <line x1="390" y1="215" x2="600" y2="215" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="600,215 593,211 593,219" fill="#6b7280"/>
+
+  <line x1="770" y1="215" x2="860" y2="215" stroke="#d97706" stroke-width="2"/>
+  <polygon points="860,215 853,211 853,219" fill="#d97706"/>
+
+  <!-- Return arrow -->
+  <line x1="860" y1="230" x2="770" y2="230" stroke="#d97706" stroke-width="2" opacity="0.6"/>
+  <polygon points="770,230 777,226 777,234" fill="#d97706" opacity="0.6"/>
+
+  <line x1="600" y1="230" x2="390" y2="230" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+  <polygon points="390,230 397,226 397,234" fill="#6b7280" opacity="0.6"/>
+
+  <line x1="220" y1="230" x2="126" y2="230" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+  <polygon points="126,230 133,226 133,234" fill="#06b6d4" opacity="0.6"/>
+
+  <!-- Step labels (above arrows) -->
+  <text class="step" x="173" y="205" text-anchor="middle" fill="#0e7490">search</text>
+  <text class="step" x="495" y="205" text-anchor="middle" fill="#374151">select  /  init</text>
+  <text class="tiny" x="495" y="190" text-anchor="middle" fill="#6b7280">cross-cell hop</text>
+  <text class="step" x="815" y="205" text-anchor="middle" fill="#92400e">dispatch</text>
+
+  <text class="tiny" x="173" y="246" text-anchor="middle">quotes returned</text>
+  <text class="tiny" x="495" y="246" text-anchor="middle">cross-cell hop</text>
+  <text class="tiny" x="815" y="246" text-anchor="middle">driver poll</text>
+
+  <!-- Animated forward packet (light cyan request) -->
+  <circle r="7" fill="#06b6d4">
+    <animateMotion dur="6s" repeatCount="indefinite" keyTimes="0;0.15;0.35;0.55;0.7;0.95;1"
+      path="M 126 215 L 220 215 L 390 215 L 600 215 L 770 215 L 860 215 L 860 215"/>
+    <animate attributeName="opacity" values="0;1;1;1;1;1;0" keyTimes="0;0.05;0.55;0.7;0.85;0.95;1" dur="6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Animated return (amber response) -->
+  <circle r="7" fill="#d97706">
+    <animateMotion dur="6s" repeatCount="indefinite" keyTimes="0;0.55;0.7;0.85;1"
+      path="M 860 230 L 770 230 L 600 230 L 390 230 L 126 230"/>
+    <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5;0.55;0.95;1" dur="6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Phase strip below -->
+  <rect x="40" y="355" width="920" height="100" rx="8" fill="#f9fafb" stroke="#d1d5db"/>
+  <text class="h2" x="60" y="380">Where each step happens</text>
+
+  <g transform="translate(60, 395)">
+    <circle cx="8" cy="14" r="6" fill="#06b6d4"/>
+    <text class="lbl" x="22" y="18">Phase 1 — local</text>
+    <text class="tiny" x="22" y="34">rider opens app, searches</text>
+    <text class="tiny" x="22" y="48">Customer Cell handles it</text>
+  </g>
+
+  <g transform="translate(310, 395)">
+    <circle cx="8" cy="14" r="6" fill="#6b7280"/>
+    <text class="lbl" x="22" y="18">Phase 2 — cross-cell</text>
+    <text class="tiny" x="22" y="34">select / init reach driver side</text>
+    <text class="tiny" x="22" y="48">one well-defined hop</text>
+  </g>
+
+  <g transform="translate(580, 395)">
+    <circle cx="8" cy="14" r="6" fill="#d97706"/>
+    <text class="lbl" x="22" y="18">Phase 3 — local</text>
+    <text class="tiny" x="22" y="34">driver polls, accepts, drives</text>
+    <text class="tiny" x="22" y="48">Driver Cell handles all of it</text>
+  </g>
+
+  <g transform="translate(820, 400)">
+    <text class="tiny" x="0" y="14">hot paths</text>
+    <text class="tiny" x="0" y="30" fill="#0e7490" font-weight="700">stay inside one cell</text>
+    <text class="tiny" x="0" y="46">boundary stays thin</text>
+  </g>
+</svg>

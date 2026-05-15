@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="-apple-system, system-ui, sans-serif">
+  <style>
+    .h1    { font-size: 20px; fill: #111827; font-weight: 700; }
+    .h2    { font-size: 15px; fill: #1f2937; font-weight: 700; }
+    .lbl   { font-size: 13px; fill: #1f2937; font-weight: 600; }
+    .sub   { font-size: 12px; fill: #6b7280; }
+    .tiny  { font-size: 11px; fill: #6b7280; }
+    .cellC { fill: #ecfeff; stroke: #06b6d4; stroke-width: 2; rx: 12; }
+    .cellD { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 12; }
+    .pill  { fill: #fff; rx: 8; }
+    .cross { stroke: #6b7280; stroke-width: 1.6; stroke-dasharray: 6 4; fill: none; }
+  </style>
+
+  <text class="h1" x="500" y="35" text-anchor="middle">Domain-aware Active-Active</text>
+  <text class="sub" x="500" y="58" text-anchor="middle">one cell per side of the marketplace, with a minimal routing surface between them</text>
+
+  <!-- Customer Cell -->
+  <rect x="40" y="90" width="380" height="360" class="cellC"/>
+  <text class="h2" x="60" y="120" fill="#0e7490">Customer Cell (BAP)</text>
+  <text class="sub" x="60" y="138">owns everything on the rider side</text>
+
+  <rect x="60" y="160" width="340" height="50" class="pill" stroke="#06b6d4" stroke-width="1.5"/>
+  <text class="lbl" x="230" y="190" text-anchor="middle">Compute  ·  BAP services</text>
+
+  <rect x="60" y="225" width="160" height="60" class="pill" stroke="#06b6d4" stroke-width="1.5"/>
+  <text class="lbl" x="140" y="252" text-anchor="middle">Redis</text>
+  <text class="tiny" x="140" y="270" text-anchor="middle">customer cache</text>
+
+  <rect x="240" y="225" width="160" height="60" class="pill" stroke="#06b6d4" stroke-width="1.5"/>
+  <text class="lbl" x="320" y="252" text-anchor="middle">DB replica</text>
+  <text class="tiny" x="320" y="270" text-anchor="middle">customer data</text>
+
+  <!-- rider icon + sticky note -->
+  <g>
+    <circle cx="90" cy="335" r="18" fill="#06b6d4">
+      <animate attributeName="cy" values="335;328;335" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <text x="90" y="340" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">R</text>
+  </g>
+  <text class="lbl" x="120" y="332">rider</text>
+  <text class="tiny" x="120" y="349">sticks to this cell</text>
+
+  <text class="lbl" x="60" y="395" fill="#0e7490">owns:</text>
+  <text class="tiny" x="60" y="412">profile  ·  search  ·  booking history</text>
+  <text class="tiny" x="60" y="428">payments  ·  status checks</text>
+
+  <!-- Driver Cell -->
+  <rect x="580" y="90" width="380" height="360" class="cellD"/>
+  <text class="h2" x="600" y="120" fill="#92400e">Driver Cell (BPP)</text>
+  <text class="sub" x="600" y="138">owns everything on the driver side</text>
+
+  <rect x="600" y="160" width="340" height="50" class="pill" stroke="#d97706" stroke-width="1.5"/>
+  <text class="lbl" x="770" y="190" text-anchor="middle">Compute  ·  BPP services</text>
+
+  <rect x="600" y="225" width="160" height="60" class="pill" stroke="#d97706" stroke-width="1.5"/>
+  <text class="lbl" x="680" y="252" text-anchor="middle">Redis</text>
+  <text class="tiny" x="680" y="270" text-anchor="middle">driver cache</text>
+
+  <rect x="780" y="225" width="160" height="60" class="pill" stroke="#d97706" stroke-width="1.5"/>
+  <text class="lbl" x="860" y="252" text-anchor="middle">DB replica</text>
+  <text class="tiny" x="860" y="270" text-anchor="middle">driver data</text>
+
+  <g>
+    <rect x="616" y="318" width="36" height="36" rx="6" fill="#d97706">
+      <animate attributeName="y" values="318;312;318" dur="2.2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="634" y="342" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">D</text>
+  </g>
+  <text class="lbl" x="665" y="332">driver</text>
+  <text class="tiny" x="665" y="349">sticks to this cell</text>
+
+  <text class="lbl" x="600" y="395" fill="#92400e">owns:</text>
+  <text class="tiny" x="600" y="412">supply  ·  location updates  ·  pooling</text>
+  <text class="tiny" x="600" y="428">dispatch state  ·  earnings</text>
+
+  <!-- Routing box -->
+  <rect x="435" y="225" width="130" height="60" rx="30" fill="#fff" stroke="#6b7280" stroke-width="2"/>
+  <text class="lbl" x="500" y="252" text-anchor="middle" fill="#374151">Routing</text>
+  <text class="tiny" x="500" y="270" text-anchor="middle">domain boundary</text>
+
+  <!-- Cross-cell dashed arrows -->
+  <path d="M 400 245 L 435 245" class="cross"/>
+  <path d="M 565 265 L 600 265" class="cross"/>
+  <path d="M 600 245 L 565 245" class="cross"/>
+  <path d="M 435 265 L 400 265" class="cross"/>
+
+  <!-- animated request packet crossing the boundary -->
+  <circle r="6" fill="#0e7490">
+    <animateMotion dur="4s" repeatCount="indefinite" path="M 320 255 L 435 245 L 565 245 L 680 255"/>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="6" fill="#92400e">
+    <animateMotion dur="4s" repeatCount="indefinite" begin="2s" path="M 680 265 L 565 265 L 435 265 L 320 265"/>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="4s" repeatCount="indefinite" begin="2s"/>
+  </circle>
+
+  <!-- Bottom rule of thumb -->
+  <rect x="40" y="470" width="920" height="50" rx="8" fill="#f9fafb" stroke="#d1d5db"/>
+  <text class="lbl" x="500" y="495" text-anchor="middle">Rule: most requests stay inside one cell. Cross-cell calls only happen where the two domains genuinely meet.</text>
+  <text class="tiny" x="500" y="512" text-anchor="middle">single source of truth per domain  ·  no central routing bottleneck  ·  independent stacks  ·  small, well-defined routing surface</text>
+
+  <!-- Legend -->
+  <g transform="translate(40, 540)">
+    <rect width="14" height="12" fill="#ecfeff" stroke="#06b6d4"/>
+    <text class="tiny" x="20" y="11">customer-side state</text>
+    <rect x="170" width="14" height="12" fill="#fef3c7" stroke="#d97706"/>
+    <text class="tiny" x="190" y="11">driver-side state</text>
+    <line x1="340" y1="6" x2="370" y2="6" stroke="#6b7280" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text class="tiny" x="378" y="11">cross-cell hop, only at the seam</text>
+  </g>
+</svg>

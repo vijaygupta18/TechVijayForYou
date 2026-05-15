@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="-apple-system, system-ui, sans-serif">
+  <style>
+    .h1   { font-size: 20px; fill: #111827; font-weight: 700; }
+    .h2   { font-size: 14px; fill: #1f2937; font-weight: 700; }
+    .lbl  { font-size: 13px; fill: #1f2937; font-weight: 600; }
+    .sub  { font-size: 12px; fill: #6b7280; }
+    .tiny { font-size: 11px; fill: #6b7280; }
+    .cellbox { fill: #eff6ff; stroke: #3b82f6; stroke-width: 2; rx: 12; }
+    .compute { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.5; rx: 8; }
+    .redis   { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.5; rx: 8; }
+    .replica { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 8; }
+    .shared  { fill: #f3f4f6; stroke: #9ca3af; stroke-width: 1.5; rx: 10; }
+    .arrow   { stroke: #9ca3af; stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; }
+  </style>
+
+  <text class="h1" x="500" y="35" text-anchor="middle">Anatomy of a Cell</text>
+  <text class="sub" x="500" y="58" text-anchor="middle">a cell is the smallest unit that can independently process transactions</text>
+
+  <!-- Cell 1 -->
+  <g>
+    <rect x="60" y="90" width="400" height="250" class="cellbox"/>
+    <text class="lbl" x="80" y="118">Cell 1</text>
+    <text class="tiny" x="80" y="134">independent transaction-processing unit</text>
+
+    <!-- Compute -->
+    <rect x="90" y="155" width="340" height="55" class="compute"/>
+    <text class="lbl" x="110" y="180">Compute</text>
+    <text class="tiny" x="110" y="197">stateless application services, scaled horizontally</text>
+
+    <!-- Redis + DB replica -->
+    <rect x="90" y="225" width="160" height="90" class="redis"/>
+    <text class="lbl" x="170" y="255" text-anchor="middle">Redis</text>
+    <text class="tiny" x="170" y="275" text-anchor="middle">low-latency cache</text>
+    <text class="tiny" x="170" y="291" text-anchor="middle">+ session state</text>
+
+    <rect x="270" y="225" width="160" height="90" class="replica"/>
+    <text class="lbl" x="350" y="255" text-anchor="middle">DB replica</text>
+    <text class="tiny" x="350" y="275" text-anchor="middle">local reads served</text>
+    <text class="tiny" x="350" y="291" text-anchor="middle">from this replica</text>
+  </g>
+
+  <!-- Cell 2 -->
+  <g>
+    <rect x="540" y="90" width="400" height="250" class="cellbox"/>
+    <text class="lbl" x="560" y="118">Cell 2</text>
+    <text class="tiny" x="560" y="134">deploys, scales, fails independently</text>
+
+    <rect x="570" y="155" width="340" height="55" class="compute"/>
+    <text class="lbl" x="590" y="180">Compute</text>
+    <text class="tiny" x="590" y="197">stateless application services, scaled horizontally</text>
+
+    <rect x="570" y="225" width="160" height="90" class="redis"/>
+    <text class="lbl" x="650" y="255" text-anchor="middle">Redis</text>
+    <text class="tiny" x="650" y="275" text-anchor="middle">low-latency cache</text>
+    <text class="tiny" x="650" y="291" text-anchor="middle">+ session state</text>
+
+    <rect x="750" y="225" width="160" height="90" class="replica"/>
+    <text class="lbl" x="830" y="255" text-anchor="middle">DB replica</text>
+    <text class="tiny" x="830" y="275" text-anchor="middle">local reads served</text>
+    <text class="tiny" x="830" y="291" text-anchor="middle">from this replica</text>
+  </g>
+
+  <!-- Cell pulse animation -->
+  <rect x="60" y="90" width="400" height="250" rx="12" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0">
+    <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-width" values="2;4;2" dur="3s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="540" y="90" width="400" height="250" rx="12" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0">
+    <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+    <animate attributeName="stroke-width" values="2;4;2" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+  </rect>
+
+  <!-- Shared services lane -->
+  <rect x="60" y="385" width="880" height="135" class="shared"/>
+  <text class="h2" x="80" y="412">Shared services</text>
+  <text class="tiny" x="80" y="430">deliberately not per-cell — these genuinely make sense as one resource</text>
+
+  <rect x="100" y="450" width="220" height="50" rx="8" fill="#fff" stroke="#9ca3af"/>
+  <text class="lbl" x="210" y="475" text-anchor="middle">Primary Database</text>
+  <text class="tiny" x="210" y="492" text-anchor="middle">single source of truth</text>
+
+  <rect x="390" y="450" width="220" height="50" rx="8" fill="#fff" stroke="#9ca3af"/>
+  <text class="lbl" x="500" y="475" text-anchor="middle">Object Storage</text>
+  <text class="tiny" x="500" y="492" text-anchor="middle">files, images, logs</text>
+
+  <rect x="680" y="450" width="220" height="50" rx="8" fill="#fff" stroke="#9ca3af"/>
+  <text class="lbl" x="790" y="475" text-anchor="middle">Analytics Pipeline</text>
+  <text class="tiny" x="790" y="492" text-anchor="middle">streamed from both cells</text>
+
+  <!-- Arrows from cells to shared -->
+  <path d="M 260 340 Q 260 400, 210 450" class="arrow"/>
+  <path d="M 740 340 Q 740 400, 790 450" class="arrow"/>
+
+  <!-- Replication dots -->
+  <circle r="5" fill="#3b82f6">
+    <animateMotion dur="3.5s" repeatCount="indefinite" path="M 260 340 Q 260 400, 210 450"/>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="5" fill="#3b82f6">
+    <animateMotion dur="3.5s" repeatCount="indefinite" begin="1.75s" path="M 740 340 Q 740 400, 790 450"/>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="3.5s" repeatCount="indefinite" begin="1.75s"/>
+  </circle>
+
+  <!-- legend -->
+  <g transform="translate(60, 540)">
+    <rect width="14" height="12" class="compute"/>
+    <text class="tiny" x="20" y="11">compute</text>
+    <rect x="90" width="14" height="12" class="redis"/>
+    <text class="tiny" x="110" y="11">cache</text>
+    <rect x="170" width="14" height="12" class="replica"/>
+    <text class="tiny" x="190" y="11">db replica</text>
+    <rect x="270" width="14" height="12" class="shared"/>
+    <text class="tiny" x="290" y="11">shared</text>
+  </g>
+</svg>

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" font-family="-apple-system, system-ui, sans-serif">
+  <style>
+    .h1       { font-size: 20px; fill: #111827; font-weight: 700; }
+    .h2       { font-size: 15px; fill: #1f2937; font-weight: 700; }
+    .label    { font-size: 14px; fill: #1f2937; font-weight: 600; }
+    .sub      { font-size: 12px; fill: #6b7280; }
+    .badge    { font-size: 11px; font-weight: 700; }
+    .box      { fill: #f9fafb; stroke: #d1d5db; stroke-width: 1.5; }
+    .ok       { fill: #f0fdf4; stroke: #22c55e; stroke-width: 1.5; }
+    .danger   { fill: #fef2f2; stroke: #ef4444; stroke-width: 2; }
+  </style>
+
+  <text class="h1" x="500" y="35" text-anchor="middle">Why cells: containing the blast radius of a change</text>
+
+  <!-- LEFT: Without cells -->
+  <text class="h2" x="50" y="78">Before — one shared stack</text>
+  <rect x="50" y="92" width="420" height="380" rx="10" class="box"/>
+  <text class="sub" x="65" y="115">a single change touches everything inside</text>
+
+  <!-- Pieces of the monolith -->
+  <g>
+    <rect x="80" y="140" width="360" height="60" rx="8" class="box">
+      <animate attributeName="fill" values="#f9fafb;#fee2e2;#fee2e2;#f9fafb" keyTimes="0;0.25;0.55;1" dur="6s" repeatCount="indefinite" begin="0.5s"/>
+      <animate attributeName="stroke" values="#d1d5db;#ef4444;#ef4444;#d1d5db" keyTimes="0;0.25;0.55;1" dur="6s" repeatCount="indefinite" begin="0.5s"/>
+    </rect>
+    <text class="label" x="100" y="176">Compute  ·  all services</text>
+  </g>
+
+  <g>
+    <rect x="80" y="215" width="360" height="60" rx="8" class="box">
+      <animate attributeName="fill" values="#f9fafb;#fee2e2;#fee2e2;#f9fafb" keyTimes="0;0.35;0.65;1" dur="6s" repeatCount="indefinite" begin="0.5s"/>
+      <animate attributeName="stroke" values="#d1d5db;#ef4444;#ef4444;#d1d5db" keyTimes="0;0.35;0.65;1" dur="6s" repeatCount="indefinite" begin="0.5s"/>
+    </rect>
+    <text class="label" x="100" y="251">Redis  ·  one instance</text>
+  </g>
+
+  <g>
+    <rect x="80" y="290" width="360" height="60" rx="8" class="box">
+      <animate attributeName="fill" values="#f9fafb;#fee2e2;#fee2e2;#f9fafb" keyTimes="0;0.45;0.75;1" dur="6s" repeatCount="indefinite" begin="0.5s"/>
+      <animate attributeName="stroke" values="#d1d5db;#ef4444;#ef4444;#d1d5db" keyTimes="0;0.45;0.75;1" dur="6s" repeatCount="indefinite" begin="0.5s"/>
+    </rect>
+    <text class="label" x="100" y="326">Database  ·  one primary</text>
+  </g>
+
+  <!-- "change" pulse at the top, ripple downward -->
+  <g>
+    <circle cx="260" cy="120" r="14" fill="#ef4444">
+      <animate attributeName="r" values="12;20;12" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="260" y="125" text-anchor="middle" class="badge" fill="#fff">!</text>
+  </g>
+  <text class="sub" x="260" y="395" text-anchor="middle">one infra change → ripples through the whole stack</text>
+  <text class="sub" x="260" y="412" text-anchor="middle" fill="#991b1b" font-weight="700">blast radius: the entire platform</text>
+
+  <!-- Outage indicator -->
+  <rect x="80" y="430" width="360" height="30" rx="6" fill="#fef2f2" stroke="#ef4444"/>
+  <text class="sub" x="260" y="450" text-anchor="middle" fill="#991b1b" font-weight="600">platform impact during the change window</text>
+
+  <!-- RIGHT: With cells -->
+  <text class="h2" x="540" y="78">After — independent cells</text>
+  <rect x="540" y="92" width="420" height="380" rx="10" class="box"/>
+  <text class="sub" x="555" y="115">the same change is applied to one cell at a time</text>
+
+  <!-- Cell 1: the one being changed -->
+  <rect x="565" y="135" width="180" height="285" rx="8" class="danger">
+    <animate attributeName="stroke-width" values="2;3;2" dur="2.5s" repeatCount="indefinite"/>
+  </rect>
+  <text class="label" x="655" y="158" text-anchor="middle">Cell 1</text>
+  <text class="sub"   x="655" y="174" text-anchor="middle" fill="#991b1b">change being rolled out</text>
+
+  <rect x="580" y="190" width="150" height="50" rx="6" fill="#fff" stroke="#ef4444"/>
+  <text class="sub" x="655" y="221" text-anchor="middle">Compute</text>
+
+  <rect x="580" y="250" width="150" height="50" rx="6" fill="#fff" stroke="#ef4444"/>
+  <text class="sub" x="655" y="281" text-anchor="middle">Redis</text>
+
+  <rect x="580" y="310" width="150" height="50" rx="6" fill="#fff" stroke="#ef4444"/>
+  <text class="sub" x="655" y="341" text-anchor="middle">DB replica</text>
+
+  <circle cx="655" cy="395" r="10" fill="#ef4444">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Cell 2: untouched -->
+  <rect x="770" y="135" width="180" height="285" rx="8" class="ok"/>
+  <text class="label" x="860" y="158" text-anchor="middle">Cell 2</text>
+  <text class="sub"   x="860" y="174" text-anchor="middle" fill="#166534">unaffected, still serving</text>
+
+  <rect x="785" y="190" width="150" height="50" rx="6" fill="#fff" stroke="#22c55e"/>
+  <text class="sub" x="860" y="221" text-anchor="middle">Compute</text>
+
+  <rect x="785" y="250" width="150" height="50" rx="6" fill="#fff" stroke="#22c55e"/>
+  <text class="sub" x="860" y="281" text-anchor="middle">Redis</text>
+
+  <rect x="785" y="310" width="150" height="50" rx="6" fill="#fff" stroke="#22c55e"/>
+  <text class="sub" x="860" y="341" text-anchor="middle">DB replica</text>
+
+  <circle cx="860" cy="395" r="6" fill="#22c55e"/>
+
+  <rect x="565" y="430" width="385" height="30" rx="6" fill="#f0fdf4" stroke="#22c55e"/>
+  <text class="sub" x="757" y="450" text-anchor="middle" fill="#166534" font-weight="600">platform impact: limited to Cell 1 only</text>
+</svg>
