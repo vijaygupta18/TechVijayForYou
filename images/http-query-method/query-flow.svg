@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="820" height="440" viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-labelledby="svgTitle svgDesc">
+  <title id="svgTitle">A search request over the HTTP QUERY method</title>
+  <desc id="svgDesc">Client sends a QUERY request with a JSON body to a CDN cache. On a cache HIT the CDN answers instantly without contacting the origin. On a cache MISS the CDN forwards the request to the Origin Server, which runs the search and returns results, optionally with a Content-Location header. Because QUERY is safe and idempotent, CDNs can cache it and proxies can retry it safely.</desc>
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A0E1A"/>
+      <stop offset="1" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="clientFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1D2238"/>
+      <stop offset="1" stop-color="#12162A"/>
+    </linearGradient>
+    <linearGradient id="cdnFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A2513"/>
+      <stop offset="1" stop-color="#17140A"/>
+    </linearGradient>
+    <linearGradient id="originFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#12293A"/>
+      <stop offset="1" stop-color="#0B1922"/>
+    </linearGradient>
+
+    <filter id="glowSoft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowMed" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowStrong" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4FE0FF"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00FF85"/>
+    </marker>
+    <marker id="arrowMuted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C7CCDA"/>
+    </marker>
+
+    <!-- invisible reference path used only for animateMotion -->
+    <path id="mainPath" d="M203,185 L415,185 L613,185 L415,185 L203,185" fill="none" stroke="none"/>
+    <path id="hitPath" d="M360,300 Q265,352 170,280" fill="none" stroke="none"/>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="820" height="440" fill="url(#bgGrad)"/>
+
+  <!-- title / subtitle -->
+  <text x="410" y="28" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" fill="#FFFFFF">A Search Request Over QUERY</text>
+  <text x="410" y="48" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#8B93A7">Cache hits skip the origin · failures retry safely</text>
+
+  <!-- ============ CLIENT BOX ============ -->
+  <g opacity="0">
+    <title>Client sends a QUERY request</title>
+    <animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="0.1s" fill="freeze"/>
+    <rect x="30" y="90" width="170" height="190" rx="16" fill="url(#clientFill)" stroke="#E8ECF5" stroke-width="2" filter="url(#glowSoft)"/>
+    <text x="115" y="122" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">Client</text>
+
+    <!-- simple monitor icon -->
+    <rect x="93" y="140" width="44" height="28" rx="3" fill="none" stroke="#C7CCDA" stroke-width="2"/>
+    <circle cx="115" cy="154" r="4" fill="none" stroke="#4FE0FF" stroke-width="1.6"/>
+    <line x1="115" y1="168" x2="115" y2="178" stroke="#C7CCDA" stroke-width="2"/>
+    <line x1="100" y1="180" x2="130" y2="180" stroke="#C7CCDA" stroke-width="2"/>
+
+    <text x="115" y="204" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#9AA3B8">sends a QUERY request</text>
+    <text x="115" y="222" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12" fill="#9FD8FF">QUERY /products</text>
+    <text x="115" y="238" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12" fill="#9FD8FF">+ JSON body</text>
+  </g>
+
+  <!-- ============ CDN / CACHE BOX (hero) ============ -->
+  <g opacity="0">
+    <title>CDN / Cache computes a cache key from URL + body</title>
+    <animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="0.4s" fill="freeze"/>
+    <rect x="325" y="70" width="180" height="230" rx="18" fill="url(#cdnFill)" stroke="#FFD93D" stroke-width="2.6" filter="url(#glowMed)"/>
+    <text x="415" y="100" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" fill="#FFD93D">CDN / Cache</text>
+
+    <text x="415" y="128" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12.5" fill="#FFE9A3">
+      cache key = URL + body hash
+      <animate attributeName="opacity" values="0.55;1;0.55" dur="2.4s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- simple cloud icon -->
+    <g stroke="#FFD93D" stroke-width="1.8" fill="none">
+      <circle cx="397" cy="158" r="12"/>
+      <circle cx="415" cy="150" r="16"/>
+      <circle cx="435" cy="160" r="11"/>
+      <line x1="388" y1="167" x2="443" y2="167"/>
+    </g>
+
+    <text x="415" y="282" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#C9A227">edge cache, closest to the client</text>
+  </g>
+
+  <!-- ============ ORIGIN SERVER BOX ============ -->
+  <g opacity="0">
+    <title>Origin Server runs the search and returns results</title>
+    <animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="0.7s" fill="freeze"/>
+    <rect x="615" y="90" width="175" height="190" rx="16" fill="url(#originFill)" stroke="#4FC3F7" stroke-width="2.2" filter="url(#glowMed)"/>
+    <text x="702" y="118" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" fill="#4FC3F7">Origin Server</text>
+
+    <!-- simple server rack icon -->
+    <g stroke="#4FC3F7" stroke-width="1.6" fill="none">
+      <rect x="676" y="130" width="52" height="14" rx="3"/>
+      <circle cx="684" cy="137" r="1.8" fill="#4FC3F7" stroke="none"/>
+      <rect x="676" y="148" width="52" height="14" rx="3"/>
+      <circle cx="684" cy="155" r="1.8" fill="#4FC3F7" stroke="none"/>
+    </g>
+
+    <text x="702" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#CFE9FB">runs the search</text>
+    <text x="702" y="206" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#CFE9FB">returns results</text>
+    <text x="702" y="230" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12" fill="#8FD3F0">Content-Location:</text>
+    <text x="702" y="246" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12" fill="#4FC3F7">/products?sort=price</text>
+  </g>
+
+  <!-- ============ ARROW 1: Client -&gt; CDN ============ -->
+  <path d="M203,185 L318,185" fill="none" stroke="#4FE0FF" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowCyan)"
+        pathLength="100" stroke-dasharray="100" stroke-dashoffset="100">
+    <title>Client forwards QUERY request toward CDN</title>
+    <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.6s" begin="0.9s" fill="freeze"/>
+  </path>
+
+  <!-- floating packet label describing request contents -->
+  <g>
+    <rect x="205" y="138" width="117" height="36" rx="8" fill="#0D1622" fill-opacity="0.85" stroke="#4FE0FF" stroke-width="1.2" opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.0s" fill="freeze"/>
+    </rect>
+    <text x="263" y="152" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12" fill="#BFE9FF" opacity="0">
+      QUERY /products
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.0s" fill="freeze"/>
+    </text>
+    <text x="263" y="168" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12" fill="#BFE9FF" opacity="0">
+      + JSON body
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.0s" fill="freeze"/>
+    </text>
+  </g>
+
+  <!-- ============ ARROW 2: CDN -&gt; Origin (MISS) ============ -->
+  <path d="M508,185 L608,185" fill="none" stroke="#4FE0FF" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowCyan)"
+        pathLength="100" stroke-dasharray="100" stroke-dashoffset="100">
+    <title>CDN forwards request to Origin on cache MISS</title>
+    <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.6s" begin="1.3s" fill="freeze"/>
+  </path>
+  <text x="558" y="170" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" fill="#FFB86B" opacity="0">
+    MISS &#8594; forward to origin
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.6s" fill="freeze"/>
+  </text>
+
+  <!-- safe retry note -->
+  <g opacity="0">
+    <title>QUERY is idempotent, so failed requests can be retried safely</title>
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.9s" fill="freeze"/>
+    <path d="M552,196 a9,9 0 1,1 3,8" fill="none" stroke="#C7CCDA" stroke-width="1.6" marker-end="url(#arrowMuted)"/>
+    <text x="558" y="222" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#C7CCDA">safe retry (idempotent)</text>
+  </g>
+
+  <!-- ============ HIT ARC: CDN -&gt; Client (short return) ============ -->
+  <path d="M360,300 Q265,352 170,280" fill="none" stroke="#00FF85" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowGreen)"
+        pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" filter="url(#glowSoft)">
+    <title>Cache HIT: CDN answers immediately without contacting Origin</title>
+    <animate attributeName="stroke-dashoffset" from="100" to="0" dur="0.7s" begin="2.1s" fill="freeze"/>
+  </path>
+  <text x="265" y="336" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" fill="#00FF85" opacity="0">
+    HIT &#8594; served instantly (no origin call)
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="2.5s" fill="freeze"/>
+  </text>
+
+  <!-- shuttle dot showing repeated instant HIT traffic -->
+  <circle r="5" fill="#00FF85" filter="url(#glowStrong)">
+    <title>Repeated cache hits served instantly by the CDN</title>
+    <animateMotion dur="2s" begin="2.8s" repeatCount="indefinite" rotate="0"
+      keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear">
+      <mpath href="#hitPath"/>
+    </animateMotion>
+  </circle>
+
+  <!-- ============ TRAVELING PACKET (main round trip: Client -&gt; CDN -&gt; Origin -&gt; CDN -&gt; Client) ============ -->
+  <g>
+    <title>QUERY request packet traveling from Client through CDN to Origin, then results returning</title>
+    <animateMotion dur="6s" begin="2.9s" repeatCount="indefinite" rotate="0"
+      keyPoints="0;0.256;0.256;0.5;0.5;0.744;0.744;1"
+      keyTimes="0;0.20;0.30;0.50;0.62;0.82;0.88;1"
+      calcMode="linear">
+      <mpath href="#mainPath"/>
+    </animateMotion>
+
+    <rect x="-42" y="-13" width="84" height="26" rx="8" fill="#0D2A33" stroke="#4FE0FF" stroke-width="1.8" filter="url(#glowStrong)">
+      <animate attributeName="stroke" values="#4FE0FF;#4FE0FF;#00FF85;#00FF85" keyTimes="0;0.5;0.56;1" dur="6s" begin="2.9s" repeatCount="indefinite"/>
+    </rect>
+    <text x="0" y="5" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#E7FBFF">
+      QUERY
+      <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="6s" begin="2.9s" repeatCount="indefinite" calcMode="discrete"/>
+    </text>
+    <text x="0" y="5" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="12" font-weight="700" fill="#E7FBFF" opacity="0">
+      RESULT
+      <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.5;0.5;1" dur="6s" begin="2.9s" repeatCount="indefinite" calcMode="discrete"/>
+    </text>
+  </g>
+
+  <!-- caption -->
+  <text x="410" y="424" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#8B93A7">QUERY is safe + idempotent, so CDNs can cache it and proxies can retry it</text>
+</svg>

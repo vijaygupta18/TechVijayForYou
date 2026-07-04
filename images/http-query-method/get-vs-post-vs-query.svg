@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img">
+  <title>GET vs POST vs QUERY — semantic comparison table</title>
+  <desc>Comparison of the HTTP GET, POST /search, and QUERY methods across safety, idempotency, cacheability, body support, large-query handling, and current support. QUERY matches GET's safe semantics while also carrying a request body like POST; the only row GET and POST still win is current widespread support, since QUERY is an emerging method.</desc>
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+
+    <filter id="queryGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur">
+        <animate attributeName="stdDeviation" values="3;6;3" dur="2.4s" repeatCount="indefinite"/>
+      </feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="textGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="480" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="34" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="20" font-weight="800" fill="#FFFFFF">GET vs POST vs QUERY</text>
+  <!-- Subtitle -->
+  <text x="400" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#8B93A7">QUERY wins on semantics — support is the only gap left</text>
+
+  <!-- QUERY column tint + glowing border (hero column) -->
+  <rect x="596" y="76" width="190" height="376" rx="10" fill="#4FC3F7" opacity="0.05"/>
+  <rect x="588" y="76" width="206" height="376" rx="12" fill="none" stroke="#4FC3F7" stroke-width="2" filter="url(#queryGlow)">
+    <animate attributeName="stroke-opacity" values="0.45;1;0.45" dur="2.4s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Column / label headers -->
+  <text x="26" y="90" font-family="Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="0.5" fill="#8B93A7">PROPERTY</text>
+  <text x="321" y="92" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#E8EAF0">GET</text>
+  <text x="501" y="92" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="16" font-weight="700" fill="#FF9F43">POST /search</text>
+  <text x="691" y="92" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="17" font-weight="800" fill="#4FC3F7" filter="url(#textGlow)">QUERY</text>
+
+  <line x1="16" y1="104" x2="786" y2="104" stroke="#2A3050" stroke-width="1"/>
+
+  <!-- ============ ROWS ============ -->
+
+  <!-- Row 0: Safe (read-only) — GET yes, POST no, QUERY yes -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0;0.07;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+    <text x="26" y="150" font-family="Arial, sans-serif" font-size="13" fill="#D6D9E3">Safe (read-only)</text>
+
+    <g transform="translate(321,145)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0;0.03;0.07;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(501,145)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0;0.03;0.07;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>No</title>
+        <circle r="13" fill="rgba(255,82,82,0.14)" stroke="#FF5252" stroke-width="1.6"/>
+        <path d="M -5,-5 L 5,5 M -5,5 L 5,-5" fill="none" stroke="#FF5252" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(691,145)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0;0.03;0.07;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+  </g>
+
+  <line x1="16" y1="172" x2="786" y2="172" stroke="#1E2340" stroke-width="1"/>
+
+  <!-- Row 1: Idempotent (safe retry) — GET yes, POST no, QUERY yes -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.0417;0.1117;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+    <text x="26" y="204" font-family="Arial, sans-serif" font-size="13" fill="#D6D9E3">Idempotent (safe retry)</text>
+
+    <g transform="translate(321,199)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.0417;0.0717;0.1117;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(501,199)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.0417;0.0717;0.1117;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>No</title>
+        <circle r="13" fill="rgba(255,82,82,0.14)" stroke="#FF5252" stroke-width="1.6"/>
+        <path d="M -5,-5 L 5,5 M -5,5 L 5,-5" fill="none" stroke="#FF5252" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(691,199)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.0417;0.0717;0.1117;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+  </g>
+
+  <line x1="16" y1="226" x2="786" y2="226" stroke="#1E2340" stroke-width="1"/>
+
+  <!-- Row 2: Cacheable — GET yes, POST rare (almost never), QUERY yes -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.0833;0.1533;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+    <text x="26" y="258" font-family="Arial, sans-serif" font-size="13" fill="#D6D9E3">Cacheable</text>
+
+    <g transform="translate(321,253)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.0833;0.1133;0.1533;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(501,244)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.0833;0.1133;0.1533;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Rare</title>
+        <circle r="13" fill="rgba(255,159,67,0.14)" stroke="#FF9F43" stroke-width="1.6"/>
+        <line x1="0" y1="-6" x2="0" y2="2" stroke="#FF9F43" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="0" cy="7" r="1.6" fill="#FF9F43"/>
+      </g>
+    </g>
+    <text x="501" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#FF9F43" opacity="0.9">almost never</text>
+
+    <g transform="translate(691,253)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.0833;0.1133;0.1533;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+  </g>
+
+  <line x1="16" y1="280" x2="786" y2="280" stroke="#1E2340" stroke-width="1"/>
+
+  <!-- Row 3: Carries a body — GET no, POST yes, QUERY yes -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.125;0.195;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+    <text x="26" y="312" font-family="Arial, sans-serif" font-size="13" fill="#D6D9E3">Carries a body</text>
+
+    <g transform="translate(321,307)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.125;0.155;0.195;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>No</title>
+        <circle r="13" fill="rgba(255,82,82,0.14)" stroke="#FF5252" stroke-width="1.6"/>
+        <path d="M -5,-5 L 5,5 M -5,5 L 5,-5" fill="none" stroke="#FF5252" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(501,307)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.125;0.155;0.195;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(691,307)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.125;0.155;0.195;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+  </g>
+
+  <line x1="16" y1="334" x2="786" y2="334" stroke="#1E2340" stroke-width="1"/>
+
+  <!-- Row 4: Handles large queries — GET no (URL limit), POST yes, QUERY yes -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.1667;0.2367;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+    <text x="26" y="366" font-family="Arial, sans-serif" font-size="13" fill="#D6D9E3">Handles large queries</text>
+
+    <g transform="translate(321,352)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.1667;0.1967;0.2367;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>No</title>
+        <circle r="13" fill="rgba(255,82,82,0.14)" stroke="#FF5252" stroke-width="1.6"/>
+        <path d="M -5,-5 L 5,5 M -5,5 L 5,-5" fill="none" stroke="#FF5252" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
+    </g>
+    <text x="321" y="378" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#FF5252" opacity="0.9">URL limit</text>
+
+    <g transform="translate(501,361)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.1667;0.1967;0.2367;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(691,361)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.1667;0.1967;0.2367;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+  </g>
+
+  <line x1="16" y1="388" x2="786" y2="388" stroke="#1E2340" stroke-width="1"/>
+
+  <!-- Row 5: Supported everywhere now — GET yes, POST yes, QUERY no (emerging) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.2083;0.2783;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+    <text x="26" y="420" font-family="Arial, sans-serif" font-size="13" fill="#D6D9E3">Supported everywhere now</text>
+
+    <g transform="translate(321,415)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.2083;0.2383;0.2783;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(501,415)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.2083;0.2383;0.2783;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>Yes</title>
+        <circle r="13" fill="rgba(0,255,133,0.14)" stroke="#00FF85" stroke-width="1.6"/>
+        <path d="M -6,0 L -2,5 L 7,-7" fill="none" stroke="#00FF85" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <g transform="translate(691,406)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="0.3;0.3;1.25;1;1;0.3;0.3" keyTimes="0;0.2083;0.2383;0.2783;0.8333;0.8833;1" dur="6s" repeatCount="indefinite"/>
+        <title>No (yet)</title>
+        <circle r="13" fill="rgba(255,82,82,0.14)" stroke="#FF5252" stroke-width="1.6"/>
+        <path d="M -5,-5 L 5,5 M -5,5 L 5,-5" fill="none" stroke="#FF5252" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
+    </g>
+    <text x="691" y="432" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#FF5252" opacity="0.9">emerging</text>
+  </g>
+
+  <line x1="16" y1="442" x2="786" y2="442" stroke="#2A3050" stroke-width="1"/>
+
+  <!-- Caption -->
+  <text x="400" y="468" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#8B93A7">POST /search tells proxies a read is a write. QUERY tells the truth.</text>
+</svg>

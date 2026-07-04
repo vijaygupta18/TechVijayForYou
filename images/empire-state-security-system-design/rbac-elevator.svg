@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="760" height="420" fill="url(#bg)"/>
+
+  <text x="380" y="34" text-anchor="middle" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="800">RBAC + Smart Elevator = Least Privilege</text>
+  <text x="380" y="58" text-anchor="middle" fill="#8B93A7" font-family="Segoe UI, Arial, sans-serif" font-size="13">Your badge decides which floors even light up</text>
+
+  <!-- ============ LEFT CARD: role -> allowed floors ============ -->
+  <rect x="20" y="76" width="410" height="300" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+  <text x="40" y="98" fill="#8B93A7" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1">ROLE &#8594; ALLOWED FLOORS</text>
+
+  <!-- row backgrounds -->
+  <rect x="30" y="108" width="390" height="44" rx="8" fill="#20263D"/>
+  <rect x="30" y="160" width="390" height="44" rx="8" fill="#20263D"/>
+  <rect x="30" y="212" width="390" height="44" rx="8" fill="#20263D"/>
+  <rect x="30" y="268" width="390" height="44" rx="8" fill="#241C24" stroke="#5A2230" stroke-width="1.5"/>
+
+  <!-- active badge highlight cycling Visitor -> Staff -> Engineer (3s each, 9s loop) -->
+  <rect x="30" y="108" width="390" height="44" rx="8" fill="none" stroke="#38BDF8" stroke-width="2.5" filter="url(#glow)">
+    <animate attributeName="y" values="108;160;212" keyTimes="0;0.3333;0.6667" dur="9s" calcMode="discrete" repeatCount="indefinite"/>
+  </rect>
+  <rect x="350" y="118" width="60" height="20" rx="6" fill="#38BDF8">
+    <animate attributeName="y" values="118;170;222" keyTimes="0;0.3333;0.6667" dur="9s" calcMode="discrete" repeatCount="indefinite"/>
+  </rect>
+  <text x="380" text-anchor="middle" fill="#0A0E1A" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="800">
+    <animate attributeName="y" values="132;184;236" keyTimes="0;0.3333;0.6667" dur="9s" calcMode="discrete" repeatCount="indefinite"/>
+    ACTIVE
+  </text>
+
+  <!-- Visitor row -->
+  <text x="46" y="126" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">VISITOR</text>
+  <text x="46" y="144" fill="#8B93A7" font-family="Segoe UI, Arial, sans-serif" font-size="12">Floor 86 (Observatory) only</text>
+
+  <!-- Staff row -->
+  <text x="46" y="178" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">STAFF</text>
+  <text x="46" y="196" fill="#8B93A7" font-family="Segoe UI, Arial, sans-serif" font-size="12">Floors 1&#8211;80</text>
+
+  <!-- Engineer row -->
+  <text x="46" y="230" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">ENGINEER</text>
+  <text x="46" y="248" fill="#8B93A7" font-family="Segoe UI, Arial, sans-serif" font-size="12">Mechanical floors (scheduled)</text>
+
+  <!-- Nobody row (always denied, static) -->
+  <text x="46" y="286" fill="#FF3B3B" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">
+    NOBODY
+    <animate attributeName="opacity" values="1;0.45;1" dur="1.2s" repeatCount="indefinite"/>
+  </text>
+  <text x="46" y="304" fill="#FF8080" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-style="italic">102 / 104 (antenna / roof) &#8212; no role grants this</text>
+
+  <!-- ============ RIGHT CARD: elevator button panel ============ -->
+  <rect x="450" y="76" width="290" height="300" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+  <text x="468" y="98" fill="#8B93A7" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1">ELEVATOR PANEL</text>
+
+  <!-- 104 - always denied -->
+  <text x="468" y="137" fill="#FF3B3B" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800">104 &#183; ANT</text>
+  <g>
+    <animate attributeName="opacity" values="1;0.45;1" dur="1.2s" repeatCount="indefinite"/>
+    <rect x="590" y="118" width="120" height="28" rx="6" fill="#FF3B3B" filter="url(#glow)"/>
+    <text x="650" y="137" text-anchor="middle" fill="#0A0E1A" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">&#10005; DENIED</text>
+  </g>
+
+  <!-- 102 - always denied -->
+  <text x="468" y="177" fill="#FF3B3B" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800">102 &#183; ROOF</text>
+  <g>
+    <animate attributeName="opacity" values="1;0.45;1" dur="1.2s" repeatCount="indefinite"/>
+    <rect x="590" y="158" width="120" height="28" rx="6" fill="#FF3B3B" filter="url(#glow)"/>
+    <text x="650" y="177" text-anchor="middle" fill="#0A0E1A" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">&#10005; DENIED</text>
+  </g>
+
+  <text x="595" y="196" fill="#FF8080" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-style="italic">no role grants this request</text>
+
+  <!-- 86 - Observatory: green only for Visitor phase -->
+  <text x="468" y="225" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800">86 &#183; OBS</text>
+  <rect x="590" y="206" width="120" height="28" rx="6" fill="#232A45" filter="url(#glow)">
+    <animate attributeName="fill" values="#00FF85;#232A45;#232A45" keyTimes="0;0.3333;0.6667" dur="9s" calcMode="discrete" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- 80 - Staff range: green only for Staff phase -->
+  <text x="468" y="265" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800">80</text>
+  <rect x="590" y="246" width="120" height="28" rx="6" fill="#232A45" filter="url(#glow)">
+    <animate attributeName="fill" values="#232A45;#00FF85;#232A45" keyTimes="0;0.3333;0.6667" dur="9s" calcMode="discrete" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- 50 - Staff range + Engineer's scheduled mechanical floor -->
+  <text x="468" y="305" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800">50 &#183; MECH</text>
+  <rect x="590" y="286" width="120" height="28" rx="6" fill="#232A45" filter="url(#glow)">
+    <animate attributeName="fill" values="#232A45;#00FF85;#00FF85" keyTimes="0;0.3333;0.6667" dur="9s" calcMode="discrete" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- 20 - Staff range: green only for Staff phase -->
+  <text x="468" y="345" fill="#FFFFFF" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800">20</text>
+  <rect x="590" y="326" width="120" height="28" rx="6" fill="#232A45" filter="url(#glow)">
+    <animate attributeName="fill" values="#232A45;#00FF85;#232A45" keyTimes="0;0.3333;0.6667" dur="9s" calcMode="discrete" repeatCount="indefinite"/>
+  </rect>
+
+  <text x="380" y="402" text-anchor="middle" fill="#6B7280" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic">Least privilege: no role in the system can request the antenna. That request simply doesn't exist.</text>
+</svg>

@@ -1,0 +1,149 @@
+<svg width="760" height="440" viewBox="0 0 760 440" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <linearGradient id="redFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B5B"/>
+      <stop offset="100%" stop-color="#7A0F0F"/>
+    </linearGradient>
+    <radialGradient id="redGlowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF3B3B" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FF3B3B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyanGlowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="amberGlowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFB020" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FFB020" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softblur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="760" height="440" fill="url(#bg)"/>
+  <circle cx="70" cy="90" r="150" fill="url(#redGlowGrad)"/>
+  <circle cx="700" cy="360" r="170" fill="url(#cyanGlowGrad)"/>
+
+  <!-- title -->
+  <text x="380" y="34" fill="#ffffff" font-size="20" font-weight="800" text-anchor="middle">Anatomy of the Empire State Breach = The Cyber Kill Chain</text>
+  <text x="380" y="58" fill="#8B93A7" font-size="13" text-anchor="middle">A physical break-in that followed every step of a real cyberattack</text>
+
+  <!-- connector path (behind cards) -->
+  <path d="M140,125 L620,125 L620,260 L140,260" fill="none" stroke="url(#redFlow)" stroke-width="3" stroke-linejoin="round" opacity="0.85"/>
+
+  <!-- direction arrows -->
+  <polygon points="255,120 268,125 255,130" fill="#FF3B3B" opacity="0.85"/>
+  <polygon points="495,120 508,125 495,130" fill="#FF3B3B" opacity="0.85"/>
+  <polygon points="615,180 620,193 625,180" fill="#FF3B3B" opacity="0.85"/>
+  <polygon points="505,255 492,260 505,265" fill="#FF3B3B" opacity="0.85"/>
+  <polygon points="265,255 252,260 265,265" fill="#FF3B3B" opacity="0.85"/>
+
+  <!-- ============ CARD 1 : RECONNAISSANCE ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.1s" dur="0.5s" fill="freeze"/>
+    <rect x="30" y="75" width="220" height="100" rx="14" fill="#FF3B3B" opacity="0.16" filter="url(#softblur)">
+      <animate attributeName="opacity" values="0.10;0.22;0.10" dur="3.2s" begin="0.1s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="30" y="75" width="220" height="100" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="52" cy="97" r="14" fill="#FF3B3B"/>
+    <text x="52" y="102" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">1</text>
+    <text x="140" y="120" fill="#ffffff" font-size="15" font-weight="700" text-anchor="middle">Cased the building</text>
+    <rect x="45" y="143" width="190" height="18" rx="9" fill="#FF3B3B" opacity="0.15" stroke="#FF3B3B" stroke-opacity="0.4"/>
+    <text x="140" y="156" fill="#FF6B5B" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.5">RECONNAISSANCE</text>
+  </g>
+
+  <!-- ============ CARD 2 : VALID CREDENTIALS ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.5s" dur="0.5s" fill="freeze"/>
+    <rect x="270" y="75" width="220" height="100" rx="14" fill="#FF3B3B" opacity="0.16" filter="url(#softblur)">
+      <animate attributeName="opacity" values="0.10;0.22;0.10" dur="3.2s" begin="0.5s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="270" y="75" width="220" height="100" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="292" cy="97" r="14" fill="#FF3B3B"/>
+    <text x="292" y="102" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">2</text>
+    <text x="380" y="114" fill="#ffffff" font-size="15" font-weight="700" text-anchor="middle">Bought a 9 PM ticket</text>
+    <text x="380" y="129" fill="#8B93A7" font-size="10" font-style="italic" text-anchor="middle">not a break-in — a log-in</text>
+    <rect x="285" y="143" width="190" height="18" rx="9" fill="#FF3B3B" opacity="0.15" stroke="#FF3B3B" stroke-opacity="0.4"/>
+    <text x="380" y="156" fill="#FF6B5B" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.5">VALID CREDENTIALS</text>
+  </g>
+
+  <!-- ============ CARD 3 : PERSISTENCE / DWELL ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="0.9s" dur="0.5s" fill="freeze"/>
+    <rect x="510" y="75" width="220" height="100" rx="14" fill="#FF3B3B" opacity="0.16" filter="url(#softblur)">
+      <animate attributeName="opacity" values="0.10;0.22;0.10" dur="3.2s" begin="0.9s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="510" y="75" width="220" height="100" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="532" cy="97" r="14" fill="#FF3B3B"/>
+    <text x="532" y="102" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">3</text>
+    <text x="620" y="120" fill="#ffffff" font-size="15" font-weight="700" text-anchor="middle">Hid overnight</text>
+    <rect x="525" y="143" width="190" height="18" rx="9" fill="#FF3B3B" opacity="0.15" stroke="#FF3B3B" stroke-opacity="0.4"/>
+    <text x="620" y="156" fill="#FF6B5B" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.5">PERSISTENCE / DWELL</text>
+  </g>
+
+  <!-- ============ CARD 4 : DETECTION != RESPONSE (amber, pulsing failure point) ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="1.3s" dur="0.5s" fill="freeze"/>
+    <circle cx="620" cy="260" r="85" fill="url(#amberGlowGrad)">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1.4s" begin="1.3s" repeatCount="indefinite"/>
+    </circle>
+    <rect x="510" y="210" width="220" height="100" rx="10" fill="#1C2238" stroke="#FFB020" stroke-width="2.5">
+      <animate attributeName="stroke-width" values="2;4.5;2" dur="1.4s" begin="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-opacity" values="0.6;1;0.6" dur="1.4s" begin="1.3s" repeatCount="indefinite"/>
+    </rect>
+    <circle cx="532" cy="232" r="14" fill="#FFB020"/>
+    <text x="532" y="237" fill="#0A0E1A" font-size="13" font-weight="800" text-anchor="middle">4</text>
+    <text x="620" y="249" fill="#ffffff" font-size="15" font-weight="700" text-anchor="middle">5 AM: camera saw them</text>
+    <rect x="525" y="278" width="190" height="18" rx="9" fill="#FFB020" opacity="0.18" stroke="#FFB020" stroke-opacity="0.6"/>
+    <text x="620" y="291" fill="#FFB020" font-size="10" font-weight="800" text-anchor="middle" letter-spacing="0.5">DETECTION &#8800; RESPONSE</text>
+  </g>
+
+  <!-- ============ CARD 5 : PRIVILEGE ESCALATION ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="1.7s" dur="0.5s" fill="freeze"/>
+    <rect x="270" y="210" width="220" height="100" rx="14" fill="#FF3B3B" opacity="0.16" filter="url(#softblur)">
+      <animate attributeName="opacity" values="0.10;0.22;0.10" dur="3.2s" begin="1.7s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="270" y="210" width="220" height="100" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="292" cy="232" r="14" fill="#FF3B3B"/>
+    <text x="292" y="237" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">5</text>
+    <text x="380" y="255" fill="#ffffff" font-size="15" font-weight="700" text-anchor="middle">Cut 2 locks</text>
+    <rect x="285" y="278" width="190" height="18" rx="9" fill="#FF3B3B" opacity="0.15" stroke="#FF3B3B" stroke-opacity="0.4"/>
+    <text x="380" y="291" fill="#FF6B5B" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.5">PRIVILEGE ESCALATION</text>
+  </g>
+
+  <!-- ============ CARD 6 : ACTION ON OBJECTIVE ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" begin="2.1s" dur="0.5s" fill="freeze"/>
+    <rect x="30" y="210" width="220" height="100" rx="14" fill="#FF3B3B" opacity="0.16" filter="url(#softblur)">
+      <animate attributeName="opacity" values="0.10;0.22;0.10" dur="3.2s" begin="2.1s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="30" y="210" width="220" height="100" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="52" cy="232" r="14" fill="#FF3B3B"/>
+    <text x="52" y="237" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">6</text>
+    <text x="140" y="255" fill="#ffffff" font-size="15" font-weight="700" text-anchor="middle">Banner on the antenna</text>
+    <rect x="45" y="278" width="190" height="18" rx="9" fill="#FF3B3B" opacity="0.15" stroke="#FF3B3B" stroke-opacity="0.4"/>
+    <text x="140" y="291" fill="#FF6B5B" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.5">ACTION ON OBJECTIVE</text>
+  </g>
+
+  <!-- traveling attacker dot -->
+  <circle r="6" fill="#FF3B3B" filter="url(#glow)">
+    <animateMotion path="M140,125 L620,125 L620,260 L140,260" dur="6s" begin="2.6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- bottom caption -->
+  <text x="380" y="420" fill="#6B7280" font-size="12" font-style="italic" text-anchor="middle">The camera detected them. Nobody responded. That gap is the whole lesson.</text>
+</svg>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="440" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>The Gap QUERY Fills — GET is safe but no body, POST has a body but is not safe, QUERY is both</title>
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <radialGradient id="getGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00FF85" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#00FF85" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="postGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF9F43" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#FF9F43" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="queryGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4FC3F7" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#4FC3F7" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#4FC3F7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="textGlow" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="3.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlowSmall" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="440" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="27" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="20" font-weight="800" fill="#FFFFFF">The Gap QUERY Fills</text>
+  <text x="400" y="47" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#8B93A7">Safe + idempotent (GET) meets has-a-body (POST)</text>
+
+  <!-- Ambient glow blobs behind the circles -->
+  <circle cx="310" cy="196" r="170" fill="url(#getGlow)"/>
+  <circle cx="490" cy="196" r="170" fill="url(#postGlow)"/>
+
+  <!-- GET circle (slides in from the left, settles in place) -->
+  <g id="getGroup">
+    <animateTransform attributeName="transform" type="translate" values="-90,0;8,0;0,0" keyTimes="0;0.75;1" dur="1.1s" begin="0.1s" fill="freeze" calcMode="spline" keySplines="0.2 0.7 0.3 1;0.3 0.3 0.5 1"/>
+    <animate attributeName="opacity" values="0;1" dur="0.9s" begin="0.1s" fill="freeze"/>
+    <circle cx="310" cy="196" r="125" fill="#00FF85" fill-opacity="0.18" stroke="#00FF85" stroke-width="2.5"/>
+    <text x="248" y="118" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="800" fill="#00FF85">GET</text>
+    <text x="248" y="156" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#CFFFE8">Safe</text>
+    <text x="248" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#CFFFE8">Idempotent</text>
+    <text x="248" y="204" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#CFFFE8">Cacheable</text>
+  </g>
+
+  <!-- POST circle (slides in from the right, settles in place) -->
+  <g id="postGroup">
+    <animateTransform attributeName="transform" type="translate" values="90,0;-8,0;0,0" keyTimes="0;0.75;1" dur="1.1s" begin="0.1s" fill="freeze" calcMode="spline" keySplines="0.2 0.7 0.3 1;0.3 0.3 0.5 1"/>
+    <animate attributeName="opacity" values="0;1" dur="0.9s" begin="0.1s" fill="freeze"/>
+    <circle cx="490" cy="196" r="125" fill="#FF9F43" fill-opacity="0.18" stroke="#FF9F43" stroke-width="2.5"/>
+    <text x="552" y="118" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="800" fill="#FF9F43">POST</text>
+    <text x="552" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#FFE3C2">Has a Body</text>
+  </g>
+
+  <!-- QUERY intersection (reveals last, then pulses) -->
+  <g id="queryGroup" opacity="0">
+    <animate attributeName="opacity" values="0;0;1" keyTimes="0;0.55;1" dur="1.1s" begin="1.15s" fill="freeze"/>
+
+    <circle cx="400" cy="188" r="70" fill="url(#queryGlow)">
+      <animate attributeName="opacity" values="0.55;1;0.55" dur="1.9s" begin="2.3s" repeatCount="indefinite"/>
+    </circle>
+
+    <text x="400" y="196" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="900" fill="#4FC3F7" filter="url(#textGlow)">
+      QUERY
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="1.9s" begin="2.3s" repeatCount="indefinite"/>
+    </text>
+
+    <g id="badge">
+      <rect x="315" y="222" width="170" height="27" rx="13.5" fill="#0A0E1A" fill-opacity="0.85" stroke="#4FC3F7" stroke-width="1.5">
+        <animate attributeName="stroke-opacity" values="0.6;1;0.6" dur="1.9s" begin="2.3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="400" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#4FC3F7" letter-spacing="0.3">RFC 10008 · NEW</text>
+    </g>
+  </g>
+
+  <!-- Failure callout 1: GET + body -->
+  <g id="fail1" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.35s" begin="1.65s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" values="-5,0;5,0;-3,0;3,0;0,0" dur="0.5s" begin="1.65s" fill="freeze"/>
+    <animate attributeName="opacity" values="1;0.72;1" dur="2.4s" begin="2.4s" repeatCount="indefinite"/>
+    <rect x="245" y="342" width="310" height="24" rx="12" fill="#1A0E0E" fill-opacity="0.7" stroke="#FF5252" stroke-width="1"/>
+    <text x="400" y="358" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#FF5252">GET + body → proxies strip it ✕</text>
+  </g>
+
+  <!-- Failure callout 2: POST /search -->
+  <g id="fail2" opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.35s" begin="1.95s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" values="-5,0;5,0;-3,0;3,0;0,0" dur="0.5s" begin="1.95s" fill="freeze"/>
+    <animate attributeName="opacity" values="1;0.72;1" dur="2.4s" begin="2.7s" repeatCount="indefinite"/>
+    <rect x="185" y="372" width="430" height="24" rx="12" fill="#1A0E0E" fill-opacity="0.7" stroke="#FF5252" stroke-width="1"/>
+    <text x="400" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#FF5252">POST /search → not cacheable, not idempotent ✕</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="400" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#8B93A7">QUERY = a safe, idempotent, cacheable method that carries a request body</text>
+</svg>

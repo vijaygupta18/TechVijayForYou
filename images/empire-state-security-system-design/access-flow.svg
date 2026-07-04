@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="320" viewBox="0 0 760 320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+    <radialGradient id="packetGlowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="760" height="320" fill="url(#bg)"/>
+
+  <!-- titles -->
+  <text x="380" y="34" text-anchor="middle" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="800">The Access Decision Flow</text>
+  <text x="380" y="58" text-anchor="middle" fill="#8B93A7" font-family="Segoe UI, Arial, sans-serif" font-size="13">How one access request travels through the system</text>
+
+  <!-- connector path (also used as the motion path for the packet) -->
+  <path id="flowPath" d="M75,110 L685,110 L685,226 L75,226" fill="none" stroke="#38BDF8" stroke-width="2" stroke-dasharray="6 5" opacity="0.35">
+    <animate attributeName="stroke-dashoffset" values="0;-22" dur="1.4s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- ============ NODE 1: Visitor ============ -->
+  <g>
+    <rect x="10" y="82" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="22" cy="94" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="22" y="98" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">1</text>
+    <text x="75" y="115" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Visitor</text>
+    <rect x="6" y="78" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0;0.001;0.051;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0;0.001;0.051;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- ============ NODE 2: Auth Service ============ -->
+  <g>
+    <rect x="163" y="82" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="175" cy="94" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="175" y="98" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">2</text>
+    <text x="228" y="115" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Auth Service</text>
+    <rect x="159" y="78" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.0945;0.1145;0.1645;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0.0945;0.1145;0.1645;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- ============ NODE 3: Access Control (RBAC) ============ -->
+  <g>
+    <rect x="315" y="82" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="327" cy="94" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="327" y="98" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">3</text>
+    <text x="380" y="106" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700">Access Control</text>
+    <text x="380" y="123" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700">(RBAC)</text>
+    <rect x="311" y="78" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.2083;0.2283;0.2783;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0.2083;0.2283;0.2783;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- ============ NODE 4: Smart Elevator ============ -->
+  <g>
+    <rect x="468" y="82" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="480" cy="94" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="480" y="98" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">4</text>
+    <text x="533" y="115" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Smart Elevator</text>
+    <rect x="464" y="78" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.3228;0.3428;0.3928;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0.3228;0.3428;0.3928;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- ============ NODE 5: Restricted Floor (verify) ============ -->
+  <g>
+    <rect x="620" y="82" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="632" cy="94" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="632" y="98" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">5</text>
+    <text x="685" y="106" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700">Restricted</text>
+    <text x="685" y="123" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700">Floor</text>
+    <rect x="616" y="78" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.4366;0.4566;0.5066;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0.4366;0.4566;0.5066;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <!-- verify pulse -->
+    <circle cx="740" cy="92" r="3" fill="#FFB020"/>
+    <circle cx="740" cy="92" r="3" fill="none" stroke="#FFB020" stroke-width="1.5">
+      <animate attributeName="r" values="3;10;3" dur="1.6s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0;0.9" dur="1.6s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- ============ NODE 6: Door Sensor (verify) ============ -->
+  <g>
+    <rect x="620" y="198" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="632" cy="210" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="632" y="214" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">6</text>
+    <text x="685" y="231" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Door Sensor</text>
+    <rect x="616" y="194" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.5234;0.5434;0.5934;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0.5234;0.5434;0.5934;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <!-- verify pulse -->
+    <circle cx="740" cy="208" r="3" fill="#FFB020"/>
+    <circle cx="740" cy="208" r="3" fill="none" stroke="#FFB020" stroke-width="1.5">
+      <animate attributeName="r" values="3;10;3" dur="1.6s" begin="0.35s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0;0.9" dur="1.6s" begin="0.35s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- ============ NODE 7: AI CCTV (verify) ============ -->
+  <g>
+    <rect x="416" y="198" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="428" cy="210" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="428" y="214" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">7</text>
+    <text x="481" y="231" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">AI CCTV</text>
+    <rect x="412" y="194" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.6761;0.6961;0.7461;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0.6761;0.6961;0.7461;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <!-- verify pulse -->
+    <circle cx="536" cy="208" r="3" fill="#FFB020"/>
+    <circle cx="536" cy="208" r="3" fill="none" stroke="#FFB020" stroke-width="1.5">
+      <animate attributeName="r" values="3;10;3" dur="1.6s" begin="0.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0;0.9" dur="1.6s" begin="0.7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- ============ NODE 8: Alert Service ============ -->
+  <g>
+    <rect x="213" y="198" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="225" cy="210" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="225" y="214" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">8</text>
+    <text x="278" y="231" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Alert Service</text>
+    <rect x="209" y="194" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.8281;0.8481;0.8981;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0.8281;0.8481;0.8981;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- ============ NODE 9: Security Dashboard ============ -->
+  <g>
+    <rect x="10" y="198" width="130" height="56" rx="10" fill="#1C2238" stroke="#2A3350" stroke-width="1.5"/>
+    <circle cx="22" cy="210" r="11" fill="#0A0E1A" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="22" y="214" text-anchor="middle" fill="#38BDF8" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800">9</text>
+    <text x="75" y="222" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700">Security</text>
+    <text x="75" y="239" text-anchor="middle" fill="#E8ECF5" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700">Dashboard</text>
+    <rect x="6" y="194" width="138" height="64" rx="14" fill="none" stroke="#00FF85" stroke-width="2" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;0;0" keyTimes="0;0.978;0.998;1;1" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-width" values="2;2;5;2;2" keyTimes="0;0.978;0.998;1;1" dur="7s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- ============ TRAVELING PACKET ============ -->
+  <g opacity="1">
+    <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.96;1" dur="7s" repeatCount="indefinite"/>
+    <circle r="14" fill="url(#packetGlowGrad)"/>
+    <circle r="6" fill="#38BDF8" filter="url(#glow)"/>
+    <animateMotion dur="7s" repeatCount="indefinite" path="M75,110 L685,110 L685,226 L75,226"/>
+  </g>
+
+  <!-- caption -->
+  <text x="380" y="302" text-anchor="middle" fill="#6B7280" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-style="italic">Zero Trust: every hop re-verifies. Getting past the front door earns you nothing.</text>
+</svg>

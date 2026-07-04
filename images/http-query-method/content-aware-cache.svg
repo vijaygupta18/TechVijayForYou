@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="460" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+
+    <linearGradient id="hashGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3A3010"/>
+      <stop offset="100%" stop-color="#1E1A0A"/>
+    </linearGradient>
+
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="glowStrong" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- guide paths for motion -->
+    <path id="pathA" d="M220,132 C300,132 320,180 356,203" />
+    <path id="pathB" d="M220,323 C300,323 320,270 356,247" />
+    <path id="keyPathA" d="M446,203 C520,150 560,138 668,130" />
+    <path id="keyPathB" d="M446,247 C520,282 560,300 668,320" />
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="800" height="460" fill="url(#bgGrad)"/>
+
+  <!-- title -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" fill="#FFFFFF">Content-Aware Cache Key</text>
+  <text x="400" y="50" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#8B93A7">Same URL + different body = different cache entry</text>
+
+  <!-- static guide lines (dim) -->
+  <path d="M220,132 C300,132 320,180 356,203" fill="none" stroke="#00FF85" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.25"/>
+  <path d="M220,323 C300,323 320,270 356,247" fill="none" stroke="#4FC3F7" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.25"/>
+  <path d="M446,203 C520,150 560,138 668,130" fill="none" stroke="#FFD93D" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.25"/>
+  <path d="M446,247 C520,282 560,300 668,320" fill="none" stroke="#FFD93D" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.25"/>
+
+  <!-- ============ Request A ============ -->
+  <g>
+    <animateTransform attributeName="transform" type="translate"
+      values="-80,0;-80,0;0,0;0,0;-80,0;-80,0"
+      keyTimes="0;0.02;0.12;0.84;0.94;1"
+      dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.02;0.12;0.84;0.94;1" dur="5s" repeatCount="indefinite"/>
+
+    <rect x="20" y="95" width="200" height="75" rx="10" fill="#111528" stroke="#00FF85" stroke-width="1.5"/>
+    <rect x="20" y="95" width="5" height="75" rx="2" fill="#00FF85"/>
+    <text x="212" y="109" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#00FF85">REQUEST A</text>
+    <text x="34" y="123" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">QUERY /products</text>
+    <text x="34" y="146" font-family="Consolas, Monaco, monospace" font-size="11.5" fill="#00FF85">{ "category":</text>
+    <text x="34" y="160" font-family="Consolas, Monaco, monospace" font-size="11.5" fill="#00FF85">  "laptops" }</text>
+  </g>
+
+  <!-- ============ Request B ============ -->
+  <g>
+    <animateTransform attributeName="transform" type="translate"
+      values="-80,0;-80,0;0,0;0,0;-80,0;-80,0"
+      keyTimes="0;0.02;0.12;0.84;0.94;1"
+      dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.02;0.12;0.84;0.94;1" dur="5s" repeatCount="indefinite"/>
+
+    <rect x="20" y="285" width="200" height="75" rx="10" fill="#111528" stroke="#4FC3F7" stroke-width="1.5"/>
+    <rect x="20" y="285" width="5" height="75" rx="2" fill="#4FC3F7"/>
+    <text x="212" y="299" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#4FC3F7">REQUEST B</text>
+    <text x="34" y="313" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">QUERY /products</text>
+    <text x="34" y="336" font-family="Consolas, Monaco, monospace" font-size="11.5" fill="#4FC3F7">{ "category":</text>
+    <text x="34" y="350" font-family="Consolas, Monaco, monospace" font-size="11.5" fill="#4FC3F7">  "phones" }</text>
+  </g>
+
+  <!-- traveling packet A (URL+body bundle) -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.119;0.12;0.32;0.33;1" dur="5s" repeatCount="indefinite"/>
+    <animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.12;0.32;1" calcMode="linear">
+      <mpath xlink:href="#pathA"/>
+    </animateMotion>
+    <circle r="9" fill="#00FF85" filter="url(#glow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="800" fill="#0A0E1A">A</text>
+  </g>
+
+  <!-- traveling packet B -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.179;0.18;0.38;0.39;1" dur="5s" repeatCount="indefinite"/>
+    <animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.18;0.38;1" calcMode="linear">
+      <mpath xlink:href="#pathB"/>
+    </animateMotion>
+    <circle r="9" fill="#4FC3F7" filter="url(#glow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="800" fill="#0A0E1A">B</text>
+  </g>
+
+  <!-- ============ Hash node ============ -->
+  <g>
+    <!-- pulse ring for arrival A -->
+    <circle cx="400" cy="225" r="45" fill="none" stroke="#00FF85" stroke-width="2.5" opacity="0">
+      <animate attributeName="r" values="45;45;45;75;75" keyTimes="0;0.319;0.32;0.46;1" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.8;0;0" keyTimes="0;0.319;0.32;0.46;1" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <!-- pulse ring for arrival B -->
+    <circle cx="400" cy="225" r="45" fill="none" stroke="#4FC3F7" stroke-width="2.5" opacity="0">
+      <animate attributeName="r" values="45;45;45;75;75" keyTimes="0;0.379;0.38;0.52;1" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0;0.8;0;0" keyTimes="0;0.379;0.38;0.52;1" dur="5s" repeatCount="indefinite"/>
+    </circle>
+
+    <circle cx="400" cy="225" r="45" fill="url(#hashGrad)" stroke="#FFD93D" stroke-width="2.5" filter="url(#glow)"/>
+    <text x="400" y="220" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" fill="#FFD93D">HASH</text>
+    <text x="400" y="236" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="9.5" fill="#FFD93D">url + body</text>
+
+    <text x="400" y="292" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#8B93A7">hash(URL, body) → cache key</text>
+  </g>
+
+  <!-- traveling key A -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.379;0.38;0.85;0.9;1" dur="5s" repeatCount="indefinite"/>
+    <animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.38;0.56;1" calcMode="linear">
+      <mpath xlink:href="#keyPathA"/>
+    </animateMotion>
+    <rect x="-20" y="-11" width="40" height="22" rx="6" fill="#00FF85" stroke="#FFD93D" stroke-width="1.5" filter="url(#glow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="9.5" font-weight="700" fill="#0A0E1A">key-A</text>
+  </g>
+
+  <!-- traveling key B -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.439;0.44;0.85;0.9;1" dur="5s" repeatCount="indefinite"/>
+    <animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.44;0.62;1" calcMode="linear">
+      <mpath xlink:href="#keyPathB"/>
+    </animateMotion>
+    <rect x="-20" y="-11" width="40" height="22" rx="6" fill="#4FC3F7" stroke="#FFD93D" stroke-width="1.5" filter="url(#glow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="9.5" font-weight="700" fill="#0A0E1A">key-B</text>
+  </g>
+
+  <!-- ============ Cache buckets ============ -->
+  <text x="690" y="80" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#8B93A7">CACHE</text>
+
+  <!-- Slot 1 (destination for A) -->
+  <g>
+    <rect x="600" y="95" width="180" height="70" rx="10" fill="#111528" stroke="#8B93A7" stroke-width="1.5"/>
+    <rect x="600" y="95" width="180" height="70" rx="10" fill="none" stroke="#00FF85" stroke-width="2.5" opacity="0" filter="url(#glowStrong)">
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.559;0.56;0.85;0.9;1" dur="5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="614" y="114" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="700" fill="#8B93A7">SLOT 1</text>
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.559;0.56;0.85;0.9;1" dur="5s" repeatCount="indefinite"/>
+      <rect x="614" y="124" width="152" height="30" rx="7" fill="#0F2A1C" stroke="#00FF85" stroke-width="1.5"/>
+      <text x="690" y="137" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="10" font-weight="700" fill="#00FF85">cache entry: A</text>
+      <text x="690" y="150" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#6FE0A5">/products + laptops</text>
+    </g>
+  </g>
+
+  <!-- Slot 2 (empty, contrast) -->
+  <g opacity="0.55">
+    <rect x="600" y="190" width="180" height="70" rx="10" fill="#0D1120" stroke="#8B93A7" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <text x="614" y="209" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="700" fill="#8B93A7">SLOT 2</text>
+    <text x="690" y="238" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10.5" fill="#8B93A7">empty</text>
+  </g>
+
+  <!-- Slot 3 (destination for B) -->
+  <g>
+    <rect x="600" y="285" width="180" height="70" rx="10" fill="#111528" stroke="#8B93A7" stroke-width="1.5"/>
+    <rect x="600" y="285" width="180" height="70" rx="10" fill="none" stroke="#4FC3F7" stroke-width="2.5" opacity="0" filter="url(#glowStrong)">
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.619;0.62;0.85;0.9;1" dur="5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="614" y="304" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="700" fill="#8B93A7">SLOT 3</text>
+    <g opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.619;0.62;0.85;0.9;1" dur="5s" repeatCount="indefinite"/>
+      <rect x="614" y="314" width="152" height="30" rx="7" fill="#0F2230" stroke="#4FC3F7" stroke-width="1.5"/>
+      <text x="690" y="327" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="10" font-weight="700" fill="#4FC3F7">cache entry: B</text>
+      <text x="690" y="340" text-anchor="middle" font-family="Consolas, Monaco, monospace" font-size="8.5" fill="#8FD4F7">/products + phones</text>
+    </g>
+  </g>
+
+  <!-- ============ Contrast callout ============ -->
+  <rect x="30" y="374" width="345" height="34" rx="8" fill="#141527" stroke="#8B93A7" stroke-width="1.2"/>
+  <text x="202" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="700" fill="#8B93A7">GET cache key = URL only</text>
+
+  <rect x="405" y="372" width="365" height="38" rx="9" fill="#241F0C" stroke="#FFD93D" stroke-width="2" filter="url(#glow)"/>
+  <text x="587" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" fill="#FFD93D">QUERY cache key = URL + body</text>
+
+  <!-- caption -->
+  <text x="400" y="443" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#8B93A7">RFC 10008: the cache key MUST incorporate the request content, not just the URI</text>
+</svg>

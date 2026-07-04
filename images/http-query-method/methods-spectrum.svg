@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="480" viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#14182B"/>
+    </linearGradient>
+
+    <linearGradient id="queryRowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#123244"/>
+      <stop offset="100%" stop-color="#0F2A3C"/>
+    </linearGradient>
+
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Reusable TRUE (check) icon, centered at 0,0 -->
+    <g id="iconTrue">
+      <circle r="14" fill="#00FF85" opacity="0.12"/>
+      <path d="M -6,0 L -1.5,5.5 L 7,-6.5" fill="none" stroke="#00FF85" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Reusable FALSE (cross) icon, centered at 0,0 -->
+    <g id="iconFalse">
+      <circle r="14" fill="#FF5252" opacity="0.12"/>
+      <line x1="-6" y1="-6" x2="6" y2="6" stroke="#FF5252" stroke-width="3" stroke-linecap="round"/>
+      <line x1="-6" y1="6" x2="6" y2="-6" stroke="#FF5252" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Reusable AMBIGUOUS (tilde) icon, centered at 0,0 -->
+    <g id="iconTilde">
+      <circle r="14" fill="#FFB300" opacity="0.12"/>
+      <path d="M -7,1.5 C -4.5,-4 -1.5,7 1,1.5 C 3.5,-4 6.5,4 7,1" fill="none" stroke="#FFB300" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="480" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="34" text-anchor="middle" font-size="20" font-weight="800" fill="#FFFFFF">HTTP Methods: The Missing Combination</text>
+  <text x="400" y="54" text-anchor="middle" font-size="13" fill="#8B93A7">Safe &#183; Idempotent &#183; Cacheable &#183; Body &#8212; only QUERY has all four</text>
+
+  <!-- Column headers -->
+  <text x="56" y="90" font-size="12" font-weight="700" letter-spacing="0.5" fill="#8B93A7">METHOD</text>
+  <text x="300" y="90" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="0.5" fill="#8B93A7">SAFE</text>
+  <text x="430" y="90" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="0.5" fill="#8B93A7">IDEMPOTENT</text>
+  <text x="560" y="90" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="0.5" fill="#8B93A7">CACHEABLE</text>
+  <text x="690" y="90" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="0.5" fill="#8B93A7">HAS BODY</text>
+  <line x1="40" y1="100" x2="760" y2="100" stroke="#2A3050" stroke-width="1"/>
+
+  <!-- Vertical grid separators -->
+  <line x1="220" y1="106" x2="220" y2="398" stroke="#1E2440" stroke-width="1"/>
+  <line x1="365" y1="106" x2="365" y2="398" stroke="#1A1F3A" stroke-width="1" stroke-dasharray="2,4"/>
+  <line x1="495" y1="106" x2="495" y2="398" stroke="#1A1F3A" stroke-width="1" stroke-dasharray="2,4"/>
+  <line x1="625" y1="106" x2="625" y2="398" stroke="#1A1F3A" stroke-width="1" stroke-dasharray="2,4"/>
+
+  <!-- ============ ROW: GET  (top=108, center=132) ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0s;7s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" from="-18 0" to="0 0" dur="0.55s" begin="0s;7s" fill="freeze"/>
+
+    <rect x="40" y="110" width="720" height="44" rx="8" fill="#12172a" stroke="#1E2440" stroke-width="1"/>
+    <text x="56" y="137" font-size="15" font-weight="700" fill="#E8ECF5">GET</text>
+
+    <g transform="translate(300,132)"><use href="#iconTrue"/></g>
+    <g transform="translate(430,132)"><use href="#iconTrue"/></g>
+    <g transform="translate(560,132)"><use href="#iconTrue"/></g>
+    <g transform="translate(690,132)"><use href="#iconFalse"/></g>
+  </g>
+
+  <!-- ============ ROW: POST (top=156, center=180) ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.3s;7.3s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" from="-18 0" to="0 0" dur="0.55s" begin="0.3s;7.3s" fill="freeze"/>
+
+    <rect x="40" y="158" width="720" height="44" rx="8" fill="#12172a" stroke="#1E2440" stroke-width="1"/>
+    <text x="56" y="185" font-size="15" font-weight="700" fill="#E8ECF5">POST</text>
+
+    <g transform="translate(300,180)"><use href="#iconFalse"/></g>
+    <g transform="translate(430,180)"><use href="#iconFalse"/></g>
+    <g transform="translate(560,180)"><use href="#iconFalse"/></g>
+    <g transform="translate(690,180)"><use href="#iconTrue"/></g>
+  </g>
+
+  <!-- ============ ROW: PUT  (top=204, center=228) ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.6s;7.6s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" from="-18 0" to="0 0" dur="0.55s" begin="0.6s;7.6s" fill="freeze"/>
+
+    <rect x="40" y="206" width="720" height="44" rx="8" fill="#12172a" stroke="#1E2440" stroke-width="1"/>
+    <text x="56" y="233" font-size="15" font-weight="700" fill="#E8ECF5">PUT</text>
+
+    <g transform="translate(300,228)"><use href="#iconFalse"/></g>
+    <g transform="translate(430,228)"><use href="#iconTrue"/></g>
+    <g transform="translate(560,228)"><use href="#iconFalse"/></g>
+    <g transform="translate(690,228)"><use href="#iconTrue"/></g>
+  </g>
+
+  <!-- ============ ROW: PATCH (top=252, center=276) ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.9s;7.9s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" from="-18 0" to="0 0" dur="0.55s" begin="0.9s;7.9s" fill="freeze"/>
+
+    <rect x="40" y="254" width="720" height="44" rx="8" fill="#12172a" stroke="#1E2440" stroke-width="1"/>
+    <text x="56" y="281" font-size="15" font-weight="700" fill="#E8ECF5">PATCH</text>
+
+    <g transform="translate(300,276)"><use href="#iconFalse"/></g>
+    <g transform="translate(430,276)"><use href="#iconFalse"/></g>
+    <g transform="translate(560,276)"><use href="#iconFalse"/></g>
+    <g transform="translate(690,276)"><use href="#iconTrue"/></g>
+  </g>
+
+  <!-- ============ ROW: DELETE (top=300, center=324) ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1.2s;8.2s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" from="-18 0" to="0 0" dur="0.55s" begin="1.2s;8.2s" fill="freeze"/>
+
+    <rect x="40" y="302" width="720" height="44" rx="8" fill="#12172a" stroke="#1E2440" stroke-width="1"/>
+    <text x="56" y="329" font-size="15" font-weight="700" fill="#E8ECF5">DELETE</text>
+
+    <g transform="translate(300,324)"><use href="#iconFalse"/></g>
+    <g transform="translate(430,324)"><use href="#iconTrue"/></g>
+    <g transform="translate(560,324)"><use href="#iconFalse"/></g>
+    <g transform="translate(690,324)"><use href="#iconTilde"/></g>
+  </g>
+
+  <!-- ============ ROW: QUERY (NEW, hero row) (top=348, center=372) ============ -->
+  <g opacity="0">
+    <animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="1.5s;8.5s" fill="freeze"/>
+    <animateTransform attributeName="transform" type="translate" from="-18 0" to="0 0" dur="0.65s" begin="1.5s;8.5s" fill="freeze"/>
+
+    <!-- glow duplicate, pulses forever once row has appeared -->
+    <rect x="40" y="350" width="720" height="44" rx="10" fill="none" stroke="#4FC3F7" stroke-width="3" filter="url(#glow)" opacity="0.5">
+      <animate attributeName="opacity" values="0.35;0.95;0.35" dur="1.7s" begin="2.1s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- main row card -->
+    <rect x="40" y="350" width="720" height="44" rx="10" fill="url(#queryRowGrad)" stroke="#4FC3F7" stroke-width="2"/>
+
+    <text x="56" y="377" font-size="16" font-weight="800" fill="#FFFFFF">QUERY</text>
+    <rect x="132" y="362" width="40" height="18" rx="9" fill="#4FC3F7" opacity="0.18" stroke="#4FC3F7" stroke-width="1"/>
+    <text x="152" y="375" text-anchor="middle" font-size="9" font-weight="800" fill="#4FC3F7">NEW</text>
+
+    <g transform="translate(300,372)">
+      <use href="#iconTrue"/>
+      <animateTransform attributeName="transform" type="scale" values="0;1.35;1" keyTimes="0;0.6;1" dur="0.45s" begin="1.9s;8.9s" fill="freeze" additive="sum"/>
+    </g>
+    <g transform="translate(430,372)">
+      <use href="#iconTrue"/>
+      <animateTransform attributeName="transform" type="scale" values="0;1.35;1" keyTimes="0;0.6;1" dur="0.45s" begin="1.95s;8.95s" fill="freeze" additive="sum"/>
+    </g>
+    <g transform="translate(560,372)">
+      <use href="#iconTrue"/>
+      <animateTransform attributeName="transform" type="scale" values="0;1.35;1" keyTimes="0;0.6;1" dur="0.45s" begin="2.0s;9.0s" fill="freeze" additive="sum"/>
+    </g>
+    <g transform="translate(690,372)">
+      <use href="#iconTrue"/>
+      <animateTransform attributeName="transform" type="scale" values="0;1.35;1" keyTimes="0;0.6;1" dur="0.45s" begin="2.05s;9.05s" fill="freeze" additive="sum"/>
+    </g>
+  </g>
+
+  <!-- Caption -->
+  <text x="400" y="440" text-anchor="middle" font-size="12" fill="#8B93A7">RFC 10008 &#8212; QUERY: a safe, idempotent, cacheable read that carries a body</text>
+</svg>
